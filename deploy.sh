@@ -26,6 +26,23 @@ Defaults to deployment of all code on staging environment.
 EOF
 }
 
+deploy_frontend() {
+    #todo kick-off any necessary fe build process
+
+    echo "deploying frontend"
+    for file in frontend/*
+    do
+      #todo: publish to s3
+      echo "$file"
+    done
+}
+
+deploy_backend() {
+    echo "deploying backend"
+
+    #todo: figure out how to build and deploy this thing
+}
+
 if [[ $# -eq 0 ]] ; then
     show_help
     exit 0
@@ -91,5 +108,34 @@ else
     exit 1;
 fi
 
+if [ "$GBLOG_CODEBASE" = "all" ]
+then
+    DEPLOY_FRONTEND=true
+    DEPLOY_BACKEND=true
+fi
+
+if [ "$GBLOG_CODEBASE" = "fe" ]
+then
+    DEPLOY_FRONTEND=true
+    DEPLOY_BACKEND=false
+fi
+
+if [ "$GBLOG_CODEBASE" = "be" ]
+then
+    DEPLOY_FRONTEND=false
+    DEPLOY_BACKEND=true
+fi
+
+
 # ship it
+if [ "$DEPLOY_FRONTEND" = true ]
+then
+    deploy_frontend
+fi
+
+if [ "$DEPLOY_BACKEND" = true ]
+then
+    deploy_backend
+fi
+
 exit 1;
