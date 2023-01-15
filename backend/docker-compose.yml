@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      AWS_ACCESS_KEY_ID: "override me"
+      AWS_DEFAULT_REGION: "override me"
+      AWS_SECRET_ACCESS_KEY: "override me"
+      S3_BUCKET_NAME: "override me"
+    ports:
+      - "8080:8080"
