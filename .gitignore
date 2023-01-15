@@ -1,8 +1,5 @@
-albums/*
+private-entries/*
 backend/blog
-backend/secrets.yaml
-backend/docker-compose.override.yml
-backend/docker-compose.prod.yml
 .env.dev
 .env.staging
 .env.production
