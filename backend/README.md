@@ -25,4 +25,4 @@ _Versions locally are: ubuntu 20.04, go1.19.5 linux/amd64._
        - Can specify if it should blow away the current index or not
      2. build an index file for a story
        - This will just be a json array with space for arbitrary metadata on each record. It will be manually edited to add that metadata.
-       - Because the frontend reads from the index file it will need to be updated if files are added or removed, or to update metadata.
+       - Because the frontend reads from the index file it will need to be updated if files are added or removed, or to update metadata.\

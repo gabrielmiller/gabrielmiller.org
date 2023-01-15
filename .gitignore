@@ -1,4 +1,4 @@
-private-entries/*
+stories/*
 backend/blog
 .env.dev
 .env.staging
