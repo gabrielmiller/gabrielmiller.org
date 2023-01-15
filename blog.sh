@@ -4,7 +4,7 @@ dev() {
   while read line; do
     eval $line
   done < $GBLOG_ENVFILE
-  cd backend && go build . && ./blog
+  cd backend && go build . && echo "[$(date +%T)] Blog listening on port $PORT" && ./blog
 }
 
 staging() {
@@ -61,21 +61,19 @@ while :; do
   shift
 done
 
-timestamp=$(date +%T)
-
 case "$GBLOG_OPERATION" in
  1)
-   echo "[$timestamp] Starting a development build & deploy, then running the local back-end server."
+   echo "[$(date +%T)] Starting a development build & deploy, then running the local back-end server."
    GBLOG_ENVFILE='.env.dev'
    dev
    ;;
  2)
-   echo "[$timestamp] Starting staging build & deploy."
+   echo "[$(date +%T)] Starting staging build & deploy."
    GBLOG_ENVFILE=".env.staging"
    staging
    ;;
  3)
-   echo "[$timestamp] Starting production build & deploy."
+   echo "[$(date +%T)] Starting production build & deploy."
    GBLOG_ENVFILE=".env.production"
    prod
    ;;
