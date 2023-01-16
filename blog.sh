@@ -64,7 +64,7 @@ generate_index() {
   INDEX_ENTRIES_LENGTH=$(echo $INDEX_ENTRIES | wc -m)
   CLEANED_INDEX_ENTRIES=$(echo $INDEX_ENTRIES | cut -c 2-$INDEX_ENTRIES_LENGTH)
   INDEX="{\"accessToken\":\"\",\"metadata\": {}, \"entries\": [$CLEANED_INDEX_ENTRIES]}"
-  echo $INDEX > index.json
+  echo -n $INDEX > index.json
   echo "Index generated."
 }
 
