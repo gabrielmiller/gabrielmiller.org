@@ -6,13 +6,89 @@ dev() {
   cd backend && \
   while read line; do
     eval $line
-  done < "$GBLOG_API_ENVFILE" && \
+  done < "$GBLOG_ENVFILE" && \
   go build . && \
   echo "[$(date +%T)] Blog API listening on port $PORT" && ./blog
 }
 
 staging() {
-  echo "TODO: staging stuff"
+  cd stories && \
+  while read line; do
+    eval $line
+  done < "$GBLOG_ENVFILE"
+
+  # 1. Loop through local directories
+  #     - validate there's an index.json file. exit 1 on fail
+  #     - validate files have allowed extensions. exit 1 on fail
+  # 2. Delete everything from the bucket
+  # 3. Loop through local directories and upload to s3
+
+  for directory in $(ls -d */)
+  do
+    indexFile="$directory""index.json"
+    if [ ! -f $indexFile ]
+    then
+      echo "No index file found in stories/$directory. You must create one to proceed."
+      exit 1
+    else
+      for file in $(ls $directory)
+      do
+        if [ "$file" == "index.json" ]
+        then
+          continue
+        fi
+
+        EXTENSION=$(echo $file | cut -d "." -f 2)
+
+        case "$EXTENSION" in
+          "gif"|"jpg")
+            continue
+          ;;
+          *)
+            echo "$file has invalid extension. Valid options: .gif, .jpg"
+            exit 1
+          ;;
+        esac
+      done
+    fi
+  done
+
+  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
+
+  declare -A filetypes
+  filetypes=(
+    ["gif"]="image/gif"
+    ["jpg"]="image/jpeg"
+    ["json"]="application/json"
+  )
+
+  for directory in $(ls -d */)
+  do
+    echo "Uploading $directory"
+    for file in $(ls $directory)
+    do
+      filename="${file##*/}"
+      extension="${filename##*.}"
+      mimetype=${filetypes["$extension"]}
+      result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
+
+    if [ "$?" -eq 0 ]
+    then
+      echo "Published $directory$file"
+    else
+      echo "There was an error publishing $file:"
+      echo "$result"
+      exit $?
+    fi
+    done
+  done
+
+  # deploy api
+  # - big ole TBD
+  #
+  # deploy static files
+  # - tap into a frontend build process
+  # - deploy the resulting dist files + any other stuff
 }
 
 prod() {
@@ -121,18 +197,18 @@ done
 case "$GBLOG_OPERATION" in
  1)
    echo "[$(date +%T)] Starting a development build & deploy, then running the local back-end server."
-   GBLOG_API_ENVFILE='.env.dev'
+   GBLOG_ENVFILE='.env.dev'
    dev
    ;;
  2)
    echo "[$(date +%T)] Starting staging build & deploy."
-   GBLOG_API_ENVFILE=".env.staging"
+   GBLOG_ENVFILE=".env.staging"
    staging
    exit 0
    ;;
  3)
    echo "[$(date +%T)] Starting production build & deploy."
-   GBLOG_API_ENVFILE=".env.production"
+   GBLOG_ENVFILE=".env.production"
    prod
    exit 0
    ;;
