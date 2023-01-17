@@ -18,4 +18,28 @@ The entry-point into everything is through the `blog.sh` script in the root. Giv
 
 ### Environment configuration
 
-This project relies upon you having several things configured in AWS, namely S3 buckets and IAM credentials/roles. I've extracted those into non-committed files. I will further document these things as this project gets closer to its first production release.
+This project relies upon you having several things configured in AWS, namely S3 buckets and IAM credentials/roles. I've extracted those credentials into non-committed files. I will further document these things as this project gets closer to its first production release, but here's a running list:
+
+1. Two S3 buckets: one for publicly accessible static content and one for privately accessible images. _I made two sets of these buckets, one set for staging and one set for production._
+
+2. Create IAM role(s) and user(s) with the following privileges
+    - for write access on the privately accessible image bucket(s):
+        - `s3:DeleteObject`
+        - `s3:ListBucket`
+        - `s3:PutObject`
+    - for read access on the privately accessible image bucket(s):
+        - `s3:GetObject`
+        - `s3:ListBucket`
+    - for write access on the publicly accessible static content bucket
+        - `s3:DeleteObject`
+        - `s3:ListBucket`
+        - `s3:PutObject`
+
+3. I chose to make a separate role and user for each permutation, but that's not a necessity. You should put these in the files named as follows:
+    - `.env.dev`
+    - `.env.staging`
+    - `.env.production`
+In the following directories:
+    - `backend` - credentials for read access on the _privately accessible image bucket._
+    - `frontend` - credentials for write access on the _publicly accessible static content bucket._
+    - `stories` - credentials for write access on the _privately accessible image bucket._

@@ -48,23 +48,23 @@ func (basics BucketBasics) ListObjects() ([]types.Object, error) {
 	return contents, err
 }
 
-func (basics BucketBasics) GetObjectInMemory(story string) (string) {
+func (basics BucketBasics) GetObjectInMemory(story string) (string, error) {
     objectKey := story + "/index.json"
 	result, err := basics.S3Client.GetObject(context.TODO(), &s3.GetObjectInput{
 		Bucket: aws.String(os.Getenv("S3_BUCKET_NAME")),
 		Key:    aws.String(objectKey),
 	})
 	if err != nil {
-		panic(err)
+        return "", err
 	}
 
     var reader io.Reader
     reader = result.Body
     data, _ := io.ReadAll(reader)
-    return string(data)
+    return string(data), nil
 }
 
-func GetIndexForStory(story string) (string) {
+func GetIndexForStory(story string) (string, error) {
     bucket := getConnection()
     return bucket.GetObjectInMemory(story)
 }

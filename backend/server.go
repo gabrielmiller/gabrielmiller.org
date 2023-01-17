@@ -18,6 +18,7 @@ func main() {
     http.HandleFunc("/b", bucketFileListingHandler)
     http.HandleFunc("/i", storyIndexHandler)
     http.HandleFunc("/p", presignFileHandler)
+    http.HandleFunc("/story", getStoryHandler)
 
     log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), nil))
 }
@@ -31,7 +32,7 @@ func indexHandler(w http.ResponseWriter, _ *http.Request) {
 func storyIndexHandler(w http.ResponseWriter, _ *http.Request) {
     w.Header().Set("Content-Type", "application/json")
 
-    index := aws.GetIndexForStory("test-album")
+    index, _ := aws.GetIndexForStory("test")
 
     var jsonMap map[string]interface{}
     json.Unmarshal([]byte(index), &jsonMap)
@@ -41,7 +42,7 @@ func storyIndexHandler(w http.ResponseWriter, _ *http.Request) {
 func presignFileHandler(w http.ResponseWriter, _ *http.Request) {
     w.Header().Set("Content-Type", "application/json")
 
-    url := aws.GetPresignUrl("test-album", "0001.jpg")
+    url := aws.GetPresignUrl("test", "0001.jpg")
 
     json.NewEncoder(w).Encode(url)
 }
@@ -52,4 +53,32 @@ func bucketFileListingHandler(w http.ResponseWriter, _ *http.Request) {
     filesInBucket := aws.ListBucketContents()
 
     json.NewEncoder(w).Encode(filesInBucket)
+}
+
+func getStoryHandler(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json")
+
+    username, password, ok := r.BasicAuth()
+
+    if !ok {
+        w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    index, err := aws.GetIndexForStory(username)
+    if (err != nil) {
+        http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    var jsonMap map[string]interface{}
+    json.Unmarshal([]byte(index), &jsonMap)
+
+    if (jsonMap["accessToken"] != password) {
+        http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    json.NewEncoder(w).Encode(jsonMap["entries"])
 }
