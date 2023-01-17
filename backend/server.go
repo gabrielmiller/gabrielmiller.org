@@ -19,6 +19,7 @@ func main() {
     http.HandleFunc("/i", storyIndexHandler)
     http.HandleFunc("/p", presignFileHandler)
     http.HandleFunc("/story", getStoryHandler)
+    http.HandleFunc("/entries", getEntriesHandler)
 
     log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), nil))
 }
@@ -81,4 +82,32 @@ func getStoryHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     json.NewEncoder(w).Encode(jsonMap["entries"])
+}
+
+func getEntriesHandler(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json")
+
+    username, password, ok := r.BasicAuth()
+
+    if !ok {
+        w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    index, err := aws.GetIndexForStory(username)
+    if (err != nil) {
+        http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    var jsonMap map[string]interface{}
+    json.Unmarshal([]byte(index), &jsonMap)
+
+    if (jsonMap["accessToken"] != password) {
+        http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    // Get pagination info from somewhere and passs it into an s3 api request
 }
