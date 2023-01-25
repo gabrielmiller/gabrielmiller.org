@@ -5,13 +5,9 @@ import (
     "log"
     "net/http"
     "os"
+    "strconv"
     "blog/aws"
 )
-
-type Entry struct {
-    Description string `json:"description"`
-    Url string `json:"url"`
-}
 
 func main() {
     http.HandleFunc("/", indexHandler)
@@ -25,9 +21,8 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, _ *http.Request) {
-    e := Entry{Description:"Sample entry", Url:"https://www.google.com"}
     w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(e)
+    json.NewEncoder(w).Encode("hello")
 }
 
 func storyIndexHandler(w http.ResponseWriter, _ *http.Request) {
@@ -35,15 +30,15 @@ func storyIndexHandler(w http.ResponseWriter, _ *http.Request) {
 
     index, _ := aws.GetIndexForStory("test")
 
-    var jsonMap map[string]interface{}
-    json.Unmarshal([]byte(index), &jsonMap)
-    json.NewEncoder(w).Encode(jsonMap)
+    var Index aws.StoryIndex
+    json.Unmarshal([]byte(index), &Index)
+    json.NewEncoder(w).Encode(Index)
 }
 
 func presignFileHandler(w http.ResponseWriter, _ *http.Request) {
     w.Header().Set("Content-Type", "application/json")
 
-    url := aws.GetPresignUrl("test", "0001.jpg")
+    url, _ := aws.GetPresignUrl("test", "0001.jpg")
 
     json.NewEncoder(w).Encode(url)
 }
@@ -88,26 +83,36 @@ func getEntriesHandler(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
 
     username, password, ok := r.BasicAuth()
-
     if !ok {
         w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
         return
     }
 
-    index, err := aws.GetIndexForStory(username)
+    // default to page 1 and a sane page size
+    page, err := strconv.Atoi(r.FormValue("page"))
+    if err != nil {
+        page = 1
+    }
+
+    perPage, err := strconv.Atoi(r.FormValue("perPage"))
+    if err != nil {
+        perPage = 4
+    }
+
+    if (page < 1) {
+        page = 1
+    }
+
+    if (perPage > 10 || perPage < 1) {
+        perPage = 4
+    }
+
+    data, err := aws.GetEntriesForStoryByPage(username, password, page, perPage)
     if (err != nil) {
         http.Error(w, "Unauthorized", http.StatusUnauthorized)
         return
     }
 
-    var jsonMap map[string]interface{}
-    json.Unmarshal([]byte(index), &jsonMap)
-
-    if (jsonMap["accessToken"] != password) {
-        http.Error(w, "Unauthorized", http.StatusUnauthorized)
-        return
-    }
-
-    // Get pagination info from somewhere and passs it into an s3 api request
+    json.NewEncoder(w).Encode(data)
 }

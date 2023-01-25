@@ -2,6 +2,7 @@ package aws
 
 import (
     "context"
+    "encoding/json"
     "io"
     "log"
     "os"
@@ -14,11 +15,22 @@ import (
     "time"
 )
 
+type StoryIndex struct {
+    AccessToken string
+    Entries []StoryEntry `json:"entries"`
+    Metadata map[string]interface{} `json:"metadata"`
+}
+
+type StoryEntry struct {
+    Filename string `json:"filename"`
+    Metadata map[string]interface{} `json:"metadata"`
+}
+
 type Presigner struct {
 	PresignClient *s3.PresignClient
 }
 
-func (presigner Presigner) GetObject(objectKey string, lifetimeSecs int64) (*v4.PresignedHTTPRequest) {
+func (presigner Presigner) getObject(objectKey string, lifetimeSecs int64) (*v4.PresignedHTTPRequest, error) {
 	request, err := presigner.PresignClient.PresignGetObject(context.TODO(), &s3.GetObjectInput{
 		Bucket: aws.String(os.Getenv("S3_BUCKET_NAME")),
 		Key:    aws.String(objectKey),
@@ -26,16 +38,16 @@ func (presigner Presigner) GetObject(objectKey string, lifetimeSecs int64) (*v4.
 		opts.Expires = time.Duration(lifetimeSecs * int64(time.Second))
 	})
 	if err != nil {
-        panic(err)
+        return nil, err
 	}
-	return request
+	return request, nil
 }
 
 type BucketBasics struct {
 	S3Client *s3.Client
 }
 
-func (basics BucketBasics) ListObjects() ([]types.Object, error) {
+func (basics BucketBasics) listObjects() ([]types.Object, error) {
 	result, err := basics.S3Client.ListObjectsV2(context.TODO(), &s3.ListObjectsV2Input{
 		Bucket: aws.String(os.Getenv("S3_BUCKET_NAME")),
 	})
@@ -48,8 +60,7 @@ func (basics BucketBasics) ListObjects() ([]types.Object, error) {
 	return contents, err
 }
 
-func (basics BucketBasics) GetObjectInMemory(story string) (string, error) {
-    objectKey := story + "/index.json"
+func (basics BucketBasics) getS3FileInMemory(objectKey string) (string, error) {
 	result, err := basics.S3Client.GetObject(context.TODO(), &s3.GetObjectInput{
 		Bucket: aws.String(os.Getenv("S3_BUCKET_NAME")),
 		Key:    aws.String(objectKey),
@@ -66,21 +77,61 @@ func (basics BucketBasics) GetObjectInMemory(story string) (string, error) {
 
 func GetIndexForStory(story string) (string, error) {
     bucket := getConnection()
-    return bucket.GetObjectInMemory(story)
+    return bucket.getS3FileInMemory(story + "/index.json")
 }
 
-func GetPresignUrl(story string, key string) (string) {
+func GetEntriesForStoryByPage(story string, accessToken string, page int, perPage int) ([]string, error) {
+    indexFile, err := GetIndexForStory(story)
+    if err != nil {
+        return nil, err
+    }
+
+    var Index StoryIndex
+    json.Unmarshal([]byte(indexFile), &Index)
+    if (Index.AccessToken != accessToken) {
+        return nil, err
+    }
+
+    maxEntries := len(Index.Entries)
+    pageStartIndex := (page - 1)
+    pageEndIndex := pageStartIndex + perPage
+
+    if (pageEndIndex > maxEntries) {
+        pageEndIndex = maxEntries
+    }
+    paginatedEntries := Index.Entries[pageStartIndex:pageEndIndex]
+
+    var urls []string
+    for _, element := range paginatedEntries {
+        url, err := GetPresignUrl(story, element.Filename)
+
+        if err != nil {
+            return nil, err
+        }
+
+        urls = append(urls, url)
+    }
+
+    return urls, nil
+}
+
+func GetPresignUrl(story string, key string) (string, error) {
     bucket := getConnection()
     presignClient := s3.NewPresignClient(bucket.S3Client)
     presigner := Presigner{ PresignClient: presignClient }
-    return presigner.GetObject(story + "/" + key, 90).URL
+    file, err := presigner.getObject(story + "/" + key, 90)
 
+    if err != nil {
+        return "", err
+    }
+
+    return file.URL, nil
 }
 
 func ListBucketContents() ([]string) {
 
     bucket := getConnection()
-    contents, err := bucket.ListObjects()
+    contents, err := bucket.listObjects()
     if err != nil {
         panic(err)
     }

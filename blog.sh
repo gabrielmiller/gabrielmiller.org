@@ -2,7 +2,22 @@
 
 GBLOG_ENVIRONMENT="staging"
 
+validate_go_dependency() {
+  if ! command -v go &> /dev/null
+  then
+    echo "Go dependency could not be found. You should install go1.19.5 linux/amd64 before proceeding."
+    exit 1
+  fi
+
+  GOVERSION=$(go version)
+  if [ "$GOVERSION" != "go version go1.19.5 linux/amd64" ]
+  then
+    echo "Using untested go version. This has only been tested with 1.19.5 linux/amd64."
+  fi
+}
+
 dev() {
+  validate_go_dependency
   cd backend && \
   while read line; do
     eval $line
