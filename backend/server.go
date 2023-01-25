@@ -10,45 +10,10 @@ import (
 )
 
 func main() {
-    http.HandleFunc("/", indexHandler)
-    http.HandleFunc("/b", bucketFileListingHandler)
-    http.HandleFunc("/i", storyIndexHandler)
-    http.HandleFunc("/p", presignFileHandler)
     http.HandleFunc("/story", getStoryHandler)
     http.HandleFunc("/entries", getEntriesHandler)
 
     log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), nil))
-}
-
-func indexHandler(w http.ResponseWriter, _ *http.Request) {
-    w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode("hello")
-}
-
-func storyIndexHandler(w http.ResponseWriter, _ *http.Request) {
-    w.Header().Set("Content-Type", "application/json")
-
-    index, _ := aws.GetIndexForStory("test")
-
-    var Index aws.StoryIndex
-    json.Unmarshal([]byte(index), &Index)
-    json.NewEncoder(w).Encode(Index)
-}
-
-func presignFileHandler(w http.ResponseWriter, _ *http.Request) {
-    w.Header().Set("Content-Type", "application/json")
-
-    url, _ := aws.GetPresignUrl("test", "0001.jpg")
-
-    json.NewEncoder(w).Encode(url)
-}
-
-func bucketFileListingHandler(w http.ResponseWriter, _ *http.Request) {
-    w.Header().Set("Content-Type", "application/json")
-
-    filesInBucket := aws.ListBucketContents()
-
-    json.NewEncoder(w).Encode(filesInBucket)
 }
 
 func getStoryHandler(w http.ResponseWriter, r *http.Request) {
@@ -62,21 +27,13 @@ func getStoryHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    index, err := aws.GetIndexForStory(username)
+    Index, err := aws.GetIndexForStory(username, password)
     if (err != nil) {
         http.Error(w, "Unauthorized", http.StatusUnauthorized)
         return
     }
 
-    var jsonMap map[string]interface{}
-    json.Unmarshal([]byte(index), &jsonMap)
-
-    if (jsonMap["accessToken"] != password) {
-        http.Error(w, "Unauthorized", http.StatusUnauthorized)
-        return
-    }
-
-    json.NewEncoder(w).Encode(jsonMap["entries"])
+    json.NewEncoder(w).Encode(Index.Entries)
 }
 
 func getEntriesHandler(w http.ResponseWriter, r *http.Request) {
@@ -108,7 +65,7 @@ func getEntriesHandler(w http.ResponseWriter, r *http.Request) {
         perPage = 4
     }
 
-    data, err := aws.GetEntriesForStoryByPage(username, password, page, perPage)
+    data, err := aws.GetEntriesForStory(username, password, page, perPage)
     if (err != nil) {
         http.Error(w, "Unauthorized", http.StatusUnauthorized)
         return
