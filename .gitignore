@@ -3,3 +3,6 @@ backend/blog
 .env.dev
 .env.staging
 .env.production
+*.crt
+*.key
+*.pem
