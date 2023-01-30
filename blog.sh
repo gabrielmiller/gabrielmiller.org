@@ -124,14 +124,11 @@ staging() {
   done < "$GBLOG_ENVFILE"
 
   validate_go_dependency
-  go build
+  CGO_ENABLED=0 go build
   PID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
-  echo "PID is $PID"
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" kill -9 $(PID)
-  echo "planting file"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$PID"
   scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog
-  echo "planted"
-  exit 1
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo ./blog &
 
   # deploy api
   # - big ole TBD
