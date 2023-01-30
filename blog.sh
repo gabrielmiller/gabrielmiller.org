@@ -2,7 +2,24 @@
 
 GBLOG_ENVIRONMENT="staging"
 
+validate_aws_dependency() {
+  # confirm aws cli command is installed and warn if recommended verison is not present
+  if ! command -v aws &> /dev/null
+  then
+    echo "aws cli dependency could not be found. You should install the AWS CLI."
+    exit 1
+  fi
+
+  AWSVERSION=$(aws --version)
+  if [ "$AWSVERSION" != "aws-cli/2.9.19 Python/3.9.11 Linux/6.1.8-arch1-1 exe/x86_64.arch prompt/off" ]
+  then
+    echo "Proceed with caution."
+    echo "Using untested aws version. This has only been tested with aws-cli/2.9.19 Python/3.9.11 Linux/6.1.8-arch1-1 exe/x86_64.arch prompt/off."
+  fi
+}
+
 validate_go_dependency() {
+  # confirm go is installed and warn if recommended version is not present
   if ! command -v go &> /dev/null
   then
     echo "Go dependency could not be found. You should install go1.19.5 linux/amd64 before proceeding."
@@ -12,6 +29,7 @@ validate_go_dependency() {
   GOVERSION=$(go version)
   if [ "$GOVERSION" != "go version go1.19.5 linux/amd64" ]
   then
+    echo "Proceed with caution."
     echo "Using untested go version. This has only been tested with 1.19.5 linux/amd64."
   fi
 }
@@ -38,6 +56,7 @@ staging() {
   # 2. Delete everything from the bucket
   # 3. Loop through local directories and upload to s3
 
+  validate_aws_dependency
   for directory in $(ls -d */)
   do
     indexFile="$directory""index.json"
@@ -68,6 +87,7 @@ staging() {
     fi
   done
 
+  echo "Destroying bucket contents"
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
   declare -A filetypes
@@ -97,6 +117,21 @@ staging() {
     fi
     done
   done
+
+  cd ../backend
+  while read line; do
+    eval $line
+  done < "$GBLOG_ENVFILE"
+
+  validate_go_dependency
+  go build
+  PID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
+  echo "PID is $PID"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" kill -9 $(PID)
+  echo "planting file"
+  scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog
+  echo "planted"
+  exit 1
 
   # deploy api
   # - big ole TBD
