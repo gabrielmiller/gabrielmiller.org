@@ -215,7 +215,7 @@ shipit() {
 }
 
 generate_tls_certificate() {
-  cd tls
+  cd dns
   set_environment
   sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-route53 --agree-tos --preferred-challenges=dns --non-interactive
   cd ..
@@ -270,6 +270,17 @@ generate_index() {
   echo "Index generated."
 }
 
+plant_tls_certificate_in_acm() {
+  cd cert
+  set_environment
+  sudo -E aws acm import-certificate --certificate-arn $CERTIFICATE_ARN --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN"
+  cd ..
+}
+
+plant_tls_certificate_in_ec2() {
+  echo "todo"
+}
+
 show_help() {
 cat << EOF
 
@@ -285,7 +296,9 @@ Do the blog thing.
           2. build and deploy to staging
           3. build and deploy to production
           4. generate index file for a story
-          5. generate a tls certificate with certbot
+          5. generate a tls certificate
+          6. plant the tls certificate in acm
+          7. plant the tls certificate in ec2 (& reboot api?)
 
     -h, --help
         Display this help file.
@@ -351,12 +364,23 @@ case "$GBLOG_OPERATION" in
    generate_index
    exit 0
    ;;
-  5)
+ 5)
    validate_aws_dependency
    validate_tls_dependency
    echo "[$(date +%T)] Generating a new certificate for staging."
    GBLOG_ENVFILE=".env.staging"
    generate_tls_certificate
+   ;;
+ 6)
+   validate_aws_dependency
+   echo "[$(date +%T)] Planting the staging certificate in acm."
+   GBLOG_ENVFILE=".env.staging"
+   plant_tls_certificate_in_acm
+   ;;
+ 7)
+   echo "[$(date +%T)] Planting the staging certificate in ec2."
+   GBLOG_ENVFILE=".env.staging"
+   plant_tls_certificate_in_ec2
    ;;
  *)
    echo "Invalid operation requested."
