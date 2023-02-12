@@ -19,7 +19,6 @@ storyfiletypes=(
   ["json"]="application/json"
 )
 
-# confirm aws cli command is installed and warn if recommended verison is not present
 validate_aws_dependency() {
   if ! command -v aws &> /dev/null
   then
@@ -34,7 +33,6 @@ validate_aws_dependency() {
   fi
 }
 
-# confirm go is installed and warn if recommended version is not present
 validate_go_dependency() {
   if ! command -v go &> /dev/null
   then
@@ -46,6 +44,25 @@ validate_go_dependency() {
   if [ "$GOVERSION" != "go version go1.20 linux/amd64" ]
   then
     echo "WARNING: Using untested go version. This has only been tested with 1.20 linux/amd64."
+  fi
+}
+
+validate_tls_dependency() {
+  if ! command -v certbot &> /dev/null
+  then
+    echo "Certbot dependency could not be found. You should install certbot 1.32.2 before proceeding."
+    exit 1
+  fi
+
+  CERTBOTVERSION=$(certbot --version)
+  if [ "$CERTBOTVERSION" != "certbot 1.32.2" ]
+  then
+    echo "WARNING: Using untested certbot version. This has only been tested with 1.32.2."
+  fi
+
+  if ! p=$(certbot plugins | grep dns-route53)
+  then
+    echo "WARNING: Could not locate route53 plugin. This has only been tested with it installed."
   fi
 }
 
@@ -195,8 +212,13 @@ shipit() {
   deploy_stories
   deploy_backend
   deploy_frontend
+}
 
-  exit 0
+generate_tls_certificate() {
+  cd tls
+  set_environment
+  sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-route53 --agree-tos --preferred-challenges=dns --non-interactive
+  cd ..
 }
 
 generate_index() {
@@ -263,15 +285,13 @@ Do the blog thing.
           2. build and deploy to staging
           3. build and deploy to production
           4. generate index file for a story
+          5. generate a tls certificate with certbot
 
     -h, --help
         Display this help file.
 
 EOF
 }
-
-validate_aws_dependency
-validate_go_dependency
 
 if [[ $# -eq 0 ]] ; then
     show_help
@@ -303,17 +323,22 @@ done
 
 case "$GBLOG_OPERATION" in
  1)
+   validate_go_dependency
    echo "[$(date +%T)] Starting a development build & deploy, then running the local back-end server."
    GBLOG_ENVFILE='.env.dev'
    dev
    ;;
  2)
+   validate_aws_dependency
+   validate_go_dependency
    echo "[$(date +%T)] Starting staging build & deploy."
    GBLOG_ENVFILE=".env.staging"
    shipit
    exit 0
    ;;
  3)
+   validate_aws_dependency
+   validate_go_dependency
    echo "[$(date +%T)] Starting production build & deploy."
    GBLOG_ENVFILE=".env.production"
    shipit
@@ -325,6 +350,13 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Building index file for $GBLOG_STORYNAME."
    generate_index
    exit 0
+   ;;
+  5)
+   validate_aws_dependency
+   validate_tls_dependency
+   echo "[$(date +%T)] Generating a new certificate for staging."
+   GBLOG_ENVFILE=".env.staging"
+   generate_tls_certificate
    ;;
  *)
    echo "Invalid operation requested."
