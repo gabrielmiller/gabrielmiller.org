@@ -1,9 +1,26 @@
 #!/bin/bash
 
-GBLOG_ENVIRONMENT="staging"
+declare -A frontendfiletypes
+frontendfiletypes=(
+  ["css"]="text/css"
+  ["gif"]="image/gif"
+  ["html"]="text/html"
+  ["ico"]="image/x-icon"
+  ["js"]="application/javascript"
+  ["jpg"]="image/jpeg"
+  ["png"]="image/png"
+  ["webmanifest"]="application/manifest+json"
+)
 
+declare -A storyfiletypes
+storyfiletypes=(
+  ["gif"]="image/gif"
+  ["jpg"]="image/jpeg"
+  ["json"]="application/json"
+)
+
+# confirm aws cli command is installed and warn if recommended verison is not present
 validate_aws_dependency() {
-  # confirm aws cli command is installed and warn if recommended verison is not present
   if ! command -v aws &> /dev/null
   then
     echo "aws cli dependency could not be found. You should install the AWS CLI."
@@ -11,52 +28,48 @@ validate_aws_dependency() {
   fi
 
   AWSVERSION=$(aws --version)
-  if [ "$AWSVERSION" != "aws-cli/2.9.19 Python/3.9.11 Linux/6.1.8-arch1-1 exe/x86_64.arch prompt/off" ]
+  if [ "$AWSVERSION" != "aws-cli/2.9.19 Python/3.9.11 Linux/6.1.9-arch1-1 exe/x86_64.arch prompt/off" ]
   then
-    echo "Proceed with caution."
-    echo "Using untested aws version. This has only been tested with aws-cli/2.9.19 Python/3.9.11 Linux/6.1.8-arch1-1 exe/x86_64.arch prompt/off."
+    echo "WARNING: Using untested aws version. This has only been tested with aws-cli/2.9.19 Python/3.9.11 Linux/6.1.9-arch1-1 exe/x86_64.arch prompt/off."
   fi
 }
 
+# confirm go is installed and warn if recommended version is not present
 validate_go_dependency() {
-  # confirm go is installed and warn if recommended version is not present
   if ! command -v go &> /dev/null
   then
-    echo "Go dependency could not be found. You should install go1.19.5 linux/amd64 before proceeding."
+    echo "Go dependency could not be found. You should install go1.20 linux/amd64 before proceeding."
     exit 1
   fi
 
   GOVERSION=$(go version)
-  if [ "$GOVERSION" != "go version go1.19.5 linux/amd64" ]
+  if [ "$GOVERSION" != "go version go1.20 linux/amd64" ]
   then
-    echo "Proceed with caution."
-    echo "Using untested go version. This has only been tested with 1.19.5 linux/amd64."
+    echo "WARNING: Using untested go version. This has only been tested with 1.20 linux/amd64."
   fi
 }
 
-dev() {
-  validate_go_dependency
-  cd backend && \
+# load the specific environment's variables from a local file
+set_environment() {
   while read line; do
     eval $line
-  done < "$GBLOG_ENVFILE" && \
+  done < "$GBLOG_ENVFILE"
+}
+
+# one-off for local dev stuff
+dev() {
+  cd backend
+  set_environment
   go build . && \
   echo "[$(date +%T)] Blog API listening on port $PORT" && ./blog
 }
 
-staging() {
-  cd stories && \
-  while read line; do
-    eval $line
-  done < "$GBLOG_ENVFILE"
 
-  # 1. Loop through local directories
-  #     - validate there's an index.json file. exit 1 on fail
-  #     - validate files have allowed extensions. exit 1 on fail
-  # 2. Delete everything from the bucket
-  # 3. Loop through local directories and upload to s3
+# 1. validate every story has an index.json file. exit 1 on fail
+# 2. validate every story file is an allowed extensions. exit 1 on fail
+validate_story_filetypes() {
+  cd stories
 
-  validate_aws_dependency
   for directory in $(ls -d */)
   do
     indexFile="$directory""index.json"
@@ -87,15 +100,16 @@ staging() {
     fi
   done
 
-  echo "Destroying bucket contents"
-  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
+  cd ..
+}
 
-  declare -A filetypes
-  filetypes=(
-    ["gif"]="image/gif"
-    ["jpg"]="image/jpeg"
-    ["json"]="application/json"
-  )
+# deploy the story files to the s3 story bucket
+deploy_stories() {
+  cd stories
+  set_environment
+
+  echo "Destroying story bucket contents"
+  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
   for directory in $(ls -d */)
   do
@@ -104,7 +118,7 @@ staging() {
     do
       filename="${file##*/}"
       extension="${filename##*.}"
-      mimetype=${filetypes["$extension"]}
+      mimetype=${storyfiletypes["$extension"]}
       result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
 
     if [ "$?" -eq 0 ]
@@ -118,28 +132,64 @@ staging() {
     done
   done
 
-  cd ../backend
-  while read line; do
-    eval $line
-  done < "$GBLOG_ENVFILE"
+  cd ..
+}
 
-  validate_go_dependency
+# build the backend and deploy it to the ec2 instance
+deploy_backend() {
+  cd backend
+  set_environment
+
   CGO_ENABLED=0 go build
   PID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$PID"
   scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo ./blog &
 
-  # deploy api
-  # - big ole TBD
-  #
-  # deploy static files
-  # - tap into a frontend build process
-  # - deploy the resulting dist files + any other stuff
+  cd ..
 }
 
-prod() {
-  echo "TODO: prod stuff"
+# build the frontend and deploy it to the s3 frontend bucket
+deploy_frontend() {
+  cd frontend
+  set_environment
+
+  rm -rf dist
+  cp -r static dist
+
+  # - tap into a frontend build process
+
+  cd dist
+  echo "destroying frontend bucket contents"
+  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
+
+  for file in *
+  do
+    filename="${file##*/}"
+    extension="${filename##*.}"
+    mimetype=${frontendfiletypes["$extension"]}
+    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$file" --body "$file" --content-type "$mimetype" 2>&1)
+
+  if [ "$?" -eq 0 ]
+  then
+    echo "Published $directory$file"
+  else
+    echo "There was an error publishing $file:"
+    echo "$result"
+    exit $?
+  fi
+  done
+
+  cd ../..
+}
+
+shipit() {
+  validate_story_filetypes
+  deploy_stories
+  deploy_backend
+  deploy_frontend
+
+  exit 0
 }
 
 generate_index() {
@@ -213,6 +263,9 @@ Do the blog thing.
 EOF
 }
 
+validate_aws_dependency
+validate_go_dependency
+
 if [[ $# -eq 0 ]] ; then
     show_help
     exit 0
@@ -250,13 +303,13 @@ case "$GBLOG_OPERATION" in
  2)
    echo "[$(date +%T)] Starting staging build & deploy."
    GBLOG_ENVFILE=".env.staging"
-   staging
+   shipit
    exit 0
    ;;
  3)
    echo "[$(date +%T)] Starting production build & deploy."
    GBLOG_ENVFILE=".env.production"
-   prod
+   shipit
    exit 0
    ;;
  4)

@@ -18,6 +18,7 @@ func main() {
 
 func getStoryHandler(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
+    w.Header().Set("Access-Control-Allow-Origin", os.Getenv("FRONTEND_DOMAIN"))
 
     username, password, ok := r.BasicAuth()
 
@@ -38,6 +39,7 @@ func getStoryHandler(w http.ResponseWriter, r *http.Request) {
 
 func getEntriesHandler(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
+    w.Header().Set("Access-Control-Allow-Origin", os.Getenv("FRONTEND_DOMAIN"))
 
     username, password, ok := r.BasicAuth()
     if !ok {
