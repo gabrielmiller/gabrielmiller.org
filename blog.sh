@@ -108,12 +108,12 @@ deploy_stories() {
   cd stories
   set_environment
 
-  echo "Destroying story bucket contents"
+  echo "[Stories] Destroying bucket contents"
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
   for directory in $(ls -d */)
   do
-    echo "Uploading $directory"
+    echo "[Stories] Uploading $directory"
     for file in $(ls $directory)
     do
       filename="${file##*/}"
@@ -123,9 +123,9 @@ deploy_stories() {
 
     if [ "$?" -eq 0 ]
     then
-      echo "Published $directory$file"
+      echo "[Stories] Published $directory$file"
     else
-      echo "There was an error publishing $file:"
+      echo "[Stories] There was an error publishing $file:"
       echo "$result"
       exit $?
     fi
@@ -140,11 +140,18 @@ deploy_backend() {
   cd backend
   set_environment
 
-  CGO_ENABLED=0 go build
+  CGO_ENABLED=0 go build .
+
   PID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$PID"
+  echo "[Backend] Previous binary halted"
+
   scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog
+
+  echo "[Backend] Binary planted"
+
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo ./blog &
+  echo "[Backend] Binary invoked"
 
   cd ..
 }
@@ -157,10 +164,10 @@ deploy_frontend() {
   rm -rf dist
   cp -r static dist
 
-  # - tap into a frontend build process
+  # -todo: tap into a frontend build process
 
   cd dist
-  echo "destroying frontend bucket contents"
+  echo "[Frontend] destroying bucket contents"
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
   for file in *
@@ -168,13 +175,13 @@ deploy_frontend() {
     filename="${file##*/}"
     extension="${filename##*.}"
     mimetype=${frontendfiletypes["$extension"]}
-    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$file" --body "$file" --content-type "$mimetype" 2>&1)
+    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$file" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
 
   if [ "$?" -eq 0 ]
   then
-    echo "Published $directory$file"
+    echo "[Frontend] Published file: $file"
   else
-    echo "There was an error publishing $file:"
+    echo "[Frontend] There was an error publishing $file:"
     echo "$result"
     exit $?
   fi
