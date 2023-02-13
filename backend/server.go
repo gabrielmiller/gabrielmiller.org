@@ -1,6 +1,7 @@
 package main
 
 import (
+    "crypto/tls"
     "encoding/json"
     "log"
     "net/http"
@@ -10,11 +11,22 @@ import (
 )
 
 func main() {
-    http.HandleFunc("/story", getStoryHandler)
-    http.HandleFunc("/entries", getEntriesHandler)
+    mux := http.NewServeMux()
+    mux.HandleFunc("/story", getStoryHandler)
+    mux.HandleFunc("/entries", getEntriesHandler)
 
-    log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), nil))
+    server := &http.Server{
+        Addr: ":"+os.Getenv("PORT"),
+        Handler: mux,
+        TLSConfig: &tls.Config{
+            MinVersion: tls.VersionTLS13,
+            PreferServerCipherSuites: true,
+        },
+    }
+
+    log.Fatal(server.ListenAndServeTLS(os.Getenv("TLS_CHAIN_CERT"), os.Getenv("TLS_PRIVATE_KEY")))
 }
+
 
 func getStoryHandler(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")

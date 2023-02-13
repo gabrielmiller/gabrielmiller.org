@@ -9,7 +9,9 @@ frontendfiletypes=(
   ["js"]="application/javascript"
   ["jpg"]="image/jpeg"
   ["png"]="image/png"
+  ["txt"]="text/plain"
   ["webmanifest"]="application/manifest+json"
+  ["xml"]="application/xml"
 )
 
 declare -A storyfiletypes
@@ -120,7 +122,6 @@ validate_story_filetypes() {
   cd ..
 }
 
-# deploy the story files to the s3 story bucket
 deploy_stories() {
   cd stories
   set_environment
@@ -152,28 +153,26 @@ deploy_stories() {
   cd ..
 }
 
-# build the backend and deploy it to the ec2 instance
 deploy_backend() {
   cd backend
   set_environment
 
   CGO_ENABLED=0 go build .
 
-  PID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$PID"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" rm "$EC2_PATH"/blog
+  scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog &> /dev/null
+  echo "[Backend] Previous binary removed and new binary planted"
+
+  OLDPID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$OLDPID"
   echo "[Backend] Previous binary halted"
 
-  scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog
-
-  echo "[Backend] Binary planted"
-
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo ./blog &
-  echo "[Backend] Binary invoked"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" PORT="$PORT" FRONTEND_DOMAIN="$FRONTEND_DOMAIN" S3_BUCKET_NAME="$S3_BUCKET_NAME" TLS_CHAIN_CERT="$EC2_CERTIFICATE_CHAIN_PATH" TLS_PRIVATE_KEY="$EC2_CERTIFICATE_PRIVATE_PATH" sudo -E ./blog &
+  echo "[Backend] New binary invoked"
 
   cd ..
 }
 
-# build the frontend and deploy it to the s3 frontend bucket
 deploy_frontend() {
   cd frontend
   set_environment
@@ -221,7 +220,7 @@ generate_tls_certificate() {
   cd ..
 }
 
-generate_index() {
+generate_index_file() {
   STORY_DIRECTORY="./stories/$GBLOG_STORYNAME"
   if [ ! -d "$STORY_DIRECTORY" ]
   then
@@ -274,11 +273,26 @@ plant_tls_certificate_in_acm() {
   cd cert
   set_environment
   sudo -E aws acm import-certificate --certificate-arn $CERTIFICATE_ARN --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN"
+  echo "[TLS] token planted"
+
   cd ..
 }
 
 plant_tls_certificate_in_ec2() {
-  echo "todo"
+  cd backend
+  set_environment
+
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mkdir -p "$EC2_CERTIFICATE_PATH"
+
+  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_CHAIN" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/fullchain.pem &> /dev/null
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mv "$EC2_PATH"/fullchain.pem "$EC2_CERTIFICATE_CHAIN_PATH"
+
+  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_PRIVATE_KEY" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/privkey.pem &> /dev/null
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mv "$EC2_PATH"/privkey.pem "$EC2_CERTIFICATE_PRIVATE_PATH"
+
+  echo "[TLS] token planted"
+
+  cd ..
 }
 
 show_help() {
@@ -361,7 +375,7 @@ case "$GBLOG_OPERATION" in
    echo "Which story needs a new index file?"
    read GBLOG_STORYNAME
    echo "[$(date +%T)] Building index file for $GBLOG_STORYNAME."
-   generate_index
+   generate_index_file
    exit 0
    ;;
  5)
