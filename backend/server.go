@@ -29,8 +29,21 @@ func main() {
 
 
 func getStoryHandler(w http.ResponseWriter, r *http.Request) {
-    w.Header().Set("Content-Type", "application/json")
     w.Header().Set("Access-Control-Allow-Origin", os.Getenv("FRONTEND_DOMAIN"))
+
+    if r.Method == http.MethodOptions {
+        w.Header().Set("Access-Control-Allow-Methods", "GET")
+        w.Header().Set("Access-Control-Allow-Headers", "authorization")
+        return
+    }
+
+    if r.Method != http.MethodGet {
+        w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
 
     username, password, ok := r.BasicAuth()
 
@@ -50,8 +63,21 @@ func getStoryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getEntriesHandler(w http.ResponseWriter, r *http.Request) {
-    w.Header().Set("Content-Type", "application/json")
     w.Header().Set("Access-Control-Allow-Origin", os.Getenv("FRONTEND_DOMAIN"))
+
+    if r.Method == http.MethodOptions {
+        w.Header().Set("Access-Control-Allow-Methods", "GET")
+        w.Header().Set("Access-Control-Allow-Headers", "authorization")
+        return
+    }
+
+    if r.Method != http.MethodGet {
+        w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
 
     username, password, ok := r.BasicAuth()
     if !ok {
