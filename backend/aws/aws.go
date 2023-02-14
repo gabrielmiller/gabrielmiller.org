@@ -3,6 +3,7 @@ package aws
 import (
     "context"
     "encoding/json"
+    "errors"
     "io"
     "os"
     "github.com/aws/aws-sdk-go-v2/aws"
@@ -74,6 +75,7 @@ func GetIndexForStory(story string, accessToken string) (StoryIndex, error) {
 
     json.Unmarshal([]byte(indexFile), &Index)
     if (Index.AccessToken != accessToken) {
+        err = errors.New("Invalid token for story")
         return Index, err
     }
 

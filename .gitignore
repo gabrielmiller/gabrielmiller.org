@@ -1,5 +1,6 @@
 stories/*
 backend/blog
+frontend/node_modules
 .env.dev
 .env.staging
 .env.production

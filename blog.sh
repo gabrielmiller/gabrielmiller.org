@@ -167,7 +167,17 @@ deploy_backend() {
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$OLDPID"
   echo "[Backend] Previous binary halted"
 
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" PORT="$PORT" FRONTEND_DOMAIN="$FRONTEND_DOMAIN" S3_BUCKET_NAME="$S3_BUCKET_NAME" TLS_CHAIN_CERT="$EC2_CERTIFICATE_CHAIN_PATH" TLS_PRIVATE_KEY="$EC2_CERTIFICATE_PRIVATE_PATH" sudo -E ./blog &
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" \
+  AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+  AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+  AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
+  PORT="$PORT" \
+  FRONTEND_DOMAIN="$FRONTEND_DOMAIN" \
+  S3_BUCKET_NAME="$S3_BUCKET_NAME" \
+  TLS_CHAIN_CERT="$EC2_CERTIFICATE_CHAIN_PATH" \
+  TLS_PRIVATE_KEY="$EC2_CERTIFICATE_PRIVATE_PATH" \
+  sudo -E ./blog &
+
   echo "[Backend] New binary invoked"
 
   cd ..
@@ -180,7 +190,7 @@ deploy_frontend() {
   rm -rf dist
   cp -r static dist
 
-  # -todo: tap into a frontend build process
+  npm run build
 
   cd dist
   echo "[Frontend] destroying bucket contents"
@@ -384,17 +394,20 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Generating a new certificate for staging."
    GBLOG_ENVFILE=".env.staging"
    generate_tls_certificate
+   exit 0
    ;;
  6)
    validate_aws_dependency
    echo "[$(date +%T)] Planting the staging certificate in acm."
    GBLOG_ENVFILE=".env.staging"
    plant_tls_certificate_in_acm
+   exit 0
    ;;
  7)
    echo "[$(date +%T)] Planting the staging certificate in ec2."
    GBLOG_ENVFILE=".env.staging"
    plant_tls_certificate_in_ec2
+   exit 0
    ;;
  *)
    echo "Invalid operation requested."
