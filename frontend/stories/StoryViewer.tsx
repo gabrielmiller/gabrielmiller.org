@@ -47,7 +47,7 @@ const StoryViewer: React.FC = () => {
         }).finally(() => {
             setIsIndexLoading(false);
         });
-    }
+    };
 
     const loadPage = () => {
         let entryIndex = currentEntryIndex+1;
@@ -73,21 +73,43 @@ const StoryViewer: React.FC = () => {
         }).finally(() => {
             setIsPageLoading(false);
         });
-    }
+    };
+
+    const navigateToNextEntry = () => {
+        setCurrentEntryIndex(currentEntryIndex+1);
+    };
+
+    const navigateToPrevEntry = () => {
+        setCurrentEntryIndex(currentEntryIndex-1);
+    };
+
+    const validateCanNavigateToNextEntry = (): boolean => {
+        return currentEntryIndex !== (index.length-1);
+    };
+
+    const validateCanNavigateToPrevEntry = (): boolean => {
+        return currentEntryIndex != 0;
+    };
 
     React.useEffect(() => {
-        if (!isIndexLoaded) {
-            return;
+        if (isIndexLoaded && !isPageLoading && !index[currentEntryIndex].isLoaded) {
+            loadPage();
         }
 
-        if (isPageLoading) {
-            return;
-        }
+        const kbListener = (event) => {
+            if (event.code === "ArrowLeft" && validateCanNavigateToPrevEntry()) {
+                navigateToPrevEntry();
+            } else if (event.code === "ArrowRight" && validateCanNavigateToNextEntry()) {
+                navigateToNextEntry();
+            }
+        };
 
-        if (index[currentEntryIndex].isLoaded) {
-            return;
-        }
-        loadPage();
+        document.addEventListener("keydown", kbListener);
+
+        return () => {
+            document.removeEventListener("keydown", kbListener);
+        };
+
     }, [currentEntryIndex, isIndexLoaded]);
 
     return (
@@ -102,10 +124,6 @@ const StoryViewer: React.FC = () => {
 
             {isIndexLoaded && (
                 <>
-                    <div>
-                        <b>Index loaded successfully!</b>
-                        <pre>{JSON.stringify(index, null, 2) }</pre>
-                    </div>
                     {!('url' in index[currentEntryIndex]) && (
                         <span>
                             Loading...
@@ -115,8 +133,8 @@ const StoryViewer: React.FC = () => {
                         <img src={index[currentEntryIndex].url}></img>
                     )}
                     <div>
-                        <button disabled={currentEntryIndex == 0} onClick={() => setCurrentEntryIndex(currentEntryIndex-1)} type="button">&lt; Prev</button>
-                        <button disabled={currentEntryIndex === (index.length-1)} onClick={() => setCurrentEntryIndex(currentEntryIndex+1)} type="button">Next &gt;</button>
+                        <button disabled={!validateCanNavigateToPrevEntry()} onClick={() => navigateToPrevEntry()} type="button">&lt; Prev</button>
+                        <button disabled={!validateCanNavigateToNextEntry()} onClick={() => navigateToNextEntry()} type="button">Next &gt;</button>
                     </div>
                 </>
             )}
