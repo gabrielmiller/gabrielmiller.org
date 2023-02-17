@@ -91,7 +91,7 @@ func GetEntriesForStory(story string, accessToken string, page int, perPage int)
     }
 
     maxEntries := len(Index.Entries)
-    pageStartIndex := (page - 1)
+    pageStartIndex := perPage * (page-1)
     pageEndIndex := pageStartIndex + perPage
 
     if (pageEndIndex > maxEntries) {
@@ -121,7 +121,7 @@ func GetPresignUrl(story string, key string) (string, error) {
 
     presignClient := s3.NewPresignClient(bucket.S3Client)
     presigner := Presigner{ PresignClient: presignClient }
-    file, err := presigner.getObject(story + "/" + key, 90)
+    file, err := presigner.getObject(story + "/" + key, 3600)
 
     if err != nil {
         return "", err
