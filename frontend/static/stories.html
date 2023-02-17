@@ -3,6 +3,62 @@
         <title>
             gabrielmiller.org > story viewer
         </title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .story-viewer > form {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+            }
+            .story-viewer > form > input {
+                align-self: center;
+                border: 2px solid #888;
+                line-height: 3em;
+                margin: .5em;
+                padding: .5em;
+                width: 32em;
+            }
+            .story-viewer > form > button {
+                align-self: center;
+                border: 2px solid #888;
+                line-height: 3em;
+                margin: .5em;
+                padding: .5em;
+                width: 32em;
+            }
+            .story-container {
+                bottom: 5em;
+                left: 0;
+                overflow: scroll;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            .story-container > img {
+                min-height: 100%;
+                min-width: 100%;
+            }
+            .navigation {
+                background-color: #fff;
+                border-top:solid 2px #888;
+                bottom: 0;
+                display: flex;
+                flex-direction: row;
+                height: 5em;
+                position: absolute;
+                width: 100%;
+            }
+            .navigation > button {
+                border: 2px solid #888;
+                flex-grow: 1;
+                height: 5em;
+                margin: .5em;
+            }
+        </style>
     </head>
     <body>
         <script src="/stories.js" async></script>

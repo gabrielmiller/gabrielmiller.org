@@ -17,7 +17,7 @@ const StoryViewer: React.FC = () => {
     const [isPageLoading, setIsPageLoading] = React.useState(false);
 
     const apiDomain = "https://api."+window.location.host;
-    const entriesPerPage = 2;
+    const entriesPerPage = 4;
 
     const getBasicAuthHeader = (): string => {
         return 'Basic '+btoa(storyTitle+":"+storyToken);
@@ -113,32 +113,34 @@ const StoryViewer: React.FC = () => {
     }, [currentEntryIndex, isIndexLoaded]);
 
     return (
-        <>
+        <div className="story-viewer">
             {!isIndexLoaded && (
                 <form onSubmit={loadIndex}>
-                    <input autoFocus disabled={isIndexLoading} onChange={(e) => setStoryTitle(e.target.value)} placeholder="story title" type="text"></input>
-                    <input disabled={isIndexLoading} onChange={(e) => setStoryToken(e.target.value)} placeholder="token" type="text"></input>
+                    <input autoFocus disabled={isIndexLoading} onChange={(e) => setStoryTitle(e.target.value)} placeholder="Story title" type="text"></input>
+                    <input disabled={isIndexLoading} onChange={(e) => setStoryToken(e.target.value)} placeholder="Token" type="text"></input>
                     <button disabled={isIndexLoading} type="submit">Go!</button>
                 </form>
             )}
 
             {isIndexLoaded && (
                 <>
-                    {!('url' in index[currentEntryIndex]) && (
-                        <span>
-                            Loading...
-                        </span>
-                    )}
-                    {('url' in index[currentEntryIndex]) && (
-                        <img src={index[currentEntryIndex].url}></img>
-                    )}
-                    <div>
-                        <button disabled={!validateCanNavigateToPrevEntry()} onClick={() => navigateToPrevEntry()} type="button">&lt; Prev</button>
+                    <div className="story-container">
+                        {!('url' in index[currentEntryIndex]) && (
+                            <span>
+                                Loading...
+                            </span>
+                        )}
+                        {('url' in index[currentEntryIndex]) && (
+                            <img src={index[currentEntryIndex].url}></img>
+                        )}
+                    </div>
+                    <div className="navigation">
+                        <button disabled={!validateCanNavigateToPrevEntry()} onClick={() => navigateToPrevEntry()} type="button">&lt; Previous</button>
                         <button disabled={!validateCanNavigateToNextEntry()} onClick={() => navigateToNextEntry()} type="button">Next &gt;</button>
                     </div>
                 </>
             )}
-        </>
+        </div>
     );
 };
 
