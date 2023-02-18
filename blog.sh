@@ -23,6 +23,7 @@ storyfiletypes=(
   ["gif"]="image/gif"
   ["jpg"]="image/jpeg"
   ["json"]="application/json"
+  ["png"]="image/png"
 )
 
 validate_aws_dependency() {
@@ -60,7 +61,7 @@ validate_nodejs_dependency() {
     exit 1
   fi
 
-  NODEJSVERSION=$(node version)
+  NODEJSVERSION=$(node -v)
   if [ "$NODEJSVERSION" != "v18.14.0" ]
   then
     echo "WARNING: Using untested nodejs version. This has only been tested with v18.14.0."
@@ -116,11 +117,11 @@ validate_story_filetypes() {
         EXTENSION=$(echo $file | cut -d "." -f 2)
 
         case "$EXTENSION" in
-          "gif"|"jpg")
+          "gif"|"jpg"|"png")
             continue
           ;;
           *)
-            echo "$file has invalid extension. Valid options: .gif, .jpg"
+            echo "$file has invalid extension. Valid options: .gif, .jpg, .png"
             exit 1
           ;;
         esac
@@ -227,16 +228,18 @@ deploy_frontend() {
 }
 
 shipit() {
-  if ["$ONLY_FRONTEND" = false]
+  if [ "$ONLY_FRONTEND" = false ]
   then
-    echo "[Backend] build & deployment skipped";
     deploy_backend
+  else
+    echo "[Backend] build & deployment skipped";
   fi
 
-  if ["ONLY_BACKEND" = false]
+  if [ "$ONLY_BACKEND" = false ]
   then
-    echo "[Frontend] build & deployment skipped";
     deploy_frontend
+  else
+    echo "[Frontend] build & deployment skipped";
   fi
 }
 
