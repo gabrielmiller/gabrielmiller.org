@@ -1,5 +1,9 @@
 #!/bin/bash
 
+GBLOG_ENVIRONMENT="staging"
+ONLY_BACKEND=false
+ONLY_FRONTEND=false
+
 declare -A frontendfiletypes
 frontendfiletypes=(
   ["css"]="text/css"
@@ -49,6 +53,20 @@ validate_go_dependency() {
   fi
 }
 
+validate_nodejs_dependency() {
+  if ! command -v node &> /dev/null
+  then
+    echo "Nodejs dependency could not be found. You should install node v18.14.0 before proceeding."
+    exit 1
+  fi
+
+  NODEJSVERSION=$(node version)
+  if [ "$NODEJSVERSION" != "v18.14.0" ]
+  then
+    echo "WARNING: Using untested nodejs version. This has only been tested with v18.14.0."
+  fi
+}
+
 validate_tls_dependency() {
   if ! command -v certbot &> /dev/null
   then
@@ -69,20 +87,11 @@ validate_tls_dependency() {
 }
 
 # load the specific environment's variables from a local file
-set_environment() {
+initialize_environment() {
   while read line; do
     eval $line
   done < "$GBLOG_ENVFILE"
 }
-
-# one-off for local dev stuff
-dev() {
-  cd backend
-  set_environment
-  go build . && \
-  echo "[$(date +%T)] Blog API listening on port $PORT" && ./blog
-}
-
 
 # 1. validate every story has an index.json file. exit 1 on fail
 # 2. validate every story file is an allowed extensions. exit 1 on fail
@@ -124,7 +133,7 @@ validate_story_filetypes() {
 
 deploy_stories() {
   cd stories
-  set_environment
+  initialize_environment
 
   echo "[Stories] Destroying bucket contents"
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
@@ -155,7 +164,7 @@ deploy_stories() {
 
 deploy_backend() {
   cd backend
-  set_environment
+  initialize_environment
 
   CGO_ENABLED=0 go build .
 
@@ -185,11 +194,12 @@ deploy_backend() {
 
 deploy_frontend() {
   cd frontend
-  set_environment
+  initialize_environment
 
   rm -rf dist
   cp -r static dist
 
+  npm install
   npm run build
 
   cd dist
@@ -217,15 +227,22 @@ deploy_frontend() {
 }
 
 shipit() {
-  validate_story_filetypes
-  deploy_stories
-  deploy_backend
-  deploy_frontend
+  if ["$ONLY_FRONTEND" = false]
+  then
+    echo "[Backend] build & deployment skipped";
+    deploy_backend
+  fi
+
+  if ["ONLY_BACKEND" = false]
+  then
+    echo "[Frontend] build & deployment skipped";
+    deploy_frontend
+  fi
 }
 
 generate_tls_certificate() {
   cd dns
-  set_environment
+  initialize_environment
   sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-route53 --agree-tos --preferred-challenges=dns --non-interactive
   cd ..
 }
@@ -281,7 +298,7 @@ generate_index_file() {
 
 plant_tls_certificate_in_acm() {
   cd cert
-  set_environment
+  initialize_environment
   sudo -E aws acm import-certificate --certificate-arn $CERTIFICATE_ARN --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN"
   echo "[TLS] token planted"
 
@@ -290,7 +307,7 @@ plant_tls_certificate_in_acm() {
 
 plant_tls_certificate_in_ec2() {
   cd backend
-  set_environment
+  initialize_environment
 
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mkdir -p "$EC2_CERTIFICATE_PATH"
 
@@ -312,17 +329,29 @@ Usage: blog.sh [-o -h]
 
 Do the blog thing.
 
+    -e, --environment
+        Environment to use.
+
+        Options:
+          - staging (default)
+          - production
+
     -o, --operation
         Operation to perform.
 
         Options:
-          1: build and run development backend environment
-          2. build and deploy to staging
-          3. build and deploy to production
-          4. generate index file for a story
-          5. generate a tls certificate
-          6. plant the tls certificate in acm
-          7. plant the tls certificate in ec2 (& reboot api?)
+          1. build and deploy code
+          2. deploy stories
+          3. generate index file for a story
+          4. generate a tls certificate
+          5. plant the tls certificate in acm
+          6. plant the tls certificate in ec2 (& reboot api?)
+
+    --only-frontend
+        Complete the code build & deploy only for the frontend.
+
+    --only-backend
+        Complete the code build & deploy only for the backend.
 
     -h, --help
         Display this help file.
@@ -347,9 +376,25 @@ while :; do
         exit 1
       fi
       ;;
+    -e|--environment)
+      if [ "$2" ]
+      then
+        GBLOG_ENVIRONMENT="$2"
+        shift
+      else
+        echo "-e or --environment requires a non-empty argument."
+        exit 1
+      fi
+      ;;
     -h|--help)
       show_help
       exit
+      ;;
+    --only-frontend)
+      ONLY_FRONTEND=true
+      ;;
+    --only-backend)
+      ONLY_BACKEND=true
       ;;
     *)
       break
@@ -357,56 +402,78 @@ while :; do
   shift
 done
 
+case "$GBLOG_ENVIRONMENT" in
+ staging)
+   GBLOG_ENVFILE=".env.staging"
+   ;;
+ prod|production)
+   GBLOG_ENVIRONMENT="production"
+   GBLOG_ENVFILE=".env.production"
+
+   PROCEED_IN_PRODUDCTION="n"
+   if [ -f "$GBLOG_INDEX_FILE" ]
+   then
+     echo "Procedure requested in production environment. Are you sure? y/N"
+     read PROCEED_IN_PRODUDCTION
+   fi
+   if [ "$PROCEED_IN_PRODUDCTION" != "y" ]
+   then
+     echo "Bailing out of operation."
+     exit 0
+   fi
+   ;;
+ *)
+   echo "Invalid environment requested."
+   exit 1
+   ;;
+esac
+
 
 case "$GBLOG_OPERATION" in
  1)
+   validate_aws_dependency
    validate_go_dependency
-   echo "[$(date +%T)] Starting a development build & deploy, then running the local back-end server."
-   GBLOG_ENVFILE='.env.dev'
-   dev
+   validate_nodejs_dependency
+   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT build & deployment."
+   shipit
+   echo "[$(date +%T)] Code build & deployment complete."
+   exit 0
    ;;
  2)
    validate_aws_dependency
-   validate_go_dependency
-   echo "[$(date +%T)] Starting staging build & deploy."
-   GBLOG_ENVFILE=".env.staging"
-   shipit
+   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment."
+   validate_story_filetypes
+   deploy_stories
+   echo "[$(date +%T)] Story deploy complete."
    exit 0
    ;;
  3)
-   validate_aws_dependency
-   validate_go_dependency
-   echo "[$(date +%T)] Starting production build & deploy."
-   GBLOG_ENVFILE=".env.production"
-   shipit
-   exit 0
-   ;;
- 4)
    echo "Which story needs a new index file?"
    read GBLOG_STORYNAME
    echo "[$(date +%T)] Building index file for $GBLOG_STORYNAME."
    generate_index_file
+   echo "[$(date +%T)] Index file generated."
+   exit 0
+   ;;
+ 4)
+   validate_aws_dependency
+   validate_tls_dependency
+   echo "[$(date +%T)] Generating a new certificate for $GBLOG_ENVIRONMENT."
+   generate_tls_certificate
+   echo "[$(date +%T)] Certificate generated."
    exit 0
    ;;
  5)
    validate_aws_dependency
-   validate_tls_dependency
-   echo "[$(date +%T)] Generating a new certificate for staging."
-   GBLOG_ENVFILE=".env.staging"
-   generate_tls_certificate
+   echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in acm."
+   plant_tls_certificate_in_acm
+   echo "[$(date +%T)] Certificate planted in acm."
    exit 0
    ;;
  6)
-   validate_aws_dependency
-   echo "[$(date +%T)] Planting the staging certificate in acm."
-   GBLOG_ENVFILE=".env.staging"
-   plant_tls_certificate_in_acm
-   exit 0
-   ;;
- 7)
-   echo "[$(date +%T)] Planting the staging certificate in ec2."
-   GBLOG_ENVFILE=".env.staging"
+   echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in ec2."
    plant_tls_certificate_in_ec2
+   echo "[$(date +%T)] Certificate planted in ec2."
    exit 0
    ;;
  *)
