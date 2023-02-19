@@ -94,6 +94,15 @@ initialize_environment() {
   done < "$GBLOG_ENVFILE"
 }
 
+attach_to_api_server() {
+  cd backend
+  initialize_environment
+  CGO_ENABLED=0 go build .
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS"
+  echo "[Backend] Connection closed."
+  cd ..
+}
+
 # 1. validate every story has an index.json file. exit 1 on fail
 # 2. validate every story file is an allowed extensions. exit 1 on fail
 validate_story_filetypes() {
@@ -186,7 +195,7 @@ deploy_backend() {
   S3_BUCKET_NAME="$S3_BUCKET_NAME" \
   TLS_CHAIN_CERT="$EC2_CERTIFICATE_CHAIN_PATH" \
   TLS_PRIVATE_KEY="$EC2_CERTIFICATE_PRIVATE_PATH" \
-  sudo -E ./blog &
+  sudo -E nohup ./blog &
 
   echo "[Backend] New binary invoked"
 
@@ -349,6 +358,7 @@ Do the blog thing.
           4. generate a tls certificate
           5. plant the tls certificate in acm
           6. plant the tls certificate in ec2 (& reboot api?)
+          7. attach terminal to api server
 
     --only-frontend
         Complete the code build & deploy only for the frontend.
@@ -479,9 +489,15 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Certificate planted in ec2."
    exit 0
    ;;
+ 7)
+   echo "Attaching to $GBLOG_ENVIRONMENT api server."
+   attach_to_api_server
+   exit 0
+   ;;
  *)
    echo "Invalid operation requested."
    show_help
+   exit 1
    ;;
 esac
 

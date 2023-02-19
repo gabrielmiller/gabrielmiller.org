@@ -1,4 +1,7 @@
 import React from 'react';
+import IconScroll from './IconScroll';
+import IconToggleOff from './IconToggleOff';
+import IconToggleOn from './IconToggleOn';
 
 interface IStoryEntry {
     filename: string;
@@ -15,6 +18,7 @@ const StoryViewer: React.FC = () => {
     const [index, setIndex] = React.useState<IStoryEntry[]>([]);
     const [currentEntryIndex, setCurrentEntryIndex] = React.useState(0);
     const [isPageLoading, setIsPageLoading] = React.useState(false);
+    const [isFullscreenEnabled, setIsFullscreenEnabled] = React.useState(false);
 
     const apiDomain = "https://api."+window.location.host;
     const entriesPerPage = 4;
@@ -114,28 +118,47 @@ const StoryViewer: React.FC = () => {
 
     return (
         <div className="story-viewer">
-            {!isIndexLoaded && (
+            {!isIndexLoaded && !isIndexLoading && (
                 <form onSubmit={loadIndex}>
-                    <input autoFocus disabled={isIndexLoading} onChange={(e) => setStoryTitle(e.target.value)} placeholder="Story title" type="text"></input>
-                    <input disabled={isIndexLoading} onChange={(e) => setStoryToken(e.target.value)} placeholder="Token" type="text"></input>
-                    <button disabled={isIndexLoading} type="submit">Go!</button>
+                    <input
+                        autoFocus
+                        id="story-title"
+                        onChange={(e) => setStoryTitle(e.target.value)}
+                        placeholder="Enter story title"
+                        type="text">
+                    </input>
+                    <input
+                        id="story-token"
+                        onChange={(e) => setStoryToken(e.target.value)}
+                        placeholder="Enter token"
+                        type="text">
+                    </input>
+                    <button disabled={isIndexLoading} type="submit">View content &gt;</button>
                 </form>
+            )}
+
+            {!isIndexLoaded && isIndexLoading && (
+                <span className="loader"></span>
             )}
 
             {isIndexLoaded && (
                 <>
-                    <div className="story-container">
+                    <div className="toggle-container p-a" onClick={() => setIsFullscreenEnabled(!isFullscreenEnabled)}>
+                        {isFullscreenEnabled ? <IconToggleOff /> : <IconToggleOn /> }
+                        <span>Full screen</span>
+                    </div>
+                    <IconScroll />
+                    <div className={isFullscreenEnabled ? 'story-container fullheight' : 'story-container'}>
                         {!('url' in index[currentEntryIndex]) && (
-                            <span>
-                                Loading...
-                            </span>
+                            <span className="loader"></span>
                         )}
                         {('url' in index[currentEntryIndex]) && (
                             <img src={index[currentEntryIndex].url}></img>
                         )}
                     </div>
                     <div className="navigation">
-                        <button disabled={!validateCanNavigateToPrevEntry()} onClick={() => navigateToPrevEntry()} type="button">&lt; Previous</button>
+                        <button disabled={!validateCanNavigateToPrevEntry()} onClick={() => navigateToPrevEntry()} type="button">&lt; Prev</button>
+                        <span>{currentEntryIndex+1} of {index.length}</span>
                         <button disabled={!validateCanNavigateToNextEntry()} onClick={() => navigateToNextEntry()} type="button">Next &gt;</button>
                     </div>
                 </>

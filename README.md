@@ -44,7 +44,7 @@ The credentials for each of these things should be configured ideally as separat
    - `route53:ChangeResourceRecordSets`
    - `route53:ListHostedZones`
 
- I've extracted these credentials into environment variables in non-committed files named `.env.dev`, `.env.staging`, and `.env.production`. These live in each of the following directories:
+ I've extracted these credentials into environment variables in non-committed files named `.env.staging` and `.env.production`. These live in each of the following directories:
     - `backend` - credentials for read access on the privately accessible s3 bucket, ec2 ssh access, tls certificate local paths, paths to various things inside ec2 instance, supporting properties for api.
     - `cert` - credentials for access to import certificates to acm. Additionally the paths of the certs certbot generates by default and the ARN of the certificate in question.
     - `dns` - credentials for certbot to complete the dns challenge to generate a wildcard tls certificate. Additionally, the domain names to provide certbot, and the email address to use with the registration.

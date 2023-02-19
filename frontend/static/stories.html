@@ -3,65 +3,154 @@
         <title>
             gabrielmiller.org > story viewer
         </title>
+        <meta name="viewport" content="width=device-width" />
         <style>
-            body {
-                margin: 0;
-                padding: 0;
+            body, form {
+                font-size:16px;
+                margin:0;
+                padding:0;
+            }
+            .story-viewer {
+                background-color:#fff;
+                background-image:repeating-linear-gradient(45deg, #b9c8df 25%, transparent 25%, transparent 75%, #b9c8df 75%, #b9c8df), repeating-linear-gradient(45deg, #b9c8df 25%, #fff 25%, #fff 75%, #b9c8df 75%, #b9c8df);
+                background-position:0 0, .5em .5em;
+                background-size:1em 1em;
             }
             .story-viewer > form {
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-                justify-content: center;
+                display:flex;
+                flex-direction:column;
+                height:100%;
+                justify-content:center;
             }
             .story-viewer > form > input {
-                align-self: center;
-                border: 2px solid #888;
-                line-height: 3em;
-                margin: .5em;
-                padding: .5em;
-                width: 32em;
+                align-self:center;
+                background-color:#fff;
+                border:2px solid #888;
+                color:#444;
+                font-size:1.35rem;
+                line-height:3rem;
+                margin:.5em;
+                padding:.5em .5em .5em 1em;
+                width:20rem;
+            }
+            .story-viewer > form > input:focus {
+                border-color:#6684b2;
+                color:#6684b2;
+            }
+            .story-viewer > form > input:focus::placeholder {
+                color:#6684b2;
+            }
+            .story-viewer > form > input::placeholder {
+                color:#444;
             }
             .story-viewer > form > button {
-                align-self: center;
-                border: 2px solid #888;
-                line-height: 3em;
-                margin: .5em;
-                padding: .5em;
-                width: 32em;
+                align-self:center;
+                border:2px solid #888;
+                font-size:1.35rem;
+                line-height:3rem;
+                margin:.5em;
+                padding:.5em;
+                width:20rem;
+            }
+            .story-viewer > form > button:active {
+                background-color:#b9c8df;
+                border-color:#6684b2;
+                color:#6684b2;
             }
             .story-container {
-                bottom: 5em;
-                left: 0;
-                overflow: scroll;
-                position: absolute;
-                right: 0;
-                top: 0;
+                background:	linear-gradient(90deg, #020b1a 21px, transparent 1%) center, linear-gradient(#020b1a 21px, transparent 1%) center, #b9c8df;
+	            background-size:22px 22px;
+                bottom:5em;
+                left:0;
+                overflow:scroll;
+                position:absolute;
+                right:0;
+                top:0;
             }
             .story-container > img {
-                min-height: 100%;
-                min-width: 100%;
+                min-width:100%;
             }
-            .navigation {
-                background-color: #fff;
-                border-top:solid 2px #888;
-                bottom: 0;
-                display: flex;
-                flex-direction: row;
-                height: 5em;
-                position: absolute;
-                width: 100%;
+
+            .story-container.fullheight > img {
+                min-height:100%;
             }
-            .navigation > button {
-                border: 2px solid #888;
-                flex-grow: 1;
-                height: 5em;
-                margin: .5em;
+            .story-viewer .navigation {
+                background-color:#fff;
+                bottom:0;
+                box-sizing:border-box;
+                display:flex;
+                flex-direction:row;
+                height:5em;
+                overflow:hidden;
+                padding:.25em;
+                position:absolute;
+                width:100%;
+            }
+            .story-viewer .navigation span {
+                flex-grow:1;
+                line-height:5em;
+                text-align:center;
+            }
+            .story-viewer .navigation > button {
+                border:2px solid #888;
+                flex-grow:2;
+                font-size:1.35rem;
+                height:100%;
+            }
+            .loader {
+                animation: spin 1s linear infinite;
+                border:5px solid #6684b2;
+                border-bottom-color:transparent;
+                border-left-color:transparent;
+                border-radius: 50%;
+                left:50%;
+                margin-left:-1rem;
+                margin-top:-1rem;
+                position:absolute;
+                top:50%;
+                height:2rem;
+                width:2rem;
+            }
+
+            .icon {
+                height:2em;
+                width:2em;
+                z-index:2;
+            }
+
+            .icon-scrollable {
+                left:1em;
+                pointer-events:none;
+                top:4em;
+            }
+
+            .toggle-container {
+                color: #fff;
+                left:1em;
+                top:1em;
+                z-index:2;
+            }
+
+            .toggle-container > span {
+                font-size:1.35rem;
+                line-height:1.75em;
+                margin-left:.5em;
+                vertical-align:top;
+            }
+
+            .p-a {
+                position:absolute;
+            }
+
+            @keyframes spin {
+                0% {transform:rotate(0deg);}
+                100% {transform:rotate(360deg);}
             }
         </style>
     </head>
     <body>
         <script src="/stories.js" async></script>
         <div id="app-mount"></div>
+        <span id="initial-loader" class="loader"></span>
     </body>
 </html>
