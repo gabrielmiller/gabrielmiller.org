@@ -2,14 +2,21 @@ import { FunctionComponent } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import AsyncImage from './AsyncImage';
 import IconScroll from './IconScroll';
-import IconToggleOff from './IconToggleOff';
-import IconToggleOn from './IconToggleOn';
+import IconFixedHeight from './IconFixedHeight';
+import IconFixedWidth from './IconFixedWidth';
+import IconFullScreen from './IconFullScreen';
 
 interface IStoryEntry {
     filename: string;
     isLoaded: boolean;
     metadata: any;
     url?: string;
+}
+
+enum ViewModes {
+    FixHeight='Fix height',
+    FixWidth='Fix width',
+    OriginalSize='Original size'
 }
 
 const StoryViewer: FunctionComponent = () => {
@@ -20,24 +27,50 @@ const StoryViewer: FunctionComponent = () => {
     const [index, setIndex] = useState<IStoryEntry[]>([]);
     const [currentEntryIndex, setCurrentEntryIndex] = useState(0);
     const [isPageLoading, setIsPageLoading] = useState(false);
-    const [isFullscreenEnabled, setIsFullscreenEnabled] = useState(false);
+    const [viewMode, setViewMode] = useState<ViewModes>(ViewModes.FixWidth);
+    const [isErrorShown, setIsErrorShown] = useState(false);
 
     const apiDomain = "https://api."+window.location.host;
     const entriesPerPage = 4;
 
-    const getBasicAuthHeader = (): string => {
-        return 'Basic '+btoa(storyTitle+":"+storyToken);
+    const buildBasicAuthHeader = (title: string, token: string): string => {
+        return 'Basic '+btoa(title+":"+token);
+    }
+
+    const buildImageContainerClass = (): string => {
+        return `story-container p-a ${viewMode.replace(" ","-").toLowerCase()}`;
+    }
+
+    const changeViewMode = () => {
+        let next: ViewModes;
+        switch(viewMode) {
+            case ViewModes.FixWidth:
+                next = ViewModes.OriginalSize;
+                break;
+            case ViewModes.OriginalSize:
+                next = ViewModes.FixHeight;
+                break;
+            case ViewModes.FixHeight:
+                next = ViewModes.FixWidth;
+                break;
+        }
+        setViewMode(next);
     }
 
     const loadIndex = (event) => {
         event.preventDefault();
 
         setIsIndexLoading(true);
+        const title = event.target.children['story-title'].value;
+        const token = event.target.children['story-token'].value;
+        setStoryTitle(title);
+        setStoryToken(token);
 
         const headers = new Headers();
-        headers.append('Authorization', getBasicAuthHeader());
+        headers.append('Authorization', buildBasicAuthHeader(title, token));
         fetch(`${apiDomain}/story`, { method: 'GET', headers }).then(function(response) {
             if (response.status !== 200) {
+                setIsErrorShown(true);
                 return;
             }
 
@@ -48,8 +81,11 @@ const StoryViewer: FunctionComponent = () => {
                     index.push(entry);
                 }
                 setIndex(index);
+                setIsErrorShown(false);
                 setIsIndexLoaded(true);
             });
+        }).catch(() => {
+            setIsErrorShown(true);
         }).finally(() => {
             setIsIndexLoading(false);
         });
@@ -59,7 +95,7 @@ const StoryViewer: FunctionComponent = () => {
         let entryIndex = currentEntryIndex+1;
         setIsPageLoading(true);
         const headers = new Headers();
-        headers.append('Authorization', getBasicAuthHeader());
+        headers.append('Authorization', buildBasicAuthHeader(storyTitle, storyToken));
         fetch(`${apiDomain}/entries?page=${Math.ceil(entryIndex/entriesPerPage)}&perPage=${entriesPerPage}`, { method: 'GET', headers }).then(function(response) {
             if (response.status !== 200) {
                 return;
@@ -76,6 +112,7 @@ const StoryViewer: FunctionComponent = () => {
 
                 setIndex(newIndex);
             });
+
         }).finally(() => {
             setIsPageLoading(false);
         });
@@ -122,16 +159,17 @@ const StoryViewer: FunctionComponent = () => {
         <div class="story-viewer">
             {!isIndexLoaded && !isIndexLoading && (
                 <form onSubmit={loadIndex}>
+                    {isErrorShown && (
+                        <span>Either the credentials you specified were invalid or the system is experiencing technical difficulties. Please try again.</span>
+                    )}
                     <input
                         autoFocus
                         id="story-title"
-                        onChange={(e) => setStoryTitle((e.target as HTMLInputElement).value)}
                         placeholder="Enter story title"
                         type="text">
                     </input>
                     <input
                         id="story-token"
-                        onChange={(e) => setStoryToken((e.target as HTMLInputElement).value)}
                         placeholder="Enter token"
                         type="text">
                     </input>
@@ -145,14 +183,20 @@ const StoryViewer: FunctionComponent = () => {
 
             {isIndexLoaded && (
                 <>
-                    <div class="toggle-container p-a" onClick={() => setIsFullscreenEnabled(!isFullscreenEnabled)}>
-                        {isFullscreenEnabled ? <IconToggleOff /> : <IconToggleOn /> }
-                        <span>Full screen</span>
+                    <div class="toggle-container p-a" onClick={() => changeViewMode()}>
+                        {
+                            {
+                                [ViewModes.FixHeight]: <IconFixedHeight />,
+                                [ViewModes.FixWidth]: <IconFixedWidth />,
+                                [ViewModes.OriginalSize]: <IconFullScreen />,
+                            }[viewMode]
+                        }
+                        <span>Display: {viewMode}</span>
                     </div>
                     <div class="icon-scrollable-container p-a">
                         <IconScroll />
                     </div>
-                    <div class={isFullscreenEnabled ? 'story-container fullheight p-a' : 'story-container maxwidth p-a'}>
+                    <div class={buildImageContainerClass()}>
                         {!('url' in index[currentEntryIndex]) && (
                             <span class="loader"></span>
                         )}

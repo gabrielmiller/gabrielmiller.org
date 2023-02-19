@@ -22,16 +22,27 @@
                 height:100%;
                 justify-content:center;
             }
-            .story-viewer > form > input {
+            .story-viewer > form > * {
                 align-self:center;
+                font-size:1.35rem;
+                line-height:3rem;
+                margin:.1em;
+                width:18rem;
+            }
+            .story-viewer > form > span {
+                background-color:#b21919;
+                box-sizing:border-box;
+                color:#fff;
+                font-size:1rem;
+                line-height:1.25rem;
+                padding:.5em;
+                text-align:center;
+            }
+            .story-viewer > form > input {
                 background-color:#fff;
                 border:2px solid #888;
                 color:#444;
-                font-size:1.35rem;
-                line-height:3rem;
-                margin:.5em;
                 padding:.5em .5em .5em 1em;
-                width:20rem;
             }
             .story-viewer > form > input:focus {
                 border-color:#6684b2;
@@ -44,13 +55,8 @@
                 color:#444;
             }
             .story-viewer > form > button {
-                align-self:center;
                 border:2px solid #888;
-                font-size:1.35rem;
-                line-height:3rem;
-                margin:.5em;
                 padding:.5em;
-                width:20rem;
             }
             .story-viewer > form > button:active {
                 background-color:#b9c8df;
@@ -66,13 +72,12 @@
                 right:0;
                 top:0;
             }
-            .story-container > img {
-                min-width:100%;
-            }
-            .story-container.fullheight > img {
+            .story-container.fix-height > img {
+                max-height:100%;
                 min-height:100%;
             }
-            .story-container.maxwidth > img {
+            .story-container.fix-width > img {
+                min-width:100%;
                 max-width:100%;
             }
             .story-viewer .navigation {
