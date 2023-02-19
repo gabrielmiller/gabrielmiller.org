@@ -1,8 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { render } from 'preact';
 import StoryViewer from './StoryViewer';
 
-const root = ReactDOM.createRoot(document.getElementById('app-mount')!);
-root.render(<StoryViewer />);
+render(<StoryViewer/>, document.getElementById('app-mount')!)
 
 document.getElementById("initial-loader")!.remove();

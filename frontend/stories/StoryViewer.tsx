@@ -1,4 +1,6 @@
-import React from 'react';
+import { FunctionComponent } from 'preact';
+import { useEffect, useState } from 'preact/hooks';
+import AsyncImage from './AsyncImage';
 import IconScroll from './IconScroll';
 import IconToggleOff from './IconToggleOff';
 import IconToggleOn from './IconToggleOn';
@@ -10,15 +12,15 @@ interface IStoryEntry {
     url?: string;
 }
 
-const StoryViewer: React.FC = () => {
-    const [storyTitle, setStoryTitle] = React.useState('');
-    const [storyToken, setStoryToken] = React.useState('');
-    const [isIndexLoaded, setIsIndexLoaded] = React.useState(false);
-    const [isIndexLoading, setIsIndexLoading] = React.useState(false);
-    const [index, setIndex] = React.useState<IStoryEntry[]>([]);
-    const [currentEntryIndex, setCurrentEntryIndex] = React.useState(0);
-    const [isPageLoading, setIsPageLoading] = React.useState(false);
-    const [isFullscreenEnabled, setIsFullscreenEnabled] = React.useState(false);
+const StoryViewer: FunctionComponent = () => {
+    const [storyTitle, setStoryTitle] = useState('');
+    const [storyToken, setStoryToken] = useState('');
+    const [isIndexLoaded, setIsIndexLoaded] = useState(false);
+    const [isIndexLoading, setIsIndexLoading] = useState(false);
+    const [index, setIndex] = useState<IStoryEntry[]>([]);
+    const [currentEntryIndex, setCurrentEntryIndex] = useState(0);
+    const [isPageLoading, setIsPageLoading] = useState(false);
+    const [isFullscreenEnabled, setIsFullscreenEnabled] = useState(false);
 
     const apiDomain = "https://api."+window.location.host;
     const entriesPerPage = 4;
@@ -95,7 +97,7 @@ const StoryViewer: React.FC = () => {
         return currentEntryIndex != 0;
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isIndexLoaded && !isPageLoading && !index[currentEntryIndex].isLoaded) {
             loadPage();
         }
@@ -117,19 +119,19 @@ const StoryViewer: React.FC = () => {
     }, [currentEntryIndex, isIndexLoaded]);
 
     return (
-        <div className="story-viewer">
+        <div class="story-viewer">
             {!isIndexLoaded && !isIndexLoading && (
                 <form onSubmit={loadIndex}>
                     <input
                         autoFocus
                         id="story-title"
-                        onChange={(e) => setStoryTitle(e.target.value)}
+                        onChange={(e) => setStoryTitle((e.target as HTMLInputElement).value)}
                         placeholder="Enter story title"
                         type="text">
                     </input>
                     <input
                         id="story-token"
-                        onChange={(e) => setStoryToken(e.target.value)}
+                        onChange={(e) => setStoryToken((e.target as HTMLInputElement).value)}
                         placeholder="Enter token"
                         type="text">
                     </input>
@@ -138,25 +140,27 @@ const StoryViewer: React.FC = () => {
             )}
 
             {!isIndexLoaded && isIndexLoading && (
-                <span className="loader"></span>
+                <span class="loader"></span>
             )}
 
             {isIndexLoaded && (
                 <>
-                    <div className="toggle-container p-a" onClick={() => setIsFullscreenEnabled(!isFullscreenEnabled)}>
+                    <div class="toggle-container p-a" onClick={() => setIsFullscreenEnabled(!isFullscreenEnabled)}>
                         {isFullscreenEnabled ? <IconToggleOff /> : <IconToggleOn /> }
                         <span>Full screen</span>
                     </div>
-                    <IconScroll />
-                    <div className={isFullscreenEnabled ? 'story-container fullheight' : 'story-container'}>
+                    <div class="icon-scrollable-container p-a">
+                        <IconScroll />
+                    </div>
+                    <div class={isFullscreenEnabled ? 'story-container fullheight p-a' : 'story-container maxwidth p-a'}>
                         {!('url' in index[currentEntryIndex]) && (
-                            <span className="loader"></span>
+                            <span class="loader"></span>
                         )}
                         {('url' in index[currentEntryIndex]) && (
-                            <img src={index[currentEntryIndex].url}></img>
+                            <AsyncImage src={index[currentEntryIndex].url} />
                         )}
                     </div>
-                    <div className="navigation">
+                    <div class="navigation p-a">
                         <button disabled={!validateCanNavigateToPrevEntry()} onClick={() => navigateToPrevEntry()} type="button">&lt; Prev</button>
                         <span>{currentEntryIndex+1} of {index.length}</span>
                         <button disabled={!validateCanNavigateToNextEntry()} onClick={() => navigateToNextEntry()} type="button">Next &gt;</button>

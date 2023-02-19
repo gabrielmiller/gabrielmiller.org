@@ -63,16 +63,17 @@
                 bottom:5em;
                 left:0;
                 overflow:scroll;
-                position:absolute;
                 right:0;
                 top:0;
             }
             .story-container > img {
                 min-width:100%;
             }
-
             .story-container.fullheight > img {
                 min-height:100%;
+            }
+            .story-container.maxwidth > img {
+                max-width:100%;
             }
             .story-viewer .navigation {
                 background-color:#fff;
@@ -83,7 +84,6 @@
                 height:5em;
                 overflow:hidden;
                 padding:.25em;
-                position:absolute;
                 width:100%;
             }
             .story-viewer .navigation span {
@@ -115,13 +115,13 @@
             .icon {
                 height:2em;
                 width:2em;
-                z-index:2;
             }
 
-            .icon-scrollable {
+            .icon-scrollable-container {
                 left:1em;
                 pointer-events:none;
                 top:4em;
+                z-index:2;
             }
 
             .toggle-container {
