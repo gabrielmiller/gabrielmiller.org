@@ -4,6 +4,7 @@
             gabrielmiller.org > story viewer
         </title>
         <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="sv.css" media="print" onload="this.media='all'; this.onload=null;">
         <style>
             body, form {
                 font-size:16px;
@@ -15,6 +16,11 @@
                 background-image:repeating-linear-gradient(45deg, #b9c8df 25%, transparent 25%, transparent 75%, #b9c8df 75%, #b9c8df), repeating-linear-gradient(45deg, #b9c8df 25%, #fff 25%, #fff 75%, #b9c8df 75%, #b9c8df);
                 background-position:0 0, .5em .5em;
                 background-size:1em 1em;
+                height:100%;
+                margin:0;
+                overflow:hidden;
+                padding:0;
+                width:100%;
             }
             .story-viewer > form {
                 display:flex;
@@ -63,45 +69,6 @@
                 border-color:#6684b2;
                 color:#6684b2;
             }
-            .story-container {
-                background:	linear-gradient(90deg, #020b1a 21px, transparent 1%) center, linear-gradient(#020b1a 21px, transparent 1%) center, #b9c8df;
-	            background-size:22px 22px;
-                bottom:5em;
-                left:0;
-                overflow:scroll;
-                right:0;
-                top:0;
-            }
-            .story-container.fix-height > img {
-                max-height:100%;
-                min-height:100%;
-            }
-            .story-container.fix-width > img {
-                min-width:100%;
-                max-width:100%;
-            }
-            .story-viewer .navigation {
-                background-color:#fff;
-                bottom:0;
-                box-sizing:border-box;
-                display:flex;
-                flex-direction:row;
-                height:5em;
-                overflow:hidden;
-                padding:.25em;
-                width:100%;
-            }
-            .story-viewer .navigation span {
-                flex-grow:1;
-                line-height:5em;
-                text-align:center;
-            }
-            .story-viewer .navigation > button {
-                border:2px solid #888;
-                flex-grow:2;
-                font-size:1.35rem;
-                height:100%;
-            }
             .loader {
                 animation: spin 1s linear infinite;
                 border:5px solid #6684b2;
@@ -116,37 +83,6 @@
                 height:2rem;
                 width:2rem;
             }
-
-            .icon {
-                height:2em;
-                width:2em;
-            }
-
-            .icon-scrollable-container {
-                left:1em;
-                pointer-events:none;
-                top:4em;
-                z-index:2;
-            }
-
-            .toggle-container {
-                color: #fff;
-                left:1em;
-                top:1em;
-                z-index:2;
-            }
-
-            .toggle-container > span {
-                font-size:1.35rem;
-                line-height:1.75em;
-                margin-left:.5em;
-                vertical-align:top;
-            }
-
-            .p-a {
-                position:absolute;
-            }
-
             @keyframes spin {
                 0% {transform:rotate(0deg);}
                 100% {transform:rotate(360deg);}

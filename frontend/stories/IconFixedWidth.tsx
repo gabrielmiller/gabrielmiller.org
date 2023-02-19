@@ -3,7 +3,7 @@ import { FunctionComponent } from 'preact';
 const IconFixedWidth: FunctionComponent = () => {
     return (
         <svg
-            className="icon icon-fixed-width"
+            className="icon"
             fill="white"
             height="16"
             viewBox="0 0 16 16"

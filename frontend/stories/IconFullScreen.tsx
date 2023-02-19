@@ -3,7 +3,7 @@ import { FunctionComponent } from 'preact';
 const IconFullScreen: FunctionComponent = () => {
     return (
         <svg
-            className="icon icon-fullscreen"
+            className="icon"
             fill="white"
             height="16"
             viewBox="0 0 16 16"

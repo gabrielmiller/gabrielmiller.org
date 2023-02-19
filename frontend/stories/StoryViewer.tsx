@@ -1,21 +1,27 @@
 import { FunctionComponent } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import AsyncImage from './AsyncImage';
-import IconScroll from './IconScroll';
+import IconInfo from './IconInfo';
 import IconFixedHeight from './IconFixedHeight';
 import IconFixedWidth from './IconFixedWidth';
 import IconFullScreen from './IconFullScreen';
+import IconArrowLeftCircle from './IconArrowLeftCircle';
+import IconArrowRightCircle from './IconArrowRightCircle';
 
 interface IStoryEntry {
     filename: string;
     isLoaded: boolean;
-    metadata: any;
+    metadata: IStoryEntryMetadata;
     url?: string;
 }
 
+interface IStoryEntryMetadata {
+    description?: string;
+}
+
 enum ViewModes {
-    FixHeight='Fix height',
-    FixWidth='Fix width',
+    FixedHeight='Fixed height',
+    FixedWidth='Fixed width',
     OriginalSize='Original size'
 }
 
@@ -27,8 +33,9 @@ const StoryViewer: FunctionComponent = () => {
     const [index, setIndex] = useState<IStoryEntry[]>([]);
     const [currentEntryIndex, setCurrentEntryIndex] = useState(0);
     const [isPageLoading, setIsPageLoading] = useState(false);
-    const [viewMode, setViewMode] = useState<ViewModes>(ViewModes.FixWidth);
+    const [viewMode, setViewMode] = useState<ViewModes>(ViewModes.FixedWidth);
     const [isErrorShown, setIsErrorShown] = useState(false);
+    const [isInfoShown, setIsInfoShown] = useState(false);
 
     const apiDomain = "https://api."+window.location.host;
     const entriesPerPage = 4;
@@ -37,21 +44,17 @@ const StoryViewer: FunctionComponent = () => {
         return 'Basic '+btoa(title+":"+token);
     }
 
-    const buildImageContainerClass = (): string => {
-        return `story-container p-a ${viewMode.replace(" ","-").toLowerCase()}`;
-    }
-
     const changeViewMode = () => {
         let next: ViewModes;
         switch(viewMode) {
-            case ViewModes.FixWidth:
+            case ViewModes.FixedWidth:
                 next = ViewModes.OriginalSize;
                 break;
             case ViewModes.OriginalSize:
-                next = ViewModes.FixHeight;
+                next = ViewModes.FixedHeight;
                 break;
-            case ViewModes.FixHeight:
-                next = ViewModes.FixWidth;
+            case ViewModes.FixedHeight:
+                next = ViewModes.FixedWidth;
                 break;
         }
         setViewMode(next);
@@ -183,20 +186,7 @@ const StoryViewer: FunctionComponent = () => {
 
             {isIndexLoaded && (
                 <>
-                    <div class="toggle-container p-a" onClick={() => changeViewMode()}>
-                        {
-                            {
-                                [ViewModes.FixHeight]: <IconFixedHeight />,
-                                [ViewModes.FixWidth]: <IconFixedWidth />,
-                                [ViewModes.OriginalSize]: <IconFullScreen />,
-                            }[viewMode]
-                        }
-                        <span>Display: {viewMode}</span>
-                    </div>
-                    <div class="icon-scrollable-container p-a">
-                        <IconScroll />
-                    </div>
-                    <div class={buildImageContainerClass()}>
+                    <div class={`story-container ${viewMode.replace(" ","-").toLowerCase()}`}>
                         {!('url' in index[currentEntryIndex]) && (
                             <span class="loader"></span>
                         )}
@@ -204,11 +194,46 @@ const StoryViewer: FunctionComponent = () => {
                             <AsyncImage src={index[currentEntryIndex].url} />
                         )}
                     </div>
-                    <div class="navigation p-a">
-                        <button disabled={!validateCanNavigateToPrevEntry()} onClick={() => navigateToPrevEntry()} type="button">&lt; Prev</button>
-                        <span>{currentEntryIndex+1} of {index.length}</span>
-                        <button disabled={!validateCanNavigateToNextEntry()} onClick={() => navigateToNextEntry()} type="button">Next &gt;</button>
-                    </div>
+                    <button
+                        class="control-change-view-mode"
+                        onClick={() => changeViewMode()}
+                        title="Change view mode.">
+                        {
+                            {
+                                [ViewModes.FixedHeight]: <IconFixedHeight />,
+                                [ViewModes.FixedWidth]: <IconFixedWidth />,
+                                [ViewModes.OriginalSize]: <IconFullScreen />,
+                            }[viewMode]
+                        }
+                    </button>
+                    <button
+                        class="control-show-information"
+                        onClick={() => setIsInfoShown(!isInfoShown)}
+                        title="Toggle more information"
+                        type="button">
+                        <IconInfo />
+                    </button>
+                    <button
+                        class="control-navigate-previous"
+                        disabled={!validateCanNavigateToPrevEntry()}
+                        onClick={() => navigateToPrevEntry()}
+                        title="Navigate to previous entry"
+                        type="button">
+                        <IconArrowLeftCircle />
+                    </button>
+                    <button
+                        class="control-navigate-next"
+                        disabled={!validateCanNavigateToNextEntry()}
+                        onClick={() => navigateToNextEntry()}
+                        title="Navigate to next entry"
+                        type="button">
+                        <IconArrowRightCircle />
+                    </button>
+                    {isInfoShown && (
+                        <div class="information">
+                            {index[currentEntryIndex].metadata?.description}
+                        </div>
+                    )}
                 </>
             )}
         </div>
