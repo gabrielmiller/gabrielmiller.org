@@ -241,7 +241,7 @@ deploy_frontend() {
   npm run build
 
   cd dist
-  echo "[Frontend] destroying bucket contents"
+  echo "[Frontend] Destroying bucket contents"
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
   for file in *
@@ -269,14 +269,14 @@ shipit() {
   then
     deploy_backend
   else
-    echo "[Backend] build & deployment skipped";
+    echo "[Backend] Build & deployment skipped";
   fi
 
   if [ "$ONLY_BACKEND" = false ]
   then
     deploy_frontend
   else
-    echo "[Frontend] build & deployment skipped";
+    echo "[Frontend] Build & deployment skipped";
   fi
 }
 
@@ -340,7 +340,7 @@ plant_tls_certificate_in_acm() {
   cd cert
   initialize_environment
   sudo -E aws acm import-certificate --certificate-arn $CERTIFICATE_ARN --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN"
-  echo "[TLS] token planted"
+  echo "[TLS] Token planted"
 
   cd ..
 }
@@ -357,7 +357,7 @@ plant_tls_certificate_in_ec2() {
   sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_PRIVATE_KEY" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/privkey.pem &> /dev/null
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mv "$EC2_PATH"/privkey.pem "$EC2_CERTIFICATE_PRIVATE_PATH"
 
-  echo "[TLS] token planted"
+  echo "[TLS] Token planted"
 
   cd ..
 }
