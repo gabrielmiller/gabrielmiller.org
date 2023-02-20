@@ -1,9 +1,8 @@
 stories/*
 backend/blog
+frontend/dist/*
 frontend/node_modules
 .env.dev
 .env.staging
 .env.production
-*.crt
-*.key
 *.pem

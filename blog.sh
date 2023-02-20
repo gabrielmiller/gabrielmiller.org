@@ -103,6 +103,38 @@ attach_to_api_server() {
   cd ..
 }
 
+build_systemd_service_file() {
+read -r -d '' systemDServiceFile << EOF
+[Unit]
+Description=Blog API Service
+ConditionPathExists=$EC2_PATH
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=$EC2_PATH
+ExecStart=$EC2_PATH/blog
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=blogapiservice
+Environment=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+Environment=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+Environment=AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+Environment=PORT=$PORT
+Environment=FRONTEND_DOMAIN=$FRONTEND_DOMAIN
+Environment=S3_BUCKET_NAME=$S3_BUCKET_NAME
+Environment=TLS_CHAIN_CERT=$EC2_CERTIFICATE_CHAIN_PATH
+Environment=TLS_PRIVATE_KEY=$EC2_CERTIFICATE_PRIVATE_PATH
+
+[Install]
+WantedBy=multi-user.target
+EOF
+}
+
 # 1. validate every story has an index.json file. exit 1 on fail
 # 2. validate every story file is an allowed extensions. exit 1 on fail
 validate_story_filetypes() {
@@ -175,28 +207,22 @@ deploy_stories() {
 deploy_backend() {
   cd backend
   initialize_environment
+  build_systemd_service_file
 
   CGO_ENABLED=0 go build .
-
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" rm "$EC2_PATH"/blog
   scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog &> /dev/null
-  echo "[Backend] Previous binary removed and new binary planted"
 
-  OLDPID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$OLDPID"
+  echo "$systemDServiceFile" | ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" -T "cat > $EC2_PATH"/blog.service
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mv "$EC2_PATH"/blog.service "$EC2_SYSTEMD_SERVICE_FILE_PATH"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo chown root "$EC2_SYSTEMD_SERVICE_FILE_PATH"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo chgrp root "$EC2_SYSTEMD_SERVICE_FILE_PATH"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo chmod 0644 "$EC2_SYSTEMD_SERVICE_FILE_PATH"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl daemon-reload
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl stop blog.service
   echo "[Backend] Previous binary halted"
 
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" \
-  AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
-  AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
-  AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
-  PORT="$PORT" \
-  FRONTEND_DOMAIN="$FRONTEND_DOMAIN" \
-  S3_BUCKET_NAME="$S3_BUCKET_NAME" \
-  TLS_CHAIN_CERT="$EC2_CERTIFICATE_CHAIN_PATH" \
-  TLS_PRIVATE_KEY="$EC2_CERTIFICATE_PRIVATE_PATH" \
-  sudo -E nohup ./blog &
-
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl start blog.service
   echo "[Backend] New binary invoked"
 
   cd ..
