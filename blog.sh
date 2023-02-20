@@ -214,12 +214,14 @@ deploy_backend() {
   scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog &> /dev/null
 
   echo "$systemDServiceFile" | ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" -T "cat > $EC2_PATH"/blog.service
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mv "$EC2_PATH"/blog.service "$EC2_SYSTEMD_SERVICE_FILE_PATH"
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo chown root "$EC2_SYSTEMD_SERVICE_FILE_PATH"
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo chgrp root "$EC2_SYSTEMD_SERVICE_FILE_PATH"
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo chmod 0644 "$EC2_SYSTEMD_SERVICE_FILE_PATH"
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl daemon-reload
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl stop blog.service
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER@$EC2_ADDRESS" "
+    sudo mv $EC2_PATH/blog.service $EC2_SYSTEMD_SERVICE_FILE_PATH
+    sudo chown root $EC2_SYSTEMD_SERVICE_FILE_PATH
+    sudo chgrp root $EC2_SYSTEMD_SERVICE_FILE_PATH
+    sudo chmod 0644 $EC2_SYSTEMD_SERVICE_FILE_PATH
+    sudo systemctl daemon-reload
+    sudo systemctl stop blog.service
+  "
   echo "[Backend] Previous binary halted"
 
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl start blog.service
