@@ -352,10 +352,15 @@ plant_tls_certificate_in_ec2() {
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mkdir -p "$EC2_CERTIFICATE_PATH"
 
   sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_CHAIN" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/fullchain.pem &> /dev/null
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mv "$EC2_PATH"/fullchain.pem "$EC2_CERTIFICATE_CHAIN_PATH"
-
   sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_PRIVATE_KEY" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/privkey.pem &> /dev/null
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mv "$EC2_PATH"/privkey.pem "$EC2_CERTIFICATE_PRIVATE_PATH"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" "
+    sudo mv $EC2_PATH/fullchain.pem $EC2_CERTIFICATE_CHAIN_PATH
+    sudo mv "$EC2_PATH"/privkey.pem $EC2_CERTIFICATE_PRIVATE_PATH
+    sudo chown root $EC2_CERTIFICATE_CHAIN_PATH
+    sudo chgrp root $EC2_CERTIFICATE_CHAIN_PATH
+    sudo chown root $EC2_CERTIFICATE_PRIVATE_PATH
+    sudo chgrp root $EC2_CERTIFICATE_PRIVATE_PATH
+  "
 
   echo "[TLS] Token planted"
 
@@ -452,12 +457,10 @@ case "$GBLOG_ENVIRONMENT" in
    GBLOG_ENVFILE=".env.production"
 
    PROCEED_IN_PRODUDCTION="n"
-   if [ -f "$GBLOG_INDEX_FILE" ]
-   then
-     echo "Procedure requested in production environment. Are you sure? y/N"
-     read PROCEED_IN_PRODUDCTION
-   fi
-   if [ "$PROCEED_IN_PRODUDCTION" != "y" ]
+   echo "Procedure requested in production environment. Are you sure? y/N"
+   read PROCEED_IN_PRODUCTION
+
+   if [ "$PROCEED_IN_PRODUCTION" != "y" ]
    then
      echo "Bailing out of operation."
      exit 0
