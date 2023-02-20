@@ -173,6 +173,33 @@ validate_story_filetypes() {
   cd ..
 }
 
+deploy_story() {
+  cd stories
+  initialize_environment
+
+  echo "[Stories] Deleting contents for story $1"
+
+  result=$(aws s3 rm s3://"$S3_BUCKET_NAME/$1" --recursive)
+  directory="$1/"
+  for file in $(ls $directory)
+  do
+    filename="${file##*/}"
+    extension="${filename##*.}"
+    mimetype=${storyfiletypes["$extension"]}
+    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
+    if [ "$?" -eq 0 ]
+    then
+      echo "[Stories] Published $directory$file"
+    else
+      echo "[Stories] There was an error publishing $directory$file:"
+      echo "$result"
+      exit $?
+    fi
+  done
+
+  cd ..
+}
+
 deploy_stories() {
   cd stories
   initialize_environment
@@ -189,14 +216,13 @@ deploy_stories() {
       extension="${filename##*.}"
       mimetype=${storyfiletypes["$extension"]}
       result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
-
-    if [ "$?" -eq 0 ]
-    then
-      echo "[Stories] Published $directory$file"
-    else
-      echo "[Stories] There was an error publishing $file:"
-      echo "$result"
-      exit $?
+      if [ "$?" -eq 0 ]
+      then
+        echo "[Stories] Published $directory$file"
+      else
+        echo "[Stories] There was an error publishing $file:"
+        echo "$result"
+        exit $?
     fi
     done
   done
@@ -317,11 +343,14 @@ generate_index_file() {
       continue
     fi
 
+    # TODO:
+    # make this work for files w/ multiple dot
+    # delimiters, e.g. image-name.MP.jpg
     EXTENSION=$(echo $f | cut -d "." -f 2)
 
     case "$EXTENSION" in
-      "gif"|"jpg")
-        INDEX_ENTRIES="$INDEX_ENTRIES,{\"metadata\":{},\"filename\":\"$f\"}"
+      "gif"|"jpg"|"png")
+        INDEX_ENTRIES="$INDEX_ENTRIES,{\"metadata\":{\"description\":\"\"},\"filename\":\"$f\"}"
       ;;
       *)
         echo "$f has invalid extension. Valid options: .gif, .jpg"
@@ -386,12 +415,16 @@ Do the blog thing.
 
         Options:
           1. build and deploy code
-          2. deploy stories
+          2. deploy individual story
           3. generate index file for a story
           4. generate a tls certificate
           5. plant the tls certificate in acm
           6. plant the tls certificate in ec2 (& reboot api?)
           7. attach terminal to api server
+          8. deploy all stories
+
+    -t, --title
+        Title of story to deploy.
 
     --only-frontend
         Complete the code build & deploy only for the frontend.
@@ -435,6 +468,16 @@ while :; do
     -h|--help)
       show_help
       exit
+      ;;
+    -t|--title)
+      if [ "$2" ]
+      then
+        GBLOG_STORY_TITLE="$2"
+        shift
+      else
+        echo "-t or --title requires a non-empty argument."
+        exit 1
+      fi
       ;;
     --only-frontend)
       ONLY_FRONTEND=true
@@ -484,10 +527,22 @@ case "$GBLOG_OPERATION" in
    exit 0
    ;;
  2)
+   if [ "$GBLOG_STORY_TITLE" = "" ]
+   then
+    echo "ERROR: You must specify a title."
+    exit 1
+   fi
+
+   if [ ! -d "stories/$GBLOG_STORY_TITLE" ]
+   then
+     echo "ERROR: Could not find story $GBLOG_STORY_TITLE."
+     exit 1
+   fi
+
    validate_aws_dependency
-   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment."
+   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment of $GBLOG_STORY_TITLE."
    validate_story_filetypes
-   deploy_stories
+   deploy_story $GBLOG_STORY_TITLE
    echo "[$(date +%T)] Story deploy complete."
    exit 0
    ;;
@@ -523,6 +578,14 @@ case "$GBLOG_OPERATION" in
  7)
    echo "Attaching to $GBLOG_ENVIRONMENT api server."
    attach_to_api_server
+   exit 0
+   ;;
+ 8)
+   validate_aws_dependency
+   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment."
+   validate_story_filetypes
+   deploy_stories
+   echo "[$(date +%T)] Story deploy complete."
    exit 0
    ;;
  *)
