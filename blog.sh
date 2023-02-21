@@ -336,24 +336,21 @@ generate_index_file() {
 
   INDEX_ENTRIES=""
   cd $STORY_DIRECTORY
-  for f in *
+  for file in *
   do
-    if [ "$f" == "index.json" ]
+    if [ "$file" == "index.json" ]
     then
       continue
     fi
 
-    # TODO:
-    # make this work for files w/ multiple dot
-    # delimiters, e.g. image-name.MP.jpg
-    EXTENSION=$(echo $f | cut -d "." -f 2)
+    EXTENSION="${file##*.}"
 
     case "$EXTENSION" in
       "gif"|"jpg"|"png")
-        INDEX_ENTRIES="$INDEX_ENTRIES,{\"metadata\":{\"description\":\"\"},\"filename\":\"$f\"}"
+        INDEX_ENTRIES="$INDEX_ENTRIES,{\"metadata\":{\"description\":\"\"},\"filename\":\"$file\"}"
       ;;
       *)
-        echo "$f has invalid extension. Valid options: .gif, .jpg"
+        echo "$file has invalid extension. Valid options: .gif, .jpg, .png"
         exit 1
       ;;
     esac
