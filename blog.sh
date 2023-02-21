@@ -68,6 +68,20 @@ validate_nodejs_dependency() {
   fi
 }
 
+validate_image_optimize_dependency() {
+  if ! command -v identify &> /dev/null
+  then
+    echo "identify dependency could not be found. You should install identify before proceeding."
+    exit 1
+  fi
+
+  if ! command -v bc &> /dev/null
+  then
+    echo "bc dependency could not be found. You should install bc before proceeding."
+    exit 1
+  fi
+}
+
 validate_tls_dependency() {
   if ! command -v certbot &> /dev/null
   then
@@ -362,6 +376,31 @@ generate_index_file() {
   echo "Index generated."
 }
 
+optimize_image_sizes() {
+  cd stories
+  echo "optimizing $GBLOG_STORYNAME"
+  for file in $(ls "$GBLOG_STORYNAME")
+  do
+    EXTENSION="${file##*.}"
+    case "$EXTENSION" in
+      "jpg"|"png")
+        height=$(identify -format "%h" $GBLOG_STORYNAME/$file)
+        width=$(identify -format "%w" $GBLOG_STORYNAME/$file)
+        aspectratio=$(echo "scale=2; $width/$height" | bc)
+        echo "file is $file, height is $height, width is $width, aspect ratio is $aspectratio"
+
+        # if aspect ratio >= 1 then resize constrained on width
+        # else resize constrained on height
+        # if max dimension is greater than <some threshold> then don't resize
+      ;;
+      *)
+        continue
+      ;;
+    esac
+  done
+  cd ..
+}
+
 plant_tls_certificate_in_acm() {
   cd cert
   initialize_environment
@@ -413,12 +452,13 @@ Do the blog thing.
         Options:
           1. build and deploy code
           2. deploy individual story
-          3. generate index file for a story
-          4. generate a tls certificate
-          5. plant the tls certificate in acm
-          6. plant the tls certificate in ec2 (& reboot api?)
-          7. attach terminal to api server
-          8. deploy all stories
+          3. attach terminal to api server
+          4. optimize image sizes for a story
+          5. generate index file for a story
+          6. generate a tls certificate
+          7. plant the tls certificate in acm
+          8. plant the tls certificate in ec2 (& reboot api?)
+          9. deploy all stories
 
     -t, --title
         Title of story to deploy.
@@ -544,6 +584,20 @@ case "$GBLOG_OPERATION" in
    exit 0
    ;;
  3)
+   echo "Attaching to $GBLOG_ENVIRONMENT api server."
+   attach_to_api_server
+   exit 0
+   ;;
+ 4)
+   validate_image_optimize_dependency
+   echo "Which story's images should be optimized?"
+   read GBLOG_STORYNAME
+   echo "[$(date +%T)] Optimizing images for $GBLOG_STORYNAME."
+   optimize_image_sizes
+   echo "[$(date +%T)] Images optimized."
+   exit 0
+   ;;
+ 5)
    echo "Which story needs a new index file?"
    read GBLOG_STORYNAME
    echo "[$(date +%T)] Building index file for $GBLOG_STORYNAME."
@@ -551,7 +605,7 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Index file generated."
    exit 0
    ;;
- 4)
+ 6)
    validate_aws_dependency
    validate_tls_dependency
    echo "[$(date +%T)] Generating a new certificate for $GBLOG_ENVIRONMENT."
@@ -559,25 +613,20 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Certificate generated."
    exit 0
    ;;
- 5)
+ 7)
    validate_aws_dependency
    echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in acm."
    plant_tls_certificate_in_acm
    echo "[$(date +%T)] Certificate planted in acm."
    exit 0
    ;;
- 6)
+ 8)
    echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in ec2."
    plant_tls_certificate_in_ec2
    echo "[$(date +%T)] Certificate planted in ec2."
    exit 0
    ;;
- 7)
-   echo "Attaching to $GBLOG_ENVIRONMENT api server."
-   attach_to_api_server
-   exit 0
-   ;;
- 8)
+ 9)
    validate_aws_dependency
    echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment."
    validate_story_filetypes
