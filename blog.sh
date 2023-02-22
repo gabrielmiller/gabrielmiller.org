@@ -3,6 +3,7 @@
 GBLOG_ENVIRONMENT="staging"
 ONLY_BACKEND=false
 ONLY_FRONTEND=false
+OPTIMIZED_IMAGE_SIZE=1920
 
 declare -A frontendfiletypes
 frontendfiletypes=(
@@ -378,7 +379,8 @@ generate_index_file() {
 
 optimize_image_sizes() {
   cd stories
-  echo "optimizing $GBLOG_STORYNAME"
+  echo "Optimizing images in $GBLOG_STORYNAME"
+  mkdir -p "$GBLOG_STORYNAME"/optimized
   for file in $(ls "$GBLOG_STORYNAME")
   do
     EXTENSION="${file##*.}"
@@ -387,11 +389,29 @@ optimize_image_sizes() {
         height=$(identify -format "%h" $GBLOG_STORYNAME/$file)
         width=$(identify -format "%w" $GBLOG_STORYNAME/$file)
         aspectratio=$(echo "scale=2; $width/$height" | bc)
-        echo "file is $file, height is $height, width is $width, aspect ratio is $aspectratio"
 
-        # if aspect ratio >= 1 then resize constrained on width
-        # else resize constrained on height
-        # if max dimension is greater than <some threshold> then don't resize
+        if [ 1 -eq "$(echo "$aspectratio > 2" | bc)" ]
+        then
+          # Don't resize panoramas
+          continue
+        elif [ 1 -eq "$(echo "$aspectratio > 1" | bc)" ]
+        then
+          # Resize based on width for landscape
+          GEOMETRY="$OPTIMIZED_IMAGE_SIZE"
+          VALUE=$width
+        else
+          # Resize based on height for portrait
+          GEOMETRY=x"$OPTIMIZED_IMAGE_SIZE"
+          VALUE=$height
+        fi
+
+        if [ "$VALUE" -lt "$OPTIMIZED_IMAGE_SIZE"  ]
+        then
+          # Don't resize images that are already an optimal dimension
+          continue
+        fi
+
+        convert "$GBLOG_STORYNAME/$file" -geometry $GEOMETRY -quality 80 "$GBLOG_STORYNAME"/optimized/"$file"
       ;;
       *)
         continue
