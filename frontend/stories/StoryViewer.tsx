@@ -35,7 +35,7 @@ const StoryViewer: FunctionComponent = () => {
     const [isPageLoading, setIsPageLoading] = useState(false);
     const [viewMode, setViewMode] = useState<ViewModes>(ViewModes.FixedWidth);
     const [isErrorShown, setIsErrorShown] = useState(false);
-    const [isInfoShown, setIsInfoShown] = useState(false);
+    const [isInfoShown, setIsInfoShown] = useState(true);
 
     const apiDomain = "https://api."+window.location.host;
     const entriesPerPage = 4;
