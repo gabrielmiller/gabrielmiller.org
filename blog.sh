@@ -170,7 +170,7 @@ validate_story_filetypes() {
           continue
         fi
 
-        EXTENSION=$(echo $file | cut -d "." -f 2)
+        EXTENSION="${file##*.}"
 
         case "$EXTENSION" in
           "gif"|"jpg"|"png")
@@ -598,6 +598,7 @@ case "$GBLOG_OPERATION" in
 
    validate_aws_dependency
    echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment of $GBLOG_STORY_TITLE."
+   # todo: only validate the selected story
    validate_story_filetypes
    deploy_story $GBLOG_STORY_TITLE
    echo "[$(date +%T)] Story deploy complete."
