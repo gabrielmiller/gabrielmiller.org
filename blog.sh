@@ -245,6 +245,35 @@ deploy_stories() {
   cd ..
 }
 
+deploy_test_backend() {
+  cd backend
+  initialize_environment
+
+  CGO_ENABLED=0 go build .
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" rm "$EC2_PATH"/blog
+  scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog &> /dev/null
+
+  # kill any old daemonized blog processes
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo rm "$EC2_SYSTEMD_SERVICE_FILE_PATH"
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl daemon-reload
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl stop blog.service
+
+  # kill any non-daemonized blog processes
+  OLDPID=$(ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" pgrep -f "^./blog")
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo kill -9 "$OLDPID"
+
+  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" \
+  AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+  AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+  AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" \
+  PORT="$PORT" \
+  FRONTEND_DOMAIN="$FRONTEND_DOMAIN" \
+  S3_BUCKET_NAME="$S3_BUCKET_NAME" \
+  TLS_CHAIN_CERT="$EC2_CERTIFICATE_CHAIN_PATH" \
+  TLS_PRIVATE_KEY="$EC2_CERTIFICATE_PRIVATE_PATH" \
+  sudo -E ./blog
+}
+
 deploy_backend() {
   cd backend
   initialize_environment
@@ -478,7 +507,8 @@ Do the blog thing.
           6. generate a tls certificate
           7. plant the tls certificate in acm
           8. plant the tls certificate in ec2 (& reboot api?)
-          9. deploy all stories
+          9. deploy test backend
+          10. deploy all stories
 
     -t, --title
         Title of story to deploy.
@@ -648,6 +678,14 @@ case "$GBLOG_OPERATION" in
    exit 0
    ;;
  9)
+   validate_aws_dependency
+   validate_go_dependency
+   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT build & deployment."
+   deploy_test_backend
+   echo "[$(date +%T)] Code build & deployment complete."
+   exit 0
+   ;;
+ 10)
    validate_aws_dependency
    echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment."
    validate_story_filetypes

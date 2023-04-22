@@ -3,6 +3,7 @@ package main
 import (
     "crypto/tls"
     "encoding/json"
+    "fmt"
     "log"
     "net/http"
     "os"
@@ -11,6 +12,7 @@ import (
 )
 
 func main() {
+    fmt.Println("Running server")
     mux := http.NewServeMux()
     mux.HandleFunc("/story", getStoryHandler)
     mux.HandleFunc("/entries", getEntriesHandler)
@@ -30,14 +32,16 @@ func main() {
 
 func getStoryHandler(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Access-Control-Allow-Origin", os.Getenv("FRONTEND_DOMAIN"))
-
+    fmt.Println("handling story request")
     if r.Method == http.MethodOptions {
+        fmt.Println("1");
         w.Header().Set("Access-Control-Allow-Methods", "GET")
         w.Header().Set("Access-Control-Allow-Headers", "authorization")
         return
     }
 
     if r.Method != http.MethodGet {
+        fmt.Println("2");
         w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
         return
@@ -48,6 +52,7 @@ func getStoryHandler(w http.ResponseWriter, r *http.Request) {
     username, password, ok := r.BasicAuth()
 
     if !ok {
+        fmt.Println("3");
         w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
         return
@@ -55,6 +60,7 @@ func getStoryHandler(w http.ResponseWriter, r *http.Request) {
 
     Index, err := aws.GetIndexForStory(username, password)
     if (err != nil) {
+        fmt.Println("4");
         http.Error(w, "Unauthorized", http.StatusUnauthorized)
         return
     }
