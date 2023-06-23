@@ -12,7 +12,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
       <ul>
         {articles.map((article) => 
           <li>
-            <a href={`/posts/${article.frontmatter.slug}`}>
+            <a href={`/posts/${article.frontmatter.slug}.html`}>
               [{article.frontmatter.date}] {article.frontmatter.title}
             </a>
           </li>
