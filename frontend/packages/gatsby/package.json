@@ -1,16 +1,13 @@
 {
-  "name": "gabe-miller",
+  "name": "gatsby",
   "version": "1.0.0",
   "private": true,
-  "description": "gabe-miller",
-  "author": "Gabe Miller",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
+    "prebuild": "rmdir public --ignore-fail-on-non-empty",
     "build": "gatsby build",
+    "postbuild": "./postbuild.sh",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit"

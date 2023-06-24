@@ -279,7 +279,7 @@ deploy_frontend() {
   cp -r static dist
 
   npm install
-  npm run build
+  npm run build --workspaces
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
@@ -381,7 +381,7 @@ optimize_image_sizes() {
   cd stories
   echo "Optimizing images in $GBLOG_STORYNAME"
   mkdir -p "$GBLOG_STORYNAME"/optimized
-  for file in $(ls "$GBLOG_STORYNAME")
+     $(ls "$GBLOG_STORYNAME")
   do
     EXTENSION="${file##*.}"
     case "$EXTENSION" in
