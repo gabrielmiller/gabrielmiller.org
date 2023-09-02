@@ -1,10 +1,16 @@
 import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { graphql } from 'gatsby'
-import { IPost } from "../services/post";
+import { IPost } from "../services/post"
 
-const IndexPage: React.FC<PageProps> = ({ data }) => {
-  const articles: IPost[] = (data as any).allMarkdownRemark.nodes;
+interface IIndexContainer {
+  allMarkdownRemark: {
+    nodes: IPost[]
+  }
+}
+
+const IndexPage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
+  const articles: IPost[] = data.allMarkdownRemark.nodes
 
   return (
     <div>
@@ -22,8 +28,6 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
   )
 }
 
-export default IndexPage
-
 export const Head: HeadFC = () => <title>Gabe Miller</title>
 
 export const query = graphql`
@@ -40,3 +44,5 @@ export const query = graphql`
   }
 }
 `
+
+export default IndexPage
