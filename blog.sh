@@ -5,6 +5,11 @@ ONLY_BACKEND=false
 ONLY_FRONTEND=false
 OPTIMIZED_IMAGE_SIZE=1920
 
+VALIDAWSVERSION="aws-cli/2.9.19 Python/3.9.11 Linux/6.3.2-arch1-1 exe/x86_64.arch prompt/off"
+VALIDCERTBOTVERSION="certbot 2.6.0"
+VALIDGOVERSION="go version go1.20.4 linux/amd64"
+VALIDNODEJSVERSION="v18.14.0"
+
 declare -A frontendfiletypes
 frontendfiletypes=(
   ["css"]="text/css"
@@ -35,37 +40,37 @@ validate_aws_dependency() {
   fi
 
   AWSVERSION=$(aws --version)
-  if [ "$AWSVERSION" != "aws-cli/2.9.19 Python/3.9.11 Linux/6.1.9-arch1-1 exe/x86_64.arch prompt/off" ]
+  if [ "$AWSVERSION" != "$VALIDAWSVERSION" ]
   then
-    echo "WARNING: Using untested aws version. This has only been tested with aws-cli/2.9.19 Python/3.9.11 Linux/6.1.9-arch1-1 exe/x86_64.arch prompt/off."
+    echo "WARNING: Using untested aws version. This has only been tested with $VALIDAWSVERSION."
   fi
 }
 
 validate_go_dependency() {
   if ! command -v go &> /dev/null
   then
-    echo "Go dependency could not be found. You should install go1.20 linux/amd64 before proceeding."
+    echo "Go dependency could not be found. You should install $VALIDGOVERSION before proceeding."
     exit 1
   fi
 
   GOVERSION=$(go version)
-  if [ "$GOVERSION" != "go version go1.20 linux/amd64" ]
+  if [ "$GOVERSION" != "$VALIDGOVERSION" ]
   then
-    echo "WARNING: Using untested go version. This has only been tested with 1.20 linux/amd64."
+    echo "WARNING: Using untested go version. This has only been tested with $VALIDGOVERSION."
   fi
 }
 
 validate_nodejs_dependency() {
   if ! command -v node &> /dev/null
   then
-    echo "Nodejs dependency could not be found. You should install node v18.14.0 before proceeding."
+    echo "Nodejs dependency could not be found. You should install node $VALIDNODEJSVERSION before proceeding."
     exit 1
   fi
 
   NODEJSVERSION=$(node -v)
-  if [ "$NODEJSVERSION" != "v18.14.0" ]
+  if [ "$NODEJSVERSION" != "$VALIDNODEJSVERSION" ]
   then
-    echo "WARNING: Using untested nodejs version. This has only been tested with v18.14.0."
+    echo "WARNING: Using untested nodejs version. This has only been tested with node $VALIDNODEJSVERSION."
   fi
 }
 
@@ -86,14 +91,14 @@ validate_image_optimize_dependency() {
 validate_tls_dependency() {
   if ! command -v certbot &> /dev/null
   then
-    echo "Certbot dependency could not be found. You should install certbot 1.32.2 before proceeding."
+    echo "Certbot dependency could not be found. You should install $VALIDCERTBOTVERSION before proceeding."
     exit 1
   fi
 
   CERTBOTVERSION=$(certbot --version)
-  if [ "$CERTBOTVERSION" != "certbot 1.32.2" ]
+  if [ "$CERTBOTVERSION" != "$VALIDCERTBOTVERSION" ]
   then
-    echo "WARNING: Using untested certbot version. This has only been tested with 1.32.2."
+    echo "WARNING: Using untested certbot version. This has only been tested with $VALIDCERTBOTVERSION."
   fi
 
   if ! p=$(certbot plugins | grep dns-route53)
