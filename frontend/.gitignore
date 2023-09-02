@@ -1,4 +1,4 @@
-.cache
 favicon
 node_modules
-public
+packages/blog/.cache
+packages/blog/public
