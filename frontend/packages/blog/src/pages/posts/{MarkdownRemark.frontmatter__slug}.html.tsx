@@ -18,6 +18,7 @@ const PostPage: React.FC<PageProps<IPostContainer>> = ({ data }) => {
         <div className="container">
             <Navigation />
             <main>
+                <header>
                 <h1>{ article.frontmatter.title }</h1>
                 <p>
                     Published {article.frontmatter.date}
@@ -27,7 +28,8 @@ const PostPage: React.FC<PageProps<IPostContainer>> = ({ data }) => {
                     </>
                 ) }
                 </p>
-                <div dangerouslySetInnerHTML={{ __html: article.html }}></div>
+                </header>
+                <article dangerouslySetInnerHTML={{ __html: article.html }}></article>
             </main>
         </div>
     )

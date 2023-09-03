@@ -3,12 +3,24 @@ html {
     line-height: 1.5em;
     font-size: 18px;
 }
+nav > div {
+    font-size: 2em;
+    line-height: 1.2;
+    margin-top: 1rem;
+}
 @media (max-width: 768px) {
+    nav > div {
+        margin-left: 1rem;
+    }
+
     #nav-toggle {
-        position: fixed;
+        position: absolute;
         right: 1em;
         top: 1em;
         z-index: 2;
+    }
+    #nav-toggle-state:checked ~ #nav-toggle {
+        position: fixed;
     }
     #nav-toggle-state:checked ~ #nav-toggle svg {
         fill: #fff;
@@ -27,7 +39,7 @@ html {
     }
     nav > ul {
         bottom: 0;
-        background: rgb(46, 117, 204);
+        background: #07b;
         display: none;
         list-style-type: none;
         margin: 0;
@@ -44,6 +56,10 @@ html {
     nav ul li:first-child {
         margin-top: 1.25rem;
     }
+
+    main {
+        padding: 1rem 1rem 0 1rem;
+    }
 }
 @media (min-width: 769px) {
     #nav-toggle {
@@ -54,17 +70,24 @@ html {
     }
     nav > ul {
         list-style-type: none;
+        margin: 0;
+        padding: 0;
     }
     nav > ul > li:first {
         margin-left: 0;
     }
     nav li {
         display: inline-block;
-        margin: 0.25em;
+        margin-right: 1em;
+    }
+
+    main {
+        padding: 0;
     }
 }
-main {
-    padding: 1rem 1rem 0 1rem;
+a {
+    color: #07b;
+    text-underline-offset: 0.1em;
 }
 footer {
     padding: 0 1rem;
@@ -86,6 +109,14 @@ pre {
 }
 h1 {
     line-height: 1.2em;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+}
+p {
+    line-height: 1.8;
+    margin: 0.5em 0;
 }
 
 .avatar {

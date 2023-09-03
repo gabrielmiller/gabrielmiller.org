@@ -58,6 +58,7 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
                         <input
                             className="toggle-switch"
                             id={'articles-by-'+tag}
+                            style={{ display: 'none'} as React.CSSProperties}
                             type="checkbox"
                             {...{ checked:index === 0 /* note: js is stripped from resulting page so this will result in a usable checkbox element */ }}>
                         </input>
@@ -82,6 +83,7 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
                         <input
                             className="toggle-switch"
                             id={'articles-from-'+year}
+                            style={{ display: 'none'} as React.CSSProperties}
                             type="checkbox"
                             {...{ checked:index === 0 /* ditto */ }}>
                         </input>
