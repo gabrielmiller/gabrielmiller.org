@@ -28,7 +28,10 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
         }
         articlesByYear[year].push(article)
     }
-    const years = Object.keys(articlesByYear).sort() as string[]
+    const years = Object.keys(articlesByYear).sort().reverse() as string[]
+    for (const year of years) {
+        articlesByYear[year].sort();
+    }
 
     const articlesByTag: IArticlesByPropertyMap = {}
     for (const article of articles) {
@@ -46,8 +49,11 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
 
     return (
         <div className="container">
-            <Navigation />
+            <Navigation activeNavItem='blog' />
             <main>
+                <p className="callout warning">
+                    Please pardon the appearance! I have not decided how I want this to page to be laid out yet. Its current form is a temporary solution.
+                </p>
                 <h1>Articles</h1>
                 <h2>By tag</h2>
                 {tags.map((tag, index) =>

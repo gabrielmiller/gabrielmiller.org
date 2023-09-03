@@ -1,6 +1,10 @@
 import * as React from "react"
 
-const Navigation = () => (
+interface INavigationProps {
+    activeNavItem: string;
+}
+
+const Navigation = ({activeNavItem}: INavigationProps) => (
     <nav>
         <div>L. Gabriel Miller</div>
         <input id="nav-toggle-state" style={{ display: 'none'} as React.CSSProperties} type="checkbox"></input>
@@ -12,11 +16,14 @@ const Navigation = () => (
             </svg>
         </label>
         <ul>
-            <li>
+            <li className={activeNavItem === 'about' ? "active" : ""}>
                 <a href="/">About</a>
             </li>
-            <li>
+            <li className={activeNavItem === 'blog' ? "active" : ""}>
                 <a href="/archive.html">Blog</a>
+            </li>
+            <li>
+                <a href="https://github.com/gabrielmiller/">Github</a>
             </li>
         </ul>
     </nav>

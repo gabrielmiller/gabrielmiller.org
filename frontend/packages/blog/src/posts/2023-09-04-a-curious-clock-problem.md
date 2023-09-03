@@ -10,7 +10,7 @@ I've been leading a reporting project at work for the past 1.5 years. Recently w
 ## A brief history
 At JazzHR we have an application database and a data warehouse, used for reporting purposes. We leverage [Kafka](https://kafka.apache.org/) to sync changes from the application database to the reporting warehouse. Many of these data flows are conducted using kafka connect, and are configured to poll for changes on an interval, using the "timestamp" source connector mode. 
 
-![Kafka architecture at JazzHR](./distributed-system-clock-issue-1.png)
+![Kafka architecture at JazzHR](./2023-09-04-distributed-system-clock-issue/1.png)
 
 Let's say in the application database we have a table of users defined as follows:
 
@@ -41,7 +41,7 @@ After a couple months of our kafka connect powered data pipelines being operatio
 Something I glossed over in my example above is that the "updatedAt" timestamp is actually set _by the application code_.  This led to the realization that our system tends to "back-date" records when it creates them: If the application processes an http request and the current time is 12:00:00.00, by the time the changes are persisted in the database, some time likely transpired. That means the record could have been inserted at 12:00:01.00 but application code may claim that it was updated at 12:00:00.50. In most web-app usages of a transactional database, a discrepancy like this isn't concerning. Unfortunately, given the way that we're polling these tables to ingest the data into the warehouse, this discrepancy is problematic.
 
 
-![Distributed clock sync issue](./distributed-system-clock-issue-2.png)
+![Distributed clock sync issue](./2023-09-04-distributed-system-clock-issue/2.png)
 
 If the polling mechanism happens to query for updates between when a record claims it was inserted and when it was actually inserted, then the change may be missed entirely. Readers familiar with kafka connect source connector modes may be aware that source connectors in timestamp mode set the "older" boundary timestamp from the value of the final record found in the previous batch; because there is no guarantee of ordered upserts there remains a possibility of a "data leak" here.
 
@@ -68,4 +68,4 @@ With the potential problem in mind we brainstormed through possible prototypes t
         a. Due to a replication latency event in our application database cluster, we missed data for a window of time. As it turns out, we discovered that the timestamp and timestamp+increment modes of kafka connect source connectors handle this by polling for records _since the greatest timestamp in the last successful batch._ Unfortunately these events are not uncommon on our system, so this discovery ended our exploration of this prototype.
         b. We initially prototyped this at a less frequent interval, but set it to ingest more time(e.g. run every 1 minute, ingest 5 minutes of history), which meant that we needed to either dedupe the data in some manner or just process a higher volume of data.
 
-Ideally in the future this is an area where JazzHR could add some maturity. A better change detection system, like [debezium](https://debezium.io/) could prevent these problems.
+Ideally in the future this is an area where JazzHR could invest future resources. A more robust change data capture system, like [debezium](https://debezium.io/), could prevent these problems.

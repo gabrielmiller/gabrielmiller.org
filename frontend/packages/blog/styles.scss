@@ -1,12 +1,12 @@
 html {
     font-family: serif;
-    line-height: 1.5em;
+    line-height: 1.5;
     font-size: 18px;
 }
 nav > div {
     font-size: 1.8em;
     line-height: 1.2;
-    margin-top: 1rem;
+    margin-top: 1.25rem;
 }
 @media (max-width: 768px) {
     nav > div {
@@ -50,7 +50,7 @@ nav > div {
     }
     nav li {
         font-size: 2.5em;
-        line-height: 1.5em;
+        line-height: 1.5;
         margin-right: 5rem;
     }
     nav ul li:first-child {
@@ -70,7 +70,7 @@ nav > div {
     }
     nav > ul {
         list-style-type: none;
-        margin: 0;
+        margin: -0.25em 0 0 0;
         padding: 0;
     }
     nav > ul > li:first {
@@ -80,6 +80,9 @@ nav > div {
         display: inline-block;
         margin-right: 1em;
     }
+    nav li.active a {
+        text-decoration-style: solid;
+    }
 
     main {
         padding: 0;
@@ -87,7 +90,11 @@ nav > div {
 }
 a {
     color: #07b;
+    text-decoration-style: dotted;
     text-underline-offset: 0.1em;
+}
+a:hover {
+    color: #104e72;
 }
 footer {
     padding: 0 1rem;
@@ -108,7 +115,7 @@ pre {
     white-space: pre-wrap;
 }
 h1 {
-    line-height: 1.2em;
+    line-height: 1.2;
 }
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0.5em;
@@ -129,12 +136,28 @@ p {
     max-width: 40rem;
 }
 .tag {
-    margin-left: 0.25em;
+    margin-left: 0.5em;
 }
 .callout {
-    background: #eef9ff;
-    border: 1px solid #07b;
     border-radius: 10px;
     margin-bottom: 1em;
     padding: 1em 2em;
+}
+.info {
+    background: #eef9ff;
+    border: 1px solid #07b;
+}
+.warning {
+    background: #fff2cc;
+    border: 1px solid #431808;
+}
+ul.emoji-list {
+    list-style: none;
+    margin: 0;
+}
+ul.emoji-list li {
+    line-height: 2;
+}
+ul.emoji-list .emoji {
+    margin-right: 0.75em;
 }

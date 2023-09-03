@@ -16,7 +16,7 @@ const PostPage: React.FC<PageProps<IPostContainer>> = ({ data }) => {
 
     return (
         <div className="container">
-            <Navigation />
+            <Navigation activeNavItem='blog' />
             <main>
                 <header>
                 <h1>{ article.frontmatter.title }</h1>
