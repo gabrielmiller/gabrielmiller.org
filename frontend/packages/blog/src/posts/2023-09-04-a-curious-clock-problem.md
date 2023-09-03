@@ -53,7 +53,7 @@ With the potential problem in mind we brainstormed through possible prototypes t
 
 2. Adding a delay to the connector
 
-    Another idea we explored was shifting the window of time in which connect polls. As it turns out the `timestamp.delay.interval.ms` configuration option for jdbc source connectors did this very thing. You can think of this as shifting the recurring window from [60 seconds ago, now] to [70 seconds ago, 10 seconds ago]. This shift acts as a grace period for "back-dated" records to get persisted, mitigating the problem. We landed on this approach for the rest of our data-flows. While this introduced a slight delay to our pipeline, it was fairly minor and it prevented us from undertaking more expensive approaches.
+    Another idea we explored was shifting the window of time in which connect polls. As it turns out the `timestamp.delay.interval.ms` configuration option for jdbc source connectors did this very thing. You can think of this as shifting the recurring window from `[60 seconds ago, now]` to `[70 seconds ago, 10 seconds ago]`. This shift acts as a grace period for "back-dated" records to get persisted, mitigating the problem. We landed on this approach for the rest of our data-flows. While this introduced a slight delay to our pipeline, it was fairly minor and it prevented us from undertaking more expensive approaches.
 
 3. Switching the mode of the connector to bulk and scoping it to a small window of time, similar to how timestamp mode works.
 
