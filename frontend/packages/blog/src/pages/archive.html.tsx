@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Header from "../partials/head"
 import Navigation from "../partials/navigation"
 import { IPost } from "../services/post"
+import dasherize from "../services/dasherize"
 
 interface IIndexContainer {
     allMarkdownRemark: {
@@ -44,57 +45,59 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
     const tags = Object.keys(articlesByTag).sort() as string[]
 
     return (
-        <div>
+        <div className="container">
             <Navigation />
-            <h2>Articles</h2>
-            <h3>By tag</h3>
-            {tags.map((tag, index) =>
-                <>
-                    <label htmlFor={'articles-by-'+tag}>
-                        <h4 id={tag}>{tag}</h4>
-                    </label>
-                    <input
-                        className="toggle-switch"
-                        id={'articles-by-'+tag}
-                        type="checkbox"
-                        {...{ checked:index === 0 /* note: js is stripped from resulting page so this will result in a usable checkbox element */ }}>
-                    </input>
-                    <ul>
-                    {articlesByTag[tag].map((article) => 
-                        <li>
-                            <a href={`/posts/${article.frontmatter.slug}.html`}>
-                                {article.frontmatter.date} - {article.frontmatter.title}
-                            </a>
-                        </li>
-                    )}
-                    </ul>
-                </>
-            )}
+            <main>
+                <h1>Articles</h1>
+                <h2>By tag</h2>
+                {tags.map((tag, index) =>
+                    <>
+                        <label htmlFor={'articles-by-'+tag}>
+                            <h3 id={dasherize(tag)}>{tag}</h3>
+                        </label>
+                        <input
+                            className="toggle-switch"
+                            id={'articles-by-'+tag}
+                            type="checkbox"
+                            {...{ checked:index === 0 /* note: js is stripped from resulting page so this will result in a usable checkbox element */ }}>
+                        </input>
+                        <ul>
+                        {articlesByTag[tag].map((article) => 
+                            <li>
+                                <a href={`/posts/${article.frontmatter.slug}.html`}>
+                                    {article.frontmatter.date} - {article.frontmatter.title}
+                                </a>
+                            </li>
+                        )}
+                        </ul>
+                    </>
+                )}
 
-            <h3>By year</h3>
-            {years.map((year, index) =>
-                <>
-                    <label htmlFor={'articles-from-'+year}>
-                        <h4 id={year}>{year}</h4>
-                    </label>
-                    <input
-                        className="toggle-switch"
-                        id={'articles-from-'+year}
-                        type="checkbox"
-                        {...{ checked:index === 0 /* ditto */ }}>
-                    </input>
-                    
-                    <ul>
-                    {articlesByYear[year].map((article) => 
-                        <li>
-                            <a href={`/posts/${article.frontmatter.slug}.html`}>
-                                {article.frontmatter.date} - {article.frontmatter.title}
-                            </a>
-                        </li>
-                    )}
-                    </ul>
-                </>
-            )}
+                <h2>By year</h2>
+                {years.map((year, index) =>
+                    <>
+                        <label htmlFor={'articles-from-'+year}>
+                            <h3 id={year}>{year}</h3>
+                        </label>
+                        <input
+                            className="toggle-switch"
+                            id={'articles-from-'+year}
+                            type="checkbox"
+                            {...{ checked:index === 0 /* ditto */ }}>
+                        </input>
+                        
+                        <ul>
+                        {articlesByYear[year].map((article) => 
+                            <li>
+                                <a href={`/posts/${article.frontmatter.slug}.html`}>
+                                    {article.frontmatter.date} - {article.frontmatter.title}
+                                </a>
+                            </li>
+                        )}
+                        </ul>
+                    </>
+                )}
+            </main>
         </div>
     )
 }

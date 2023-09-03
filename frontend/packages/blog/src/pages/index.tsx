@@ -15,22 +15,24 @@ const IndexPage: React.FC<PageProps<IMostRecentPostContainer>> = ({ data }) => {
     const mostRecentPost: IPost = data.allMarkdownRemark.nodes[0];
 
     return (
-        <div>
+        <div className="container">
             <Navigation />
-            <p>
-                Check out my most recent article:
-                <br />
-                <ul>
-                      <li>
-                          <a href={`/posts/${mostRecentPost.frontmatter.slug}.html`}>
-                              [{mostRecentPost.frontmatter.date}] {mostRecentPost.frontmatter.title}
-                          </a>
-                      </li>
-                </ul>
-            </p>
-            <p>
-                Rest of content will go here
-            </p>
+            <main>
+                <p>
+                    Check out my most recent article:
+                    <br />
+                    <ul>
+                        <li>
+                            <a href={`/posts/${mostRecentPost.frontmatter.slug}.html`}>
+                                [{mostRecentPost.frontmatter.date}] {mostRecentPost.frontmatter.title}
+                            </a>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    Rest of content will go here
+                </p>
+            </main>
         </div>
     )
 }

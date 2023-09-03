@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Header from "../../partials/head"
 import Navigation from "../../partials/navigation"
 import { IPost } from "../../services/post"
+import dasherize from "../../services/dasherize"
 
 interface IPostContainer {
     markdownRemark: IPost
@@ -14,16 +15,20 @@ const PostPage: React.FC<PageProps<IPostContainer>> = ({ data }) => {
     const article: IPost = data.markdownRemark
 
     return (
-        <div>
+        <div className="container">
             <Navigation />
-            <h2>Article - { article.frontmatter.title }</h2>
-            { article.frontmatter.tags !== null && (
+            <main>
+                <h1>{ article.frontmatter.title }</h1>
                 <p>
-                    <span>Tags:</span>{ article.frontmatter.tags.map((tag) => <span>{tag}</span>) }
+                    Published {article.frontmatter.date}
+                { article.frontmatter.tags !== null && (
+                    <>
+                        <br/><span>Tags:</span>{ article.frontmatter.tags.sort().map((tag) => <a className="tag" href={`/archive.html#${dasherize(tag)}`}>{tag}</a>) }
+                    </>
+                ) }
                 </p>
-            ) }
-            <p>Published {article.frontmatter.date}</p>
-            <div dangerouslySetInnerHTML={{ __html: article.html }}></div>
+                <div dangerouslySetInnerHTML={{ __html: article.html }}></div>
+            </main>
         </div>
     )
 }

@@ -5,8 +5,10 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "prebuild": "rmdir public --ignore-fail-on-non-empty",
-    "build": "gatsby build",
+    "prebuild": "rm public -rf",
+    "build": "npm run build:gatsby && npm run build:css",
+    "build:css": "node ../../node_modules/sass/sass.js styles.scss:public/styles.css --style=compressed --no-source-map",
+    "build:gatsby": "gatsby build",
     "postbuild": "./postbuild.sh",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

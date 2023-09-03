@@ -7,10 +7,10 @@ const Navigation = () => (
                 L. Gabriel Miller
             </li>
             <li>
-                <a href="/">Home</a>
+                <a href="/">About</a>
             </li>
             <li>
-                <a href="/archive.html">Articles</a>
+                <a href="/archive.html">Blog</a>
             </li>
         </ul>
     </nav>
