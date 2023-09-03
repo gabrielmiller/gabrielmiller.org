@@ -1,47 +1,51 @@
 import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
-import { graphql } from 'gatsby'
+import { PageProps, graphql } from 'gatsby'
+import Header from "../partials/head"
+import Navigation from "../partials/navigation"
 import { IPost } from "../services/post"
 
-interface IIndexContainer {
-  allMarkdownRemark: {
-    nodes: IPost[]
-  }
+interface IMostRecentPostContainer {
+    allMarkdownRemark: {
+        nodes: IPost[]
+    }
 }
 
-const IndexPage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
-  const articles: IPost[] = data.allMarkdownRemark.nodes
+export const Head = Header
+const IndexPage: React.FC<PageProps<IMostRecentPostContainer>> = ({ data }) => {
+    const mostRecentPost: IPost = data.allMarkdownRemark.nodes[0];
 
-  return (
-    <div>
-      <h2>Articles</h2>
-      <ul>
-        {articles.map((article) => 
-          <li>
-            <a href={`/posts/${article.frontmatter.slug}.html`}>
-              [{article.frontmatter.date}] {article.frontmatter.title}
-            </a>
-          </li>
-        )}
-      </ul>
-    </div>
-  )
+    return (
+        <div>
+            <Navigation />
+            <p>
+                Check out my most recent article:
+                <br />
+                <ul>
+                      <li>
+                          <a href={`/posts/${mostRecentPost.frontmatter.slug}.html`}>
+                              [{mostRecentPost.frontmatter.date}] {mostRecentPost.frontmatter.title}
+                          </a>
+                      </li>
+                </ul>
+            </p>
+            <p>
+                Rest of content will go here
+            </p>
+        </div>
+    )
 }
-
-export const Head: HeadFC = () => <title>Gabe Miller</title>
 
 export const query = graphql`
 {
-  allMarkdownRemark {
-    nodes {
-      frontmatter {
-        date
-        title
-        slug
-      }
-      html
+    allMarkdownRemark(limit: 1, sort: {frontmatter: {date: DESC}}) {
+        nodes {
+            frontmatter {
+                date
+                title
+                slug
+            }
+        }
     }
-  }
 }
 `
 

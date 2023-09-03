@@ -2,6 +2,7 @@
 title: "Test article"
 date: "2023-06-19"
 slug: "test-article"
+tags: ["meats", "breakfast"]
 ---
 
 This is a test article
