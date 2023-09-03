@@ -4,7 +4,7 @@ html {
     font-size: 18px;
 }
 nav > div {
-    font-size: 2em;
+    font-size: 1.8em;
     line-height: 1.2;
     margin-top: 1rem;
 }
@@ -130,4 +130,11 @@ p {
 }
 .tag {
     margin-left: 0.25em;
+}
+.callout {
+    background: #eef9ff;
+    border: 1px solid #07b;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    padding: 1em 2em;
 }
