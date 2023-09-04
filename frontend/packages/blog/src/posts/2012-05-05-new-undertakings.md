@@ -1,7 +1,7 @@
 ---
 date: "2012-05-05"
 slug: "new-undertakings"
-tags: ["learning", "web-development"]
+tags: ["learning", "web development"]
 title: "New Undertakings"
 ---
 

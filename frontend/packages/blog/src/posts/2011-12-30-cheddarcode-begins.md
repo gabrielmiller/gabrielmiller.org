@@ -1,7 +1,7 @@
 ---
 date: "2011-12-30"
 slug: "cheddarcode-begins"
-tags: ["learning", "web-development"]
+tags: ["learning", "web development"]
 title: "Cheddarcode begins!"
 ---
 
