@@ -60,15 +60,8 @@ const StoryViewer: FunctionComponent = () => {
         setViewMode(next);
     }
 
-    const loadIndex = (event) => {
-        event.preventDefault();
-
+    const loadIndex = (title: string, token: string) => {
         setIsIndexLoading(true);
-        const title = event.target.children['story-title'].value;
-        const token = event.target.children['story-token'].value;
-        setStoryTitle(title);
-        setStoryToken(token);
-
         const headers = new Headers();
         headers.append('Authorization', buildBasicAuthHeader(title, token));
         fetch(`${apiDomain}/story`, { method: 'GET', headers }).then(function(response) {
@@ -87,12 +80,24 @@ const StoryViewer: FunctionComponent = () => {
                 setIsErrorShown(false);
                 setIsIndexLoaded(true);
             });
-        }).catch(() => {
+        }).then(() => {
+            setStoryTitle(title);
+            setStoryToken(token);
+        }, () => {
             setIsErrorShown(true);
         }).finally(() => {
             setIsIndexLoading(false);
         });
     };
+
+    const handleSubmission = (event) => {
+        event.preventDefault();
+
+        const title = event.target.children['story-title'].value;
+        const token = event.target.children['story-token'].value;
+
+        loadIndex(title, token);
+    }
 
     const loadPage = () => {
         let entryIndex = currentEntryIndex+1;
@@ -158,10 +163,24 @@ const StoryViewer: FunctionComponent = () => {
 
     }, [currentEntryIndex, isIndexLoaded]);
 
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        if (!queryParams.has('title') || !queryParams.has('token')) {
+            return;
+        }
+
+        const title = queryParams.get("title");
+        const token = queryParams.get("token");
+
+        history.replaceState({}, "", "stories.html");
+
+        loadIndex(title, token);
+    }, [])
+
     return (
         <div class="story-viewer">
             {!isIndexLoaded && !isIndexLoading && (
-                <form onSubmit={loadIndex}>
+                <form onSubmit={(e) => handleSubmission(e) }>
                     {isErrorShown && (
                         <span>Either the credentials you specified were invalid or the system is experiencing technical difficulties. Please try again.</span>
                     )}

@@ -11,7 +11,8 @@
     "scripts": {
       "build": "npm run build:js && npm run build:css",
       "build:css": "node ../../node_modules/sass/sass.js sv.scss:../../dist/sv.css --style=compressed --no-source-map",
-      "build:js": "../../node_modules/esbuild-linux-64/bin/esbuild main.tsx --bundle --outfile=../../dist/story-viewer.js --minify"
+      "build:js": "../../node_modules/esbuild-linux-64/bin/esbuild main.tsx --bundle --outfile=../../dist/story-viewer.js --minify",
+      "postbuild": "cp stories.html ../../dist/stories.html"
     }
   }
   
