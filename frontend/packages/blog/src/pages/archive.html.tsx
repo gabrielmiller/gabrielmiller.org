@@ -55,31 +55,6 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
                     Please pardon the appearance! I have not decided how I want this to page to be laid out yet. Its current form is a temporary solution.
                 </p>
                 <h1>Articles</h1>
-                <h2>By tag</h2>
-                {tags.map((tag, index) =>
-                    <>
-                        <label htmlFor={'articles-by-'+tag}>
-                            <h3 id={dasherize(tag)}>{tag}</h3>
-                        </label>
-                        <input
-                            className="toggle-switch"
-                            id={'articles-by-'+tag}
-                            style={{ display: 'none'} as React.CSSProperties}
-                            type="checkbox"
-                            {...{ checked:index === 0 /* note: js is stripped from resulting page so this will result in a usable checkbox element */ }}>
-                        </input>
-                        <ul>
-                        {articlesByTag[tag].map((article) => 
-                            <li>
-                                <a href={`/posts/${article.frontmatter.slug}.html`}>
-                                    {article.frontmatter.date} - {article.frontmatter.title}
-                                </a>
-                            </li>
-                        )}
-                        </ul>
-                    </>
-                )}
-
                 <h2>By year</h2>
                 {years.map((year, index) =>
                     <>
@@ -91,11 +66,34 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
                             id={'articles-from-'+year}
                             style={{ display: 'none'} as React.CSSProperties}
                             type="checkbox"
+                            {...{ checked:index === 0 /* note: js is stripped from resulting page so this will result in a usable checkbox element */ }}>
+                        </input>
+                        <ul>
+                        {articlesByYear[year].map((article) =>
+                            <li>
+                                <a href={`/posts/${article.frontmatter.slug}.html`}>
+                                    {article.frontmatter.date} - {article.frontmatter.title}
+                                </a>
+                            </li>
+                        )}
+                        </ul>
+                    </>
+                )}
+                <h2>By tag</h2>
+                {tags.map((tag, index) =>
+                    <>
+                        <label htmlFor={'articles-by-'+tag}>
+                            <h3 id={dasherize(tag)}>{tag}</h3>
+                        </label>
+                        <input
+                            className="toggle-switch"
+                            id={'articles-by-'+tag}
+                            style={{ display: 'none'} as React.CSSProperties}
+                            type="checkbox"
                             {...{ checked:index === 0 /* ditto */ }}>
                         </input>
-                        
                         <ul>
-                        {articlesByYear[year].map((article) => 
+                        {articlesByTag[tag].map((article) =>
                             <li>
                                 <a href={`/posts/${article.frontmatter.slug}.html`}>
                                     {article.frontmatter.date} - {article.frontmatter.title}

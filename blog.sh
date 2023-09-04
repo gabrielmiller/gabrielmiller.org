@@ -276,6 +276,17 @@ deploy_backend() {
   cd ..
 }
 
+traverse_and_upload_frontend_files() {
+  # WARNING: depends on global variable
+  for pathname in "$1"/*; do
+    if [ -d "$pathname" ]; then
+      traverse_and_upload_frontend_files "$pathname"
+    elif [ -e "$pathname" ]; then
+        frontend_files_to_upload+=("$pathname")
+    fi
+  done
+}
+
 deploy_frontend() {
   cd frontend
   initialize_environment
@@ -291,21 +302,23 @@ deploy_frontend() {
   echo "[Frontend] Destroying bucket contents"
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
-  for file in *
+  frontend_files_to_upload=()
+  traverse_and_upload_frontend_files .
+  echo "[Frontend] Uploading files to s3"
+  for file in "${frontend_files_to_upload[@]}"
   do
     filename="${file##*/}"
     extension="${filename##*.}"
     mimetype=${frontendfiletypes["$extension"]}
-    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$file" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
+    key="${file:2}" # shave the ./ prefix off for the s3 key
+    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
 
-  if [ "$?" -eq 0 ]
-  then
-    echo "[Frontend] Published file: $file"
-  else
-    echo "[Frontend] There was an error publishing $file:"
-    echo "$result"
-    exit $?
-  fi
+    if [ "$?" -ne 0 ]
+      then
+        echo "[Frontend] There was an error publishing $key:"
+        echo "$result"
+        exit $?
+      fi
   done
 
   cd ../..
