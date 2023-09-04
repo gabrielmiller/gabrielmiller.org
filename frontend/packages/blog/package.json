@@ -1,0 +1,29 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "develop": "gatsby develop",
+    "prebuild": "rm public -rf",
+    "build": "npm run build:gatsby && npm run build:css",
+    "build:css": "node ../../node_modules/sass/sass.js styles.scss:public/styles.css --style=compressed --no-source-map",
+    "build:gatsby": "gatsby build",
+    "postbuild": "./postbuild.sh"
+  },
+  "dependencies": {
+    "gatsby": "^5.11.0",
+    "gatsby-plugin-no-javascript-utils": "^0.13.1",
+    "gatsby-plugin-sharp": "^5.12.0",
+    "gatsby-remark-images": "^7.12.0",
+    "gatsby-source-filesystem": "^5.11.0",
+    "gatsby-transformer-remark": "^6.12.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.6",
+    "@types/react": "^18.2.9",
+    "@types/react-dom": "^18.2.4",
+    "typescript": "^5.1.3"
+  }
+}

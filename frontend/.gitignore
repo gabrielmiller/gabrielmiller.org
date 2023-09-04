@@ -1,0 +1,4 @@
+favicon
+node_modules
+packages/blog/.cache
+packages/blog/public

@@ -1,0 +1,17 @@
+{
+    "name": "story-viewer",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+      "esbuild-linux-64": "^0.15.18",
+      "preact": "^10.12.1",
+      "sass": "^1.58.3",
+      "typescript": "^4.9.5"
+    },
+    "scripts": {
+      "build": "npm run build:js && npm run build:css",
+      "build:css": "node ../../node_modules/sass/sass.js sv.scss:../../dist/sv.css --style=compressed --no-source-map",
+      "build:js": "../../node_modules/esbuild-linux-64/bin/esbuild main.tsx --bundle --outfile=../../dist/story-viewer.js --minify"
+    }
+  }
+  
