@@ -1,8 +1,9 @@
 #!/bin/bash
 
 GBLOG_ENVIRONMENT="staging"
-ONLY_BACKEND=false
-ONLY_FRONTEND=false
+SKIP_BACKEND=false
+SKIP_FRONTEND=false
+SKIP_BLOG=false
 OPTIMIZED_IMAGE_SIZE=1920
 
 VALIDAWSVERSION="aws-cli/2.9.19 Python/3.9.11 Linux/6.3.2-arch1-1 exe/x86_64.arch prompt/off"
@@ -295,8 +296,16 @@ deploy_frontend() {
   cp -r static dist
 
   npm install
-  npm run build --workspaces
-  # build processes independently move their output to the dist dir
+
+  if [ "$SKIP_BLOG" = false ]
+  then
+    npm run build -w blog
+    # build processes independently move their output to the dist dir
+  else
+    echo "[Frontend] Blog build & deployment skipped";
+  fi
+
+  npm run build -w story-viewer
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
@@ -325,14 +334,14 @@ deploy_frontend() {
 }
 
 shipit() {
-  if [ "$ONLY_FRONTEND" = false ]
+  if [ "$SKIP_BACKEND" = false ]
   then
     deploy_backend
   else
     echo "[Backend] Build & deployment skipped";
   fi
 
-  if [ "$ONLY_BACKEND" = false ]
+  if [ "$SKIP_FRONTEND" = false ]
   then
     deploy_frontend
   else
@@ -502,11 +511,14 @@ Do the blog thing.
     -t, --title
         Title of story to deploy.
 
-    --only-frontend
-        Complete the code build & deploy only for the frontend.
+    --skip-frontend
+        Skip build & deploy of the frontend.
 
-    --only-backend
-        Complete the code build & deploy only for the backend.
+    --skip-blog
+        Skip build & deploy of the blog frontend.
+
+    --skip-backend
+        Skip build & deploy of the backend.
 
     -h, --help
         Display this help file.
@@ -555,11 +567,14 @@ while :; do
         exit 1
       fi
       ;;
-    --only-frontend)
-      ONLY_FRONTEND=true
+    --skip-blog)
+      SKIP_BLOG=true
       ;;
-    --only-backend)
-      ONLY_BACKEND=true
+    --skip-frontend)
+      SKIP_FRONTEND=true
+      ;;
+    --skip-backend)
+      SKIP_BACKEND=true
       ;;
     *)
       break
