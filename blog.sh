@@ -256,7 +256,7 @@ deploy_backend() {
   initialize_environment
   build_systemd_service_file
 
-  CGO_ENABLED=0 go build .
+  CGO_ENABLED=0 GOARCH=arm64 go build .
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" rm "$EC2_PATH"/blog
   scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog &> /dev/null
 
@@ -278,7 +278,7 @@ deploy_backend() {
 }
 
 traverse_and_upload_frontend_files() {
-  # WARNING: depends on global variable
+  # WARNING: depends on global variable, frontend_files_to_upload
   for pathname in "$1"/*; do
     if [ -d "$pathname" ]; then
       traverse_and_upload_frontend_files "$pathname"
@@ -464,8 +464,8 @@ plant_tls_certificate_in_ec2() {
 
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mkdir -p "$EC2_CERTIFICATE_PATH"
 
-  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_CHAIN" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/fullchain.pem &> /dev/null
-  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_PRIVATE_KEY" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/privkey.pem &> /dev/null
+  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_CHAIN" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/fullchain.pem
+  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_PRIVATE_KEY" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/privkey.pem
   ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" "
     sudo mv $EC2_PATH/fullchain.pem $EC2_CERTIFICATE_CHAIN_PATH
     sudo mv "$EC2_PATH"/privkey.pem $EC2_CERTIFICATE_PRIVATE_PATH
@@ -505,7 +505,7 @@ Do the blog thing.
           5. generate index file for a story
           6. generate a tls certificate
           7. plant the tls certificate in acm
-          8. plant the tls certificate in ec2 (& reboot api?)
+          8. plant the tls certificate in ec2
           9. deploy all stories
 
     -t, --title
