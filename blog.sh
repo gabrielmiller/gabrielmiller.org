@@ -102,9 +102,9 @@ validate_tls_dependency() {
     echo "WARNING: Using untested certbot version. This has only been tested with $VALIDCERTBOTVERSION."
   fi
 
-  if ! p=$(certbot plugins | grep dns-route53)
+  if ! p=$(certbot plugins | grep dns-cloudflare)
   then
-    echo "WARNING: Could not locate route53 plugin. This has only been tested with it installed."
+    echo "WARNING: Could not locate cloudflare plugin. This has only been tested with it installed."
   fi
 }
 
@@ -352,7 +352,8 @@ shipit() {
 generate_tls_certificate() {
   cd dns
   initialize_environment
-  sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-route53 --agree-tos --preferred-challenges=dns --non-interactive
+  sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-cloudflare --agree-tos --preferred-challenges dns --non-interactive --dns-cloudflare-credentials cloudflare.ini --dns-cloudflare-propagation-seconds 30
+  # --force-renewal if doing this off of the usual schedule
   cd ..
 }
 
