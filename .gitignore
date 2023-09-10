@@ -1,7 +1,10 @@
-stories/*
 backend/blog
+node_modules
 frontend/dist/*
-frontend/node_modules
+frontend/favicon
+frontend/packages/blog/.cache
+frontend/packages/blog/public
+stories/*
 .env.dev
 .env.staging
 .env.production
