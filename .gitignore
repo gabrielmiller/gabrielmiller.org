@@ -4,6 +4,7 @@ frontend/dist/*
 frontend/favicon
 frontend/packages/blog/.cache
 frontend/packages/blog/public
+frontend/packages/blog/src/gatsby-types.d.ts
 stories/*
 .env.dev
 .env.staging
