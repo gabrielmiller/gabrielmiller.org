@@ -20,14 +20,15 @@ The entry-point into everything is through the `blog.sh` script in the root. Run
 
 ### Environment configuration
 
-This project relies upon you having a handful of AWS configurations in place:
- - S3 bucket to serve public content
- - S3 bucket to serve private content
- - Cloudfront distributions for s3 buckets on apex domain and `www` subdomain
+This project relies upon you having a handful of AWS service configurations and cloudflare-managed dns. I intend to eventually codify these with something like a terraform, but until I get to it, here's a text representation of the resources:
+ - S3 bucket to serve static site/public content
+ - S3 bucket to serve private images/other content
+ - Cloudfront distributions for s3 buckets on apex domain and `www` subdomain.
  - ACM to apply a wildcard https certificate to cloudfront distributions.
- - Credentials for an ec2 instance to run a backend.
+ - Credentials for an ec2 instance to run a backend that will interact with S3 to look up stories, validate credentials, and sign urls.
+ - Token to CRUD on cloudflare dns records to generate wildcard https certificate.
 
-The credentials for each of these things should be configured ideally as separate IAM user credentials for each service/access level in isolation:
+The credential for each AWS service should be configured ideally as separate IAM user credentials for each service/access level in isolation. Here are the various privileges required:
  - write access on the privately accessible S3 bucket:
    - `s3:DeleteObject`
    - `s3:ListBucket`
@@ -41,14 +42,12 @@ The credentials for each of these things should be configured ideally as separat
    - `s3:PutObject`
  - the ability to import a cert into acm:
    - `acm:ImportCertificate`
- - the ability to generate a certificate with certbot's DNS challenge through route53:
-   - `route53:GetChange`
-   - `route53:ChangeResourceRecordSets`
-   - `route53:ListHostedZones`
+ - cloudflare token with permission for `Zone -> DNS -> Edit` in order to generate a certificate with certbot's DNS challenge
 
- I've extracted these credentials into environment variables in non-committed files named `.env.staging` and `.env.production`. These live in each of the following directories:
-    - `backend` - credentials for read access on the privately accessible s3 bucket, ec2 ssh access, tls certificate local paths, paths to various things inside ec2 instance, supporting properties for api.
-    - `cert` - credentials for access to import certificates to acm. Additionally the paths of the certs certbot generates by default and the ARN of the certificate in question.
-    - `dns` - credentials for certbot to complete the dns challenge to generate a wildcard tls certificate. Additionally, the domain names to provide certbot, and the email address to use with the registration.
-    - `frontend` - credentials for write access on the publicly accessible static content s3 bucket and cloudfront caching configuration.
-    - `stories` - credentials for write access on the privately accessible image s3 bucket.
+
+ I've extracted these credentials into environment variables in non-committed files named `.env.staging` and `.env.production`. As of right now these live in each of the following directories in the root of this codebase:
+  - `backend` - credentials for read access on the privately accessible s3 bucket, ec2 ssh access, tls certificate local paths, paths to various things inside ec2 instance, supporting properties for api.
+  - `cert` - credentials for access to import certificates to acm. Additionally the paths of the certs certbot generates by default and the ARN of the certificate in question.
+  - `dns` - credentials for certbot to complete the dns challenge to generate a wildcard tls certificate. Additionally, the domain names to provide certbot, and the email address to use with the registration.
+  - `frontend` - credentials for write access on the publicly accessible static content s3 bucket and cloudfront caching configuration.
+  - `stories` - credentials for write access on the privately accessible image s3 bucket.
