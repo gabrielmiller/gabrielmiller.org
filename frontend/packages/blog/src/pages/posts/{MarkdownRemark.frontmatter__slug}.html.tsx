@@ -24,7 +24,7 @@ const PostPage: React.FC<PageProps<IPostContainer>> = ({ data }) => {
                     Published {article.frontmatter.date}
                 { article.frontmatter.tags !== null && (
                     <>
-                        <br/><span>Tags:</span>{ article.frontmatter.tags.sort().map((tag) => <a className="tag" href={`/archive.html#${dasherize(tag)}`}>{tag}</a>) }
+                        <br/><span>Tags:</span>{ article.frontmatter.tags.sort().map((tag) => <a className="tag" href={`/tags/${dasherize(tag)}.html`}>{tag}</a>) }
                     </>
                 ) }
                 </p>

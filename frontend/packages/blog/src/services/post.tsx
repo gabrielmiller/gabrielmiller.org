@@ -1,9 +1,12 @@
-export interface IPost {
-    frontmatter: {
-      date: string,
-      slug: string,
-      title: string,
-      tags: string[]
-    },
+export interface IPost extends IPostMeta {
     html: string,
+}
+
+export interface IPostMeta {
+  frontmatter: {
+    date: string,
+    slug: string,
+    title: string,
+    tags: string[]
+  }
 }
