@@ -64,7 +64,9 @@ With the potential problem in mind we brainstormed through possible prototypes t
     ```
 
     This resolved the discrepancy issue but after we let it run over a weekend we discovered that it introduced two new issues:
-        a. Due to a replication latency event in our application database cluster, we missed data for a window of time. As it turns out, we discovered that the timestamp and timestamp+increment modes of kafka connect source connectors handle this by polling for records _since the greatest timestamp in the last successful batch._ Unfortunately these events are not uncommon on our system, so this discovery ended our exploration of this prototype.
-        b. We initially prototyped this at a less frequent interval, but set it to ingest more time(e.g. run every 1 minute, ingest 5 minutes of history), which meant that we needed to either dedupe the data in some manner or just process a higher volume of data.
+
+    a. Due to a replication latency event in our application database cluster, we missed data for a window of time. As it turns out, we discovered that the timestamp and timestamp+increment modes of kafka connect source connectors handle this by polling for records _since the greatest timestamp in the last successful batch._ Unfortunately these events are not uncommon on our system, so this discovery ended our exploration of this prototype.
+
+    b. We initially prototyped this at a less frequent interval, but set it to ingest more time(e.g. run every 1 minute, ingest 5 minutes of history), which meant that we needed to either dedupe the data in some manner or just process a higher volume of data.
 
 Ideally in the future this is an area where JazzHR could invest future resources. A more robust change data capture system, like [debezium](https://debezium.io/), could prevent these problems.
