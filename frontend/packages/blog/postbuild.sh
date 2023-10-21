@@ -8,3 +8,4 @@ cp "$BUILDDIR"/archive.html "$DISTDIR"/archive.html
 cp "$BUILDDIR"/styles.css "$DISTDIR"/styles.css
 cp -r "$BUILDDIR"/static "$DISTDIR" #images
 cp -r "$BUILDDIR"/posts "$DISTDIR"
+cp -r "$BUILDDIR"/tags "$DISTDIR"
