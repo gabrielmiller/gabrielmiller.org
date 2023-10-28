@@ -1,11 +1,12 @@
 import { SSTConfig } from "sst";
-import { Api } from "sst/constructs";
+import { Config } from "sst/constructs";
+import { API } from './stacks/API';
 
 export default {
   config(_input) {
     return {
       name: "serverless",
-      profile: _input.stage === "production" ? "production" : "development",
+      profile: _input.stage,
       region: "us-east-2",
     };
   },
@@ -13,16 +14,7 @@ export default {
     app.setDefaultFunctionProps({
       runtime: "go",
     });
-    app.stack(function Stack({ stack }) {
-      const api = new Api(stack, "api", {
-        routes: {
-          "GET /": "functions/lambda/list.go",
-          "GET /{id}": "functions/lambda/detail.go",
-        },
-      });
-      stack.addOutputs({
-        ApiEndpoint: api.url,
-      });
-    });
+
+    app.stack(API);
   },
 } satisfies SSTConfig;
