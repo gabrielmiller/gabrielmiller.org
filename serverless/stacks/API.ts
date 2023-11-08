@@ -1,24 +1,32 @@
 import { Api, StackContext } from "sst/constructs";
 
 export const API = function Stack({ stack }: StackContext) {
+    const {
+        FRONTEND_DOMAIN,
+        PRIVATE_S3_BUCKET_ACCESS_KEY_ID,
+        PRIVATE_S3_BUCKET_NAME,
+        PRIVATE_S3_BUCKET_SECRET_ACCESS_KEY
+    } = process.env;
+
     const api = new Api(stack, "api", {
         cors: {
-            allowHeaders: ['authorization'],
+            allowHeaders: ["authorization"],
             allowMethods: ["GET"],
-            allowOrigins: [process.env.FRONTEND_DOMAIN],
+            allowOrigins: [FRONTEND_DOMAIN],
         },
         defaults: {
             function: {
                 environment: {
-                    PRIVATE_S3_BUCKET_SECRET_ACCESS_KEY: process.env.PRIVATE_S3_BUCKET_SECRET_ACCESS_KEY,
-                    PRIVATE_S3_BUCKET_ACCESS_KEY_ID: process.env.PRIVATE_S3_BUCKET_ACCESS_KEY_ID,
-                    PRIVATE_S3_BUCKET_NAME: process.env.PRIVATE_S3_BUCKET_NAME
+                    FRONTEND_DOMAIN,
+                    PRIVATE_S3_BUCKET_SECRET_ACCESS_KEY,
+                    PRIVATE_S3_BUCKET_ACCESS_KEY_ID,
+                    PRIVATE_S3_BUCKET_NAME
                 }
             }
         },
         routes: {
-            "GET /": "functions/lambda/list.go",
-            "GET /{id}": "functions/lambda/detail.go",
+            "GET /story": "functions/lambda/story.go",
+            "GET /entries": "functions/lambda/entries.go",
         },
     });
 
