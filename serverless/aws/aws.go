@@ -132,8 +132,17 @@ func GetPresignUrl(story string, key string) (string, error) {
 }
 
 func getConnection() (BucketBasics, error) {
-    // TODO: You can specify loadOptions (https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/config#LoadOptions) with an aws Credentials struct(https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/aws#Credentials)
-    cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(os.Getenv("PRIVATE_S3_BUCKET_ACCESS_KEY_ID"), os.Getenv("PRIVATE_S3_BUCKET_SECRET_ACCESS_KEY"), "")))
+    cfg, err := config.LoadDefaultConfig(
+        context.TODO(),
+        config.WithCredentialsProvider(
+            credentials.NewStaticCredentialsProvider(
+                os.Getenv("PRIVATE_S3_BUCKET_ACCESS_KEY_ID"),
+                os.Getenv("PRIVATE_S3_BUCKET_SECRET_ACCESS_KEY"),
+                "",
+            ),
+        ),
+    )
+
     if err != nil {
         return BucketBasics{}, err
     }
