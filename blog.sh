@@ -391,12 +391,9 @@ optimize_image_sizes() {
 }
 
 plant_tls_certificate_in_acm() {
-  #todo: prob need this for api gateway to be ok with https on cname
-  #might need to also use the cert on api gateway configuration
-  #and some further steps noted in here:https://stackoverflow.com/a/45849093
   cd cert2
   initialize_environment
-  sudo -E aws acm import-certificate --certificate-arn $CERTIFICATE_ARN --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile="$GBLOG_ENVIRONMENT"
+  sudo -E aws acm import-certificate --certificate-arn "$CERTIFICATE_ARN" --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile="$GBLOG_ENVIRONMENT"
   cd ..
 
   #todo: consolidate aws accounts...
