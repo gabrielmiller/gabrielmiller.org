@@ -172,8 +172,6 @@ const StoryViewer: FunctionComponent = () => {
         const title = queryParams.get("title");
         const token = queryParams.get("token");
 
-        history.replaceState({}, "", "stories.html");
-
         loadIndex(title, token);
     }, [])
 

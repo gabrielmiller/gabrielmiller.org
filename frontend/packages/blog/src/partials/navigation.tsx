@@ -25,6 +25,9 @@ const Navigation = ({activeNavItem}: INavigationProps) => (
             <li>
                 <a href="https://github.com/gabrielmiller/">Github</a>
             </li>
+            <li>
+                <a href="https://www.linkedin.com/in/lgabrielmiller/">LinkedIn</a>
+            </li>
         </ul>
     </nav>
 )
