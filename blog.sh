@@ -249,6 +249,7 @@ deploy_frontend() {
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
+  # todo: if skip_blog was set, make this not accidentally destroy the last deployed blog
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
   frontend_files_to_upload=()

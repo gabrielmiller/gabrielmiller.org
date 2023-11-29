@@ -11,6 +11,7 @@ export default {
     },
     stacks(app) {
         app.setDefaultFunctionProps({
+            architecture: "arm_64",
             runtime: "go",
         });
 
