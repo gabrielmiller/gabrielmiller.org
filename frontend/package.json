@@ -1,5 +1,9 @@
 {
   "name": "frontend",
+  "engines": {
+    "node": "20.10.0",
+    "npm": "10.2.3"
+  },
   "version": "1.0.0",
   "private": true,
   "workspaces": [

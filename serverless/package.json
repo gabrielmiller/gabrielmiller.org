@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "20.10.0",
+    "npm": "10.2.3"
+  },
   "scripts": {
     "dev": "sst dev",
     "build": "sst build",
@@ -12,9 +16,9 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "sst": "^2.32.1",
-    "aws-cdk-lib": "2.95.1",
-    "constructs": "10.2.69",
+    "sst": "2.39.0",
+    "aws-cdk-lib": "2.110.1",
+    "constructs": "10.3.0",
     "typescript": "^5.2.2",
     "@tsconfig/node18": "^18.2.2"
   },
