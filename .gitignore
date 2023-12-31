@@ -5,6 +5,8 @@ frontend/favicon
 frontend/packages/blog/.cache
 frontend/packages/blog/public
 frontend/packages/blog/src/gatsby-types.d.ts
+serverless/.sst/*
+serverless/.vscode/*
 stories/*
 .env.dev
 .env.staging

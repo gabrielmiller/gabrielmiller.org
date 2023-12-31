@@ -6,10 +6,10 @@ SKIP_FRONTEND=false
 SKIP_BLOG=false
 OPTIMIZED_IMAGE_SIZE=1920
 
-VALIDAWSVERSION="aws-cli/2.9.19 Python/3.9.11 Linux/6.3.2-arch1-1 exe/x86_64.arch prompt/off"
-VALIDCERTBOTVERSION="certbot 2.6.0"
-VALIDGOVERSION="go version go1.20.4 linux/amd64"
-VALIDNODEJSVERSION="v18.14.0"
+VALIDAWSVERSION="aws-cli/2.9.19 Python/3.9.11 Linux/6.6.2-arch1-1 exe/x86_64.arch prompt/off"
+VALIDCERTBOTVERSION="certbot 2.8.0"
+VALIDGOVERSION="go version go1.21.4 linux/amd64"
+VALIDNODEJSVERSION="v20.10.0"
 
 declare -A frontendfiletypes
 frontendfiletypes=(
@@ -115,47 +115,6 @@ initialize_environment() {
   done < "$GBLOG_ENVFILE"
 }
 
-attach_to_api_server() {
-  cd backend
-  initialize_environment
-  CGO_ENABLED=0 go build .
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS"
-  echo "[Backend] Connection closed."
-  cd ..
-}
-
-build_systemd_service_file() {
-read -r -d '' systemDServiceFile << EOF
-[Unit]
-Description=Blog API Service
-ConditionPathExists=$EC2_PATH
-After=network.target
-
-[Service]
-Type=simple
-User=root
-Group=root
-WorkingDirectory=$EC2_PATH
-ExecStart=$EC2_PATH/blog
-Restart=on-failure
-RestartSec=10
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=blogapiservice
-Environment=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-Environment=AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-Environment=AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
-Environment=PORT=$PORT
-Environment=FRONTEND_DOMAIN=$FRONTEND_DOMAIN
-Environment=S3_BUCKET_NAME=$S3_BUCKET_NAME
-Environment=TLS_CHAIN_CERT=$EC2_CERTIFICATE_CHAIN_PATH
-Environment=TLS_PRIVATE_KEY=$EC2_CERTIFICATE_PRIVATE_PATH
-
-[Install]
-WantedBy=multi-user.target
-EOF
-}
-
 # 1. validate every story has an index.json file. exit 1 on fail
 # 2. validate every story file is an allowed extensions. exit 1 on fail
 validate_story_filetypes() {
@@ -252,28 +211,9 @@ deploy_stories() {
 }
 
 deploy_backend() {
-  cd backend
+  cd serverless
   initialize_environment
-  build_systemd_service_file
-
-  CGO_ENABLED=0 GOARCH=arm64 go build .
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" rm "$EC2_PATH"/blog
-  scp -i "$EC2_CREDENTIAL" blog "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/blog &> /dev/null
-
-  echo "$systemDServiceFile" | ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" -T "cat > $EC2_PATH"/blog.service
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER@$EC2_ADDRESS" "
-    sudo mv $EC2_PATH/blog.service $EC2_SYSTEMD_SERVICE_FILE_PATH
-    sudo chown root $EC2_SYSTEMD_SERVICE_FILE_PATH
-    sudo chgrp root $EC2_SYSTEMD_SERVICE_FILE_PATH
-    sudo chmod 0644 $EC2_SYSTEMD_SERVICE_FILE_PATH
-    sudo systemctl daemon-reload
-    sudo systemctl stop blog.service
-  "
-  echo "[Backend] Previous binary halted"
-
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo systemctl start blog.service
-  echo "[Backend] New binary invoked"
-
+  npx sst deploy --stage="$GBLOG_ENVIRONMENT"
   cd ..
 }
 
@@ -309,6 +249,7 @@ deploy_frontend() {
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
+  # todo: if skip_blog was set, make this not accidentally destroy the last deployed blog
   result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
 
   frontend_files_to_upload=()
@@ -451,33 +392,16 @@ optimize_image_sizes() {
 }
 
 plant_tls_certificate_in_acm() {
+  cd cert2
+  initialize_environment
+  sudo -E aws acm import-certificate --certificate-arn "$CERTIFICATE_ARN" --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile="$GBLOG_ENVIRONMENT"
+  cd ..
+
+  #todo: consolidate aws accounts...
   cd cert
   initialize_environment
   sudo -E aws acm import-certificate --certificate-arn $CERTIFICATE_ARN --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN"
-  echo "[TLS] Token planted"
-
-  cd ..
-}
-
-plant_tls_certificate_in_ec2() {
-  cd backend
-  initialize_environment
-
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" sudo mkdir -p "$EC2_CERTIFICATE_PATH"
-
-  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_CHAIN" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/fullchain.pem
-  sudo scp -i "$EC2_CREDENTIAL" "$CERTIFICATE_PRIVATE_KEY" "$EC2_USER"@"$EC2_ADDRESS":"$EC2_PATH"/privkey.pem
-  ssh -i "$EC2_CREDENTIAL" "$EC2_USER"@"$EC2_ADDRESS" "
-    sudo mv $EC2_PATH/fullchain.pem $EC2_CERTIFICATE_CHAIN_PATH
-    sudo mv "$EC2_PATH"/privkey.pem $EC2_CERTIFICATE_PRIVATE_PATH
-    sudo chown root $EC2_CERTIFICATE_CHAIN_PATH
-    sudo chgrp root $EC2_CERTIFICATE_CHAIN_PATH
-    sudo chown root $EC2_CERTIFICATE_PRIVATE_PATH
-    sudo chgrp root $EC2_CERTIFICATE_PRIVATE_PATH
-  "
-
-  echo "[TLS] Token planted"
-
+  echo "[TLS] Token planted in acm"
   cd ..
 }
 
@@ -501,13 +425,11 @@ Do the blog thing.
         Options:
           1. build and deploy code
           2. deploy individual story
-          3. attach terminal to api server
-          4. optimize image sizes for a story
-          5. generate index file for a story
-          6. generate a tls certificate
-          7. plant the tls certificate in acm
-          8. plant the tls certificate in ec2
-          9. deploy all stories
+          3. optimize image sizes for a story
+          4. generate index file for a story
+          5. generate a tls certificate
+          6. plant the tls certificate in acm
+          7. deploy all stories
 
     -t, --title
         Title of story to deploy.
@@ -640,11 +562,6 @@ case "$GBLOG_OPERATION" in
    exit 0
    ;;
  3)
-   echo "Attaching to $GBLOG_ENVIRONMENT api server."
-   attach_to_api_server
-   exit 0
-   ;;
- 4)
    validate_image_optimize_dependency
    echo "Which story's images should be optimized?"
    read GBLOG_STORYNAME
@@ -653,7 +570,7 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Images optimized."
    exit 0
    ;;
- 5)
+ 4)
    echo "Which story needs a new index file?"
    read GBLOG_STORYNAME
    echo "[$(date +%T)] Building index file for $GBLOG_STORYNAME."
@@ -661,7 +578,7 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Index file generated."
    exit 0
    ;;
- 6)
+ 5)
    validate_aws_dependency
    validate_tls_dependency
    echo "[$(date +%T)] Generating a new certificate for $GBLOG_ENVIRONMENT."
@@ -669,20 +586,14 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Certificate generated."
    exit 0
    ;;
- 7)
+ 6)
    validate_aws_dependency
    echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in acm."
    plant_tls_certificate_in_acm
    echo "[$(date +%T)] Certificate planted in acm."
    exit 0
    ;;
- 8)
-   echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in ec2."
-   plant_tls_certificate_in_ec2
-   echo "[$(date +%T)] Certificate planted in ec2."
-   exit 0
-   ;;
- 9)
+ 7)
    validate_aws_dependency
    echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment."
    validate_story_filetypes

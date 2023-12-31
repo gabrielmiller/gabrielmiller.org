@@ -25,7 +25,7 @@ This project relies upon you having a handful of AWS service configurations and 
  - S3 bucket to serve private images/other content
  - Cloudfront distributions for s3 buckets on apex domain and `www` subdomain.
  - ACM to apply a wildcard https certificate to cloudfront distributions.
- - Credentials for an ec2 instance to run a backend that will interact with S3 to look up stories, validate credentials, and sign urls.
+ - Credentials to CRUD on lambda and api gateway with sst. Refer to directions [here](https://sst.dev/chapters/create-an-iam-user.html).
  - Token to CRUD on cloudflare dns records to generate wildcard https certificate.
 
 The credential for each AWS service should be configured ideally as separate IAM user credentials for each service/access level in isolation. Here are the various privileges required:
@@ -46,8 +46,8 @@ The credential for each AWS service should be configured ideally as separate IAM
 
 
  I've extracted these credentials into environment variables in non-committed files named `.env.staging` and `.env.production`. As of right now these live in each of the following directories in the root of this codebase:
-  - `backend` - credentials for read access on the privately accessible s3 bucket, ec2 ssh access, tls certificate local paths, paths to various things inside ec2 instance, supporting properties for api.
   - `cert` - credentials for access to import certificates to acm. Additionally the paths of the certs certbot generates by default and the ARN of the certificate in question.
   - `dns` - credentials for certbot to complete the dns challenge to generate a wildcard tls certificate. Additionally, the domain names to provide certbot, and the email address to use with the registration.
   - `frontend` - credentials for write access on the publicly accessible static content s3 bucket and cloudfront caching configuration.
+  - `serverless` - credentials for read access on the privately accessible s3 bucket, frontend domain for cors.
   - `stories` - credentials for write access on the privately accessible image s3 bucket.

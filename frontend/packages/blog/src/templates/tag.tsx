@@ -46,7 +46,7 @@ const TagPage: React.FC<PageProps<ITagContainer, ITagPageContext>> = ({ data, pa
 
 export const query = graphql`
 {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
       group(field: {frontmatter: {tags: SELECT}}) {
         fieldValue
         nodes {
