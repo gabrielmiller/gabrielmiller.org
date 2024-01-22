@@ -153,6 +153,30 @@ validate_story_filetypes() {
   cd ..
 }
 
+redeploy_index() {
+  cd stories
+  initialize_environment
+
+  echo "[Stories] Deleting existing index for story $1"
+  aws s3api delete-object --bucket "$S3_BUCKET_NAME" --key "$directory$file"
+
+  directory="$1/"
+  file="index.json"
+  mimetype="application/json"
+  result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
+
+  if [ "$?" -eq 0 ]
+    then
+      echo "[Stories] Published $directory$file"
+    else
+      echo "[Stories] There was an error publishing $directory$file:"
+      echo "$result"
+      exit $?
+  fi
+
+  cd ..
+}
+
 deploy_story() {
   cd stories
   initialize_environment
@@ -430,6 +454,7 @@ Do the blog thing.
           5. generate a tls certificate
           6. plant the tls certificate in acm
           7. deploy all stories
+          8. update index for an individual story
 
     -t, --title
         Title of story to deploy.
@@ -599,6 +624,27 @@ case "$GBLOG_OPERATION" in
    validate_story_filetypes
    deploy_stories
    echo "[$(date +%T)] Story deploy complete."
+   exit 0
+   ;;
+ 8)
+   if [ "$GBLOG_STORY_TITLE" = "" ]
+   then
+    echo "ERROR: You must specify a title."
+    exit 1
+   fi
+
+   if [ ! -d "stories/$GBLOG_STORY_TITLE" ]
+   then
+     echo "ERROR: Could not find story $GBLOG_STORY_TITLE."
+     exit 1
+   fi
+
+   validate_aws_dependency
+   echo "[$(date +%T)] Updating index file for $GBLOG_ENVIRONMENT story deployment of $GBLOG_STORY_TITLE."
+
+   validate_story_filetypes
+   redeploy_index $GBLOG_STORY_TITLE
+   echo "[$(date +%T)] Index updated."
    exit 0
    ;;
  *)
