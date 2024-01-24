@@ -15,6 +15,14 @@ const config: GatsbyConfig = {
             },
             __key: "posts"
         },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                "name": "recipes",
+                "path": "./src/recipes/"
+            },
+            __key: "recipes"
+        },
         `gatsby-plugin-sharp`,
         {
             resolve: `gatsby-transformer-remark`,
