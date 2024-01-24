@@ -7,12 +7,11 @@
     "prebuild": "rm public -rf",
     "build": "npm run build:gatsby && npm run build:css",
     "build:css": "node ../../node_modules/sass/sass.js styles.scss:public/styles.css --style=compressed --no-source-map",
-    "build:gatsby": "gatsby build",
+    "build:gatsby": "gatsby clean && gatsby build",
     "postbuild": "./postbuild.sh"
   },
   "dependencies": {
     "gatsby": "^5.11.0",
-    "gatsby-plugin-no-javascript-utils": "^0.13.1",
     "gatsby-plugin-sharp": "^5.12.0",
     "gatsby-remark-images": "^7.12.0",
     "gatsby-source-filesystem": "^5.11.0",
@@ -24,6 +23,7 @@
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
+    "gatsby-plugin-no-javascript-utils": "github:gabrielmiller/gatsby-plugin-no-javascript-utils#0.13.3",
     "typescript": "^5.3.3"
   }
 }
