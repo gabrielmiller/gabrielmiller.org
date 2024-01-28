@@ -9,7 +9,6 @@ import (
     "github.com/aws/aws-sdk-go-v2/aws"
     "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
     "github.com/aws/aws-sdk-go-v2/config"
-    "github.com/aws/aws-sdk-go-v2/credentials"
     "github.com/aws/aws-sdk-go-v2/service/s3"
     "time"
 )
@@ -134,13 +133,6 @@ func GetPresignUrl(story string, key string) (string, error) {
 func getConnection() (BucketBasics, error) {
     cfg, err := config.LoadDefaultConfig(
         context.TODO(),
-        config.WithCredentialsProvider(
-            credentials.NewStaticCredentialsProvider(
-                os.Getenv("PRIVATE_S3_BUCKET_ACCESS_KEY_ID"),
-                os.Getenv("PRIVATE_S3_BUCKET_SECRET_ACCESS_KEY"),
-                "",
-            ),
-        ),
     )
 
     if err != nil {

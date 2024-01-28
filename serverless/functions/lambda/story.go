@@ -10,53 +10,40 @@ import (
 )
 
 func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResponse, error) {
+    unauthorized_response := events.APIGatewayProxyResponse{
+        Body: "Unauthorized",
+        StatusCode: 404,
+    };
+
     authHeader, exists := request.Headers["authorization"]
     if !exists {
-        return events.APIGatewayProxyResponse{
-            Body: "Unauthorized",
-            StatusCode: 404,
-        }, nil
+        return unauthorized_response, nil
     }
 
     headerParts := strings.Split(authHeader, " ")
 
     if len(headerParts) != 2 {
-        return events.APIGatewayProxyResponse{
-            Body: "Unauthorized",
-            StatusCode: 404,
-        }, nil
+        return unauthorized_response, nil
     }
 
     decodedHeader, err := base64.StdEncoding.DecodeString(headerParts[1])
     if err != nil {
-        return events.APIGatewayProxyResponse{
-            Body: "Unauthorized",
-            StatusCode: 404,
-        }, nil
+        return unauthorized_response, nil
     }
 
     parsedHeaderParts := strings.Split(string(decodedHeader), ":")
     if len(parsedHeaderParts) != 2 {
-        return events.APIGatewayProxyResponse{
-            Body: "Unauthorized",
-            StatusCode: 404,
-        }, nil
+        return unauthorized_response, nil
     }
 
     Index, err := aws.GetIndexForStory(parsedHeaderParts[0], parsedHeaderParts[1])
     if err != nil {
-        return events.APIGatewayProxyResponse{
-            Body: "Unauthorized",
-            StatusCode: 404,
-        }, nil
+        return unauthorized_response, nil
     }
 
     Entries, err := json.Marshal(Index.Entries)
     if err != nil {
-        return events.APIGatewayProxyResponse{
-            Body: "Unauthorized",
-            StatusCode: 404,
-        }, nil
+        return unauthorized_response, nil
     }
 
     return events.APIGatewayProxyResponse{

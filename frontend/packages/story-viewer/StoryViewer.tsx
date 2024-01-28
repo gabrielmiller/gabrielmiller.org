@@ -38,7 +38,7 @@ const StoryViewer: FunctionComponent = () => {
     const [isInfoShown, setIsInfoShown] = useState(true);
 
     const apiDomain = "https://api."+window.location.host;
-    const entriesPerPage = 4;
+    const entriesPerPage = 12;
 
     const buildBasicAuthHeader = (title: string, token: string): string => {
         return 'Basic '+btoa(title+":"+token);

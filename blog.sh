@@ -3,12 +3,11 @@
 GBLOG_ENVIRONMENT="staging"
 SKIP_BACKEND=false
 SKIP_FRONTEND=false
-SKIP_BLOG=false
 OPTIMIZED_IMAGE_SIZE=1920
 
-VALIDAWSVERSION="aws-cli/2.9.19 Python/3.9.11 Linux/6.6.2-arch1-1 exe/x86_64.arch prompt/off"
+VALIDAWSVERSION="aws-cli/2.9.19 Python/3.9.11 Linux/6.7.1-arch1-1 exe/x86_64.arch prompt/off"
 VALIDCERTBOTVERSION="certbot 2.8.0"
-VALIDGOVERSION="go version go1.21.4 linux/amd64"
+VALIDGOVERSION="go version go1.21.6 linux/amd64"
 VALIDNODEJSVERSION="v20.10.0"
 
 declare -A frontendfiletypes
@@ -25,8 +24,8 @@ frontendfiletypes=(
   ["xml"]="application/xml"
 )
 
-declare -A storyfiletypes
-storyfiletypes=(
+declare -A albumfiletypes
+albumfiletypes=(
   ["gif"]="image/gif"
   ["jpg"]="image/jpeg"
   ["json"]="application/json"
@@ -115,17 +114,17 @@ initialize_environment() {
   done < "$GBLOG_ENVFILE"
 }
 
-# 1. validate every story has an index.json file. exit 1 on fail
-# 2. validate every story file is an allowed extensions. exit 1 on fail
-validate_story_filetypes() {
-  cd stories
+# 1. validate every album has an index.json file. exit 1 on fail
+# 2. validate every album file is an allowed extensions. exit 1 on fail
+validate_album_filetypes() {
+  cd albums
 
   for directory in $(ls -d */)
   do
     indexFile="$directory""index.json"
     if [ ! -f $indexFile ]
     then
-      echo "No index file found in stories/$directory. You must create one to proceed."
+      echo "No index file found in albums/$directory. You must create one to proceed."
       exit 1
     else
       for file in $(ls $directory)
@@ -154,22 +153,22 @@ validate_story_filetypes() {
 }
 
 redeploy_index() {
-  cd stories
+  cd albums
   initialize_environment
 
-  echo "[Stories] Deleting existing index for story $1"
-  aws s3api delete-object --bucket "$S3_BUCKET_NAME" --key "$directory$file"
+  echo "[Albums] Deleting existing index for album $1"
+  aws s3api delete-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --profile "$GBLOG_ENVIRONMENT"
 
   directory="$1/"
   file="index.json"
   mimetype="application/json"
-  result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
+  result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
 
   if [ "$?" -eq 0 ]
     then
-      echo "[Stories] Published $directory$file"
+      echo "[Albums] Published $directory$file"
     else
-      echo "[Stories] There was an error publishing $directory$file:"
+      echo "[Albums] There was an error publishing $directory$file:"
       echo "$result"
       exit $?
   fi
@@ -177,25 +176,25 @@ redeploy_index() {
   cd ..
 }
 
-deploy_story() {
-  cd stories
+deploy_album() {
+  cd albums
   initialize_environment
 
-  echo "[Stories] Deleting contents for story $1"
+  echo "[Albums] Deleting contents for album $1"
 
-  result=$(aws s3 rm s3://"$S3_BUCKET_NAME/$1" --recursive)
+  result=$(aws s3 rm s3://"$S3_BUCKET_NAME/$1" --recursive --profile "$GBLOG_ENVIRONMENT")
   directory="$1/"
   for file in $(ls $directory)
   do
     filename="${file##*/}"
     extension="${filename##*.}"
-    mimetype=${storyfiletypes["$extension"]}
-    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
+    mimetype=${albumfiletypes["$extension"]}
+    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
     if [ "$?" -eq 0 ]
     then
-      echo "[Stories] Published $directory$file"
+      echo "[Albums] Published $directory$file"
     else
-      echo "[Stories] There was an error publishing $directory$file:"
+      echo "[Albums] There was an error publishing $directory$file:"
       echo "$result"
       exit $?
     fi
@@ -204,27 +203,27 @@ deploy_story() {
   cd ..
 }
 
-deploy_stories() {
-  cd stories
+deploy_albums() {
+  cd albums
   initialize_environment
 
-  echo "[Stories] Destroying bucket contents"
-  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
+  echo "[Albums] Destroying bucket contents"
+  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT")
 
   for directory in $(ls -d */)
   do
-    echo "[Stories] Uploading $directory"
+    echo "[Albums] Uploading $directory"
     for file in $(ls $directory)
     do
       filename="${file##*/}"
       extension="${filename##*.}"
-      mimetype=${storyfiletypes["$extension"]}
-      result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" 2>&1)
+      mimetype=${albumfiletypes["$extension"]}
+      result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
       if [ "$?" -eq 0 ]
       then
-        echo "[Stories] Published $directory$file"
+        echo "[Albums] Published $directory$file"
       else
-        echo "[Stories] There was an error publishing $file:"
+        echo "[Albums] There was an error publishing $file:"
         echo "$result"
         exit $?
     fi
@@ -260,21 +259,14 @@ deploy_frontend() {
   cp -r static dist
 
   npm install
+  npm run build -w blog
+  # build processes independently move their output to the dist dir
 
-  if [ "$SKIP_BLOG" = false ]
-  then
-    npm run build -w blog
-    # build processes independently move their output to the dist dir
-  else
-    echo "[Frontend] Blog build & deployment skipped";
-  fi
-
-  npm run build -w story-viewer
+  npm run build -w story-viewer #todo: rename sourcecode and directory
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
-  # todo: if skip_blog was set, make this not accidentally destroy the last deployed blog
-  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive)
+  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT")
 
   frontend_files_to_upload=()
   traverse_and_upload_frontend_files .
@@ -285,7 +277,7 @@ deploy_frontend() {
     extension="${filename##*.}"
     mimetype=${frontendfiletypes["$extension"]}
     key="${file:2}" # shave the ./ prefix off for the s3 key
-    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
+    result=$(aws s3api put-object --profile "$GBLOG_ENVIRONMENT" --bucket "$S3_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
 
     if [ "$?" -ne 0 ]
       then
@@ -323,14 +315,14 @@ generate_tls_certificate() {
 }
 
 generate_index_file() {
-  STORY_DIRECTORY="./stories/$GBLOG_STORYNAME"
-  if [ ! -d "$STORY_DIRECTORY" ]
+  ALBUM_DIRECTORY="./albums/$GBLOG_ALBUMNAME"
+  if [ ! -d "$ALBUM_DIRECTORY" ]
   then
-    echo "No directory exists for story $GBLOG_STORYNAME. You should first create the directory and place all desired media files in it."
+    echo "No directory exists for album $GBLOG_ALBUMNAME. You should first create the directory and place all desired media files in it."
     exit 1
   fi
 
-  GBLOG_INDEX_FILE="$STORY_DIRECTORY/index.json"
+  GBLOG_INDEX_FILE="$ALBUM_DIRECTORY/index.json"
   SHOULD_PROCEED="y"
   if [ -f "$GBLOG_INDEX_FILE" ]
   then
@@ -344,7 +336,7 @@ generate_index_file() {
   fi
 
   INDEX_ENTRIES=""
-  cd $STORY_DIRECTORY
+  cd $ALBUM_DIRECTORY
   for file in *
   do
     if [ "$file" == "index.json" ]
@@ -372,16 +364,16 @@ generate_index_file() {
 }
 
 optimize_image_sizes() {
-  cd stories
-  echo "Optimizing images in $GBLOG_STORYNAME"
-  mkdir -p "$GBLOG_STORYNAME"/optimized
-  for file in $(ls "$GBLOG_STORYNAME")
+  cd albums
+  echo "Optimizing images in $GBLOG_ALBUMNAME"
+  mkdir -p "$GBLOG_ALBUMNAME"/optimized
+  for file in $(ls "$GBLOG_ALBUMNAME")
   do
     EXTENSION="${file##*.}"
     case "$EXTENSION" in
       "jpg"|"png")
-        height=$(identify -format "%h" $GBLOG_STORYNAME/$file)
-        width=$(identify -format "%w" $GBLOG_STORYNAME/$file)
+        height=$(identify -format "%h" $GBLOG_ALBUMNAME/$file)
+        width=$(identify -format "%w" $GBLOG_ALBUMNAME/$file)
         aspectratio=$(echo "scale=2; $width/$height" | bc)
 
         if [ 1 -eq "$(echo "$aspectratio > 2" | bc)" ]
@@ -405,7 +397,7 @@ optimize_image_sizes() {
           continue
         fi
 
-        convert "$GBLOG_STORYNAME/$file" -geometry $GEOMETRY -quality 80 "$GBLOG_STORYNAME"/optimized/"$file"
+        convert "$GBLOG_ALBUMNAME/$file" -geometry $GEOMETRY -quality 80 "$GBLOG_ALBUMNAME"/optimized/"$file"
       ;;
       *)
         continue
@@ -416,16 +408,9 @@ optimize_image_sizes() {
 }
 
 plant_tls_certificate_in_acm() {
-  cd cert2
+  cd cert2 #todo rename to cert
   initialize_environment
-  sudo -E aws acm import-certificate --certificate-arn "$CERTIFICATE_ARN" --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile="$GBLOG_ENVIRONMENT"
-  cd ..
-
-  #todo: consolidate aws accounts...
-  cd cert
-  initialize_environment
-  sudo -E aws acm import-certificate --certificate-arn $CERTIFICATE_ARN --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN"
-  echo "[TLS] Token planted in acm"
+  sudo -E aws acm import-certificate --certificate-arn "$CERTIFICATE_ARN" --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile "$GBLOG_ENVIRONMENT"
   cd ..
 }
 
@@ -448,22 +433,20 @@ Do the blog thing.
 
         Options:
           1. build and deploy code
-          2. deploy individual story
-          3. optimize image sizes for a story
-          4. generate index file for a story
-          5. generate a tls certificate
-          6. plant the tls certificate in acm
-          7. deploy all stories
-          8. update index for an individual story
+          2. deploy individual album
+          3. optimize image sizes for an album
+          4. generate index file for an album
+          5. authenticate for infra changes
+          6. generate a tls certificate
+          7. plant the tls certificate in acm
+          8. deploy all albums
+          9. update index for an individual album
 
     -t, --title
-        Title of story to deploy.
+        Title of album to deploy.
 
     --skip-frontend
         Skip build & deploy of the frontend.
-
-    --skip-blog
-        Skip build & deploy of the blog frontend.
 
     --skip-backend
         Skip build & deploy of the backend.
@@ -508,15 +491,12 @@ while :; do
     -t|--title)
       if [ "$2" ]
       then
-        GBLOG_STORY_TITLE="$2"
+        GBLOG_ALBUM_TITLE="$2"
         shift
       else
         echo "-t or --title requires a non-empty argument."
         exit 1
       fi
-      ;;
-    --skip-blog)
-      SKIP_BLOG=true
       ;;
     --skip-frontend)
       SKIP_FRONTEND=true
@@ -556,7 +536,7 @@ esac
 
 
 case "$GBLOG_OPERATION" in
- 1)
+ 1) # build and deploy code
    validate_aws_dependency
    validate_go_dependency
    validate_nodejs_dependency
@@ -565,45 +545,49 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Code build & deployment complete."
    exit 0
    ;;
- 2)
-   if [ "$GBLOG_STORY_TITLE" = "" ]
+ 2) # deploy an album
+   if [ "$GBLOG_ALBUM_TITLE" = "" ]
    then
     echo "ERROR: You must specify a title."
     exit 1
    fi
 
-   if [ ! -d "stories/$GBLOG_STORY_TITLE" ]
+   if [ ! -d "albums/$GBLOG_ALBUM_TITLE" ]
    then
-     echo "ERROR: Could not find story $GBLOG_STORY_TITLE."
+     echo "ERROR: Could not find album $GBLOG_ALBUM_TITLE."
      exit 1
    fi
 
    validate_aws_dependency
-   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment of $GBLOG_STORY_TITLE."
-   # todo: only validate the selected story
-   validate_story_filetypes
-   deploy_story $GBLOG_STORY_TITLE
-   echo "[$(date +%T)] Story deploy complete."
+   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT album deployment of $GBLOG_ALBUM_TITLE."
+   # todo: only validate the selected album
+   validate_album_filetypes
+   deploy_album $GBLOG_ALBUM_TITLE
+   echo "[$(date +%T)] album deploy complete."
    exit 0
    ;;
- 3)
+ 3) # optimize image sizes for an album
    validate_image_optimize_dependency
-   echo "Which story's images should be optimized?"
-   read GBLOG_STORYNAME
-   echo "[$(date +%T)] Optimizing images for $GBLOG_STORYNAME."
+   echo "Which album's images should be optimized?"
+   read GBLOG_ALBUMNAME
+   echo "[$(date +%T)] Optimizing images for $GBLOG_ALBUMNAME."
    optimize_image_sizes
    echo "[$(date +%T)] Images optimized."
    exit 0
    ;;
- 4)
-   echo "Which story needs a new index file?"
-   read GBLOG_STORYNAME
-   echo "[$(date +%T)] Building index file for $GBLOG_STORYNAME."
+ 4) # generate index file for an album
+   echo "Which album needs a new index file?"
+   read GBLOG_ALBUMNAME
+   echo "[$(date +%T)] Building index file for $GBLOG_ALBUMNAME."
    generate_index_file
    echo "[$(date +%T)] Index file generated."
    exit 0
    ;;
- 5)
+ 5) # authenticate for infra changes
+   validate_aws_dependency
+   aws sso login --sso-session=gabe
+   ;;
+ 6) # generate tls cert
    validate_aws_dependency
    validate_tls_dependency
    echo "[$(date +%T)] Generating a new certificate for $GBLOG_ENVIRONMENT."
@@ -611,39 +595,39 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Certificate generated."
    exit 0
    ;;
- 6)
+ 7) # plant tls cert in acm
    validate_aws_dependency
    echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in acm."
    plant_tls_certificate_in_acm
    echo "[$(date +%T)] Certificate planted in acm."
    exit 0
    ;;
- 7)
+ 8) # deploy all albums
    validate_aws_dependency
-   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT story deployment."
-   validate_story_filetypes
-   deploy_stories
-   echo "[$(date +%T)] Story deploy complete."
+   echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT album deployment."
+   validate_album_filetypes
+   deploy_albums
+   echo "[$(date +%T)] album deploy complete."
    exit 0
    ;;
- 8)
-   if [ "$GBLOG_STORY_TITLE" = "" ]
+ 9) # update index for an individual album
+   if [ "$GBLOG_ALBUM_TITLE" = "" ]
    then
     echo "ERROR: You must specify a title."
     exit 1
    fi
 
-   if [ ! -d "stories/$GBLOG_STORY_TITLE" ]
+   if [ ! -d "albums/$GBLOG_ALBUM_TITLE" ]
    then
-     echo "ERROR: Could not find story $GBLOG_STORY_TITLE."
+     echo "ERROR: Could not find album $GBLOG_ALBUM_TITLE."
      exit 1
    fi
 
    validate_aws_dependency
-   echo "[$(date +%T)] Updating index file for $GBLOG_ENVIRONMENT story deployment of $GBLOG_STORY_TITLE."
+   echo "[$(date +%T)] Updating index file for $GBLOG_ENVIRONMENT album deployment of $GBLOG_ALBUM_TITLE."
 
-   validate_story_filetypes
-   redeploy_index $GBLOG_STORY_TITLE
+   validate_album_filetypes
+   redeploy_index $GBLOG_ALBUM_TITLE
    echo "[$(date +%T)] Index updated."
    exit 0
    ;;
