@@ -266,7 +266,13 @@ deploy_frontend() {
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
-  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT")
+  rm_result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT" 2>&1)
+  if [ "$?" -ne 0 ]
+   then
+     echo "[Frontend] There was an error destroying bucket contents."
+     echo "$rm_result"
+     exit $?
+  fi
 
   frontend_files_to_upload=()
   traverse_and_upload_frontend_files .
