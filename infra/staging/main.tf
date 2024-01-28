@@ -32,6 +32,7 @@ provider "cloudflare" {
 module "acm_certificate_cloudfront" {
   source = "../modules/acm_certificate_cloudfront"
   domain = var.apex_domain
+  profile = var.aws_profile
   providers = {
     aws = aws.virginia
   }
