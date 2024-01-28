@@ -8,7 +8,7 @@ I am using aws profiles to authenticate and I'm using a different for each envir
 
 # Initial setup
 
-Configure your AWS profile if you have not yet done so. You can read about this [here](https://docs.aws.amazon.com/cli/latest/userguide/sso-configure-profile-token.html). When you're done you should have a configuration in `~/.aws/config` that resembles the following:
+Configure your AWS profiles if you have not yet done so. You can read about this [here](https://docs.aws.amazon.com/cli/latest/userguide/sso-configure-profile-token.html). When you're done you should have a configuration in `~/.aws/config` that resembles the following:
 ```
 [default]
 region = us-east-2
