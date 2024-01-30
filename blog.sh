@@ -154,15 +154,14 @@ validate_album_filetypes() {
 
 redeploy_index() {
   cd albums
-  initialize_environment
 
   echo "[Albums] Deleting existing index for album $1"
-  aws s3api delete-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --profile "$GBLOG_ENVIRONMENT"
+  aws s3api delete-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --profile "$GBLOG_ENVIRONMENT"
 
   directory="$1/"
   file="index.json"
   mimetype="application/json"
-  result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
+  result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
 
   if [ "$?" -eq 0 ]
     then
@@ -178,18 +177,17 @@ redeploy_index() {
 
 deploy_album() {
   cd albums
-  initialize_environment
 
   echo "[Albums] Deleting contents for album $1"
 
-  result=$(aws s3 rm s3://"$S3_BUCKET_NAME/$1" --recursive --profile "$GBLOG_ENVIRONMENT")
+  result=$(aws s3 rm s3://"$ALBUM_BUCKET/$1" --recursive --profile "$GBLOG_ENVIRONMENT")
   directory="$1/"
   for file in $(ls $directory)
   do
     filename="${file##*/}"
     extension="${filename##*.}"
     mimetype=${albumfiletypes["$extension"]}
-    result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
+    result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
     if [ "$?" -eq 0 ]
     then
       echo "[Albums] Published $directory$file"
@@ -203,12 +201,12 @@ deploy_album() {
   cd ..
 }
 
+#todo probably nuke this since I don't use it
 deploy_albums() {
   cd albums
-  initialize_environment
 
   echo "[Albums] Destroying bucket contents"
-  result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT")
+  result=$(aws s3 rm s3://"$ALBUM_BUCKET" --recursive --profile "$GBLOG_ENVIRONMENT")
 
   for directory in $(ls -d */)
   do
@@ -218,7 +216,7 @@ deploy_albums() {
       filename="${file##*/}"
       extension="${filename##*.}"
       mimetype=${albumfiletypes["$extension"]}
-      result=$(aws s3api put-object --bucket "$S3_BUCKET_NAME" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
+      result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
       if [ "$?" -eq 0 ]
       then
         echo "[Albums] Published $directory$file"
@@ -235,7 +233,6 @@ deploy_albums() {
 
 deploy_backend() {
   cd serverless
-  initialize_environment
   npx sst deploy --stage="$GBLOG_ENVIRONMENT"
   cd ..
 }
@@ -253,7 +250,6 @@ traverse_and_upload_frontend_files() {
 
 deploy_frontend() {
   cd frontend
-  initialize_environment
 
   rm -rf dist
   cp -r static dist
@@ -266,7 +262,7 @@ deploy_frontend() {
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
-  rm_result=$(aws s3 rm s3://"$S3_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT" 2>&1)
+  rm_result=$(aws s3 rm s3://"$APEX_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT" 2>&1)
   if [ "$?" -ne 0 ]
    then
      echo "[Frontend] There was an error destroying bucket contents."
@@ -283,7 +279,7 @@ deploy_frontend() {
     extension="${filename##*.}"
     mimetype=${frontendfiletypes["$extension"]}
     key="${file:2}" # shave the ./ prefix off for the s3 key
-    result=$(aws s3api put-object --profile "$GBLOG_ENVIRONMENT" --bucket "$S3_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
+    result=$(aws s3api put-object --profile "$GBLOG_ENVIRONMENT" --bucket "$APEX_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
 
     if [ "$?" -ne 0 ]
       then
@@ -442,7 +438,7 @@ Do the blog thing.
           2. deploy individual album
           3. optimize image sizes for an album
           4. generate index file for an album
-          5. authenticate for infra changes
+          5. authenticate with aws
           6. generate a tls certificate
           7. plant the tls certificate in acm
           8. deploy all albums
@@ -524,7 +520,7 @@ case "$GBLOG_ENVIRONMENT" in
    GBLOG_ENVIRONMENT="production"
    GBLOG_ENVFILE=".env.production"
 
-   PROCEED_IN_PRODUDCTION="n"
+   PROCEED_IN_PRODUCTION="n"
    echo "Procedure requested in production environment. Are you sure? y/N"
    read PROCEED_IN_PRODUCTION
 
@@ -540,6 +536,24 @@ case "$GBLOG_ENVIRONMENT" in
    ;;
 esac
 
+
+if [ ! -f $GBLOG_ENVFILE ]
+then
+cat << EOF
+Cannot find $GBLOG_ENVFILE. Run terraform to generate it, like so:
+
+cd infra
+terraform -chdir=./$GBLOG_ENVIRONMENT plan -var-file=./variables.tfvars -out changes
+terraform -chdir=./$GBLOG_ENVIRONMENT apply changes
+cd ..
+
+EOF
+  exit 1
+else
+  set -a
+  source "$GBLOG_ENVFILE"
+  set +a
+fi
 
 case "$GBLOG_OPERATION" in
  1) # build and deploy code
@@ -589,7 +603,7 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Index file generated."
    exit 0
    ;;
- 5) # authenticate for infra changes
+ 5) # authenticate with aws
    validate_aws_dependency
    aws sso login --sso-session=gabe
    ;;

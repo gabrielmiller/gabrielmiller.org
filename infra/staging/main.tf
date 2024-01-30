@@ -87,3 +87,13 @@ module "cloudfront_www_website" {
   certificate_id = module.acm_certificate_cloudfront.id
   cache_policy_id = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" #CachingDisabled
 }
+
+module "local_env_file" {
+  source = "../modules/local_env_file"
+  album_bucket_name = var.private_bucket
+  album_bucket_region = var.region
+  apex_domain = var.apex_domain
+  apex_bucket_name = var.apex_domain
+  cloudfront_cache_max_age = "0"
+  environment_name = var.aws_profile
+}

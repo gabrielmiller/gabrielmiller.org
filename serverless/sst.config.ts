@@ -6,7 +6,7 @@ export default {
         return {
             name: "serverless",
             profile: _input.stage,
-            region: process.env.PRIVATE_S3_BUCKET_REGION
+            region: process.env.ALBUM_BUCKET_REGION
         };
     },
     stacks(app) {
@@ -18,21 +18,21 @@ export default {
 
         app.stack(function Stack({ stack }: StackContext) {
             const {
-                FRONTEND_DOMAIN,
-                PRIVATE_S3_BUCKET_NAME
+                APEX_DOMAIN,
+                ALBUM_BUCKET
             } = process.env;
 
             const api = new Api(stack, "api", {
                 cors: {
                     allowHeaders: ["authorization"],
                     allowMethods: ["GET"],
-                    allowOrigins: [FRONTEND_DOMAIN],
+                    allowOrigins: [APEX_DOMAIN],
                 },
                 defaults: {
                     function: {
                         environment: {
-                            FRONTEND_DOMAIN,
-                            PRIVATE_S3_BUCKET_NAME
+                            APEX_DOMAIN,
+                            ALBUM_BUCKET
                         }
                     }
                 },
@@ -47,7 +47,7 @@ export default {
                     actions: ["s3:GetObject"],
                     effect: iam.Effect.ALLOW,
                     resources: [
-                        `arn:aws:s3:::${PRIVATE_S3_BUCKET_NAME}/*`
+                        `arn:aws:s3:::${ALBUM_BUCKET}/*`
                     ]
                 })
             ]);

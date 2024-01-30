@@ -30,7 +30,7 @@ type Presigner struct {
 
 func (presigner Presigner) getObject(objectKey string, lifetimeSecs int64) (*v4.PresignedHTTPRequest, error) {
 	request, err := presigner.PresignClient.PresignGetObject(context.TODO(), &s3.GetObjectInput{
-		Bucket: aws.String(os.Getenv("PRIVATE_S3_BUCKET_NAME")),
+		Bucket: aws.String(os.Getenv("ALBUM_BUCKET")),
 		Key:    aws.String(objectKey),
 	}, func(opts *s3.PresignOptions) {
 		opts.Expires = time.Duration(lifetimeSecs * int64(time.Second))
@@ -47,7 +47,7 @@ type BucketBasics struct {
 
 func (basics BucketBasics) getS3FileInMemory(objectKey string) (string, error) {
 	result, err := basics.S3Client.GetObject(context.TODO(), &s3.GetObjectInput{
-		Bucket: aws.String(os.Getenv("PRIVATE_S3_BUCKET_NAME")),
+		Bucket: aws.String(os.Getenv("ALBUM_BUCKET")),
 		Key:    aws.String(objectKey),
 	})
 	if err != nil {
