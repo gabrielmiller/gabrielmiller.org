@@ -37,7 +37,7 @@ export default {
                     }
                 },
                 routes: {
-                    "GET /story": "functions/lambda/story.go",
+                    "GET /album": "functions/lambda/album.go",
                     "GET /entries": "functions/lambda/entries.go",
                 },
             });

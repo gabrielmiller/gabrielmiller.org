@@ -232,9 +232,7 @@ deploy_albums() {
 }
 
 deploy_backend() {
-  cd serverless
-  npx sst deploy --stage="$GBLOG_ENVIRONMENT"
-  cd ..
+  npm run deploy -w album-backend -- --stage "$GBLOG_ENVIRONMENT"
 }
 
 traverse_and_upload_frontend_files() {
@@ -249,16 +247,12 @@ traverse_and_upload_frontend_files() {
 }
 
 deploy_frontend() {
-  cd frontend
-
   rm -rf dist
   cp -r static dist
 
-  npm install
+  # note: build processes independently move their output to the dist dir
   npm run build -w blog
-  # build processes independently move their output to the dist dir
-
-  npm run build -w story-viewer #todo: rename sourcecode and directory
+  npm run build -w album-viewer
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
@@ -289,10 +283,13 @@ deploy_frontend() {
       fi
   done
 
-  cd ../..
+  cd ..
 }
 
 shipit() {
+  cd src
+  npm install
+
   if [ "$SKIP_BACKEND" = false ]
   then
     deploy_backend
@@ -306,6 +303,8 @@ shipit() {
   else
     echo "[Frontend] Build & deployment skipped";
   fi
+
+  cd ..
 }
 
 generate_tls_certificate() {

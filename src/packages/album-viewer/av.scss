@@ -1,4 +1,4 @@
-.story-container {
+.album-container {
     align-items: center;
     background: linear-gradient(90deg, #020b1a 31px, transparent 1%) center, linear-gradient(#020b1a 31px, transparent 1%) center, #b9c8df;
     background-size: 32px 32px;
@@ -12,12 +12,12 @@
     top: 0;
 }
 
-.story-container.fixed-height > img {
+.album-container.fixed-height > img {
     max-height: 100%;
     min-height: 100%;
 }
 
-.story-container.fixed-width > img {
+.album-container.fixed-width > img {
     min-width: 100%;
     max-width: 100%;
 }
@@ -27,7 +27,7 @@
     width: 2em;
 }
 
-.story-viewer button[class^='control-'] {
+.album-viewer button[class^='control-'] {
     background-color: transparent;
     border: none;
     opacity: 75%;
@@ -35,7 +35,7 @@
     padding: 1em;
 }
 
-.story-viewer button[class^='control-']:disabled {
+.album-viewer button[class^='control-']:disabled {
     opacity: 10%;
 }
 

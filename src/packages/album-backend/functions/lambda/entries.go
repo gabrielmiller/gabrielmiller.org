@@ -56,7 +56,7 @@ func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResp
         perPage = 12
     }
 
-    data, err := aws.GetEntriesForStory(parsedHeaderParts[0], parsedHeaderParts[1], page, perPage)
+    data, err := aws.GetEntriesForAlbum(parsedHeaderParts[0], parsedHeaderParts[1], page, perPage)
     if err != nil {
         return unauthorized_response, nil
     }

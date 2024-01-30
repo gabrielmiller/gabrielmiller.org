@@ -6,6 +6,8 @@ I have defined infrastructure for staging and production environments. If you ha
 
 I am using aws profiles to authenticate and I'm using a different for each environment. I also am using a separate aws account for each environment, however you can configure this however you please by adjusting where your local aws profiles go.
 
+There is some infrastructure that managed outside of terraform, through [sst](https://sst.dev/), which is used to create backend functionality for the album viewer. That code manages api gateway, lambda, associated iam profiles, and miscellaneous related resources.
+
 # Initial setup
 
 Configure your AWS profiles if you have not yet done so. You can read about this [here](https://docs.aws.amazon.com/cli/latest/userguide/sso-configure-profile-token.html). When you're done you should have a configuration in `~/.aws/config` that resembles the following:

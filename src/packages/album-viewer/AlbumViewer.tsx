@@ -8,14 +8,14 @@ import IconFullScreen from './IconFullScreen';
 import IconArrowLeftCircle from './IconArrowLeftCircle';
 import IconArrowRightCircle from './IconArrowRightCircle';
 
-interface IStoryEntry {
+interface IAlbumEntry {
     filename: string;
     isLoaded: boolean;
-    metadata: IStoryEntryMetadata;
+    metadata: IAlbumEntryMetadata;
     url?: string;
 }
 
-interface IStoryEntryMetadata {
+interface IAlbumEntryMetadata {
     description?: string;
 }
 
@@ -25,12 +25,12 @@ enum ViewModes {
     OriginalSize='Original size'
 }
 
-const StoryViewer: FunctionComponent = () => {
-    const [storyTitle, setStoryTitle] = useState('');
-    const [storyToken, setStoryToken] = useState('');
+const AlbumViewer: FunctionComponent = () => {
+    const [AlbumTitle, setAlbumTitle] = useState('');
+    const [AlbumToken, setAlbumToken] = useState('');
     const [isIndexLoaded, setIsIndexLoaded] = useState(false);
     const [isIndexLoading, setIsIndexLoading] = useState(false);
-    const [index, setIndex] = useState<IStoryEntry[]>([]);
+    const [index, setIndex] = useState<IAlbumEntry[]>([]);
     const [currentEntryIndex, setCurrentEntryIndex] = useState(0);
     const [isPageLoading, setIsPageLoading] = useState(false);
     const [viewMode, setViewMode] = useState<ViewModes>(ViewModes.FixedWidth);
@@ -64,14 +64,14 @@ const StoryViewer: FunctionComponent = () => {
         setIsIndexLoading(true);
         const headers = new Headers();
         headers.append('Authorization', buildBasicAuthHeader(title, token));
-        fetch(`${apiDomain}/story`, { method: 'GET', headers }).then(function(response) {
+        fetch(`${apiDomain}/album`, { method: 'GET', headers }).then(function(response) {
             if (response.status !== 200) {
                 setIsErrorShown(true);
                 return;
             }
 
             response.json().then((body) => {
-                const index: IStoryEntry[] = [];
+                const index: IAlbumEntry[] = [];
                 for (const entry of body) {
                     entry.isLoaded = false;
                     index.push(entry);
@@ -81,8 +81,8 @@ const StoryViewer: FunctionComponent = () => {
                 setIsIndexLoaded(true);
             });
         }).then(() => {
-            setStoryTitle(title);
-            setStoryToken(token);
+            setAlbumTitle(title);
+            setAlbumToken(token);
         }, () => {
             setIsErrorShown(true);
         }).finally(() => {
@@ -93,8 +93,8 @@ const StoryViewer: FunctionComponent = () => {
     const handleSubmission = (event) => {
         event.preventDefault();
 
-        const title = event.target.children['story-title'].value;
-        const token = event.target.children['story-token'].value;
+        const title = event.target.children['album-title'].value;
+        const token = event.target.children['album-token'].value;
 
         loadIndex(title, token);
     }
@@ -103,7 +103,7 @@ const StoryViewer: FunctionComponent = () => {
         let entryIndex = currentEntryIndex+1;
         setIsPageLoading(true);
         const headers = new Headers();
-        headers.append('Authorization', buildBasicAuthHeader(storyTitle, storyToken));
+        headers.append('Authorization', buildBasicAuthHeader(AlbumTitle, AlbumToken));
         fetch(`${apiDomain}/entries?page=${Math.ceil(entryIndex/entriesPerPage)}&perPage=${entriesPerPage}`, { method: 'GET', headers }).then(function(response) {
             if (response.status !== 200) {
                 return;
@@ -176,7 +176,7 @@ const StoryViewer: FunctionComponent = () => {
     }, [])
 
     return (
-        <div class="story-viewer">
+        <div class="album-viewer">
             {!isIndexLoaded && !isIndexLoading && (
                 <form onSubmit={(e) => handleSubmission(e) }>
                     {isErrorShown && (
@@ -184,12 +184,12 @@ const StoryViewer: FunctionComponent = () => {
                     )}
                     <input
                         autoFocus
-                        id="story-title"
-                        placeholder="Enter story title"
+                        id="album-title"
+                        placeholder="Enter album title"
                         type="text">
                     </input>
                     <input
-                        id="story-token"
+                        id="album-token"
                         placeholder="Enter token"
                         type="text">
                     </input>
@@ -203,7 +203,7 @@ const StoryViewer: FunctionComponent = () => {
 
             {isIndexLoaded && (
                 <>
-                    <div class={`story-container ${viewMode.replace(" ","-").toLowerCase()}`}>
+                    <div class={`album-container ${viewMode.replace(" ","-").toLowerCase()}`}>
                         {!('url' in index[currentEntryIndex]) && (
                             <span class="loader"></span>
                         )}
@@ -257,4 +257,4 @@ const StoryViewer: FunctionComponent = () => {
     );
 };
 
-export default StoryViewer;
+export default AlbumViewer;

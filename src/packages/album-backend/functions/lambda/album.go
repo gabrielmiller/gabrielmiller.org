@@ -36,7 +36,7 @@ func Handler(request events.APIGatewayV2HTTPRequest) (events.APIGatewayProxyResp
         return unauthorized_response, nil
     }
 
-    Index, err := aws.GetIndexForStory(parsedHeaderParts[0], parsedHeaderParts[1])
+    Index, err := aws.GetIndexForAlbum(parsedHeaderParts[0], parsedHeaderParts[1])
     if err != nil {
         return unauthorized_response, nil
     }

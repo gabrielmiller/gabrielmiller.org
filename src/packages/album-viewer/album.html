@@ -1,21 +1,21 @@
 <html>
     <head>
         <title>
-            gabrielmiller.org > story viewer
+            gabrielmiller.org > album viewer
         </title>
         <meta name="viewport" content="width=device-width" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
-        <link rel="stylesheet" href="sv.css" media="print" onload="this.media='all'; this.onload=null;">
+        <link rel="stylesheet" href="av.css" media="print" onload="this.media='all'; this.onload=null;">
         <style>
             body, form {
                 font-size:16px;
                 margin:0;
                 padding:0;
             }
-            .story-viewer {
+            album-viewer {
                 background-color:#fff;
                 background-image:repeating-linear-gradient(45deg, #b9c8df 25%, transparent 25%, transparent 75%, #b9c8df 75%, #b9c8df), repeating-linear-gradient(45deg, #b9c8df 25%, #fff 25%, #fff 75%, #b9c8df 75%, #b9c8df);
                 background-position:0 0, .5em .5em;
@@ -26,20 +26,20 @@
                 padding:0;
                 width:100%;
             }
-            .story-viewer > form {
+            album-viewer > form {
                 display:flex;
                 flex-direction:column;
                 height:100%;
                 justify-content:center;
             }
-            .story-viewer > form > * {
+            album-viewer > form > * {
                 align-self:center;
                 font-size:1.35rem;
                 line-height:3rem;
                 margin:.1em;
                 width:18rem;
             }
-            .story-viewer > form > span {
+            album-viewer > form > span {
                 background-color:#b21919;
                 box-sizing:border-box;
                 color:#fff;
@@ -48,27 +48,27 @@
                 padding:.5em;
                 text-align:center;
             }
-            .story-viewer > form > input {
+            album-viewer > form > input {
                 background-color:#fff;
                 border:2px solid #888;
                 color:#444;
                 padding:.5em .5em .5em 1em;
             }
-            .story-viewer > form > input:focus {
+            album-viewer > form > input:focus {
                 border-color:#6684b2;
                 color:#6684b2;
             }
-            .story-viewer > form > input:focus::placeholder {
+            album-viewer > form > input:focus::placeholder {
                 color:#6684b2;
             }
-            .story-viewer > form > input::placeholder {
+            album-viewer > form > input::placeholder {
                 color:#444;
             }
-            .story-viewer > form > button {
+            album-viewer > form > button {
                 border:2px solid #888;
                 padding:.5em;
             }
-            .story-viewer > form > button:active {
+            album-viewer > form > button:active {
                 background-color:#b9c8df;
                 border-color:#6684b2;
                 color:#6684b2;
@@ -94,7 +94,7 @@
         </style>
     </head>
     <body>
-        <script src="/story-viewer.js" async></script>
+        <script src="album-viewer.js" async></script>
         <div id="app-mount"></div>
         <span id="initial-loader" class="loader"></span>
     </body>

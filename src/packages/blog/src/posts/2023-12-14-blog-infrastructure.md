@@ -16,7 +16,7 @@ As you may be aware, the intent of this website is both to be a publicly accessi
 
 # Demonstration
 
-You can click around to see the static blog content. [Here](https://gabrielmiller.org/stories.html?title=test-story-for-demonstration-purposes&token=A05cl235d20KJ;t3P0772.cvDN4541FhqpQnRZ03-10216N4b0,23FPN1Cdg10d3) is an example of a private album.
+You can click around to see the static blog content. [Here](https://gabrielmiller.org/album.html?title=test-story-for-demonstration-purposes&token=A05cl235d20KJ;t3P0772.cvDN4541FhqpQnRZ03-10216N4b0,23FPN1Cdg10d3) is an example of a private album.
 
 # Architecture
 

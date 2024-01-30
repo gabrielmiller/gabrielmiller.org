@@ -8,6 +8,7 @@
   "private": true,
   "workspaces": [
     "packages/blog",
-    "packages/story-viewer"
+    "packages/album-backend",
+    "packages/album-viewer"
   ]
 }

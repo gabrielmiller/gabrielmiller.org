@@ -13,13 +13,13 @@ import (
     "time"
 )
 
-type StoryIndex struct {
+type AlbumIndex struct {
     AccessToken string
-    Entries []StoryEntry `json:"entries"`
+    Entries []AlbumEntry `json:"entries"`
     Metadata map[string]interface{} `json:"metadata"`
 }
 
-type StoryEntry struct {
+type AlbumEntry struct {
     Filename string `json:"filename"`
     Metadata map[string]interface{} `json:"metadata"`
 }
@@ -60,22 +60,22 @@ func (basics BucketBasics) getS3FileInMemory(objectKey string) (string, error) {
     return string(data), nil
 }
 
-func GetIndexForStory(story string, accessToken string) (StoryIndex, error) {
-    var Index StoryIndex
+func GetIndexForAlbum(album string, accessToken string) (AlbumIndex, error) {
+    var Index AlbumIndex
 
     bucket, err := getConnection()
     if err != nil {
         return Index, err
     }
 
-    indexFile, err := bucket.getS3FileInMemory(story + "/index.json")
+    indexFile, err := bucket.getS3FileInMemory(album + "/index.json")
     if err != nil {
         return Index, err
     }
 
     json.Unmarshal([]byte(indexFile), &Index)
     if (Index.AccessToken != accessToken) {
-        err = errors.New("Invalid token for story")
+        err = errors.New("Invalid token for album")
         return Index, err
     }
 
@@ -84,8 +84,8 @@ func GetIndexForStory(story string, accessToken string) (StoryIndex, error) {
     return Index, nil
 }
 
-func GetEntriesForStory(story string, accessToken string, page int, perPage int) ([]string, error) {
-    Index, err := GetIndexForStory(story, accessToken)
+func GetEntriesForAlbum(album string, accessToken string, page int, perPage int) ([]string, error) {
+    Index, err := GetIndexForAlbum(album, accessToken)
     if err != nil {
         return nil, err
     }
@@ -101,7 +101,7 @@ func GetEntriesForStory(story string, accessToken string, page int, perPage int)
 
     var urls []string
     for _, element := range paginatedEntries {
-        url, err := GetPresignUrl(story, element.Filename)
+        url, err := GetPresignUrl(album, element.Filename)
 
         if err != nil {
             return nil, err
@@ -113,7 +113,7 @@ func GetEntriesForStory(story string, accessToken string, page int, perPage int)
     return urls, nil
 }
 
-func GetPresignUrl(story string, key string) (string, error) {
+func GetPresignUrl(album string, key string) (string, error) {
     bucket, err := getConnection()
     if err != nil {
         return "", err
@@ -121,7 +121,7 @@ func GetPresignUrl(story string, key string) (string, error) {
 
     presignClient := s3.NewPresignClient(bucket.S3Client)
     presigner := Presigner{ PresignClient: presignClient }
-    file, err := presigner.getObject(story + "/" + key, 3600)
+    file, err := presigner.getObject(album + "/" + key, 3600)
 
     if err != nil {
         return "", err
