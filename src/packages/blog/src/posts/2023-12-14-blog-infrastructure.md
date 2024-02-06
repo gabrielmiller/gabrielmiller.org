@@ -32,7 +32,7 @@ My goal was to spend as little money as possible.
 
 Objective: extreme frugality.
 
-This website uses several different products that amazon web services(AWS) and cloudfront offer. Here's a little breakdown:
+This website uses several different products that Amazon Web Services(AWS) and Cloudflare offer. Here's a little breakdown:
 
 1. Paid offering: File hosting - Amazon S3
 2. Paid offering: Making a static website out of hosted files - Amazon Cloudfront
@@ -64,7 +64,7 @@ Cost-wise, it's been a success. Here's the first month after migrating to servin
 
 ![Costs](./2023-12-14-blog-infrastructure/2.png)
 
-This partially is an admission that I serve very little traffic, but even still I'm delighted that I'm paying mere pennies a month for my home-grown photo-sharing service and blog.
+This partially is an admission that I serve little traffic, but despite that I'm delighted that I'm paying mere pennies a month for my home-grown photo-sharing service and blog.
 
 Cheers!
 
