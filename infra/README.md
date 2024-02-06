@@ -60,5 +60,5 @@ terraform -chdir=./production import -var-file=./variables.tfvars 'module.acm_ce
 6. Create a plan and run it to stand up the rest of the infrastructure
 ```
 terraform -chdir=./production plan -var-file=./variables.tfvars -out changes
-terraform -chdir./production apply changes
+terraform -chdir=./production apply changes
 ```
