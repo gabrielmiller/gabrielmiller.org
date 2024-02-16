@@ -1,10 +1,10 @@
 import * as React from "react"
 import type { PageProps } from "gatsby"
 import { graphql } from 'gatsby'
-import Header from "../../partials/head"
-import Navigation from "../../partials/navigation"
-import { IPost } from "../../services/post"
-import dasherize from "../../services/dasherize"
+import Header from "../partials/head"
+import Navigation from "../partials/navigation"
+import { IPost } from "../services/post"
+import dasherize from "../services/dasherize"
 
 interface IPostContainer {
     markdownRemark: IPost
@@ -37,7 +37,10 @@ const PostPage: React.FC<PageProps<IPostContainer>> = ({ data }) => {
 
 export const query = graphql`
 query ($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+    markdownRemark(
+        id: { eq: $id },
+        fields: { type: { eq: "posts" }}
+    ) {
         html
         frontmatter {
             date(formatString: "MMMM DD, YYYY")

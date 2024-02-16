@@ -1,5 +1,6 @@
 ---
 slug: 'corn-bread-muffins'
+tags: ["bread"]
 ingredients:
 -
   name: flour
