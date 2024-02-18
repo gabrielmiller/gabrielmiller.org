@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "npm run build:css && gatsby develop",
     "prebuild": "rm public -rf",
     "build": "npm run build:gatsby && npm run build:css",
     "build:css": "node ../../node_modules/sass/sass.js styles.scss:public/styles.css --style=compressed --no-source-map",

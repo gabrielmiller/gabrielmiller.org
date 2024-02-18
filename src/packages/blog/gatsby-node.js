@@ -46,7 +46,7 @@ exports.createPages = async ({ actions, graphql }) => {
     const postTemplate = path.resolve("src/templates/post.tsx")
     const postQuery = await graphql(`
     {
-      allMarkdownRemark(filter: {fields: {type: {eq: "posts"}}}) {
+      allMarkdownRemark(filter: { fields: { type: { eq: "posts" }}}) {
         nodes {
           id
           frontmatter {
@@ -62,6 +62,29 @@ exports.createPages = async ({ actions, graphql }) => {
         component: postTemplate,
         context: {
           id: post.id
+        }
+      })
+    })
+
+    const recipeTemplate = path.resolve("src/templates/recipe.tsx")
+    const recipeQuery = await graphql(`
+    {
+      allMarkdownRemark(filter: { fields: { type: { eq: "recipes" }}}) {
+        nodes {
+          id
+          frontmatter {
+            slug
+          }
+        }
+      }
+    }
+    `)
+    recipeQuery.data.allMarkdownRemark.nodes.forEach(recipe => {
+      createPage({
+        path: `/recipes/${recipe.frontmatter.slug}.html`,
+        component: recipeTemplate,
+        context: {
+          id: recipe.id
         }
       })
     })

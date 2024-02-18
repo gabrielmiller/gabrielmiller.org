@@ -171,3 +171,20 @@ ul.emoji-list .emoji {
 ul.list {
     margin-top: 0;
 }
+
+span.fraction {
+    display: inline-block;
+    font-size: .5em;
+}
+span.fraction > sup {
+    display: block;
+    border-bottom: 1px solid;
+    font: inherit;
+}
+span.fraction > sub {
+    display: block;
+    font: inherit;
+}
+span.leading-number {
+    font-size: 1.25em;
+}

@@ -1,6 +1,8 @@
 ---
+title: 'Corn Bread Muffins'
 slug: 'corn-bread-muffins'
-tags: ["bread"]
+date: '2024-01-01'
+category: 'bread'
 ingredients:
 -
   name: flour
