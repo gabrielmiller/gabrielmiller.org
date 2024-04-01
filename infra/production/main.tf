@@ -95,5 +95,6 @@ module "local_env_file" {
   apex_domain = var.apex_domain
   apex_bucket_name = var.apex_domain
   cloudfront_cache_max_age = "0"
-  environment_name = var.aws_profile
+  environment_name = var.environment_name
+  aws_profile = var.aws_profile
 }
