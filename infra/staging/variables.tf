@@ -18,8 +18,12 @@ variable "private_bucket" {
   type    = string
 }
 
-variable "aws_profile" {
+variable "environment_name" {
   default = "staging"
+  type = string
+}
+
+variable "aws_profile" {
   type    = string
 }
 
