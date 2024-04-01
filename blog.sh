@@ -156,12 +156,12 @@ redeploy_index() {
   cd albums
 
   echo "[Albums] Deleting existing index for album $1"
-  aws s3api delete-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --profile "$GBLOG_ENVIRONMENT"
+  aws s3api delete-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --profile "$AWS_PROFILE"
 
   directory="$1/"
   file="index.json"
   mimetype="application/json"
-  result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
+  result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$AWS_PROFILE" 2>&1)
 
   if [ "$?" -eq 0 ]
     then
@@ -180,14 +180,14 @@ deploy_album() {
 
   echo "[Albums] Deleting contents for album $1"
 
-  result=$(aws s3 rm s3://"$ALBUM_BUCKET/$1" --recursive --profile "$GBLOG_ENVIRONMENT")
+  result=$(aws s3 rm s3://"$ALBUM_BUCKET/$1" --recursive --profile "$AWS_PROFILE")
   directory="$1/"
   for file in $(ls $directory)
   do
     filename="${file##*/}"
     extension="${filename##*.}"
     mimetype=${albumfiletypes["$extension"]}
-    result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
+    result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$AWS_PROFILE" 2>&1)
     if [ "$?" -eq 0 ]
     then
       echo "[Albums] Published $directory$file"
@@ -206,7 +206,7 @@ deploy_albums() {
   cd albums
 
   echo "[Albums] Destroying bucket contents"
-  result=$(aws s3 rm s3://"$ALBUM_BUCKET" --recursive --profile "$GBLOG_ENVIRONMENT")
+  result=$(aws s3 rm s3://"$ALBUM_BUCKET" --recursive --profile "$AWS_PROFILE")
 
   for directory in $(ls -d */)
   do
@@ -216,7 +216,7 @@ deploy_albums() {
       filename="${file##*/}"
       extension="${filename##*.}"
       mimetype=${albumfiletypes["$extension"]}
-      result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$GBLOG_ENVIRONMENT" 2>&1)
+      result=$(aws s3api put-object --bucket "$ALBUM_BUCKET" --key "$directory$file" --body "$directory$file" --content-type "$mimetype" --profile "$AWS_PROFILE" 2>&1)
       if [ "$?" -eq 0 ]
       then
         echo "[Albums] Published $directory$file"
@@ -256,7 +256,7 @@ deploy_frontend() {
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
-  rm_result=$(aws s3 rm s3://"$APEX_BUCKET_NAME" --recursive --profile "$GBLOG_ENVIRONMENT" 2>&1)
+  rm_result=$(aws s3 rm s3://"$APEX_BUCKET_NAME" --recursive --profile "$AWS_PROFILE" 2>&1)
   if [ "$?" -ne 0 ]
    then
      echo "[Frontend] There was an error destroying bucket contents."
@@ -273,7 +273,7 @@ deploy_frontend() {
     extension="${filename##*.}"
     mimetype=${frontendfiletypes["$extension"]}
     key="${file:2}" # shave the ./ prefix off for the s3 key
-    result=$(aws s3api put-object --profile "$GBLOG_ENVIRONMENT" --bucket "$APEX_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
+    result=$(aws s3api put-object --profile "$AWS_PROFILE" --bucket "$APEX_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
 
     if [ "$?" -ne 0 ]
       then
@@ -411,7 +411,7 @@ optimize_image_sizes() {
 plant_tls_certificate_in_acm() {
   cd cert2 #todo rename to cert
   initialize_environment
-  sudo -E aws acm import-certificate --certificate-arn "$CERTIFICATE_ARN" --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile "$GBLOG_ENVIRONMENT"
+  sudo -E aws acm import-certificate --certificate-arn "$CERTIFICATE_ARN" --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile "$AWS_PROFILE"
   cd ..
 }
 

@@ -14,6 +14,10 @@ variable "apex_bucket_name" {
     type = string
 }
 
+variable "aws_profile" {
+    type = string
+}
+
 variable "cloudfront_cache_max_age" {
     type = string
 }

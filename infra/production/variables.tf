@@ -18,8 +18,12 @@ variable "private_bucket" {
   type    = string
 }
 
-variable "aws_profile" {
+variable "environment_name" {
   default = "production"
+  type = string
+}
+
+variable "aws_profile" {
   type    = string
 }
 
