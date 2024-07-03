@@ -475,13 +475,6 @@ Do the blog thing.
           9. deploy all albums
           10. update index for an individual album
 
-    -s, --subdomain
-      Subdomain being checked for tls expirationd ate.
-
-      Options:
-        - apex (default)
-        - www
-
     -t, --title
         Title of album to deploy.
 
