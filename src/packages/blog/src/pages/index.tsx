@@ -24,7 +24,7 @@ const IndexPage: React.FC<PageProps<IMostRecentPostContainer>> = ({ data }) => {
                 </p>
                 <img alt="a photo of the author" className="avatar" src="avatar.jpg" />
                 <p>👋 Hi there! My name is Gabe. Thanks for visiting my website.</p>
-                <p>I'm interested in most things web-development, databases, security, and GIS. I'm a software engineer at <a href="https://www.jazzhr.com">JazzHR</a>, which was formerly known as <em>Jazz</em> and before that <em>The Resumator</em>. I have 11+ years of full-stack web development experience, more recently focused on front-end development, architecture, distributed systems, and data.</p>
+                <p>I'm interested in most things web-development, databases, security, and GIS. I'm a software engineer at <a href="http://heggerty.org/">Heggerty</a>. Before that I worked at <a href="https://www.jazzhr.com">JazzHR</a>, which was formerly known as <em>Jazz</em> and before that <em>The Resumator</em>. I have 11+ years of full-stack web development experience, more recently focused on front-end development, architecture, distributed systems, and data.</p>
                 <p>Growing up I played PC games and as a result was exposed to computers at a young and formative age. Despite that I was a late entrant to the software industry. I am a self-taught engineer and earned a degree in environmental studies and a certificate in geographic information systems.</p>
                 <p>I am a proponent of open-source software and appreciate its many communities.</p>
                 <p>In my free time I enjoy:</p>
@@ -36,7 +36,7 @@ const IndexPage: React.FC<PageProps<IMostRecentPostContainer>> = ({ data }) => {
                 </ul>
                 <p>This website is comprised of personal thoughts, work, and projects unless otherwise noted. None of the opinions expressed within represent those of my employer.</p>
                 <p>You can find my current resume <a href="lgabrielmiller.pdf">here</a>.</p>
-                <p>Page last updated 2024-04-01.</p>
+                <p>Page last updated 2024-07-02.</p>
             </main>
         </div>
     )
