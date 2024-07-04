@@ -288,7 +288,7 @@ deploy_frontend() {
 
   cd dist
   echo "[Frontend] Destroying bucket contents"
-  rm_result=$(aws s3 rm s3://"$APEX_BUCKET_NAME" --recursive --profile "$AWS_PROFILE" 2>&1)
+  rm_result=$(aws s3 rm s3://"$APEX_DOMAIN" --recursive --profile "$AWS_PROFILE" 2>&1)
   if [ "$?" -ne 0 ]
    then
      echo "[Frontend] There was an error destroying bucket contents."
@@ -305,7 +305,7 @@ deploy_frontend() {
     extension="${filename##*.}"
     mimetype=${frontendfiletypes["$extension"]}
     key="${file:2}" # shave the ./ prefix off for the s3 key
-    result=$(aws s3api put-object --profile "$AWS_PROFILE" --bucket "$APEX_BUCKET_NAME" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
+    result=$(aws s3api put-object --profile "$AWS_PROFILE" --bucket "$APEX_DOMAIN" --key "$key" --body "$file" --cache-control "max-age=$CLOUDFRONT_CACHE_MAX_AGE" --content-type "$mimetype" 2>&1)
 
     if [ "$?" -ne 0 ]
       then
