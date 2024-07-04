@@ -36,6 +36,7 @@ albumfiletypes=(
 declare -A subdomains
 subdomains=(
   ["apex"]=""
+  ["api"]="api"
   ["www"]="www"
 )
 
