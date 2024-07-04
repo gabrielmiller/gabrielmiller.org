@@ -18,7 +18,7 @@ export default {
 
         app.stack(function Stack({ stack }: StackContext) {
             const {
-                APEX_DOMAIN,
+                APEX_DOMAIN_ORIGIN,
                 ALBUM_BUCKET
             } = process.env;
 
@@ -26,12 +26,11 @@ export default {
                 cors: {
                     allowHeaders: ["authorization"],
                     allowMethods: ["GET"],
-                    allowOrigins: [APEX_DOMAIN],
+                    allowOrigins: [APEX_DOMAIN_ORIGIN],
                 },
                 defaults: {
                     function: {
                         environment: {
-                            APEX_DOMAIN,
                             ALBUM_BUCKET
                         }
                     }

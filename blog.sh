@@ -1,6 +1,7 @@
 #!/bin/bash
 
 GBLOG_ENVIRONMENT="staging"
+GBLOG_SUBDOMAIN="apex"
 SKIP_BACKEND=false
 SKIP_FRONTEND=false
 OPTIMIZED_IMAGE_SIZE=1920
@@ -30,6 +31,13 @@ albumfiletypes=(
   ["jpg"]="image/jpeg"
   ["json"]="application/json"
   ["png"]="image/png"
+)
+
+declare -A subdomains
+subdomains=(
+  ["apex"]=""
+  ["api"]="api"
+  ["www"]="www"
 )
 
 validate_aws_dependency() {
@@ -175,6 +183,30 @@ redeploy_index() {
   cd ..
 }
 
+check_tls_certificate_for_subdomain() {
+  echo "Which subdomain should be checked? (default: apex)"
+  read GBLOG_SUBDOMAIN
+
+  if [[ "${subdomains[@]}" =~ "$GBLOG_SUBDOMAIN" ]] ; then
+    MATCH=1
+  fi
+
+  if [ "$MATCH" != 1 ]
+  then
+    echo "ERROR: Provided subdomain '$GBLOG_SUBDOMAIN' is not valid."
+    exit 1
+  fi
+
+  if [ "$GBLOG_SUBDOMAIN" = "" ]
+  then
+    DOMAIN="$APEX_DOMAIN"
+  else
+    DOMAIN="$GBLOG_SUBDOMAIN.$APEX_DOMAIN"
+  fi
+  echo "The TLS certificate for $DOMAIN says the following:"
+  openssl s_client -servername "$DOMAIN" -connect "$DOMAIN":443 | openssl x509 -noout -dates
+}
+
 deploy_album() {
   cd albums
 
@@ -232,7 +264,7 @@ deploy_albums() {
 }
 
 deploy_backend() {
-  npm run deploy -w album-backend -- --stage "$GBLOG_ENVIRONMENT"
+  npm run deploy -w album-backend -- --stage "$AWS_PROFILE"
 }
 
 traverse_and_upload_frontend_files() {
@@ -310,7 +342,7 @@ shipit() {
 generate_tls_certificate() {
   cd dns
   initialize_environment
-  sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-cloudflare --agree-tos --preferred-challenges dns --non-interactive --dns-cloudflare-credentials cloudflare.ini --dns-cloudflare-propagation-seconds 30
+  sudo -E certbot certonly -d "$APEX_DOMAIN_ORIGIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-cloudflare --agree-tos --preferred-challenges dns --non-interactive --dns-cloudflare-credentials cloudflare.ini --dns-cloudflare-propagation-seconds 30
   # --force-renewal if doing this off of the usual schedule
   cd ..
 }
@@ -440,8 +472,9 @@ Do the blog thing.
           5. authenticate with aws
           6. generate a tls certificate
           7. plant the tls certificate in acm
-          8. deploy all albums
-          9. update index for an individual album
+          8. check subdomain tls certificate expiration date
+          9. deploy all albums
+          10. update index for an individual album
 
     -t, --title
         Title of album to deploy.
@@ -621,7 +654,13 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] Certificate planted in acm."
    exit 0
    ;;
- 8) # deploy all albums
+ 8) # check subdomain tls expiration date
+   echo "[$(date +%T)] validating tls certificate expiration date..."
+   check_tls_certificate_for_subdomain
+
+   exit 0
+   ;;
+ 9) # deploy all albums
    validate_aws_dependency
    echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT album deployment."
    validate_album_filetypes
@@ -629,7 +668,7 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] album deploy complete."
    exit 0
    ;;
- 9) # update index for an individual album
+ 10) # update index for an individual album
    if [ "$GBLOG_ALBUM_TITLE" = "" ]
    then
     echo "ERROR: You must specify a title."
