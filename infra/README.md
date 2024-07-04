@@ -19,16 +19,22 @@ region = us-east-2
 sso_start_url = <redacted>
 sso_region = us-east-2
 
-[profile staging]
+[profile personal-staging]
 sso_session = gabe
 sso_account_id = <redacted>
 sso_role_name = AdministratorAccess
+sso_start_url = <redacted>
+sso_region = us-east-2
 
-[profile production]
+[profile personal-production]
 sso_session = gabe
 sso_account_id = <redacted>
 sso_role_name = AdministratorAccess
+sso_start_url = <redacted>
+sso_region = us-east-2
 ```
+
+_The redundant regions and start_url on the profiles appear to be necessary, but I'm not sure why_.
 
 # Initial setup for each environment
 
