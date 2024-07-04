@@ -263,7 +263,7 @@ deploy_albums() {
 }
 
 deploy_backend() {
-  npm run deploy -w album-backend -- --stage "$GBLOG_ENVIRONMENT"
+  npm run deploy -w album-backend -- --stage "$AWS_PROFILE"
 }
 
 traverse_and_upload_frontend_files() {
