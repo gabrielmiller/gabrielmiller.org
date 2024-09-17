@@ -342,7 +342,7 @@ shipit() {
 generate_tls_certificate() {
   cd dns
   initialize_environment
-  sudo -E certbot certonly -d "$APEX_DOMAIN_ORIGIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-cloudflare --agree-tos --preferred-challenges dns --non-interactive --dns-cloudflare-credentials cloudflare.ini --dns-cloudflare-propagation-seconds 30
+  sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-cloudflare --agree-tos --preferred-challenges dns --non-interactive --dns-cloudflare-credentials cloudflare.ini --dns-cloudflare-propagation-seconds 30
   # --force-renewal if doing this off of the usual schedule
   cd ..
 }
