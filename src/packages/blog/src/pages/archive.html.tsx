@@ -83,7 +83,10 @@ const ArchivePage: React.FC<PageProps<IIndexContainer>> = ({ data }) => {
 
 export const query = graphql`
 {
-    allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+    allMarkdownRemark(
+        sort: { frontmatter: { date: DESC }},
+        filter: { fields: { type: { eq: "posts" }}}
+    ) {
         nodes {
             frontmatter {
                 date
