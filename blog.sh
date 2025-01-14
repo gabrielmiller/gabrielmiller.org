@@ -6,9 +6,9 @@ SKIP_BACKEND=false
 SKIP_FRONTEND=false
 OPTIMIZED_IMAGE_SIZE=1920
 
-VALIDAWSVERSION="aws-cli/2.9.19 Python/3.9.11 Linux/6.7.1-arch1-1 exe/x86_64.arch prompt/off"
+VALIDAWSVERSION="aws-cli/2.22.26 Python/3.13.1 Linux/6.12.7-arch1-1 source/x86_64.arch"
 VALIDCERTBOTVERSION="certbot 2.8.0"
-VALIDGOVERSION="go version go1.21.6 linux/amd64"
+VALIDGOVERSION="go version go1.23.4 linux/amd64"
 VALIDNODEJSVERSION="v20.10.0"
 
 declare -A frontendfiletypes
