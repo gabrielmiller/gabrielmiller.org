@@ -12,8 +12,14 @@ const config: GatsbyConfig = {
             options: {
                 "name": "posts",
                 "path": "./src/posts/"
-            },
-            __key: "posts"
+            }
+        },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                "name": "recipes",
+                "path": "./src/recipes/"
+            }
         },
         `gatsby-plugin-sharp`,
         {
@@ -28,17 +34,17 @@ const config: GatsbyConfig = {
                     },
                 ],
             },
-        },
-        {
-            resolve: `gatsby-plugin-no-javascript-utils`,
-            options: {
-                noScript: true,
-                noSourcemaps: true,
-                removeGeneratorTag: true,
-                removeHeadDataAttrs: true,
-                noInlineStyles: false,
-                removeGatsbyAnnouncer: true,
-            }
+        // },
+        // {
+        //     resolve: `gatsby-plugin-no-javascript-utils`,
+        //     options: {
+        //         noScript: true,
+        //         noSourcemaps: true,
+        //         removeGeneratorTag: true,
+        //         removeHeadDataAttrs: true,
+        //         noInlineStyles: false,
+        //         removeGatsbyAnnouncer: true,
+        //     }
         }
     ]
 };

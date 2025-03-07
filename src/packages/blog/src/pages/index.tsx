@@ -44,7 +44,11 @@ const IndexPage: React.FC<PageProps<IMostRecentPostContainer>> = ({ data }) => {
 
 export const query = graphql`
 {
-    allMarkdownRemark(limit: 1, sort: {frontmatter: {date: DESC}}) {
+    allMarkdownRemark(
+        limit: 1,
+        sort: { frontmatter: { date: DESC }}
+        filter: { fields: { type: { eq: "posts" }}}
+    ) {
         nodes {
             frontmatter {
                 date
