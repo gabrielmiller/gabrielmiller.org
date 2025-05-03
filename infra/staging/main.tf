@@ -51,7 +51,6 @@ module "acm_certificate_api_gateway" {
 
 module "cloudflare_api_dns" {
   source  = "../modules/cloudflare_api_dns"
-  domain  = module.api_gateway_backend.domain
   zone_id = var.cloudflare_zone_id
   value   = module.api_gateway_backend.domain
 }

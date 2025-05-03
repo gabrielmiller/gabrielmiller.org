@@ -2,12 +2,9 @@
 
 GBLOG_ENVIRONMENT="staging"
 GBLOG_SUBDOMAIN="apex"
-SKIP_BACKEND=false
-SKIP_FRONTEND=false
 OPTIMIZED_IMAGE_SIZE=1920
 
 VALIDAWSVERSION="aws-cli/2.22.26 Python/3.13.2 Linux/6.12.7-arch1-1 source/x86_64.arch"
-VALIDGOVERSION="go version go1.24.2 linux/amd64"
 VALIDNODEJSVERSION="v22.15.0"
 
 declare -A frontendfiletypes
@@ -50,20 +47,6 @@ validate_aws_dependency() {
   if [ "$AWSVERSION" != "$VALIDAWSVERSION" ]
   then
     echo "WARNING: Using untested aws version. This has only been tested with $VALIDAWSVERSION."
-  fi
-}
-
-validate_go_dependency() {
-  if ! command -v go &> /dev/null
-  then
-    echo "Go dependency could not be found. You should install $VALIDGOVERSION before proceeding."
-    exit 1
-  fi
-
-  GOVERSION=$(go version)
-  if [ "$GOVERSION" != "$VALIDGOVERSION" ]
-  then
-    echo "WARNING: Using untested go version. This has only been tested with $VALIDGOVERSION."
   fi
 }
 
@@ -218,10 +201,6 @@ deploy_albums() {
   cd ..
 }
 
-deploy_backend() {
-  npm run deploy -w album-backend -- --stage "$AWS_PROFILE"
-}
-
 traverse_and_upload_frontend_files() {
   # WARNING: depends on global variable, frontend_files_to_upload
   for pathname in "$1"/*; do
@@ -276,21 +255,8 @@ deploy_frontend() {
 shipit() {
   cd src
   npm install
-
-  if [ "$SKIP_BACKEND" = false ]
-  then
-    deploy_backend
-  else
-    echo "[Backend] Build & deployment skipped";
-  fi
-
-  if [ "$SKIP_FRONTEND" = false ]
-  then
-    deploy_frontend
-  else
-    echo "[Frontend] Build & deployment skipped";
-  fi
-
+  deploy_frontend
+  # backend is deployed via terraform
   cd ..
 }
 
@@ -416,12 +382,6 @@ Do the blog thing.
     -t, --title
         Title of album to deploy.
 
-    --skip-frontend
-        Skip build & deploy of the frontend.
-
-    --skip-backend
-        Skip build & deploy of the backend.
-
     -h, --help
         Display this help file.
 
@@ -468,12 +428,6 @@ while :; do
         echo "-t or --title requires a non-empty argument."
         exit 1
       fi
-      ;;
-    --skip-frontend)
-      SKIP_FRONTEND=true
-      ;;
-    --skip-backend)
-      SKIP_BACKEND=true
       ;;
     *)
       break
@@ -527,7 +481,6 @@ fi
 case "$GBLOG_OPERATION" in
  1) # build and deploy code
    validate_aws_dependency
-   validate_go_dependency
    validate_nodejs_dependency
    echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT build & deployment."
    shipit

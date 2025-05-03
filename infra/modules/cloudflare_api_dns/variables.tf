@@ -1,11 +1,12 @@
 variable "zone_id" {
-    type = string
+  type = string
 }
 
 variable "domain" {
-    type = string
+  type    = string
+  default = "api"
 }
 
 variable "value" {
-    type = string
+  type = string
 }
