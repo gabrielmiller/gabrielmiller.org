@@ -29,6 +29,11 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
+locals {
+  domain_api                = "api.${var.apex_domain}"
+  domain_apex_with_protocol = "https://${var.apex_domain}"
+}
+
 module "acm_certificate_cloudfront" {
   source  = "../modules/acm_certificate_cloudfront"
   domain  = var.apex_domain
@@ -38,7 +43,7 @@ module "acm_certificate_cloudfront" {
 
 module "acm_certificate_api_gateway" {
   source  = "../modules/acm_certificate_api_gateway"
-  domain  = "api.${var.apex_domain}"
+  domain  = local.domain_api
   profile = var.aws_profile
   region  = var.region
   zone_id = var.cloudflare_zone_id
@@ -127,9 +132,9 @@ module "lambda_entries" {
 
 module "api_gateway_backend" {
   source                             = "../modules/api_gateway_backend"
-  allowed_cors_origin                = "https://${var.apex_domain}"
+  allowed_cors_origin                = local.domain_apex_with_protocol
   cert_arn                           = module.acm_certificate_api_gateway.id
-  domain                             = "api.${var.apex_domain}"
+  domain                             = local.domain_api
   lambda_function_album_invoke_arn   = module.lambda_album.invoke_arn
   lambda_function_album_name         = module.lambda_album.arn
   lambda_function_entries_invoke_arn = module.lambda_entries.invoke_arn
