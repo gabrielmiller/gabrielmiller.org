@@ -6,10 +6,9 @@ SKIP_BACKEND=false
 SKIP_FRONTEND=false
 OPTIMIZED_IMAGE_SIZE=1920
 
-VALIDAWSVERSION="aws-cli/2.22.26 Python/3.13.1 Linux/6.12.7-arch1-1 source/x86_64.arch"
-VALIDCERTBOTVERSION="certbot 2.8.0"
-VALIDGOVERSION="go version go1.23.4 linux/amd64"
-VALIDNODEJSVERSION="v20.10.0"
+VALIDAWSVERSION="aws-cli/2.22.26 Python/3.13.2 Linux/6.12.7-arch1-1 source/x86_64.arch"
+VALIDGOVERSION="go version go1.24.2 linux/amd64"
+VALIDNODEJSVERSION="v22.15.0"
 
 declare -A frontendfiletypes
 frontendfiletypes=(
@@ -96,25 +95,6 @@ validate_image_optimize_dependency() {
   fi
 }
 
-validate_tls_dependency() {
-  if ! command -v certbot &> /dev/null
-  then
-    echo "Certbot dependency could not be found. You should install $VALIDCERTBOTVERSION before proceeding."
-    exit 1
-  fi
-
-  CERTBOTVERSION=$(certbot --version)
-  if [ "$CERTBOTVERSION" != "$VALIDCERTBOTVERSION" ]
-  then
-    echo "WARNING: Using untested certbot version. This has only been tested with $VALIDCERTBOTVERSION."
-  fi
-
-  if ! p=$(certbot plugins | grep dns-cloudflare)
-  then
-    echo "WARNING: Could not locate cloudflare plugin. This has only been tested with it installed."
-  fi
-}
-
 # load the specific environment's variables from a local file
 initialize_environment() {
   while read line; do
@@ -183,30 +163,6 @@ redeploy_index() {
   cd ..
 }
 
-check_tls_certificate_for_subdomain() {
-  echo "Which subdomain should be checked? (default: apex)"
-  read GBLOG_SUBDOMAIN
-
-  if [[ "${subdomains[@]}" =~ "$GBLOG_SUBDOMAIN" ]] ; then
-    MATCH=1
-  fi
-
-  if [ "$MATCH" != 1 ]
-  then
-    echo "ERROR: Provided subdomain '$GBLOG_SUBDOMAIN' is not valid."
-    exit 1
-  fi
-
-  if [ "$GBLOG_SUBDOMAIN" = "" ]
-  then
-    DOMAIN="$APEX_DOMAIN"
-  else
-    DOMAIN="$GBLOG_SUBDOMAIN.$APEX_DOMAIN"
-  fi
-  echo "The TLS certificate for $DOMAIN says the following:"
-  openssl s_client -servername "$DOMAIN" -connect "$DOMAIN":443 | openssl x509 -noout -dates
-}
-
 deploy_album() {
   cd albums
 
@@ -233,7 +189,6 @@ deploy_album() {
   cd ..
 }
 
-#todo probably nuke this since I don't use it
 deploy_albums() {
   cd albums
 
@@ -339,14 +294,6 @@ shipit() {
   cd ..
 }
 
-generate_tls_certificate() {
-  cd dns
-  initialize_environment
-  sudo -E certbot certonly -d "$APEX_DOMAIN" -d "$WILDCARD_DOMAIN" --email "$EMAIL" --dns-cloudflare --agree-tos --preferred-challenges dns --non-interactive --dns-cloudflare-credentials cloudflare.ini --dns-cloudflare-propagation-seconds 30
-  # --force-renewal if doing this off of the usual schedule
-  cd ..
-}
-
 generate_index_file() {
   ALBUM_DIRECTORY="./albums/$GBLOG_ALBUMNAME"
   if [ ! -d "$ALBUM_DIRECTORY" ]
@@ -440,13 +387,6 @@ optimize_image_sizes() {
   cd ..
 }
 
-plant_tls_certificate_in_acm() {
-  cd cert2 #todo rename to cert
-  initialize_environment
-  sudo -E aws acm import-certificate --certificate-arn "$CERTIFICATE_ARN" --certificate fileb://"$CERTIFICATE_PUBLIC" --private-key fileb://"$CERTIFICATE_PRIVATE_KEY" --certificate-chain fileb://"$CERTIFICATE_CHAIN" --profile "$AWS_PROFILE"
-  cd ..
-}
-
 show_help() {
 cat << EOF
 
@@ -470,11 +410,8 @@ Do the blog thing.
           3. optimize image sizes for an album
           4. generate index file for an album
           5. authenticate with aws
-          6. generate a tls certificate
-          7. plant the tls certificate in acm
-          8. check subdomain tls certificate expiration date
-          9. deploy all albums
-          10. update index for an individual album
+          6. deploy all albums
+          7. update index for an individual album
 
     -t, --title
         Title of album to deploy.
@@ -639,28 +576,7 @@ case "$GBLOG_OPERATION" in
    validate_aws_dependency
    aws sso login --sso-session=gabe
    ;;
- 6) # generate tls cert
-   validate_aws_dependency
-   validate_tls_dependency
-   echo "[$(date +%T)] Generating a new certificate for $GBLOG_ENVIRONMENT."
-   generate_tls_certificate
-   echo "[$(date +%T)] Certificate generated."
-   exit 0
-   ;;
- 7) # plant tls cert in acm
-   validate_aws_dependency
-   echo "[$(date +%T)] Planting the $GBLOG_ENVIRONMENT certificate in acm."
-   plant_tls_certificate_in_acm
-   echo "[$(date +%T)] Certificate planted in acm."
-   exit 0
-   ;;
- 8) # check subdomain tls expiration date
-   echo "[$(date +%T)] validating tls certificate expiration date..."
-   check_tls_certificate_for_subdomain
-
-   exit 0
-   ;;
- 9) # deploy all albums
+ 6) # deploy all albums
    validate_aws_dependency
    echo "[$(date +%T)] Starting $GBLOG_ENVIRONMENT album deployment."
    validate_album_filetypes
@@ -668,7 +584,7 @@ case "$GBLOG_OPERATION" in
    echo "[$(date +%T)] album deploy complete."
    exit 0
    ;;
- 10) # update index for an individual album
+ 7) # update index for an individual album
    if [ "$GBLOG_ALBUM_TITLE" = "" ]
    then
     echo "ERROR: You must specify a title."
