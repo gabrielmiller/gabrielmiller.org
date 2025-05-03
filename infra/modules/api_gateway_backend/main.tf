@@ -4,7 +4,6 @@ provider "aws" {
   profile = var.profile
 }
 
-
 resource "aws_apigatewayv2_api" "backend" {
   description   = "Album API gateway"
   name          = "album-api"
@@ -13,11 +12,9 @@ resource "aws_apigatewayv2_api" "backend" {
 
 
   cors_configuration {
-    allow_credentials = true
-    allow_headers     = ["authorization", "content-type"]
-    allow_methods     = ["GET"]
-    allow_origins     = [var.allowed_cors_origin]
-    expose_headers    = ["authorization"]
+    allow_headers = ["authorization"]
+    allow_methods = ["GET"]
+    allow_origins = [var.allowed_cors_origin]
   }
 }
 

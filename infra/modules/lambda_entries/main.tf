@@ -71,7 +71,7 @@ data "aws_iam_policy_document" "lambda_backend_entries_policy_document" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:s3:::${var.bucket}/*/index.json",
+      "arn:aws:s3:::${var.bucket}/*",
       "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:${aws_cloudwatch_log_group.backend_entries_lambda.name}:*",
     ]
   }
