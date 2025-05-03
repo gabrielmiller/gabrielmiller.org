@@ -1,14 +1,23 @@
+provider "aws" {
+  alias   = "virginia"
+  region  = var.region
+  profile = var.profile
+}
+
+
 resource "aws_apigatewayv2_api" "backend" {
   description   = "Album API gateway"
   name          = "album-api"
   protocol_type = "HTTP"
   version       = 1
 
+
   cors_configuration {
-    allow_credentials = false
-    allow_headers     = ["content-type"]
+    allow_credentials = true
+    allow_headers     = ["authorization", "content-type"]
     allow_methods     = ["GET"]
     allow_origins     = [var.allowed_cors_origin]
+    expose_headers    = ["authorization"]
   }
 }
 
@@ -17,6 +26,7 @@ resource "aws_apigatewayv2_domain_name" "backend" {
 
   domain_name_configuration {
     certificate_arn = var.cert_arn
+
     endpoint_type   = "REGIONAL"
     security_policy = "TLS_1_2"
   }
@@ -56,7 +66,7 @@ resource "aws_apigatewayv2_integration" "album_backend" {
 
   integration_uri    = var.lambda_function_album_invoke_arn
   integration_type   = "AWS_PROXY"
-  integration_method = "GET"
+  integration_method = "POST"
 }
 
 resource "aws_apigatewayv2_integration" "entries_backend" {
@@ -64,7 +74,7 @@ resource "aws_apigatewayv2_integration" "entries_backend" {
 
   integration_uri    = var.lambda_function_entries_invoke_arn
   integration_type   = "AWS_PROXY"
-  integration_method = "GET"
+  integration_method = "POST"
 }
 
 resource "aws_apigatewayv2_route" "api_album" {
@@ -82,7 +92,7 @@ resource "aws_apigatewayv2_route" "api_entries" {
 }
 
 resource "aws_cloudwatch_log_group" "api_api_gateway" {
-  name = "/aws/api_gw/${aws_apigatewayv2_api.api.name}"
+  name = "/aws/api_gw/${aws_apigatewayv2_api.backend.name}"
 
   retention_in_days = 30
 }
@@ -93,7 +103,7 @@ resource "aws_lambda_permission" "api_gw_album" {
   function_name = var.lambda_function_album_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+  source_arn = "${aws_apigatewayv2_api.backend.execution_arn}/*/*"
 }
 
 resource "aws_lambda_permission" "api_gw_entries" {
@@ -102,5 +112,5 @@ resource "aws_lambda_permission" "api_gw_entries" {
   function_name = var.lambda_function_entries_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+  source_arn = "${aws_apigatewayv2_api.backend.execution_arn}/*/*"
 }

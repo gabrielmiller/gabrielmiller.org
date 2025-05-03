@@ -19,10 +19,6 @@ resource "aws_lambda_function" "backend_album" {
       ALBUM_BUCKET = var.bucket
     }
   }
-
-  layers = [
-    "arn:aws:lambda:us-east-1:177933569100:layer:AWS-Parameters-and-Secrets-Lambda-Extension-Arm64:12"
-  ]
 }
 
 resource "aws_cloudwatch_log_group" "backend_album_lambda" {
@@ -84,7 +80,7 @@ data "aws_iam_policy_document" "lambda_backend_album_policy_document" {
 data "archive_file" "lambda_backend_album" {
   type = "zip"
 
-  source_dir  = "../lambda-builds"
+  source_dir  = "../lambda-builds/album"
   output_path = "../artifacts/api-album.zip"
   depends_on  = [null_resource.build_go_binary]
 }

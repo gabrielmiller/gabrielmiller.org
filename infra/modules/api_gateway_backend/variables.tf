@@ -25,3 +25,11 @@ variable "lambda_function_entries_invoke_arn" {
 variable "lambda_function_entries_name" {
   type = string
 }
+
+variable "profile" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}

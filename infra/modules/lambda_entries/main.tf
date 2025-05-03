@@ -19,14 +19,10 @@ resource "aws_lambda_function" "backend_entries" {
       ALBUM_BUCKET = var.bucket
     }
   }
-
-  layers = [
-    "arn:aws:lambda:us-east-1:177933569100:layer:AWS-Parameters-and-Secrets-Lambda-Extension-Arm64:12"
-  ]
 }
 
 resource "aws_cloudwatch_log_group" "backend_entries_lambda" {
-  name = "/aws/lambda/${aws_lambda_function.entries_backend.function_name}"
+  name = "/aws/lambda/${aws_lambda_function.backend_entries.function_name}"
 
   retention_in_days = 30
 }
@@ -75,7 +71,7 @@ data "aws_iam_policy_document" "lambda_backend_entries_policy_document" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:s3:::${var.bucket}/*",
+      "arn:aws:s3:::${var.bucket}/*/index.json",
       "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:${aws_cloudwatch_log_group.backend_entries_lambda.name}:*",
     ]
   }
@@ -84,7 +80,7 @@ data "aws_iam_policy_document" "lambda_backend_entries_policy_document" {
 data "archive_file" "lambda_backend_entries" {
   type = "zip"
 
-  source_dir  = "../lambda-builds"
+  source_dir  = "../lambda-builds/entries"
   output_path = "../artifacts/api-entries.zip"
   depends_on  = [null_resource.build_go_binary]
 }
