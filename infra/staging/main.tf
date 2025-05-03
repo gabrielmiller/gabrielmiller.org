@@ -43,6 +43,12 @@ module "acm_certificate_api_gateway" {
   domain = var.apex_domain
 }
 
+module "cloudflare_dns_api" {
+  source  = "../modules/cloudflare_dns_api"
+  zone_id = var.cloudflare_zone_id
+  value   = module.api_gateway_api.domain
+}
+
 module "cloudflare_apex_dns" {
   source  = "../modules/cloudflare_apex_dns"
   domain  = var.apex_domain
@@ -97,3 +103,34 @@ module "local_env_file" {
   cloudfront_cache_max_age = "0"
   environment_name         = var.environment_name
 }
+
+module "s3_bucket_lambda" {
+  source = "../modules/s3_bucket_lambda"
+  bucket = "lambda.${var.apex_domain}"
+}
+
+module "lambda_album" {
+  source               = "../modules/lambda_album"
+  lambda_deploy_bucket = module.s3_bucket_lambda.id
+  bucket               = var.private_bucket
+  aws_region           = var.region
+}
+
+module "lambda_entries" {
+  source               = "../modules/lambda_entries"
+  lambda_deploy_bucket = module.s3_bucket_lambda.id
+  bucket               = var.private_bucket
+  aws_region           = var.region
+}
+
+module "api_gateway_backend" {
+  source                             = "../modules/api_gateway_backend"
+  allowed_cors_origin                = "https://${var.apex_domain}"
+  cert_arn                           = module.acm_certificate_api_gateway.id
+  domain                             = "api.${var.apex_domain}"
+  lambda_function_album_invoke_arn   = module.lambda_album.invoke_arn
+  lambda_function_album_name         = module.lambda_album.arn
+  lambda_function_entries_invoke_arn = module.lambda_entries.invoke_arn
+  lambda_function_entries_name       = module.lambda_entries.arn
+}
+
