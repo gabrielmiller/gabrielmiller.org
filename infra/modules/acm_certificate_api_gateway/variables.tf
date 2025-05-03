@@ -1,3 +1,15 @@
 variable "domain" {
-    type = string
+  type = string
+}
+
+variable "profile" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}
+
+variable "zone_id" {
+  type = string
 }

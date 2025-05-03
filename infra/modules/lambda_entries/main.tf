@@ -1,0 +1,109 @@
+resource "aws_lambda_function" "backend_entries" {
+  function_name = "backend_entries"
+
+  s3_bucket = var.lambda_deploy_bucket
+  s3_key    = aws_s3_object.lambda_backend_entries.key
+
+  runtime       = "provided.al2023"
+  handler       = "bootstrap"
+  architectures = ["arm64"]
+  memory_size   = 128
+  timeout       = 15
+
+  source_code_hash = data.archive_file.lambda_backend_entries.output_base64sha256
+
+  role = aws_iam_role.lambda_exec.arn
+
+  environment {
+    variables = {
+      ALBUM_BUCKET = var.bucket
+    }
+  }
+}
+
+resource "aws_cloudwatch_log_group" "backend_entries_lambda" {
+  name = "/aws/lambda/${aws_lambda_function.backend_entries.function_name}"
+
+  retention_in_days = 30
+}
+
+resource "aws_iam_role" "lambda_exec" {
+  name               = "backend_entries"
+  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
+}
+
+data "aws_iam_policy_document" "assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    effect  = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_policy" {
+  role       = aws_iam_role.lambda_exec.name
+  policy_arn = aws_iam_policy.lambda_backend_entries_policy.arn
+}
+
+resource "aws_iam_policy" "lambda_backend_entries_policy" {
+  name        = "lambda_entries_backend"
+  description = "Can read/write logs and get files from s3"
+  policy      = data.aws_iam_policy_document.lambda_backend_entries_policy_document.json
+}
+
+data "aws_caller_identity" "current" {}
+
+# This is arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+# scoped to its specific logs plus limited access to the s3 album bucket
+data "aws_iam_policy_document" "lambda_backend_entries_policy_document" {
+  statement {
+    actions = [
+      "logs:CreateLogStream",
+      "logs:CreateLogGroup",
+      "logs:PutLogEvents",
+      "s3:GetObject",
+    ]
+
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:s3:::${var.bucket}/*",
+      "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:${aws_cloudwatch_log_group.backend_entries_lambda.name}:*",
+    ]
+  }
+}
+
+data "archive_file" "lambda_backend_entries" {
+  type = "zip"
+
+  source_dir  = "../lambda-builds/entries"
+  output_path = "../artifacts/api-entries.zip"
+  depends_on  = [null_resource.build_go_binary]
+}
+
+resource "aws_s3_object" "lambda_backend_entries" {
+  bucket      = var.lambda_deploy_bucket
+  key         = "api-entries.zip"
+  source      = data.archive_file.lambda_backend_entries.output_path
+  source_hash = data.archive_file.lambda_backend_entries.output_base64sha256
+
+  depends_on = [null_resource.build_go_binary]
+}
+
+data "local_file" "lambda_source" {
+  filename = "../../src/packages/backend-entries/entries.go"
+}
+
+resource "null_resource" "build_go_binary" {
+  provisioner "local-exec" {
+    command = "cd ../../src/packages/backend-entries && GOOS=linux GOARCH=arm64 go build -o prepnode_arm64 -o ../../../infra/lambda-builds/entries/bootstrap"
+  }
+
+  triggers = {
+    source_code_hash = data.local_file.lambda_source.content_base64sha256
+  }
+}
