@@ -1,10 +1,9 @@
 html {
-    font-family: serif;
-    line-height: 1.5;
-    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 nav > div {
-    font-size: 1.8em;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.8rem;
     line-height: 1.2;
     margin-top: 1.25rem;
 }
@@ -12,7 +11,6 @@ nav > div {
     nav > div {
         margin-left: 1rem;
     }
-
     #nav-toggle {
         position: absolute;
         right: 1em;
@@ -32,6 +30,10 @@ nav > div {
         border-bottom: 1px dotted #fff;
         color: #fff;
         text-decoration: none;
+    }
+    nav > #nav-toggle-state:checked ~ ul li.active a {
+        border-bottom-style: solid;
+        font-weight: 700;
     }
     nav > #nav-toggle-state:checked ~ ul a:hover {
         border-bottom: 1px dotted #ddd;
@@ -56,25 +58,23 @@ nav > div {
     nav ul li:first-child {
         margin-top: 1.25rem;
     }
-
     main {
-        padding: 1rem 1rem 0 1rem;
+        padding: 0 1rem 0.5rem 1rem;
     }
-
     table {
         padding: 0;
     }
 }
 @media (min-width: 769px) {
+    nav > div {
+        margin-bottom: 0.5rem;
+    }
     #nav-toggle {
         display: none;
     }
-    nav {
-
-    }
     nav > ul {
         list-style-type: none;
-        margin: -0.25em 0 0 0;
+        margin: 0;
         padding: 0;
     }
     nav > ul > li:first {
@@ -87,11 +87,9 @@ nav > div {
     nav li.active a {
         text-decoration-style: solid;
     }
-
     main {
         padding: 0;
     }
-
     table {
         padding: 0 2em;
     }
@@ -122,17 +120,34 @@ pre {
     white-space: pre-wrap;
 }
 h1 {
+    font-size: 1.5rem;
     line-height: 1.2;
 }
+h2 {
+    font-size: 1.35rem;
+}
+h3 {
+    font-size: 1.25rem;
+}
+h4 {
+    font-size: 1.2rem;
+}
+h5 {
+    font-size: 1.15rem;
+}
+h6 {
+    font-size: 1.1rem;
+}
 h1, h2, h3, h4, h5, h6 {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
     margin-top: 0.5em;
     margin-bottom: 0.25em;
 }
 p {
-    line-height: 1.8;
+    line-height: 1.75;
     margin: 0.5em 0;
 }
-
 .avatar {
     float: right;
     max-height: 10em;
@@ -148,7 +163,8 @@ p {
 .callout {
     border-radius: 10px;
     margin-bottom: 1em;
-    padding: 1em 2em .75em 2em;
+    margin-top: 1em;
+    padding: 1em 2em;
 }
 .info {
     background: #eef9ff;
@@ -157,6 +173,9 @@ p {
 .warning {
     background: #fff2cc;
     border: 1px solid #431808;
+}
+main li {
+    line-height: 1.75;
 }
 ul.emoji-list {
     list-style: none;
