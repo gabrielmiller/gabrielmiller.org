@@ -31,8 +31,9 @@ nav > div {
         color: #fff;
         text-decoration: none;
     }
-    nav > #nav-toggle-state:checked ~ ul li:active a {
+    nav > #nav-toggle-state:checked ~ ul li.active a {
         border-bottom-style: solid;
+        font-weight: 700;
     }
     nav > #nav-toggle-state:checked ~ ul a:hover {
         border-bottom: 1px dotted #ddd;
