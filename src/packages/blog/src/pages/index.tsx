@@ -36,7 +36,7 @@ const IndexPage: React.FC<PageProps<IMostRecentPostContainer>> = ({ data }) => {
                 </ul>
                 <p>This website is comprised of personal thoughts, work, and projects unless otherwise noted. None of the opinions expressed within represent those of my employer.</p>
                 <p>You can find my current resume <a href="lgabrielmiller.pdf">here</a>.</p>
-                <p>Page last updated 2025-03-22.</p>
+                <p>Page last updated 2025-09-05.</p>
             </main>
         </div>
     )
