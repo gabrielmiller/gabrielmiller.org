@@ -149,9 +149,12 @@ p {
     margin: 0.5em 0;
 }
 .avatar {
+    border-radius: 10px;
     float: right;
     max-height: 10em;
     margin: 1em;
+    margin-top: 0;
+    margin-right: 0;
 }
 .container {
     margin: 0 auto;
