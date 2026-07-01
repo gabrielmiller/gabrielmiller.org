@@ -1,0 +1,14 @@
+{
+  "name": "embedded-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@esbuild/linux-x64": "^0.25.3",
+    "preact": "^10.26.5",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "build": "npm run build:js",
+    "build:js": "../../node_modules/@esbuild/linux-x64/bin/esbuild main.tsx --bundle --format=esm  --jsx-factory=h --jsx-fragment=Fragment --outfile=../../dist/embedded-gallery.js"
+  }
+}
