@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "npm run build:js",
-    "build:js": "../../node_modules/@esbuild/linux-x64/bin/esbuild main.tsx --bundle --format=esm  --jsx-factory=h --jsx-fragment=Fragment --outfile=../../dist/embedded-gallery.js"
+    "build:js": "../../node_modules/@esbuild/linux-x64/bin/esbuild main.tsx --bundle --format=esm  --jsx-factory=h --jsx-fragment=Fragment --outfile=../../dist/embedded-gallery.js",
+    "postbuild": "cp styles.css ../../dist/embedded-gallery.css"
   }
 }

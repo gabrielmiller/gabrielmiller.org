@@ -19,26 +19,26 @@ document.addEventListener("click", function (event) {
     return;
   }
 
-  const contextElement = document.getElementById("inline-gallery-context");
+  const contextElement = document.getElementById("embedded-gallery-context");
   if (contextElement == null) {
     throw new Error("No context element found");
   }
 
   const src = target.getAttribute("src");
-  mount_or_update(src);
+  MountOrUpdate(src);
 });
 
 function Mount() {
-  mount_or_update()
+  MountOrUpdate()
 }
 
-function mount_or_update(currentEntry?: string) {
-  const mountPoint = document.getElementById('inline-gallery-overlay-mount');
+function MountOrUpdate(currentEntry?: string) {
+  const mountPoint = document.getElementById('embedded-gallery-overlay-mount');
   if (mountPoint == null) {
     throw new Error("No mount point element found");
   }
 
-  const contextElement = document.getElementById("inline-gallery-context");
+  const contextElement = document.getElementById("embedded-gallery-context");
   if (contextElement == null) {
     throw new Error("No context element found");
   }
@@ -49,8 +49,9 @@ function mount_or_update(currentEntry?: string) {
     props.currentEntry = currentEntry;
   }
 
-  render(h(EmbeddedGallery, props), mountPoint);
+  props.incrementer = new Date();
 
+  render(h(EmbeddedGallery, props), mountPoint);
 }
 
 export {
