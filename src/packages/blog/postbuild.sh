@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 BUILDDIR="public"
 DISTDIR="../../dist"
