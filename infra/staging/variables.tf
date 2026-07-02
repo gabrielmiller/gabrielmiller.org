@@ -3,11 +3,6 @@ variable "apex_domain" {
   type    = string
 }
 
-variable "www_domain" {
-  default = "www.gabebook.com"
-  type    = string
-}
-
 variable "region" {
   default = "us-east-2"
   type    = string
@@ -20,10 +15,11 @@ variable "private_bucket" {
 
 variable "environment_name" {
   default = "staging"
-  type = string
+  type    = string
 }
 
 variable "aws_profile" {
+  default = "personal-staging"
   type    = string
 }
 

@@ -28,6 +28,8 @@ provider "aws" {
 locals {
   domain_api                = "api.${var.apex_domain}"
   domain_apex_with_protocol = "https://${var.apex_domain}"
+  domain_assets             = "assets.${var.apex_domain}"
+  domain_www                = "www.${var.apex_domain}"
 }
 
 provider "cloudflare" {
@@ -37,6 +39,13 @@ provider "cloudflare" {
 module "acm_certificate_cloudfront" {
   source  = "../modules/acm_certificate_cloudfront"
   domain  = var.apex_domain
+  profile = var.aws_profile
+  zone_id = var.cloudflare_zone_id
+}
+
+module "acm_certificate_cloudfront_assets" {
+  source  = "../modules/acm_certificate_cloudfront_assets"
+  domain  = local.domain_assets
   profile = var.aws_profile
   zone_id = var.cloudflare_zone_id
 }
@@ -62,6 +71,13 @@ module "cloudflare_apex_dns" {
   zone_id = var.cloudflare_zone_id
 }
 
+module "cloudflare_assets_dns" {
+  source  = "../modules/cloudflare_assets_dns"
+  domain  = local.domain_assets
+  value   = module.cloudfront_assets_website.domain_name
+  zone_id = var.cloudflare_zone_id
+}
+
 module "cloudflare_www_dns" {
   source  = "../modules/cloudflare_www_dns"
   value   = module.cloudfront_www_website.domain_name
@@ -78,9 +94,14 @@ module "s3_bucket_apex_website" {
   bucket = var.apex_domain
 }
 
+module "s3_bucket_assets_website" {
+  source = "../modules/s3_bucket_assets_website"
+  bucket = local.domain_assets
+}
+
 module "s3_bucket_www_website" {
   source          = "../modules/s3_bucket_www_website"
-  domain          = var.www_domain
+  domain          = local.domain_www
   redirect_domain = var.apex_domain
 }
 
@@ -92,11 +113,19 @@ module "cloudfront_apex_website" {
   region          = var.region
 }
 
+module "cloudfront_assets_website" {
+  source          = "../modules/cloudfront_assets_website"
+  cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" #CachingOptimized
+  certificate_id  = module.acm_certificate_cloudfront_assets.id
+  domain          = local.domain_assets
+  region          = var.region
+}
+
 module "cloudfront_www_website" {
   source          = "../modules/cloudfront_www_website"
   cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" #CachingOptimized
   certificate_id  = module.acm_certificate_cloudfront.id
-  domain          = var.www_domain
+  domain          = local.domain_www
   region          = var.region
 }
 

@@ -46,11 +46,12 @@ _The redundant regions and start_url on the profiles appear to be necessary, but
 
 3. Initialize terraform
 ```sh
-terraform -chdir=./production init -var-file=./variables.tfvars
+terraform -chdir=./production init
 ```
 
 4. Create a plan and run it to stand up the rest of the infrastructure
 ```sh
-terraform -chdir=./production plan -var-file=./variables.tfvars -out changes
-terraform -chdir=./production apply changes
+cd production
+terraform plan -var-file=./variables.tfvars
+terraform apply -var-file=./variables.tfvars
 ```
