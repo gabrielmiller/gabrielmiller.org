@@ -9,7 +9,7 @@ defmodule Blog.BlogLayout do
         <div>L. Gabriel Miller</div>
         <input id="nav-toggle-state" style="display:none;" type="checkbox" />
 
-        <label id="nav-toggle" htmlFor="nav-toggle-state" role="button">
+        <label id="nav-toggle" for="nav-toggle-state" role="button">
             <svg viewBox="0 0 100 80" width="40" height="40">
                 <rect width="100" height="20"></rect>
                 <rect y="30" width="100" height="20"></rect>
@@ -18,9 +18,9 @@ defmodule Blog.BlogLayout do
         </label>
         <ul>
             <li>
-                <a href="/">About</a>
+                <a class={maybe_set_active(@page, :about)} href="/">About</a>
             </li>
-            <li >
+            <li class={maybe_set_active(@page, :blog)}>
                 <a href="/archive.html">Blog</a>
             </li>
             <li>
@@ -38,7 +38,30 @@ defmodule Blog.BlogLayout do
     <main>
       {render(@inner_content)}
     </main>
+
     </div>
     """
+  end
+
+  defp maybe_set_active(%{ permalink: permalink }, group) do
+    active? =
+      case group do
+        :about -> String.match?(permalink, ~r/\//)
+        :blog -> blog_match?(permalink)
+        _ -> false
+      end
+
+    if active?,
+      do: "active",
+      else: ""
+  end
+
+  defp blog_match?("/archive.html"), do: true
+  defp blog_match?(pattern) do
+    cond do
+      String.match?(pattern, ~r/^\/tags\//) -> true
+      String.match?(pattern, ~r/^\/posts\//) -> true
+      true -> false
+    end
   end
 end
