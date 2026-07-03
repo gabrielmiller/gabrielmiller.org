@@ -5,7 +5,6 @@ defmodule Blog.RootLayout do
   def template(assigns) do
     ~H"""
     <!DOCTYPE html>
-
     <html lang="en">
       <head>
         <meta charset="utf-8" />
@@ -22,7 +21,7 @@ defmodule Blog.RootLayout do
       </head>
 
       <body>
-        <%= render @inner_content %>
+        {render(@inner_content)}
       </body>
 
       <%= if Mix.env() == :dev do %>

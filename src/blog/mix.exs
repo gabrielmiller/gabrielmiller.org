@@ -25,7 +25,7 @@ defmodule Blog.MixProject do
     [
       {:tableau, "~> 0.30"},
       {:phoenix_live_view, "~> 1.1.27"},
-      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

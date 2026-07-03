@@ -12,6 +12,8 @@ interface IEmbeddedGalleryProps {
 }
 
 interface IEntry {
+  date: string,
+  label: string,
   original: string,
   thumb: string,
   video?: string,

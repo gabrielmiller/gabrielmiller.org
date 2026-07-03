@@ -3,7 +3,8 @@ import Config
 config :tableau, :reloader,
   patterns: [
     ~r"^lib/.*.ex",
-    ~r"^(_posts|_pages)/.*.md",~r"^extra/.*.(css|js)",
+    ~r"^(_posts|_pages)/.*.md",
+    ~r"^extra/.*.(css|js)",
     ~r"^assets/.*.(css|js)"
   ]
 
@@ -22,8 +23,7 @@ config :tailwind,
     # Intentionally scoped so tailwind doesn't include classes except from whitelisted filepaths references in css
   ]
 
-config :tableau, :assets,
-  tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
+config :tableau, :assets, tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
 
 config :tableau, :config,
   include_dir: "static",
