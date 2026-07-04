@@ -33,11 +33,10 @@ body:has(#embedded-gallery-overlay.visible) {
   }
 }
 
-#embedded-gallery-overlay button[class^='control-'] {
+#embedded-gallery-overlay [class^='control-'] {
   background-color: transparent;
   border: none;
   opacity: 75%;
-  position: fixed;
   padding: 1em;
 
   &:disabled {
@@ -48,25 +47,31 @@ body:has(#embedded-gallery-overlay.visible) {
 .control-navigate-previous {
   left: 0;
   margin-top: -1em;
+  position: fixed;
   top: 50%;
 }
 
 .control-navigate-next {
   margin-top: -1em;
   right: 0;
+  position: fixed;
   top: 50%;
 }
 
-.control-close-viewer {
+.controls-top-right {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
   right: 0;
   top: 0;
 }
 
-.image-container {
+.media-container {
   max-height: 100%;
   margin: 0 auto;
 
-  img {
+  img,
+  video {
     max-width: calc(100% - 2em);
     max-height: 100%;
   }

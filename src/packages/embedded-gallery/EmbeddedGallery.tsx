@@ -4,6 +4,10 @@ import IconArrowLeftCircle from './IconArrowLeftCircle';
 import IconArrowRightCircle from './IconArrowRightCircle';
 import IconXMarkCircle from './IconXMarkCircle';
 import AsyncImage from './AsyncImage';
+import IconDownTray from './IconDownTray';
+import AsyncVideo from './AsyncVideo';
+import IconCamera from './IconCamera';
+import IconVideoCamera from './IconVideoCamera';
 
 interface IEmbeddedGalleryProps {
   currentEntry: string,
@@ -35,6 +39,7 @@ const clickableElements = new Set([
 
 const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntry, entries, incrementer }) => {
   const [currentEntryIndex, setCurrentEntryIndex] = useState(0);
+  const [mediaMode, setMediaMode] = useState("Image");
   const [isVisible, setIsVisible] = useState(false);
   const [thumbToIndexMap, setThumbToIndexMap] = useState<IEntryMap>({});
   const isActive = () => {
@@ -125,16 +130,52 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
       <div class={isVisible ? "visible" : "hidden"} id="embedded-gallery-overlay" onClick={(event) => maybeCloseGallery(event)}>
         {isActive() &&
           <div class="gallery-container">
-            <div class="image-container">
-              <AsyncImage src={entries[currentEntryIndex].web} />
+            <span style="position:fixed;top:0;left:0;">Media mode is {mediaMode}</span>
+            <div class="media-container">
+              {mediaMode == "Image" && (
+                <AsyncImage src={entries[currentEntryIndex].web} />
+              )}
+              {mediaMode == "Video" && (
+                <AsyncVideo poster={entries[currentEntryIndex].web} src={entries[currentEntryIndex].video!} />
+              )}
             </div>
-            <button
-              class="control-close-viewer"
-              onClick={(event) => closeGallery(event)}
-              title="Close viewer"
-              type="button">
-              <IconXMarkCircle />
-            </button>
+            <div
+              class="controls-top-right"
+            >
+              <a
+                class="control-download-original"
+                href={entries[currentEntryIndex].original}
+                target="_blank"
+                title="View original">
+                <IconDownTray />
+              </a>
+              {mediaMode == "Image" && (
+                <button
+                  class="control-change-mode"
+                  disabled={entries[currentEntryIndex].video == undefined}
+                  onClick={() => setMediaMode("Video")}
+                  title="Change media mode"
+                  type="button">
+                  <IconVideoCamera />
+                </button>
+              )}
+              {mediaMode == "Video" && (
+                <button
+                  class="control-change-mode"
+                  onClick={() => setMediaMode("Image")}
+                  title="Change media mode"
+                  type="button">
+                  <IconCamera />
+                </button>
+              )}
+              <button
+                class="control-close-viewer"
+                onClick={(event) => closeGallery(event)}
+                title="Close viewer"
+                type="button">
+                <IconXMarkCircle />
+              </button>
+            </div>
             <button
               class="control-navigate-previous"
               disabled={!validateCanNavigateToPrevEntry()}
