@@ -287,11 +287,19 @@ ul.list {
   }
 
   .gallery-grid-2 {
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 2em 0;
+    gap: 2px;
     display: flex;
     flex-wrap: wrap;
 
+    img {
+      border-radius: 10px;
+    }
+
     .gallery-item {
-      width: 50%;
+      width: calc(50% - 2px);
     }
 
     .gallery-grid-item {
