@@ -245,3 +245,70 @@ ul.emoji-list .emoji {
 ul.list {
   margin-top: 0;
 }
+
+.cheddar-article {
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+  }
+
+  p {
+    line-height: 2;
+  }
+
+  .gallery-item {
+    width: 320px;
+
+    &.float-left {
+      margin: 1em;
+      margin-left: 0;
+      border-radius: 10px;
+      width: calc(320px - 2em);
+    }
+
+    &.float-right {
+      margin: 1em;
+      margin-right: 0;
+      border-radius: 10px;
+      width: calc(320px - 2em);
+    }
+  }
+
+  .float-left {
+    float: left;
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .gallery-grid-2 {
+    display: flex;
+    flex-wrap: wrap;
+
+    .gallery-item {
+      width: 50%;
+    }
+
+    .gallery-grid-item {
+      max-width: 100%;
+      min-width: 100%;
+    }
+  }
+
+  .gallery-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .grid-label {
+    color: #444444;
+    text-align: center;
+  }
+}

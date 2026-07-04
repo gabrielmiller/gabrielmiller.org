@@ -9,7 +9,7 @@ document.addEventListener("click", function (event) {
 
   let isGalleryItem = false;
   for (const c of target.classList) {
-    if (c === "gallery-item") {
+    if (c === "gallery-opener") {
       isGalleryItem = true;
       break;
     }

@@ -2,16 +2,31 @@ body:has(#embedded-gallery-overlay.visible) {
   overflow: hidden;
 }
 
-#embedded-gallery-overlay {
-  background: linear-gradient(90deg, #020b1a 31px, transparent 1%) center, linear-gradient(#020b1a 31px, transparent 1%) center, #b9c8df;
-  background-size: 32px 32px;
+#embedded-gallery-backdrop {
+  background: black;
   bottom: 0;
   height: 100%;
   left: 0;
+  opacity: 90%;
   position: fixed;
   right: 0;
   top: 0;
   width: 100%;
+
+  &.hidden {
+    visibility: hidden;
+  }
+}
+
+#embedded-gallery-overlay {
+  bottom: 1em;
+  height: 100%;
+  left: 1em;
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  width: 100%;
+  z-index: 3;
 
   &.hidden {
     visibility: hidden;
@@ -24,6 +39,10 @@ body:has(#embedded-gallery-overlay.visible) {
   opacity: 75%;
   position: fixed;
   padding: 1em;
+
+  &:disabled {
+    opacity: 10%;
+  }
 }
 
 .control-navigate-previous {
@@ -43,26 +62,37 @@ body:has(#embedded-gallery-overlay.visible) {
   top: 0;
 }
 
-.gallery-item {
-  border-radius: 10px;
-  margin: 1em;
-  max-height: 10em;
-  height: 100px;
-  width: 100px;
+.image-container {
+  max-height: 100%;
+  margin: 0 auto;
 
-  &.float-right {
-    margin-right: 0;
-  }
-
-  &.float-right {
-    margin-left: 0;
+  img {
+    max-width: calc(100% - 2em);
+    max-height: 100%;
   }
 }
 
-.float-left {
-  float: left;
+.loader {
+  animation: spin 1s linear infinite;
+  border: 5px solid #6684b2;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  left: 50%;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  position: absolute;
+  top: 50%;
+  height: 2rem;
+  width: 2rem;
 }
 
-.float-right {
-  float: right;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
