@@ -64,14 +64,28 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
     closeGallery(event);
   }
 
+  const maybeSwitchMediaMode = (nextEntryIndex: number) => {
+    if (entries[nextEntryIndex].video !== undefined) {
+      return;
+    }
+
+    setMediaMode("Image");
+  };
+
   const navigateToNextEntry = (event: any) => {
     event.preventDefault();
-    setCurrentEntryIndex(currentEntryIndex + 1);
+    const nextEntryIndex = currentEntryIndex + 1;
+
+    maybeSwitchMediaMode(nextEntryIndex);
+    setCurrentEntryIndex(nextEntryIndex);
   };
 
   const navigateToPrevEntry = (event: any) => {
     event.preventDefault();
-    setCurrentEntryIndex(currentEntryIndex - 1);
+    const nextEntryIndex = currentEntryIndex - 1;
+
+    maybeSwitchMediaMode(nextEntryIndex);
+    setCurrentEntryIndex(nextEntryIndex);
   };
 
   const validateCanNavigateToNextEntry = (): boolean => {
@@ -119,8 +133,14 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
 
   useEffect(() => {
     if (!isActive()) {
-      return
+      return;
     }
+
+    // Manually reset the current entry index to avoid showing stale media
+    // when exiting and re-entering the viewer
+    const currentEntryIndex = thumbToIndexMap[currentEntry];
+    setCurrentEntryIndex(currentEntryIndex);
+
     setIsVisible(true);
   }, [incrementer])
 
@@ -130,7 +150,6 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
       <div class={isVisible ? "visible" : "hidden"} id="embedded-gallery-overlay" onClick={(event) => maybeCloseGallery(event)}>
         {isActive() &&
           <div class="gallery-container">
-            <span style="position:fixed;top:0;left:0;">Media mode is {mediaMode}</span>
             <div class="media-container">
               {mediaMode == "Image" && (
                 <AsyncImage src={entries[currentEntryIndex].web} />
