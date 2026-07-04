@@ -140,6 +140,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
     // when exiting and re-entering the viewer
     const currentEntryIndex = thumbToIndexMap[currentEntry];
     setCurrentEntryIndex(currentEntryIndex);
+    maybeSwitchMediaMode(currentEntryIndex);
 
     setIsVisible(true);
   }, [incrementer])
