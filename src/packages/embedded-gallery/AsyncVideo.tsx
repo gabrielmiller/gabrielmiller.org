@@ -1,13 +1,15 @@
 import { FunctionComponent } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 
 interface AsyncVideoProps {
   poster: string;
   src: string;
 }
 
-const AsyncVideo: FunctionComponent<AsyncVideoProps> = ({ poster, src }) => {
+const AsyncVideo: FunctionComponent<AsyncVideoProps> = (props) => {
+  const [loadedSrc, setLoadedSrc] = useState(null);
   const [showVideo, setShowVideo] = useState(true);
+  const ref = useRef(null);
 
   useEffect(() => {
     // This deliberately makes the video element exit and re-enter the dom
@@ -17,13 +19,33 @@ const AsyncVideo: FunctionComponent<AsyncVideoProps> = ({ poster, src }) => {
     setTimeout(() => {
       setShowVideo(true);
     })
-  }, [src]);
+
+    setLoadedSrc(null);
+    if (props.src) {
+      const handleCanPlaythrough = () => {
+        setLoadedSrc(props.src);
+      };
+      const video = document.createElement('video');
+      video.addEventListener('canplaythrough', handleCanPlaythrough);
+      video.src = props.src;
+      return () => {
+        video.removeEventListener('canplaythrough', handleCanPlaythrough);
+      };
+    }
+
+  }, [props.src]);
 
   return (
     <>
+      {loadedSrc !== props.src && (
+        <span class="loader"></span>
+      )}
+
       {showVideo && (
-        <video autoplay muted loop playsinline poster={poster}>
-          <source src={src} type="video/mp4" />
+        <video ref={ref} autoplay muted loop playsinline poster={props.poster}>
+          {loadedSrc === props.src && (
+            <source src={loadedSrc} type="video/mp4" />
+          )}
         </video>
       )}
     </>
