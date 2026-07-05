@@ -41,6 +41,7 @@ process_image() {
   then
     echo "copying $FILE"
     cp "$INPUT_DIR/$FILE" "$OUTPUT_DIR/$FILE"
+    cp "$INPUT_DIR/$FILE" "$OUTPUT_DIR/$FILENAME"_original.gif
   fi
 }
 

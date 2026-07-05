@@ -250,6 +250,13 @@ defmodule Blog.HomePage do
       <p>
         Cheddar's lapcat tendencies quickly came to be appreciated as he became notorious on my work calls. I would make him wave at people or simply showcase how he enjoyed tummy rubs or even bean rubs. One colleague asked what sort of drugs I put the cats on for them to be so chill.
       </p>
+
+      <h1>Gallery</h1>
+      <div class="gallery-grid-2-to-4">
+        <div :for={entry <- entries()} class="gallery-item">
+          {inline_gallery_img_element(entry.filename, class: "gallery-grid-item gallery-opener")}
+        </div>
+      </div>
     </div>
     """
   end
@@ -1473,22 +1480,22 @@ defmodule Blog.HomePage do
       entry.video == false and variation == :video ->
         nil
 
-      extension == "gif" ->
-        asset_uri("#{filename}.gif")
-
       variation == :video ->
         asset_uri("#{filename}.mp4")
 
-      variation == :web and extension == "jpg" ->
+      variation == :web and extension == "gif" ->
+        asset_uri("#{filename}.gif")
+
+      variation == :web ->
         asset_uri("#{filename}_#{variation}.avif")
 
-      variation == :thumb1x and extension == "jpg" ->
+      variation == :thumb1x ->
         asset_uri("#{filename}_thumb_1x.avif")
 
-      variation == :thumb2x and extension == "jpg" ->
+      variation == :thumb2x ->
         asset_uri("#{filename}_thumb_2x.avif")
 
-      variation == :thumb4x and extension == "jpg" ->
+      variation == :thumb4x ->
         asset_uri("#{filename}_thumb_4x.avif")
 
       true ->

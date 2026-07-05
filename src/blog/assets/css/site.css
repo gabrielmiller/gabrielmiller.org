@@ -326,6 +326,25 @@ ul.list {
     }
   }
 
+  .gallery-grid-2-to-4 {
+    margin: 2em 0;
+    gap: 2px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .gallery-item {
+      width: calc(25% - 2px);
+    }
+
+    .gallery-grid-item {
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      max-width: 100%;
+      min-width: 100%;
+      overflow: hidden;
+    }
+  }
+
   .gallery-container {
     height: 100%;
     display: flex;
@@ -337,5 +356,12 @@ ul.list {
     margin: 0;
     color: #444444;
     align-self: center;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .cheddar-article .gallery-grid-2-to-4 .gallery-item {
+    width: calc(50% - 2px);
   }
 }
