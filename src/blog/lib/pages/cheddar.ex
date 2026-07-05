@@ -294,7 +294,7 @@ defmodule Blog.HomePage do
         filename: "2010-02-24-11.jpg",
         video: false
       },
-      %{label: "", date: "2010-02-24", filename: "2010-02-24-9.jpg", video: false},
+      %{label: "Snuggly siblings, shortly after adoption", date: "2010-02-24", filename: "2010-02-24-9.jpg", video: false},
       %{label: "", date: "2010-02-26", filename: "2010-02-26-01.jpg", video: false},
       %{label: "", date: "2010-02-26", filename: "2010-02-26-02.jpg", video: false},
       %{label: "", date: "2010-02-26", filename: "2010-02-26-03.jpg", video: false},

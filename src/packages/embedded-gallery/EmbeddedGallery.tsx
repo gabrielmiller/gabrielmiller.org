@@ -220,7 +220,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
             {entries[currentEntryIndex].label !== "" && (
               <div class="label">
                 <p>
-                  {entries[currentEntryIndex].label}
+                  [{entries[currentEntryIndex].date}] {entries[currentEntryIndex].label}
                 </p>
               </div>
             )}

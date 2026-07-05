@@ -7,45 +7,35 @@ interface AsyncVideoProps {
 }
 
 const AsyncVideo: FunctionComponent<AsyncVideoProps> = (props) => {
-  const [loadedSrc, setLoadedSrc] = useState(null);
-  const [showVideo, setShowVideo] = useState(true);
-  const ref = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [showElement, setShowElement] = useState(false);
+
+  const onCanPlaythrough = (event: any) => {
+    setIsLoaded(true);
+  }
 
   useEffect(() => {
-    // This deliberately makes the video element exit and re-enter the dom
-    // when the src changes. This seems to be necessary for the content to
-    // properly change when navigating through media.
-    setShowVideo(false);
-    setTimeout(() => {
-      setShowVideo(true);
-    })
-
-    setLoadedSrc(null);
-    if (props.src) {
-      const handleCanPlaythrough = () => {
-        setLoadedSrc(props.src);
-      };
-      const video = document.createElement('video');
-      video.addEventListener('canplaythrough', handleCanPlaythrough);
-      video.src = props.src;
-      return () => {
-        video.removeEventListener('canplaythrough', handleCanPlaythrough);
-      };
-    }
-
+    // Deliberately unmount and then remount the video element when the src
+    // changes in order to properly reset the video player.
+    setShowElement(false);
+    setIsLoaded(false);
   }, [props.src]);
+
+  useEffect(() => {
+    if (showElement) {
+      return;
+    }
+    setShowElement(true);
+  }, [showElement])
 
   return (
     <>
-      {loadedSrc !== props.src && (
+      {isLoaded === false && (
         <span class="loader"></span>
       )}
-
-      {showVideo && (
-        <video ref={ref} autoplay muted loop playsinline poster={props.poster}>
-          {loadedSrc === props.src && (
-            <source src={loadedSrc} type="video/mp4" />
-          )}
+      {showElement && (
+        <video onCanPlayThrough={(event) => onCanPlaythrough(event)} autoplay muted loop playsinline poster={props.poster}>
+          <source src={props.src} type="video/mp4" />
         </video>
       )}
     </>
