@@ -84,6 +84,7 @@ body:has(#embedded-gallery-overlay.visible) {
   bottom: 0;
   left: 0;
   right: 0;
+  max-width: 640px;
   height: 128px;
   display: flex;
   justify-content: center;

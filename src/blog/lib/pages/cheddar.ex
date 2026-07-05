@@ -294,320 +294,435 @@ defmodule Blog.HomePage do
         filename: "2010-02-24-11.jpg",
         video: false
       },
-      %{label: "Snuggly siblings, shortly after adoption", date: "2010-02-24", filename: "2010-02-24-9.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-01.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-02.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-03.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-04.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-05.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-06.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-07.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-08.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-09.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-10.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-11.jpg", video: false},
-      %{label: "", date: "2010-02-26", filename: "2010-02-26-12.jpg", video: false},
-      %{label: "", date: "2010-04-03", filename: "2010-04-03.jpg", video: false},
-      %{label: "", date: "2010-04-05", filename: "2010-04-05.jpg", video: false},
-      %{label: "", date: "2010-04-10", filename: "2010-04-10.jpg", video: false},
-      %{label: "", date: "2010-04-17", filename: "2010-04-17.jpg", video: false},
-      %{label: "", date: "2010-04-25", filename: "2010-04-25.jpg", video: false},
-      %{label: "", date: "2010-05-07", filename: "2010-05-07.jpg", video: false},
-      %{label: "", date: "2010-05-09", filename: "2010-05-09-2.jpg", video: false},
-      %{label: "", date: "2010-05-09", filename: "2010-05-09.jpg", video: false},
-      %{label: "", date: "2010-05-23", filename: "2010-05-23.jpg", video: false},
-      %{label: "", date: "2010-05-is", filename: "2010-05-ish.jpg", video: false},
-      %{label: "", date: "2010-08-06", filename: "IMG_0326.jpg", video: false},
-      %{label: "", date: "2010-09-17", filename: "IMG_0584.jpg", video: false},
-      %{label: "", date: "2010-09-18", filename: "IMG_0588.jpg", video: false},
-      %{label: "", date: "2010-09-21", filename: "IMG_0615.jpg", video: false},
-      %{label: "", date: "2010-10-17", filename: "IMG_0667.jpg", video: false},
-      %{label: "", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
-      %{label: "", date: "2011-02-17", filename: "IMG_0869.jpg", video: false},
-      %{label: "", date: "2011-02-23", filename: "IMG_0880.jpg", video: false},
-      %{label: "", date: "2011-04-11", filename: "2011-04-11.gif", video: false},
-      %{label: "", date: "2011-06-12", filename: "IMG_1027.jpg", video: false},
-      %{label: "", date: "2011-06-12", filename: "IMG_1028.jpg", video: false},
-      %{label: "", date: "2011-06-25", filename: "IMG_1044.jpg", video: false},
       %{
-        label: "",
+        label: "Snuggly siblings, shortly after adoption",
+        date: "2010-02-24",
+        filename: "2010-02-24-9.jpg",
+        video: false
+      },
+      %{label: "Kitten energy", date: "2010-02-26", filename: "2010-02-26-01.jpg", video: false},
+      %{label: "Kitten energy", date: "2010-02-26", filename: "2010-02-26-02.jpg", video: false},
+      %{label: "Kitten energy", date: "2010-02-26", filename: "2010-02-26-03.jpg", video: false},
+      %{
+        label: "Curious about humans",
+        date: "2010-02-26",
+        filename: "2010-02-26-04.jpg",
+        video: false
+      },
+      %{label: "Kitten energy", date: "2010-02-26", filename: "2010-02-26-05.jpg", video: false},
+      %{label: "A warm lap!", date: "2010-02-26", filename: "2010-02-26-06.jpg", video: false},
+      %{label: "A warm lap!", date: "2010-02-26", filename: "2010-02-26-07.jpg", video: false},
+      %{label: "A warm lap!", date: "2010-02-26", filename: "2010-02-26-08.jpg", video: false},
+      %{label: "Snuggly Toast", date: "2010-02-26", filename: "2010-02-26-09.jpg", video: false},
+      %{
+        label: "Testing the toilet paper",
+        date: "2010-02-26",
+        filename: "2010-02-26-10.jpg",
+        video: false
+      },
+      %{label: "Scaling dad", date: "2010-02-26", filename: "2010-02-26-11.jpg", video: false},
+      %{
+        label: "Grabbing a drink",
+        date: "2010-02-26",
+        filename: "2010-02-26-12.jpg",
+        video: false
+      },
+      %{
+        label: "Snoozing under my bed",
+        date: "2010-04-03",
+        filename: "2010-04-03.jpg",
+        video: false
+      },
+      %{
+        label: "They sometimes slept inside my backpack",
+        date: "2010-04-05",
+        filename: "2010-04-05.jpg",
+        video: false
+      },
+      %{
+        label: "Show-casing his prominent M",
+        date: "2010-04-10",
+        filename: "2010-04-10.jpg",
+        video: false
+      },
+      %{label: "Spooning snugs", date: "2010-04-17", filename: "2010-04-17.jpg", video: false},
+      %{
+        label: "Enjoying tummy rubs",
+        date: "2010-04-25",
+        filename: "2010-04-25.jpg",
+        video: false
+      },
+      %{label: "Caught in the act", date: "2010-05-07", filename: "2010-05-07.jpg", video: false},
+      %{label: "Shouldercat", date: "2010-05-09", filename: "2010-05-09-2.jpg", video: false},
+      %{label: "Shouldercat", date: "2010-05-09", filename: "2010-05-09.jpg", video: false},
+      %{label: "Dead bug pose", date: "2010-05-23", filename: "2010-05-23.jpg", video: false},
+      %{
+        label: "High intensity tummy rubs",
+        date: "2010-05-??",
+        filename: "2010-05-ish.jpg",
+        video: false
+      },
+      %{label: "Lapcat", date: "2010-08-06", filename: "IMG_0326.jpg", video: false},
+      %{
+        label:
+          "Cheddar contorted himself into this box and we made it even more compact by creating a hole for his head to poke out.",
+        date: "2010-09-17",
+        filename: "IMG_0584.jpg",
+        video: false
+      },
+      %{
+        label: "Showcasing their bushy tails",
+        date: "2010-09-18",
+        filename: "IMG_0588.jpg",
+        video: false
+      },
+      %{label: "More contortionism", date: "2010-09-21", filename: "IMG_0615.jpg", video: false},
+      %{label: "Toilet paper mayhem", date: "2010-10-17", filename: "IMG_0667.jpg", video: false},
+      %{label: "Entropy at work", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
+      %{label: "Sibling snuggles", date: "2011-02-17", filename: "IMG_0869.jpg", video: false},
+      %{
+        label:
+          "For a period of time I tried to toilet train the cats. I made progress but I stopped the experiment when we got a new roommate I didn't want to scare off.",
+        date: "2011-02-23",
+        filename: "IMG_0880.jpg",
+        video: false
+      },
+      %{
+        label:
+          "One time we made cheddar chase a toy up and down the stairs until he had to stop to pant",
+        date: "2011-04-11",
+        filename: "2011-04-11.gif",
+        video: false
+      },
+      %{
+        label: "Keeping a watch out the window",
+        date: "2011-06-12",
+        filename: "IMG_1027.jpg",
+        video: false
+      },
+      %{
+        label: "Inside's more exciting, evidently",
+        date: "2011-06-12",
+        filename: "IMG_1028.jpg",
+        video: false
+      },
+      %{label: "Windowsill snuggles", date: "2011-06-25", filename: "IMG_1044.jpg", video: false},
+      %{
+        label: "Antics on the shelf",
         date: "2011-08-05",
         filename: "IMG_20110805_170932.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Antics on the shelf",
         date: "2011-08-08",
         filename: "IMG_20110808_181425.jpg",
         video: false
       },
       %{
-        label: "",
+        label:
+          "Cheddar never properly learned how to retract his claws and several times I had to save him. He always looked silly and helpless when it happened.",
         date: "2011-09-04",
         filename: "IMG_20110904_094916.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Shouldercat",
         date: "2011-12-17",
         filename: "IMG_20111217_233748.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Shouldercat",
         date: "2011-12-17",
         filename: "IMG_20111217_233927.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "For a period of time Cheddar would sit on the tops of open doors.",
         date: "2012-04-07",
         filename: "IMG_20120407_193553.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "For a period of time Cheddar would sit on the tops of open doors.",
         date: "2012-11-29",
         filename: "IMG_20121129_062221.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "For a period of time Cheddar would sit on the tops of open doors.",
         date: "2012-11-29",
         filename: "IMG_20121129_062235.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Being pitiful in his cone after a UTI",
         date: "2013-04-28",
         filename: "IMG_20130428_114440.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling wrestling session",
         date: "2013-05-26",
         filename: "IMG_20130526_143603.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Family portrait",
         date: "2016-01-01",
         filename: "IMG_20160101_184559.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Hanging out on dad",
         date: "2016-01-06",
         filename: "IMG_20160106_195438.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Family portrait",
         date: "2016-01-09",
         filename: "IMG_20160109_192658.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Family portrait",
         date: "2016-01-17",
         filename: "IMG_20160117_164955.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Looking handsome",
         date: "2016-01-29",
         filename: "IMG_20160129_080411.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Disappointed about the tardy food service",
         date: "2016-02-28",
         filename: "IMG_20160228_093303.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Utter bliss, dead bug pose sleep",
         date: "2016-04-06",
         filename: "IMG_20160406_173626.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Morning snuggles",
         date: "2016-04-09",
         filename: "IMG_20160409_102744.jpg",
         video: false
       },
-      %{label: "", date: "2016-06-25", filename: "2016-06-25.gif", video: false},
       %{
-        label: "",
+        label: "Leaning in for a sniff",
+        date: "2016-06-25",
+        filename: "2016-06-25.gif",
+        video: false
+      },
+      %{
+        label: "Looking handsome",
         date: "2016-06-25",
         filename: "IMG_20160625_095842.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Content hanging out in a new box",
         date: "2016-10-10",
         filename: "IMG_20161010_223546.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Cheddar loved to lick fingers",
         date: "2016-10-21",
         filename: "IMG_20161021_235616.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Cheddar loved to lick fingers",
         date: "2016-10-23",
         filename: "IMG_20161023_161737.jpg",
         video: false
       },
-      %{label: "", date: "2016-10-28", filename: "2016-10-28-2.gif", video: false},
-      %{label: "", date: "2016-10-28", filename: "2016-10-28.gif", video: false},
-      %{label: "", date: "2016-11-06", filename: "2016-11-06.jpg", video: false},
       %{
-        label: "",
+        label: "Sibling wrestling session with dramatic tail flapping",
+        date: "2016-10-28",
+        filename: "2016-10-28-2.gif",
+        video: false
+      },
+      %{
+        label: "Sibling wrestling session with dramatic tail flapping",
+        date: "2016-10-28",
+        filename: "2016-10-28.gif",
+        video: false
+      },
+      %{label: "Water thief", date: "2016-11-06", filename: "2016-11-06.jpg", video: false},
+      %{
+        label: "Dead bug pose next to dad",
         date: "2016-11-08",
         filename: "IMG_20161108_220329.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "We learned to leave our laptops semi-closed after a couple incidents like this",
         date: "2016-11-13",
         filename: "IMG_20161113_204255.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Siblings up on a high spot",
         date: "2016-11-20",
         filename: "IMG_20161120_121039.jpg",
         video: false
       },
-      %{label: "", date: "2016-11-26", filename: "2016-11-26.jpg", video: false},
+      %{label: "Sibling snuggles", date: "2016-11-26", filename: "2016-11-26.jpg", video: false},
       %{
-        label: "",
+        label: "Sibling snuggles",
         date: "2016-11-26",
         filename: "IMG_20161126_131957.jpg",
         video: false
       },
-      %{label: "", date: "2016-12-15", filename: "2016-12-15.jpg", video: false},
+      %{label: "Nose boop", date: "2016-12-15", filename: "2016-12-15.jpg", video: false},
       %{
-        label: "",
+        label: "One time he failed to unhook his claw from a toy and it traveled around with him",
         date: "2017-03-12",
         filename: "IMG_20170312_155908.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Being very sneaky",
         date: "2017-06-04",
         filename: "IMG_20170604_183055.jpg",
         video: false
       },
-      %{label: "", date: "2017-06-23", filename: "2017-06-23.jpg", video: false},
-      %{label: "", date: "2017-07-16", filename: "2017-07-16.gif", video: false},
+      %{label: "Snuggle with dad", date: "2017-06-23", filename: "2017-06-23.jpg", video: false},
+      %{label: "Grooming session", date: "2017-07-16", filename: "2017-07-16.gif", video: false},
       %{
-        label: "",
+        label: "Patiently awaiting breakfast",
         date: "2017-08-16",
         filename: "IMG_20170816_074136.jpg",
         video: false
       },
-      %{label: "", date: "2017-09-15", filename: "2017-09-15.jpg", video: false},
-      %{label: "", date: "2017-09-16", filename: "2017-09-16.gif", video: false},
+      %{label: "Water thief", date: "2017-09-15", filename: "2017-09-15.jpg", video: false},
       %{
-        label: "",
+        label: "Cheddar was used as a fly swatter a couple times",
+        date: "2017-09-16",
+        filename: "2017-09-16.gif",
+        video: false
+      },
+      %{
+        label: "Gracing my new table",
         date: "2017-09-28",
         filename: "IMG_20170928_081207.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Cheddar passed the dangle test with flying colors",
         date: "2017-12-22",
         filename: "IMG_20171222_005703.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Looking handsome on his 8th birthday",
         date: "2018-01-01",
         filename: "IMG_20180101_122305.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Catnip aggression",
         date: "2018-10-29",
         filename: "MVIMG_20181029_184540.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Coming in hot for a fingie lick and gumming",
         date: "2018-12-21",
         filename: "MVIMG_20181221_231749.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "A cactus can make for a great massage tool",
         date: "2019-01-01",
         filename: "MVIMG_20190101_145542.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Selfie pose on his 9th birthday",
         date: "2019-01-01",
         filename: "MVIMG_20190101_150022.jpg",
         video: true
       },
-      %{label: "", date: "2019-01-19", filename: "2019-01-19.jpg", video: false},
       %{
-        label: "",
+        label: "Hanging out in the shoe and coat pile",
+        date: "2019-01-19",
+        filename: "2019-01-19.jpg",
+        video: false
+      },
+      %{
+        label: "Breaking into the basement",
         date: "2019-05-03",
         filename: "MVIMG_20190503_210536.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Having a stretch",
         date: "2019-07-15",
         filename: "MVIMG_20190715_184356.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Blissed out in dead bug pose",
         date: "2019-09-15",
         filename: "MVIMG_20190915_180543.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Every year when the heat kicked on they would quickly sit on the registers",
         date: "2019-11-02",
         filename: "MVIMG_20191102_123317.jpg",
         video: true
       },
       %{
-        label: "",
+        label:
+          "Sometimes when they got tired of one another they would secretly snuggle through a blanket like this.",
         date: "2019-11-05",
         filename: "MVIMG_20191105_151718.jpg",
         video: true
       },
-      %{label: "", date: "2020-03-01", filename: "2020-03-01.jpg", video: false},
       %{
-        label: "",
+        label: "Hanging out in the kitchen with dad",
+        date: "2020-03-01",
+        filename: "2020-03-01.jpg",
+        video: false
+      },
+      %{
+        label: "Cheddar passed the dangle test with flying colors",
         date: "2020-03-01",
         filename: "MVIMG_20200301_172233.jpg",
         video: true
       },
-      %{label: "", date: "2020-04-17", filename: "2020-04-17.jpg", video: false},
       %{
-        label: "",
+        label: "Guest visit through the window during COVID lockdowns",
+        date: "2020-04-17",
+        filename: "2020-04-17.jpg",
+        video: false
+      },
+      %{
+        label: "Dead bug snooze",
         date: "2020-05-26",
         filename: "MVIMG_20200526_164940.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Getting an aggressive tummy rub mid-snooze",
         date: "2020-05-26",
         filename: "MVIMG_20200526_165004.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Water thief",
         date: "2020-07-02",
         filename: "MVIMG_20200702_122328.jpg",
         video: true
