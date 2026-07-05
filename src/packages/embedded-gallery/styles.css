@@ -60,10 +60,39 @@ body:has(#embedded-gallery-overlay.visible) {
 
 .controls-top-right {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: fixed;
   right: 0;
   top: 0;
+
+  .top-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bottom-row {
+    color: white;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 1em;
+  }
+}
+
+#embedded-gallery-overlay .label {
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 128px;
+  display: flex;
+  justify-content: center;
+
+  p {
+    align-self: center;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .media-container {

@@ -25,18 +25,33 @@ defmodule Blog.HomePage do
       </script>
       <div id="embedded-gallery-overlay-mount"></div>
 
+      <h1>In Loving Memory of Cheddar</h1>
+
       <p class="callout info">
         Click the photographs on this page to see a larger, full-screen version. Some photographs have a motion photo that can be viewed from the full-screen viewer.
       </p>
 
-      <h1>In Loving Memory of Cheddar</h1>
+      <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+          <li><a href="#rest-in-peace">Rest in Peace</a></li>
+          <li><a href="#childhood">Childhood</a></li>
+          <li><a href="#adulthood">Adulthood</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <ul>
+            <li><a href="#group-0">General</a></li>
+            <li><a href="#group-1">Sibling Love</a></li>
+            <li><a href="#group-2">The Finest Lap Cat</a></li>
+          </ul>
+        </ul>
+      </div>
 
-      <h2>Rest in Peace</h2>
+      <h2 id="rest-in-peace">Rest in Peace</h2>
 
       <p>
         2010-2026 <br />
         <em>
-          Also known as Chedward, Chonkward, Chubward, Cheddy, Ched, Cheese man, Mister Puss, Cheddopuss, Shedward, Shredward
+          Also known as Chedward, Chonkward, Chubward, Cheddy, Ched, Cheese man, Mister Puss, Cheddopuss, Shedward, Shredward, Chompward, Book Licker
         </em>
       </p>
 
@@ -45,7 +60,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar led a life of happiness and brought joy to all he met. He had zero self-respect and loved affection and physical touch like no other feline. Even people who claimed to not like cats--or even to dislike cats--fell in love with him. He was content to sit on your lap and purr for hours.
+        Cheddar led a life of happiness and brought joy to all he met. He loved affection and physical touch like no other feline. Even people who claimed to not like cats--or even to dislike cats--fell in love with him. He was content to sit on your lap and loudly purr.
       </p>
 
       <div class="gallery-grid-2">
@@ -80,7 +95,7 @@ defmodule Blog.HomePage do
         By the time Cheddar entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. Even after 16 years together, they still snuggled with one another frequently.
       </p>
 
-      <h2>Childhood</h2>
+      <h2 id="childhood">Childhood</h2>
 
       <p>
         January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. The runt of the litter was one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. This was not her first experience in childbirth, and her owners made playful yet snide remarks about her multiple pregnancies.
@@ -158,7 +173,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Despite his questionable intellect, he was soft and loved physical affection and people. He had zero self respect. I always thought of him as a dog trapped in a cat's body. He put up with being touched in ways that no other cat would, and seemed to enjoy much of it. His body seemed to have few bones and they were all made of rubber. Later in his life I told people that I had "won the cat lottery" because his personality was so affectionate and loving. I initially claimed it in jest but eventually sort of came to believe it.
+        Despite his questionable intellect, he was soft and loved physical affection and people. He had zero self respect. I always thought of him as a dog trapped in a cat's body. He put up with being touched in ways that no other cat would, and seemed to enjoy much of it. His body seemed to have few bones and they were all made of rubber.
       </p>
 
       <p>
@@ -178,7 +193,7 @@ defmodule Blog.HomePage do
         We lived in that arrangement for about 1.5 years. Many fond memories were had. The kittens grew from childhood to teenhood to adulthood. I took it upon myself to complete the kitty chores every day. Because I was usually the "meat man" I became the de facto dad; they bonded very closely with me.
       </p>
 
-      <h2>Our bond</h2>
+      <h2 id="adulthood">Adulthood</h2>
 
       <p>
         By the time that my friends and I parted ways at the end of college, the cats were adults. I suggested that I take the cats with me and that I be responsible for them.
@@ -236,7 +251,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Despite all the moves over the years, the cats never seemed bothered by it. They quickly adapted to their new homes, and established new hangouts and perches.
+        Despite all the moves over the years, the cats never seemed bothered by it. They quickly adapted to their new homes. They were resilient, and seamlessly established new hangouts and perches.
       </p>
 
       <p>
@@ -252,12 +267,12 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar's lapcat tendencies quickly came to be appreciated as he became notorious on my work calls. I would make him wave at people or simply showcase how he enjoyed tummy rubs or even bean rubs. One colleague asked what sort of drugs I put the cats on for them to be so chill.
+        Cheddar's lap cat tendencies quickly came to be appreciated as he became notorious on my work calls. I would make him wave at people or simply showcase how he enjoyed tummy rubs or even bean rubs. One colleague asked what sort of drugs I put the cats on for them to be so chill.
       </p>
 
-      <h1>Gallery</h1>
+      <h2 id="gallery">Gallery</h2>
       <div :for={{group_index, entries} <- grouped_entries()}>
-        <h2>{group_label(group_index)}</h2>
+        <h3 id={"group-#{group_index}"}>{group_label(group_index)}</h3>
         <div class="gallery-grid-2-to-4">
           <div
             :for={entry <- entries}
@@ -273,7 +288,12 @@ defmodule Blog.HomePage do
 
   defp entries() do
     [
-      %{label: "", date: "2010-02-24", filename: "2010-02-24-11.jpg", video: false},
+      %{
+        label: "Meeting the kittens",
+        date: "2010-02-24",
+        filename: "2010-02-24-11.jpg",
+        video: false
+      },
       %{label: "", date: "2010-02-24", filename: "2010-02-24-9.jpg", video: false},
       %{label: "", date: "2010-02-26", filename: "2010-02-26-01.jpg", video: false},
       %{label: "", date: "2010-02-26", filename: "2010-02-26-02.jpg", video: false},

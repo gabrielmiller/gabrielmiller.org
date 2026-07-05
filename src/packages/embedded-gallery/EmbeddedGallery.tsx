@@ -162,39 +162,44 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
             <div
               class="controls-top-right"
             >
-              <a
-                class="control-download-original"
-                href={entries[currentEntryIndex].original}
-                target="_blank"
-                title="View original">
-                <IconDownTray />
-              </a>
-              {mediaMode == "Image" && (
+              <div class="top-row">
+                <a
+                  class="control-download-original"
+                  href={entries[currentEntryIndex].original}
+                  target="_blank"
+                  title="View original">
+                  <IconDownTray />
+                </a>
+                {mediaMode == "Image" && (
+                  <button
+                    class="control-change-mode"
+                    disabled={entries[currentEntryIndex].video == undefined}
+                    onClick={() => setMediaMode("Video")}
+                    title="Change media mode"
+                    type="button">
+                    <IconVideoCamera />
+                  </button>
+                )}
+                {mediaMode == "Video" && (
+                  <button
+                    class="control-change-mode"
+                    onClick={() => setMediaMode("Image")}
+                    title="Change media mode"
+                    type="button">
+                    <IconCamera />
+                  </button>
+                )}
                 <button
-                  class="control-change-mode"
-                  disabled={entries[currentEntryIndex].video == undefined}
-                  onClick={() => setMediaMode("Video")}
-                  title="Change media mode"
+                  class="control-close-viewer"
+                  onClick={(event) => closeGallery(event)}
+                  title="Close viewer"
                   type="button">
-                  <IconVideoCamera />
+                  <IconXMarkCircle />
                 </button>
-              )}
-              {mediaMode == "Video" && (
-                <button
-                  class="control-change-mode"
-                  onClick={() => setMediaMode("Image")}
-                  title="Change media mode"
-                  type="button">
-                  <IconCamera />
-                </button>
-              )}
-              <button
-                class="control-close-viewer"
-                onClick={(event) => closeGallery(event)}
-                title="Close viewer"
-                type="button">
-                <IconXMarkCircle />
-              </button>
+              </div>
+              <div class="bottom-row">
+                {currentEntryIndex + 1} / {entries.length}
+              </div>
             </div>
             <button
               class="control-navigate-previous"
@@ -212,6 +217,13 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
               type="button">
               <IconArrowRightCircle />
             </button>
+            {entries[currentEntryIndex].label !== "" && (
+              <div class="label">
+                <p>
+                  {entries[currentEntryIndex].label}
+                </p>
+              </div>
+            )}
           </div>
         }
       </div>

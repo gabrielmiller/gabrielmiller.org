@@ -268,6 +268,11 @@ ul.list {
     line-height: 2;
   }
 
+  .toc {
+    margin-bottom: 32px;
+    margin-top: 32px;
+  }
+
   .gallery-opener {
     border: 0;
     background-color: transparent;
