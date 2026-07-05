@@ -7,6 +7,11 @@ body {
   padding: 0;
 }
 
+nav,
+main {
+  margin: 0 1rem;
+}
+
 nav .title {
   height: 36px;
 }
@@ -18,11 +23,11 @@ nav>div {
   margin-top: 1.25rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   #nav-toggle {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 1rem;
+    top: 20px;
     height: 36px;
     z-index: 2;
   }
@@ -77,21 +82,12 @@ nav>div {
     margin-top: 1.25rem;
   }
 
-  nav {
-    position: relative;
-  }
-
-  nav,
-  main {
-    margin: 0 1rem;
-  }
-
   table {
     padding: 0;
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 641px) {
   nav>div {
     margin-bottom: 0.5rem;
   }
