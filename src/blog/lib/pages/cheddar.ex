@@ -76,7 +76,9 @@ defmodule Blog.HomePage do
         {gallery_grid_element("PXL_20260419_204001262.jpg")}
       </div>
 
-      <p>By the time Cheddar entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. Even after 16 years together, they still snuggled with one another frequently.</p>
+      <p>
+        By the time Cheddar entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. Even after 16 years together, they still snuggled with one another frequently.
+      </p>
 
       <h2>Childhood</h2>
 
@@ -92,7 +94,9 @@ defmodule Blog.HomePage do
         Around that time I was a college student at the University of Pittsburgh, living off campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. After a short time we visited a pet store and browsed about. We quickly came to our senses in the petstore: hedgehogs seemed impractical, dogs were too much of a commitment, but cats seemed practical. When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. But we were not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
       </p>
 
-      {inline_gallery_img_element("2010-02-24-11.jpg", class: "gallery-item gallery-opener float-left")}
+      {inline_gallery_img_element("2010-02-24-11.jpg",
+        class: "gallery-item gallery-opener float-left"
+      )}
 
       <p>
         Several weeks later, in late February, I found a listing on craigslist for adopting long-haired kittens. There were five of them. Peter had a car and therefore it was most convenient for him to make a visit. Originally I suggested two male tabbies, having previously bonded with one in my childhood who was an amazing companion. Peter and his then-girlfriend made the trek. They returned with two tiny adorable kittens. It was love at first sight. They were each about the size of a soda can when they arrived.
@@ -106,7 +110,7 @@ defmodule Blog.HomePage do
         Although Ryan had visited the pet store with Peter and I, we had deliberately not informed him that we were adopting kittens. It was a surprise when he returned home from class.
       </p>
 
-      <div class="gallery-grid-2">
+      <div class="gallery-grid-2-to-4">
         {gallery_grid_element("2010-02-26-03.jpg")}
         {gallery_grid_element("2010-02-26-09.jpg")}
         {gallery_grid_element("2010-02-26-07.jpg")}
@@ -204,7 +208,7 @@ defmodule Blog.HomePage do
         Despite the isolation and various emotional challenges I had the cats. My best buddies. They kept me regular company. Our relationship became more symbiotic and nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
       </p>
 
-      <div class="gallery-grid-2">
+      <div class="gallery-grid-2-to-4">
         {gallery_grid_element("IMG_1027.jpg")}
         {gallery_grid_element("IMG_1028.jpg")}
         {gallery_grid_element("IMG_20110805_170932.jpg")}
@@ -252,9 +256,15 @@ defmodule Blog.HomePage do
       </p>
 
       <h1>Gallery</h1>
-      <div class="gallery-grid-2-to-4">
-        <div :for={entry <- entries()} class="gallery-item">
-          {inline_gallery_img_element(entry.filename, class: "gallery-grid-item gallery-opener")}
+      <div :for={{group_index, entries} <- grouped_entries()}>
+        <h2>{group_label(group_index)}</h2>
+        <div class="gallery-grid-2-to-4">
+          <div
+            :for={entry <- entries}
+            class="gallery-item"
+          >
+            {inline_gallery_img_element(entry, class: "gallery-grid-item gallery-opener")}
+          </div>
         </div>
       </div>
     </div>
@@ -287,21 +297,6 @@ defmodule Blog.HomePage do
       %{label: "", date: "2010-05-09", filename: "2010-05-09.jpg", video: false},
       %{label: "", date: "2010-05-23", filename: "2010-05-23.jpg", video: false},
       %{label: "", date: "2010-05-is", filename: "2010-05-ish.jpg", video: false},
-      %{label: "", date: "2011-04-11", filename: "2011-04-11.gif", video: false},
-      %{label: "", date: "2016-06-25", filename: "2016-06-25.gif", video: false},
-      %{label: "", date: "2016-10-28", filename: "2016-10-28-2.gif", video: false},
-      %{label: "", date: "2016-10-28", filename: "2016-10-28.gif", video: false},
-      %{label: "", date: "2016-11-06", filename: "2016-11-06.jpg", video: false},
-      %{label: "", date: "2016-11-26", filename: "2016-11-26.jpg", video: false},
-      %{label: "", date: "2016-12-15", filename: "2016-12-15.jpg", video: false},
-      %{label: "", date: "2017-06-23", filename: "2017-06-23.jpg", video: false},
-      %{label: "", date: "2017-07-16", filename: "2017-07-16.gif", video: false},
-      %{label: "", date: "2017-09-15", filename: "2017-09-15.jpg", video: false},
-      %{label: "", date: "2017-09-16", filename: "2017-09-16.gif", video: false},
-      %{label: "", date: "2019-01-19", filename: "2019-01-19.jpg", video: false},
-      %{label: "", date: "2020-03-01", filename: "2020-03-01.jpg", video: false},
-      %{label: "", date: "2020-04-17", filename: "2020-04-17.jpg", video: false},
-      #
       %{label: "", date: "2010-08-06", filename: "IMG_0326.jpg", video: false},
       %{label: "", date: "2010-09-17", filename: "IMG_0584.jpg", video: false},
       %{label: "", date: "2010-09-18", filename: "IMG_0588.jpg", video: false},
@@ -310,10 +305,10 @@ defmodule Blog.HomePage do
       %{label: "", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
       %{label: "", date: "2011-02-17", filename: "IMG_0869.jpg", video: false},
       %{label: "", date: "2011-02-23", filename: "IMG_0880.jpg", video: false},
+      %{label: "", date: "2011-04-11", filename: "2011-04-11.gif", video: false},
       %{label: "", date: "2011-06-12", filename: "IMG_1027.jpg", video: false},
       %{label: "", date: "2011-06-12", filename: "IMG_1028.jpg", video: false},
       %{label: "", date: "2011-06-25", filename: "IMG_1044.jpg", video: false},
-      ##
       %{
         label: "",
         date: "2011-08-05",
@@ -422,6 +417,7 @@ defmodule Blog.HomePage do
         filename: "IMG_20160409_102744.jpg",
         video: false
       },
+      %{label: "", date: "2016-06-25", filename: "2016-06-25.gif", video: false},
       %{
         label: "",
         date: "2016-06-25",
@@ -446,6 +442,9 @@ defmodule Blog.HomePage do
         filename: "IMG_20161023_161737.jpg",
         video: false
       },
+      %{label: "", date: "2016-10-28", filename: "2016-10-28-2.gif", video: false},
+      %{label: "", date: "2016-10-28", filename: "2016-10-28.gif", video: false},
+      %{label: "", date: "2016-11-06", filename: "2016-11-06.jpg", video: false},
       %{
         label: "",
         date: "2016-11-08",
@@ -464,12 +463,14 @@ defmodule Blog.HomePage do
         filename: "IMG_20161120_121039.jpg",
         video: false
       },
+      %{label: "", date: "2016-11-26", filename: "2016-11-26.jpg", video: false},
       %{
         label: "",
         date: "2016-11-26",
         filename: "IMG_20161126_131957.jpg",
         video: false
       },
+      %{label: "", date: "2016-12-15", filename: "2016-12-15.jpg", video: false},
       %{
         label: "",
         date: "2017-03-12",
@@ -482,12 +483,16 @@ defmodule Blog.HomePage do
         filename: "IMG_20170604_183055.jpg",
         video: false
       },
+      %{label: "", date: "2017-06-23", filename: "2017-06-23.jpg", video: false},
+      %{label: "", date: "2017-07-16", filename: "2017-07-16.gif", video: false},
       %{
         label: "",
         date: "2017-08-16",
         filename: "IMG_20170816_074136.jpg",
         video: false
       },
+      %{label: "", date: "2017-09-15", filename: "2017-09-15.jpg", video: false},
+      %{label: "", date: "2017-09-16", filename: "2017-09-16.gif", video: false},
       %{
         label: "",
         date: "2017-09-28",
@@ -506,7 +511,111 @@ defmodule Blog.HomePage do
         filename: "IMG_20180101_122305.jpg",
         video: false
       },
-      ##
+      %{
+        label: "",
+        date: "2018-10-29",
+        filename: "MVIMG_20181029_184540.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2018-12-21",
+        filename: "MVIMG_20181221_231749.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2019-01-01",
+        filename: "MVIMG_20190101_145542.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2019-01-01",
+        filename: "MVIMG_20190101_150022.jpg",
+        video: true
+      },
+      %{label: "", date: "2019-01-19", filename: "2019-01-19.jpg", video: false},
+      %{
+        label: "",
+        date: "2019-05-03",
+        filename: "MVIMG_20190503_210536.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2019-07-15",
+        filename: "MVIMG_20190715_184356.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2019-09-15",
+        filename: "MVIMG_20190915_180543.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2019-11-02",
+        filename: "MVIMG_20191102_123317.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2019-11-05",
+        filename: "MVIMG_20191105_151718.jpg",
+        video: true
+      },
+      %{label: "", date: "2020-03-01", filename: "2020-03-01.jpg", video: false},
+      %{
+        label: "",
+        date: "2020-03-01",
+        filename: "MVIMG_20200301_172233.jpg",
+        video: true
+      },
+      %{label: "", date: "2020-04-17", filename: "2020-04-17.jpg", video: false},
+      %{
+        label: "",
+        date: "2020-05-26",
+        filename: "MVIMG_20200526_164940.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2020-05-26",
+        filename: "MVIMG_20200526_165004.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2020-07-02",
+        filename: "MVIMG_20200702_122328.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2020-07-08",
+        filename: "MVIMG_20200708_124100.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2020-07-10",
+        filename: "MVIMG_20200710_132944.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2020-08-04",
+        filename: "MVIMG_20200804_132333.jpg",
+        video: true
+      },
+      %{
+        label: "",
+        date: "2020-08-21",
+        filename: "MVIMG_20200821_134125.jpg",
+        video: true
+      },
       %{
         label: "",
         date: "2021-01-01",
@@ -639,112 +748,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20260317_030543244.jpg",
         video: true
       },
-
-      ###
-      %{
-        label: "",
-        date: "2018-10-29",
-        filename: "MVIMG_20181029_184540.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2018-12-21",
-        filename: "MVIMG_20181221_231749.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2019-01-01",
-        filename: "MVIMG_20190101_145542.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2019-01-01",
-        filename: "MVIMG_20190101_150022.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2019-05-03",
-        filename: "MVIMG_20190503_210536.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2019-07-15",
-        filename: "MVIMG_20190715_184356.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2019-09-15",
-        filename: "MVIMG_20190915_180543.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2019-11-02",
-        filename: "MVIMG_20191102_123317.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2019-11-05",
-        filename: "MVIMG_20191105_151718.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-03-01",
-        filename: "MVIMG_20200301_172233.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-05-26",
-        filename: "MVIMG_20200526_164940.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-05-26",
-        filename: "MVIMG_20200526_165004.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-07-02",
-        filename: "MVIMG_20200702_122328.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-07-08",
-        filename: "MVIMG_20200708_124100.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-07-10",
-        filename: "MVIMG_20200710_132944.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-08-04",
-        filename: "MVIMG_20200804_132333.jpg",
-        video: true
-      },
-      %{
-        label: "",
-        date: "2020-08-21",
-        filename: "MVIMG_20200821_134125.jpg",
-        video: true
-      },
-
-      ### cat snugs w/o video
+      ### cat snugs
       %{
         label: "",
         date: "2016-03-19",
@@ -817,8 +821,6 @@ defmodule Blog.HomePage do
         filename: "IMG_20181218_161442.jpg",
         video: false
       },
-
-      # cat snugs w/ video
       %{
         label: "",
         date: "2019-03-31",
@@ -1083,8 +1085,6 @@ defmodule Blog.HomePage do
         filename: "PXL_20250106_010047866.jpg",
         video: true
       },
-
-      #
       %{
         label: "",
         date: "2025-01-06",
@@ -1199,8 +1199,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20260523_232251675.jpg",
         video: true
       },
-
-      # people snugs w/o video
+      # people snugs
       %{
         label: "",
         date: "2016-03-27",
@@ -1249,7 +1248,6 @@ defmodule Blog.HomePage do
         filename: "IMG_20181209_152505.jpg",
         video: false
       },
-      # people snugs w/ video
       %{
         label: "",
         date: "2020-03-27",
@@ -1465,7 +1463,8 @@ defmodule Blog.HomePage do
   end
 
   defp gallery_grid_element(src) do
-    assigns = %{ src: src }
+    assigns = %{src: src}
+
     ~H"""
     <div class="gallery-item">
       {inline_gallery_img_element(@src, class: "gallery-grid-item gallery-opener")}
@@ -1530,6 +1529,39 @@ defmodule Blog.HomePage do
     <button class={@class} type="button"><img src={@src} srcset={@srcset} /></button>
     """
   end
+
+  defp grouped_entries() do
+    section_starts = %{
+      "IMG_20160319_143308.jpg" => 1,
+      "IMG_20160327_193457.jpg" => 2
+    }
+
+    entries()
+    |> Enum.reduce(
+      {%{
+         0 => [],
+         1 => [],
+         2 => []
+       }, 0},
+      fn entry, {acc, group} ->
+        header = Map.get(section_starts, entry.filename)
+
+        group =
+          if header == nil,
+            do: group,
+            else: header
+
+        entries = Map.get(acc, group, [])
+        updated_entries = entries ++ [entry.filename]
+        {Map.put(acc, group, updated_entries), group}
+      end
+    )
+    |> elem(0)
+  end
+
+  defp group_label(0), do: "General"
+  defp group_label(1), do: "Sibling Love"
+  defp group_label(2), do: "The Finest Lap Cat"
 
   defp parse_filename(%{filename: filename}) do
     file_parts = String.split(filename, ".")
