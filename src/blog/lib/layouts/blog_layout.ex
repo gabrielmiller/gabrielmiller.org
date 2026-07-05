@@ -6,14 +6,14 @@ defmodule Blog.BlogLayout do
     ~H"""
     <div class="container">
       <nav>
-        <div>L. Gabriel Miller</div>
+        <div class="title">L. Gabriel Miller</div>
         <input id="nav-toggle-state" style="display:none;" type="checkbox" />
 
         <label id="nav-toggle" for="nav-toggle-state" role="button">
-          <svg viewBox="0 0 100 80" width="40" height="40">
-            <rect width="100" height="20"></rect>
-            <rect y="30" width="100" height="20"></rect>
-            <rect y="60" width="100" height="20"></rect>
+          <svg viewBox="0 0 100 80" width="36" height="36">
+            <rect x="6" y="10" width="80" height="12"></rect>
+            <rect x="6" y="34" width="80" height="12"></rect>
+            <rect x="6" y="58" width="80" height="12"></rect>
           </svg>
         </label>
         <ul>

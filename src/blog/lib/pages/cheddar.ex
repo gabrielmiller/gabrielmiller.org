@@ -49,10 +49,10 @@ defmodule Blog.HomePage do
       </p>
 
       <div class="gallery-grid-2">
-        {inline_gallery_img_element("IMG_20160625_095842.jpg")}
-        {inline_gallery_img_element("PXL_20220430_175735855.jpg")}
-        {inline_gallery_img_element("IMG_20160406_173626.jpg")}
-        {inline_gallery_img_element("PXL_20250803_192007810.jpg")}
+        {gallery_grid_element("IMG_20160625_095842.jpg")}
+        {gallery_grid_element("PXL_20220430_175735855.jpg")}
+        {gallery_grid_element("IMG_20160406_173626.jpg")}
+        {gallery_grid_element("PXL_20250803_192007810.jpg")}
       </div>
 
       <p>
@@ -72,14 +72,8 @@ defmodule Blog.HomePage do
       </p>
 
       <div class="gallery-grid-2">
-        <div class="gallery-item">
-          {inline_gallery_img_element("2010-02-24-9.jpg", class: "gallery-grid-item  gallery-opener")}
-          <p class="grid-label">February 2010</p>
-        </div>
-        <div class="gallery-item">
-          {inline_gallery_img_element("PXL_20260419_204001262.jpg", class: "gallery-grid-item  gallery-opener")}
-          <p class="grid-label">April 2026</p>
-        </div>
+        {gallery_grid_element("2010-02-24-9.jpg")}
+        {gallery_grid_element("PXL_20260419_204001262.jpg")}
       </div>
 
       <p>By the time Cheddar entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. Even after 16 years together, they still snuggled with one another frequently.</p>
@@ -113,10 +107,10 @@ defmodule Blog.HomePage do
       </p>
 
       <div class="gallery-grid-2">
-        {inline_gallery_img_element("2010-02-26-03.jpg")}
-        {inline_gallery_img_element("2010-02-26-09.jpg")}
-        {inline_gallery_img_element("2010-02-26-07.jpg")}
-        {inline_gallery_img_element("2010-02-26-10.jpg")}
+        {gallery_grid_element("2010-02-26-03.jpg")}
+        {gallery_grid_element("2010-02-26-09.jpg")}
+        {gallery_grid_element("2010-02-26-07.jpg")}
+        {gallery_grid_element("2010-02-26-10.jpg")}
       </div>
 
       <p>
@@ -168,8 +162,8 @@ defmodule Blog.HomePage do
       </p>
 
       <div class="gallery-grid-2">
-        {inline_gallery_img_element("2010-05-07.jpg")}
-        {inline_gallery_img_element("IMG_0667.jpg")}
+        {gallery_grid_element("2010-05-07.jpg")}
+        {gallery_grid_element("IMG_0667.jpg")}
       </div>
 
       <p>
@@ -211,10 +205,10 @@ defmodule Blog.HomePage do
       </p>
 
       <div class="gallery-grid-2">
-        {inline_gallery_img_element("IMG_1027.jpg")}
-        {inline_gallery_img_element("IMG_1028.jpg")}
-        {inline_gallery_img_element("IMG_20110805_170932.jpg")}
-        {inline_gallery_img_element("IMG_20110808_181425.jpg")}
+        {gallery_grid_element("IMG_1027.jpg")}
+        {gallery_grid_element("IMG_1028.jpg")}
+        {gallery_grid_element("IMG_20110805_170932.jpg")}
+        {gallery_grid_element("IMG_20110808_181425.jpg")}
       </div>
 
       <p>
@@ -1463,6 +1457,15 @@ defmodule Blog.HomePage do
     })
   end
 
+  defp gallery_grid_element(src) do
+    assigns = %{ src: src }
+    ~H"""
+    <div class="gallery-item">
+      {inline_gallery_img_element(@src, class: "gallery-grid-item gallery-opener")}
+    </div>
+    """
+  end
+
   defp asset_src(entry, variation) do
     {filename, extension} = parse_filename(entry)
 
@@ -1517,7 +1520,7 @@ defmodule Blog.HomePage do
     }
 
     ~H"""
-    <img class={@class} src={@src} srcset={@srcset} />
+    <button class={@class} type="button"><img src={@src} srcset={@srcset} /></button>
     """
   end
 

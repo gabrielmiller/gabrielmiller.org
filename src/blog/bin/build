@@ -1,6 +1,6 @@
 # !/bin/sh
 
-docker run --rm --mount type=bind,src="..",dst="/project" -w /project hexpm/elixir:1.19.5-erlang-28.3.1-debian-bookworm-20260202-slim sh -c "apt-get update -y && apt-get install -y build-essential git && apt-get clean && rm -f /var/lib/apt/lists/*_*; mix local.hex --force; mix deps.get; MIX_ENV=prod mix build"
+docker run --rm --mount type=bind,src=".",dst="/project" -w /project hexpm/elixir:1.19.5-erlang-28.3.1-debian-bookworm-20260202-slim sh -c "apt-get update -y && apt-get install -y build-essential git && apt-get clean && rm -f /var/lib/apt/lists/*_*; mix local.hex --force; mix deps.get; MIX_ENV=prod mix build"
 
 RETURN=$?
 

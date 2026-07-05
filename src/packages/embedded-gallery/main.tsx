@@ -3,19 +3,30 @@ import EmbeddedGallery from './EmbeddedGallery';
 
 document.addEventListener("click", function (event) {
   const target = event.target;
-  if (target === undefined || target === null || target.tagName !== "IMG") {
+  if (target === undefined || target === null) {
     return;
   }
 
-  let isGalleryItem = false;
-  for (const c of target.classList) {
+  let openerElement;
+  let srcElement;
+
+  if (target.tagName === "BUTTON") {
+    openerElement = target;
+    srcElement = target.children[0];
+  } else {
+    openerElement = target.parentElement;
+    srcElement = target;
+  }
+
+  let isGalleryOpener = false;
+  for (const c of openerElement.classList) {
     if (c === "gallery-opener") {
-      isGalleryItem = true;
+      isGalleryOpener = true;
       break;
     }
   }
 
-  if (!isGalleryItem) {
+  if (!isGalleryOpener) {
     return;
   }
 
@@ -24,7 +35,7 @@ document.addEventListener("click", function (event) {
     throw new Error("No context element found");
   }
 
-  const src = target.getAttribute("src");
+  const src = srcElement.getAttribute("src");
   MountOrUpdate(src);
 });
 
