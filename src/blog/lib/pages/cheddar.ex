@@ -28,7 +28,7 @@ defmodule Blog.HomePage do
       <h1>In Loving Memory of Cheddar</h1>
 
       <p class="callout info">
-        Click the photographs on this page to see a larger, full-screen version. Some photographs have a motion photo that can be viewed from the full-screen viewer.
+        Click the photographs on this page to see a larger, full-screen version. Some photographs have a motion photo(a short video) that can be viewed within the full-screen viewer. You can toggle between photo and video when available using the camera and video camera icons, respectively.
       </p>
 
       <div class="toc">
@@ -60,7 +60,15 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar led a life of happiness and brought joy to all he met. He loved affection and physical touch like no other feline. Even people who claimed to not like cats--or even to dislike cats--fell in love with him. He was content to sit on your lap and loudly purr.
+        He was deeply bonded with his sister and enjoyed spending time with people. He had a loud motor, and was talkative for a cat. For most of his life he provided a playful and calming presence.
+      </p>
+
+      <p>
+        He loved physical touch like no other feline. Even people who claimed to not like cats--or even to dislike cats--fell in love with him because of his friendly, gentle, and affectionate demeanor.
+      </p>
+
+      <p>
+        Cheddar was an orange tabby. His coat was almost symmetrical except for his chin. He was orange with a white belly, boots, gloves, and bib.
       </p>
 
       <div class="gallery-grid-2">
@@ -71,19 +79,19 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        As of writing, Cheddar was present for most my adult life. He was my companion for 16 years, through many formative times. He was a sign of stability in my life. He was a constant. He became part of my identity.
+        As of writing, Cheddar was present for most my adult life. He was my companion for 16 years, through many formative times. He came to represent stability to me. He was a constant. He was part of my identity.
       </p>
 
       <p>
-        He was one of my best friends. He helped me work through difficult emotions many times. He was always thrilled to be your companion.
+        He was one of my best friends. He helped me work through difficult emotions and difficult times. He was always thrilled to be my companion.
       </p>
 
       <p>
-        I miss him dearly. My heart has an eheddar-shaped hole in it. I will never forget him, and I will never stop loving him.
+        I miss him dearly. My heart has an cheddar-shaped hole in it. I will never forget him, and I will never stop loving him.
       </p>
 
       <p>
-        If you were touched by his light, I hope that you also are warmed by what you read.
+        If you were touched by his light, I hope that you also are warmed by the photos/videos and writing that you find here.
       </p>
 
       <div class="gallery-grid-2">
@@ -92,7 +100,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        By the time Cheddar entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. Even after 16 years together, they still snuggled with one another frequently.
+        By the time that Cheddar entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. Even after 16 years together, they still frequently snuggled with one another.
       </p>
 
       <h2 id="childhood">Childhood</h2>
@@ -238,6 +246,8 @@ defmodule Blog.HomePage do
         After a year and a half of living in Washington, I switched careers. I managed to land a job in the software industry, at a company based near Pittsburgh. I moved once more, back to Pittsburgh, moving in with my then-girlfriend. I felt relieved to be through the isolation.
       </p>
 
+      {inline_gallery_img_element("IMG_20160106_195438.jpg", class: "gallery-item gallery-opener float-right")}
+
       <p>
         In 2015 I went through a break-up. I took the opportunity to move out on my own again. I needed the space to emotionally recover. It felt like I was starting my life anew, but unlike when I left for Washington, I was more excited and sure of myself. In this period I had a couple stints staying at places I found on craigslist. One place for three months, the next for nine months. Through these times I felt isolated again, though I had the stability of working at the same job and with the same colleagues through it. Initially my professional interests kept me afloat, engaged, and on a healthy path. I managed to avoid falling into bad habits. I began to put myself into more social situations in order to meet folks and broaden my circles.
       </p>
@@ -257,6 +267,8 @@ defmodule Blog.HomePage do
       <p>
         Eventually I met my now-wife, she moved in, and the cats also bonded with her. She thinks back fondly on when she first met the cats and was intimidated at the prospect of picking them up.
       </p>
+
+      {inline_gallery_img_element("PXL_20220907_215329887.jpg", class: "gallery-item gallery-opener float-left")}
 
       <p>
         When COVID lockdowns happened my workplace switched to being remote and I began to spend most of my waking hours at home. The amount of time spent with the cats soared. So too did the number of cat photos in my life.
