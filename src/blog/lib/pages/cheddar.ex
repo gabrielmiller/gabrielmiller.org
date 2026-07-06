@@ -728,843 +728,843 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "",
+        label: "Dead bug snooze",
         date: "2020-07-08",
         filename: "MVIMG_20200708_124100.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Straddling the chair",
         date: "2020-07-10",
         filename: "MVIMG_20200710_132944.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Completely asleep",
         date: "2020-08-04",
         filename: "MVIMG_20200804_132333.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "One of those times when he needed assistance unhooking",
         date: "2020-08-21",
         filename: "MVIMG_20200821_134125.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Looking handsome",
         date: "2021-01-01",
         filename: "PXL_20210101_171344010.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Glamour shot",
         date: "2021-03-14",
         filename: "PXL_20210314_174508375.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Completely asleep",
         date: "2021-06-11",
         filename: "PXL_20210611_024021800.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Butter thief",
         date: "2021-08-31",
         filename: "PXL_20210831_180647355.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Intense grooming",
         date: "2022-09-24",
         filename: "PXL_20220924_174434178.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Cheddar passed the dangle test with flying colors",
         date: "2023-05-12",
         filename: "PXL_20230512_020020439.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Boop!",
         date: "2023-05-27",
         filename: "PXL_20230527_204610442.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Looking regal",
         date: "2023-07-04",
         filename: "PXL_20230704_230302378.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Cheddar enjoyed being carried by his humans",
         date: "2023-07-21",
         filename: "PXL_20230721_013350322.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "He had an apartment in an ikea cube shelf that he enjoyed in warmer months",
         date: "2023-09-01",
         filename: "PXL_20230901_160209439.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling snug, looking serious",
         date: "2023-12-12",
         filename: "PXL_20231212_191642003.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Synchronized tongue action",
         date: "2023-12-12",
         filename: "PXL_20231212_191647567_exported_299_1702408740658.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "A mythical double scoop",
         date: "2023-12-17",
         filename: "PXL_20231217_224202264.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
         date: "2024-02-28",
         filename: "PXL_20240228_232736347.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Cube shelf apartment",
         date: "2024-05-27",
         filename: "PXL_20240527_145830855.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Hey!",
         date: "2024-06-13",
         filename: "PXL_20240613_184512963.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Snoozin'",
         date: "2024-07-16",
         filename: "PXL_20240716_011249612.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Goofing around in packaging",
         date: "2024-12-25",
         filename: "PXL_20241225_155420455.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Celebrating his 15th birthday",
         date: "2025-01-01",
         filename: "PXL_20250101_152450786.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "For a brief period, Cheddar would occasionally jump in the laundry hamper. He couldn't figure out how to get out and would meow until a human rescued him.",
         date: "2025-04-27",
         filename: "PXL_20250427_000917547.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Cardboard boxes were forever an interest",
         date: "2026-01-07",
         filename: "PXL_20260107_232010050.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Bedtime cuddle",
         date: "2026-03-17",
         filename: "PXL_20260317_030543244.jpg",
         video: true
       },
       ### cat snugs
       %{
-        label: "",
+        label: "Sibling love",
         date: "2016-03-19",
         filename: "IMG_20160319_143308.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2016-03-20",
         filename: "IMG_20160320_154141.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2016-10-23",
         filename: "IMG_20161023_233706.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2017-01-22",
         filename: "IMG_20170122_160500.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2017-03-19",
         filename: "IMG_20170319_152726.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2017-05-14",
         filename: "IMG_20170514_150307.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2017-05-14",
         filename: "IMG_20170514_150604.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2017-06-18",
         filename: "IMG_20170618_135521.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2017-09-03",
         filename: "IMG_20170903_153231.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2018-01-14",
         filename: "IMG_20180114_151521.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2018-11-17",
         filename: "IMG_20181117_200729.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2018-12-18",
         filename: "IMG_20181218_161442.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2019-03-31",
         filename: "MVIMG_20190331_123203.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2019-03-31",
         filename: "MVIMG_20190331_124911.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2019-05-12",
         filename: "MVIMG_20190512_182753.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-04-14",
         filename: "MVIMG_20200414_145819.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-04-14",
         filename: "MVIMG_20200414_174408.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-05-15",
         filename: "MVIMG_20200515_130605.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-05-20",
         filename: "MVIMG_20200520_105641.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-05-25",
         filename: "MVIMG_20200525_184831.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-10-07",
         filename: "PXL_20201007_184949703.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-10-08",
         filename: "PXL_20201008_152246332.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-10-12",
         filename: "PXL_20201012_143011156.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-12-05",
         filename: "PXL_20201205_180611556.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-12-26",
         filename: "PXL_20201226_185926898.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2020-12-29",
         filename: "PXL_20201229_195710211.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2021-02-02",
         filename: "PXL_20210202_181359374.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2021-08-31",
         filename: "PXL_20210831_160906018.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2021-10-13",
         filename: "PXL_20211013_154132913.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2021-11-26",
         filename: "PXL_20211126_192210753.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2021-12-04",
         filename: "PXL_20211204_192025785.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2022-01-19",
         filename: "PXL_20220119_191533455.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2022-01-26",
         filename: "PXL_20220126_180210072.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2022-04-02",
         filename: "PXL_20220402_221711260.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2022-04-30",
         filename: "PXL_20220430_175735855.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2022-06-19",
         filename: "PXL_20220619_180738528.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2023-03-23",
         filename: "PXL_20230323_162354791.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2023-03-28",
         filename: "PXL_20230328_181031129.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2023-10-02",
         filename: "PXL_20231002_152306213.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2023-10-20",
         filename: "PXL_20231020_155249573.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2023-10-22",
         filename: "PXL_20231022_193148086.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2023-12-03",
         filename: "PXL_20231203_003240242.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2023-12-21",
         filename: "PXL_20231221_231430118.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-01-09",
         filename: "PXL_20240109_162913950.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-02-29",
         filename: "PXL_20240229_162031235.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-03-13",
         filename: "PXL_20240313_181400865.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-11-14",
         filename: "PXL_20241114_223645495.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-11-14",
         filename: "PXL_20241114_223924183.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-12-11",
         filename: "PXL_20241211_222756909.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-12-21",
         filename: "PXL_20241221_184132481.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-12-25",
         filename: "PXL_20241225_210818609.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-12-25",
         filename: "PXL_20241225_233441310.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-12-27",
         filename: "PXL_20241227_015727728.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2024-12-30",
         filename: "PXL_20241230_000914484.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-01-02",
         filename: "PXL_20250102_215722568.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-01-06",
         filename: "PXL_20250106_010047866.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-01-06",
         filename: "PXL_20250106_010922112.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-01-11",
         filename: "PXL_20250111_171652076.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-01-13",
         filename: "PXL_20250113_210245005.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-01-23",
         filename: "PXL_20250123_214228161.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-01-26",
         filename: "PXL_20250126_003043056.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-03-07",
         filename: "PXL_20250307_181652852.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-10-10",
         filename: "PXL_20251010_195219842.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-10-10",
         filename: "PXL_20251010_213245103.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-11-19",
         filename: "PXL_20251119_211850233.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-11-19",
         filename: "PXL_20251119_231827327.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-11-21",
         filename: "PXL_20251121_195225090.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-11-24",
         filename: "PXL_20251124_172735860.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-12-17",
         filename: "PXL_20251217_194029601.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2025-12-23",
         filename: "PXL_20251223_202704217.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2026-03-30",
         filename: "PXL_20260330_165544428.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2026-04-08",
         filename: "PXL_20260408_215658138.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2026-04-09",
         filename: "PXL_20260409_161439345.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2026-04-19",
         filename: "PXL_20260419_204001262.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "Sibling love",
         date: "2026-05-23",
         filename: "PXL_20260523_232251675.jpg",
         video: true
       },
       # people snugs
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2016-03-27",
         filename: "IMG_20160327_193457.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2016-04-28",
         filename: "IMG_20160428_222303.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2016-10-23",
         filename: "IMG_20161023_161244.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2016-10-29",
         filename: "IMG_20161029_143835.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2016-12-15",
         filename: "IMG_20161215_112625.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2018-04-07",
         filename: "IMG_20180407_113846.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2018-11-03",
         filename: "IMG_20181103_113234.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2018-12-09",
         filename: "IMG_20181209_152505.jpg",
         video: false
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2020-03-27",
         filename: "MVIMG_20200327_160938.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2020-04-22",
         filename: "MVIMG_20200422_222941.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2020-11-03",
         filename: "PXL_20201103_195955805.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2020-11-27",
         filename: "PXL_20201127_002630772.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2020-12-25",
         filename: "PXL_20201225_170305534.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2021-01-16",
         filename: "PXL_20210116_200310347.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2021-07-27",
         filename: "PXL_20210727_004916033.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2021-10-17",
         filename: "PXL_20211017_204048923.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2022-01-30",
         filename: "PXL_20220130_183750054.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2022-03-20",
         filename: "PXL_20220320_195559399.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2022-09-07",
         filename: "PXL_20220907_215329887.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-01-01",
         filename: "PXL_20230101_201923744.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-09-15",
         filename: "PXL_20230915_230054830.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-10-17",
         filename: "PXL_20231017_190321029.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-10-25",
         filename: "PXL_20231025_011742499.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-12-01",
         filename: "PXL_20231201_203451592.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-12-08",
         filename: "PXL_20231208_034205291.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-12-20",
         filename: "PXL_20231220_212701926.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2023-12-28",
         filename: "PXL_20231228_010104927.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2024-01-18",
         filename: "PXL_20240118_021739264.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2024-01-20",
         filename: "PXL_20240120_021903765.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2024-01-20",
         filename: "PXL_20240120_022758124.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2024-02-10",
         filename: "PXL_20240210_224350841.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2024-04-30",
         filename: "PXL_20240430_115631975.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2024-11-10",
         filename: "PXL_20241110_002752029.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2025-05-17",
         filename: "PXL_20250517_142926814.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2025-05-31",
         filename: "PXL_20250531_175712295.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2025-08-03",
         filename: "PXL_20250803_192007810.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2026-01-10",
         filename: "PXL_20260110_184236531.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2026-02-15",
         filename: "PXL_20260215_021619773.jpg",
         video: true
       },
       %{
-        label: "",
+        label: "The finest lap cat",
         date: "2026-02-21",
         filename: "PXL_20260221_161904335.jpg",
         video: true
