@@ -205,31 +205,27 @@ defmodule Blog.HomePage do
       <h2 id="adulthood">Adulthood</h2>
 
       <p>
-        By the time the end of college it became apparent that Peter, Ryand, and I would part ways. I suggested that I take the cats with me and that I be responsible for them.
+        By the time the end of college it became apparent that Peter, Ryan, and I would part ways. I suggested that I take the cats with me and that I be responsible for them.
       </p>
 
       <p>
-        After graduation I moved to my first job. I was about to begin working in the environmental consulting industry. I moved about 30 miles from Pittsburgh, PA to Washington, PA to be closer to the job. I remember feeling anxious during the drive there.
+        After graduation I moved to my first job. I was about to begin working in the environmental consulting industry. I moved about 30 miles away, from Pittsburgh, PA to Washington, PA, to be closer to the job. I remember feeling anxious during the drive there.
       </p>
 
       <p>
-        In my life the music that I was listening to in a particular time and place tends to become a strong memory. Notably when I was on my drive out of Pittsburgh I was listening to Beirut's "A Candle's Fire" and it made me tear up.
+        It was on that drive that I learned Cheddar meowed non-stop, probably once every 30 seconds, when he was being transported in a carrier in a car.
       </p>
 
       <p>
-        It was on that same drive that I learned Cheddar would meow non-stop, probably at least once every 30 seconds, when he was being transported in a carrier.
+        I was on my own for the first time in my life. I felt tremendously isolated. I had no friends living nearby. I was in a new place. On the weekends I would drive back to Pittsburgh to visit my then girlfriend. I had a Mon-Fri, 9-5 job. But other than that I had to come up with ways to not let the isolation get to me.
       </p>
 
       <p>
-        I was on my own for the first time and had to make the best of it. I felt isolated. I had no friends living nearby. I was alone in a new place. On the weekends I would drive back to Pittsburgh to visit my then girlfriend.
+        In time I came to realize the cats were not just obligations, but actual companions. They were my best buddies. They kept me company. Our relationship became more symbiotic. It nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
       </p>
 
       <p>
-        I have vivid memories of my time in Washington. It was an ephemeral moment, a stepping stone, along my path. I deliberately didn't plant my roots deeply. The work was OK but it didn't motivate me and I found myself longing for more meaning as well as more mental stimulation. I felt trapped in a parochial environment. I needed to find a next step.
-      </p>
-
-      <p>
-        Despite the isolation and various emotional challenges I had the cats. My best buddies. They kept me regular company. Our relationship became more symbiotic and nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
+        I have vivid memories of my time in Washington, PA. It was an ephemeral moment, a stepping stone, along my path. I deliberately didn't plant my roots deeply. The work was OK but it motivated me little and I found myself longing for meaning and mental stimulation. I felt stuck in a parochial environment. I longed for a next step and began searching for it.
       </p>
 
       <div class="gallery-grid-2-to-4">
@@ -240,7 +236,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        I toyed with ideas about what to do next with my life, and eventually found myself learning how to program in my spare time. That scratched an itch. My brain was engaged and excited. The seed was planted and I began spending more and more of my free time learning how to program.
+        I toyed with ideas about what to do next with my life. Eventually I found myself learning how to write software in my spare time. That scratched an itch. It engaged my brain and I found it exciting. It planted a seed. I began spending more and more of my free time learning how to program.
       </p>
 
       <p>
@@ -250,7 +246,15 @@ defmodule Blog.HomePage do
       {inline_gallery_img_element("IMG_20160106_195438.jpg", class: "gallery-item gallery-opener float-right")}
 
       <p>
-        In 2015 I went through a break-up. I took the opportunity to move out on my own again. I needed the space to emotionally recover. It felt like I was starting my life anew, but unlike when I left for Washington, I was more excited and sure of myself. In this period I had a couple stints staying at places I found on craigslist. One place for three months, the next for nine months. Through these times I felt isolated again, though I had the stability of working at the same job and with the same colleagues through it. Initially my professional interests kept me afloat, engaged, and on a healthy path. I managed to avoid falling into bad habits. I began to put myself into more social situations in order to meet folks and broaden my circles.
+        For the next couple years I was happy but became complacent. The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the environment, however, and it continued to be fruitful. I opted to stay put instead of treating it as a stepping stone.
+      </p>
+
+      <p>
+        My personal life also became complacent. My relationship gradually changed from partners to something more like roommates. In 2015 I went through a break-up. It was a difficult time. But I managed to motivate myself to keep my chin up. I took the opportunity to move out on my own again. I needed space to emotionally recover, and changing environments helped.
+      </p>
+
+      <p>
+        It felt like I was starting my life anew, but unlike when I left for Washington, PA, I was more excited and sure of myself. In this period I had a couple stints staying at places that I found on craigslist. One place for three months, the next for nine months. Through these times I felt isolated again, though I had the stability of working at the same job and with the same colleagues through it. Initially my professional interests kept me afloat, engaged, and on a healthy path. I managed to avoid falling into bad habits. In time I began to put myself into more social situations in order to meet folks and broaden my circles.
       </p>
 
       <p>
@@ -258,11 +262,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        In October 2016 I purchased a house and set down my roots. At the time, the house was a short walk from one of the other "cat dads". My life began to stabilize more. After a few years later, the third "cat dad" also moved back to Pittsburgh, and also within walking distance. Being able to hang out with close friends so easily was a blessing. Life was good.
+        In October 2016 I purchased a house and set down my roots. At the time, the house was a short walk from Peter, one of the other "cat dads" who by then had moved back to Pittsburgh. My life began to stabilize more. After a few more years, Ryan, the third "cat dad" also moved back to Pittsburgh, and also within walking distance. Being able to hang out with close friends so easily was a blessing; Life was good.
       </p>
 
       <p>
-        Despite all the moves over the years, the cats never seemed bothered by it. They quickly adapted to their new homes. They were resilient, and seamlessly established new hangouts and perches.
+        Despite all the moves over the years, the cats never seemed bothered by change. They quickly adapted to their new homes. They were resilient, and seamlessly established new hangouts and perches. They had one another, and me, for stability.
       </p>
 
       <p>
@@ -280,7 +284,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar's lap cat tendencies quickly came to be appreciated as he became notorious on my work calls. I would make him wave at people or simply showcase how he enjoyed tummy rubs or even bean rubs. One colleague asked what sort of drugs I put the cats on for them to be so chill.
+        Cheddar's lap cat tendencies quickly came to be appreciated as he became notorious on my work calls. I would move his legs to make him wave at people or showcase how he enjoyed tummy rubs or even bean rubs. One colleague asked what sort of drugs I put the cats on for them to be so chill.
       </p>
 
       <h2 id="gallery">Gallery</h2>
