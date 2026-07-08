@@ -27,8 +27,10 @@ defmodule Blog.HomePage do
 
       <h1>In Loving Memory of Cheddar</h1>
 
+      <p>Originally published July 17, 2026</p>
+
       <p class="callout info">
-        Click the photographs on this page to see a larger, full-screen version. Some photographs have a motion photo(a short video) that can be viewed within the full-screen viewer. You can toggle between photo and video when available using the camera and video camera icons, respectively.
+        All of the photographs on this page can be clicked to see a larger, full-screen version. In the full-screen viewer, for some photos, you can also view a motion photo(a short video). You can toggle between photo and video when available using the camera and video camera icons, respectively.
       </p>
 
       <div class="toc">
@@ -49,26 +51,33 @@ defmodule Blog.HomePage do
       <h2 id="rest-in-peace">Rest in Peace</h2>
 
       <p>
-        2010-2026 <br />
+        2010 - 2026
+      </p>
+
+      <p>
         <em>
-          Also known as Chedward, Chonkward, Chubward, Cheddy, Ched, Cheese man, Mister Puss, Cheddopuss, Shedward, Shredward, Chompward, Book Licker
+          Also known as Chedward, Shedward, Shredward, Chompward, Chonkward, Chubward, Cheddy, Ched, Cheese man, Mister Puss, Cheddopuss, Book Licker
         </em>
       </p>
 
       <p>
-        My dear cat Cheddar died on the evening of June 17, 2026. He was approaching 16.5 years old. He is survived by his sister, Toast.
+        Cheddar passed away on the evening of June 17, 2026. He was approaching 16.5 years old. He is survived by his sister, Toast.
       </p>
 
       <p>
-        He was deeply bonded with his sister and enjoyed spending time with people. He had a loud motor, and was talkative for a cat. For most of his life he provided a playful and calming presence.
+        Cheddar was a long-haired orange tabby. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin.
       </p>
 
       <p>
-        He loved physical touch like no other feline. Even people who claimed to not like cats--or even to dislike cats--fell in love with him because of his friendly, gentle, and affectionate demeanor.
+        Cheddar had a deep bond with his sister. Throughout his life he spent countless hours snuggling and playing with her. He also enjoyed spending time with people. He had a loud purr. <em>Sometimes too loud!</em> He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
       </p>
 
       <p>
-        Cheddar was an orange tabby. His coat was almost symmetrical except for his chin. He was orange with a white belly, boots, gloves, and bib.
+        He loved physical touch like no other feline. You could rub his belly. You could rub his toe beans. You could touch his face, his ears, his tail. You could pet him the wrong direction. You could hang him upside down. He regularly passed the "Dangle Test".
+      </p>
+
+      <p>
+        He made a strong impression on guests. Several people who claimed to not like cats--or even to dislike cats--fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
       </p>
 
       <div class="gallery-grid-2">
@@ -79,19 +88,15 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        As of writing, Cheddar was present for most my adult life. He was my companion for 16 years, through many formative times. He came to represent stability to me. He was a constant. He was part of my identity.
+        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years, through many formative moments. He was a constant. He represented stability. He became part of my identity.
       </p>
 
       <p>
-        He was one of my best friends. He helped me work through difficult emotions and difficult times. He was always thrilled to be my companion.
+        He was one of my best friends. He helped me work through difficult emotions and difficult times. He nurtured me when I was down. He was always thrilled to be my companion.
       </p>
 
       <p>
-        I miss him dearly. My heart has an cheddar-shaped hole in it. I will never forget him, and I will never stop loving him.
-      </p>
-
-      <p>
-        If you were touched by his light, I hope that you also are warmed by the photos/videos and writing that you find here.
+        I miss him dearly. My heart has an cheddar-shaped hole in it. Not an hour goes by that I don't think about him. I will never forget him, and I will never stop loving him.
       </p>
 
       <div class="gallery-grid-2">
@@ -100,7 +105,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        By the time that Cheddar entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. Even after 16 years together, they still frequently snuggled with one another.
+        When he entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. From the earliest days to the last days, they were always close.
       </p>
 
       <h2 id="childhood">Childhood</h2>
@@ -110,11 +115,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        The household was loud, marked by the raucous noises of dogs barking and playing. Despite the loud environment, the kittens thrived. They adapted to the environment. And in time they grew into sweet playful critters, excited by people.
+        The household was loud, marked by the raucous noises of dogs barking and playing. Despite the loud environment, the kittens thrived. They adapted to it. In the following weeks they grew into sweet playful critters, excited by people.
       </p>
 
       <p>
-        Around that time I was a college student at the University of Pittsburgh, living off campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. After a short time we visited a pet store and browsed about. We quickly came to our senses in the petstore: hedgehogs seemed impractical, dogs were too much of a commitment, but cats seemed practical. When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. But we were not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
+        Around that time I was a college student at the University of Pittsburgh, living off-campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. We visited a pet store and browsed about. We quickly came to our senses at the petstore: hedgehogs seemed impractical, dogs were too much of a commitment, but cats seemed very interesting. When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. But we were not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
       </p>
 
       {inline_gallery_img_element("2010-02-24-11.jpg",
@@ -122,15 +127,15 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        Several weeks later, in late February, I found a listing on craigslist for adopting long-haired kittens. There were five of them. Peter had a car and therefore it was most convenient for him to make a visit. Originally I suggested two male tabbies, having previously bonded with one in my childhood who was an amazing companion. Peter and his then-girlfriend made the trek. They returned with two tiny adorable kittens. It was love at first sight. They were each about the size of a soda can when they arrived.
+        Several weeks later, in late February, I found a listing on craigslist advertising long-haired kittens for adoption. There were five of them. Peter had a car and therefore it was most convenient for him to make a visit. Originally I suggested we adopt two male tabbies, having previously bonded with one in my childhood who was a sweet companion. Peter and his then-girlfriend made the trek. They returned with two tiny adorable kittens. It was love at first sight. They were each about the size of a soda can when they arrived.
       </p>
 
       <p>
-        Notably Peter and his then-girlfriend had decided differently than I had suggested—they brought home a calico and the tabby who was the runt. I quickly agreed that they made a wise decision.
+        Notably they had decided differently than I had suggested—they brought home a calico and the tabby who was the runt. After meeting the kittens, I quickly agreed that it had been a wise decision.
       </p>
 
       <p>
-        Although Ryan had visited the pet store with Peter and I, we had deliberately not informed him that we were adopting kittens. It was a surprise when he returned home from class.
+        Although Ryan had visited the pet store with Peter and I, we had deliberately not informed him that we were adopting kittens; It was a surprise when he returned home from class.
       </p>
 
       <div class="gallery-grid-2-to-4">
@@ -141,35 +146,27 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        We limited them to a single room first their first week. We brainstormed names. Coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with—things like "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After several days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. We quickly agreed on the suggested names, and that was that.
+        We limited the kittens to a single room first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge. Coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with--such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
       </p>
 
       <p>
-        In the weeks that followed we let them wander the rest of the house. As one might expected with three college aged males as fathers, the kittens were exposed to gratuitous physical affection. Their curious and playful behaviours developed and shined.
+        In the weeks that followed we let the kittens wander the rest of the house. As one might expected with three college aged males as fathers, the kittens were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
       </p>
 
       {inline_gallery_img_element("IMG_0615.jpg", class: "gallery-item gallery-opener float-right")}
 
       <p>
-        Both cats enjoyed playing with toys and running around. They regularly were enticed by fishing-rod and thing-on-a-wire varieties of toys. Cheddar would leap and dash, always excited to give chase. Toast also would give chase though she was not as coordinated. She would become possessive once she had caught a toy.
+        Both cats enjoyed playing with toys and running around. They regularly were enticed by fishing-rod and thing-on-a-wire varieties of toys. Cheddar would leap and dash, always excited to give chase. Toast would also give chase though she was not as coordinated. She would become possessive once she had caught a toy.
       </p>
 
       <p>
         We learned that they loved cardboard boxes. Both for playing with and for lounging in. Cheddar also loved to contort himself and tuck himself into questionably-sized-and-shaped spaces.
       </p>
 
-      <p>
-        The cats grew into being incredibly personable. Whether it was nature or nurture, I am not sure, but I think nurture played a large part.
-      </p>
-
-      <p>
-        From the time that he was a wee kitten Cheddar appreciated being touched. He appeared to desire at a level that most other cats would not tolerate. He very much enjoyed being pet on his belly. And he would tolerate being pet on just about any part of his body.
-      </p>
-
       {inline_gallery_img_element("IMG_0816.jpg", class: "gallery-item gallery-opener float-left")}
 
       <p>
-        In time each we began to recognize a distinctive personality in each cat.
+        In time each we began to recognize a distinctive personality in each cat. They grew into being incredibly personable. Whether it was nature or nurture, I am not sure, but I think nurture played a large part.
       </p>
 
       <p>
@@ -181,11 +178,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Despite his questionable intellect, he was soft and loved physical affection and people. He had zero self respect. I always thought of him as a dog trapped in a cat's body. He put up with being touched in ways that no other cat would, and seemed to enjoy much of it. His body seemed to have few bones and they were all made of rubber.
+        Despite his questionable intellect, he was soft and loved physical affection and people. He had zero self respect. I sometimes thought of him as a dog trapped in a cat's body. He put up with being touched in ways that no other cat would, and seemed to enjoy much of it.
       </p>
 
       <p>
-        Toast had similar characteristics—she also loved physical affection and people—but unlike Cheddar she actually had self respect. She was even softer than cheddar, and would stay with you on her own terms, sometimes just out of reach of your hand. She would get into more mischief than him.
+        Toast had some similar characteristics—she also loved physical affection and people—but unlike Cheddar she actually had self respect. She was even softer than Cheddar, and would hang out with you on her own terms, sometimes just out of reach of your hand. While they were both mischievous, she had more of a reputation for it than he did.
       </p>
 
       <div class="gallery-grid-2">
@@ -194,21 +191,25 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        When they were kittens Toast was the one who first played with toilet paper. But it seems she got it out of her system early. She never got into it much after that. Cheddar, on the other hand, had a few moments in his early years when he utterly decimated a roll of toilet paper. For the rest of his life I made a point of keeping rolls of toilet paper out of his line of sight.
+        When they were kittens Toast was the one who first played with toilet paper. But it seems she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated a roll of toilet paper numerous times, even once fully grown. For most his life I made a point of keeping rolls of toilet paper out of his line of sight.
       </p>
 
       <p>
-        We lived in that arrangement for about 1.5 years. Many fond memories were had. The kittens grew from childhood to teenhood to adulthood. I took it upon myself to complete the kitty chores every day. Because I was usually the "meat man" I became the de facto dad; they bonded very closely with me.
+        We lived as one big happy family in that house for about 1.5 years. Many fond memories were had. The kittens grew from childhood to teenhood to adulthood.
+      </p>
+
+      <p>
+        I took it upon myself to complete the kitty chores every day. Because I was usually the "meat man" I became the de facto dad; they bonded very closely with me.
       </p>
 
       <h2 id="adulthood">Adulthood</h2>
 
       <p>
-        By the time that my friends and I parted ways at the end of college, the cats were adults. I suggested that I take the cats with me and that I be responsible for them.
+        By the time the end of college it became apparent that Peter, Ryand, and I would part ways. I suggested that I take the cats with me and that I be responsible for them.
       </p>
 
       <p>
-        After graduating college I moved to my first job. I was about to begin working in the environmental consulting industry. I moved about 30 miles from Pittsburgh, PA to Washington, PA to be closer to the job. I remember feeling anxious during the drive there.
+        After graduation I moved to my first job. I was about to begin working in the environmental consulting industry. I moved about 30 miles from Pittsburgh, PA to Washington, PA to be closer to the job. I remember feeling anxious during the drive there.
       </p>
 
       <p>
