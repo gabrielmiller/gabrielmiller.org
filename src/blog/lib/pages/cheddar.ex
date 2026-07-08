@@ -224,16 +224,16 @@ defmodule Blog.HomePage do
         In time I came to realize the cats were not just obligations, but actual companions. They were my best buddies. They kept me company. Our relationship became more symbiotic. It nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
       </p>
 
-      <p>
-        I have vivid memories of my time in Washington, PA. It was an ephemeral moment, a stepping stone, along my path. I deliberately didn't plant my roots deeply. The work was OK but it motivated me little and I found myself longing for meaning and mental stimulation. I felt stuck in a parochial environment. I longed for a next step and began searching for it.
-      </p>
-
       <div class="gallery-grid-2-to-4">
         {gallery_grid_element("IMG_1027.jpg")}
         {gallery_grid_element("IMG_1028.jpg")}
         {gallery_grid_element("IMG_20110805_170932.jpg")}
         {gallery_grid_element("IMG_20110808_181425.jpg")}
       </div>
+
+      <p>
+        I have vivid memories of my time in Washington, PA. It was an ephemeral moment, a stepping stone, along my path. I deliberately didn't plant my roots deeply. The work was OK but it motivated me little and I found myself longing for meaning and mental stimulation. I felt stuck in a parochial environment. I longed for a next step and began searching for it.
+      </p>
 
       <p>
         I toyed with ideas about what to do next with my life. Eventually I found myself learning how to write software in my spare time. That scratched an itch. It engaged my brain and I found it exciting. It planted a seed. I began spending more and more of my free time learning how to program.
@@ -243,15 +243,18 @@ defmodule Blog.HomePage do
         After a year and a half of living in Washington, I switched careers. I managed to land a job in the software industry, at a company based near Pittsburgh. I moved once more, back to Pittsburgh, moving in with my then-girlfriend. I felt relieved to be through the isolation.
       </p>
 
-      {inline_gallery_img_element("IMG_20160106_195438.jpg", class: "gallery-item gallery-opener float-right")}
+      {inline_gallery_img_element("IMG_20130526_143603.jpg", class: "gallery-item gallery-opener float-right")}
 
       <p>
-        For the next couple years I was happy but became complacent. The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the environment, however, and it continued to be fruitful. I opted to stay put instead of treating it as a stepping stone.
+        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the environment, however, and it continued to be fruitful. I learned and grew. I opted to stay put instead of treating it as a stepping stone. But in time there came periods of complacency.
       </p>
 
       <p>
-        My personal life also became complacent. My relationship gradually changed from partners to something more like roommates. In 2015 I went through a break-up. It was a difficult time. But I managed to motivate myself to keep my chin up. I took the opportunity to move out on my own again. I needed space to emotionally recover, and changing environments helped.
+        I became complacent in my personal life, too. My relationship gradually changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation. But I took the opportunity to move out on my own again. I needed space to emotionally recover, and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easy to make change in your life effective when you bundle it together, when you experience it all at once, instead of steps in isolation.
       </p>
+
+
+      {inline_gallery_img_element("IMG_20160228_093303.jpg", class: "gallery-item gallery-opener float-left")}
 
       <p>
         It felt like I was starting my life anew, but unlike when I left for Washington, PA, I was more excited and sure of myself. In this period I had a couple stints staying at places that I found on craigslist. One place for three months, the next for nine months. Through these times I felt isolated again, though I had the stability of working at the same job and with the same colleagues through it. Initially my professional interests kept me afloat, engaged, and on a healthy path. I managed to avoid falling into bad habits. In time I began to put myself into more social situations in order to meet folks and broaden my circles.
@@ -273,7 +276,7 @@ defmodule Blog.HomePage do
         Eventually I met my now-wife, she moved in, and the cats also bonded with her. She thinks back fondly on when she first met the cats and was intimidated at the prospect of picking them up.
       </p>
 
-      {inline_gallery_img_element("PXL_20220907_215329887.jpg", class: "gallery-item gallery-opener float-left")}
+      {inline_gallery_img_element("PXL_20220907_215329887.jpg", class: "gallery-item gallery-opener float-right")}
 
       <p>
         When COVID lockdowns happened my workplace switched to being remote and I began to spend most of my waking hours at home. The amount of time spent with the cats soared. So too did the number of cat photos in my life.
