@@ -69,7 +69,9 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar had a deep bond with his sister. Throughout his life he spent countless hours snuggling and playing with her. He also enjoyed spending time with people. He had a loud purr. <em>Sometimes too loud!</em> He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
+        Cheddar had a deep bond with his sister. Throughout his life he spent countless hours snuggling and playing with her. He also enjoyed spending time with people. He had a loud purr.
+        <em>Sometimes too loud!</em>
+        He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
       </p>
 
       <p>
@@ -240,10 +242,12 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        After a year and a half of living in Washington, I switched careers. I managed to land a job in the software industry, at a company based near Pittsburgh. I moved once more, back to Pittsburgh, moving in with my then-girlfriend. I felt relieved to be through the isolation.
+        After a year and a half of living in Washington, PA, I switched careers. I managed to land a job in the software industry, at a company based near Pittsburgh. I moved once more, back to Pittsburgh, moving in with my then-girlfriend. I felt relieved to be through the isolation.
       </p>
 
-      {inline_gallery_img_element("IMG_20130526_143603.jpg", class: "gallery-item gallery-opener float-right")}
+      {inline_gallery_img_element("IMG_20130526_143603.jpg",
+        class: "gallery-item gallery-opener float-right"
+      )}
 
       <p>
         The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the environment, however, and it continued to be fruitful. I learned and grew. I opted to stay put instead of treating it as a stepping stone. But in time there came periods of complacency.
@@ -253,8 +257,9 @@ defmodule Blog.HomePage do
         I became complacent in my personal life, too. My relationship gradually changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation. But I took the opportunity to move out on my own again. I needed space to emotionally recover, and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easy to make change in your life effective when you bundle it together, when you experience it all at once, instead of steps in isolation.
       </p>
 
-
-      {inline_gallery_img_element("IMG_20160228_093303.jpg", class: "gallery-item gallery-opener float-left")}
+      {inline_gallery_img_element("IMG_20160228_093303.jpg",
+        class: "gallery-item gallery-opener float-left"
+      )}
 
       <p>
         It felt like I was starting my life anew, but unlike when I left for Washington, PA, I was more excited and sure of myself. In this period I had a couple stints staying at places that I found on craigslist. One place for three months, the next for nine months. Through these times I felt isolated again, though I had the stability of working at the same job and with the same colleagues through it. Initially my professional interests kept me afloat, engaged, and on a healthy path. I managed to avoid falling into bad habits. In time I began to put myself into more social situations in order to meet folks and broaden my circles.
@@ -263,6 +268,10 @@ defmodule Blog.HomePage do
       <p>
         Once more, the cats remained my steady anchors. Despite the continuous changes in my home life I always felt loved and cared for. Two sweet, affectionate kitties seemingly always wanted to spend their time with me.
       </p>
+
+      {inline_gallery_img_element("IMG_20170514_150604.jpg",
+        class: "gallery-item gallery-opener float-right"
+      )}
 
       <p>
         In October 2016 I purchased a house and set down my roots. At the time, the house was a short walk from Peter, one of the other "cat dads" who by then had moved back to Pittsburgh. My life began to stabilize more. After a few more years, Ryan, the third "cat dad" also moved back to Pittsburgh, and also within walking distance. Being able to hang out with close friends so easily was a blessing; Life was good.
@@ -273,14 +282,16 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Eventually I met my now-wife, she moved in, and the cats also bonded with her. She thinks back fondly on when she first met the cats and was intimidated at the prospect of picking them up.
+        Eventually I met my now-wife, then-girlfriend. She did not grow up with cats and was initially apprehensive at the prospect of picking up Cheddar or Toast. She quickly learned. Eventually she moved in and not long later the cats bonded with her.
       </p>
-
-      {inline_gallery_img_element("PXL_20220907_215329887.jpg", class: "gallery-item gallery-opener float-right")}
 
       <p>
-        When COVID lockdowns happened my workplace switched to being remote and I began to spend most of my waking hours at home. The amount of time spent with the cats soared. So too did the number of cat photos in my life.
+        When COVID lockdowns happened my workplace switched from being in an office to being remote. As a result I began to spend most of my waking hours at home. The amount of time spent with the cats soared. So too did the number of cat photos in my life.
       </p>
+
+      {inline_gallery_img_element("PXL_20220907_215329887.jpg",
+        class: "gallery-item gallery-opener float-left"
+      )}
 
       <p>
         My colleagues met Cheddar and Toast on calls, and soon my cat-man identity changed from being a private one to a public one.
@@ -288,6 +299,10 @@ defmodule Blog.HomePage do
 
       <p>
         Cheddar's lap cat tendencies quickly came to be appreciated as he became notorious on my work calls. I would move his legs to make him wave at people or showcase how he enjoyed tummy rubs or even bean rubs. One colleague asked what sort of drugs I put the cats on for them to be so chill.
+      </p>
+
+      <p>
+        In the years that followed our home life
       </p>
 
       <h2 id="gallery">Gallery</h2>
@@ -850,7 +865,8 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
+        label:
+          "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
         date: "2024-02-28",
         filename: "PXL_20240228_232736347.jpg",
         video: true
@@ -886,7 +902,8 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "For a brief period, Cheddar would occasionally jump in the laundry hamper. He couldn't figure out how to get out and would meow until a human rescued him.",
+        label:
+          "For a brief period, Cheddar would occasionally jump in the laundry hamper. He couldn't figure out how to get out and would meow until a human rescued him.",
         date: "2025-04-27",
         filename: "PXL_20250427_000917547.jpg",
         video: true
