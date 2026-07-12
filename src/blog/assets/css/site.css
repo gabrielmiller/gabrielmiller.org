@@ -358,8 +358,12 @@ ul.list {
     color: #444444;
     align-self: center;
   }
-}
 
+  .extra-spaced {
+    margin-top: 2em;
+    margin-bottom: 4em;
+  }
+}
 
 @media (max-width: 640px) {
   .cheddar-article .gallery-grid-2-to-4 .gallery-item {

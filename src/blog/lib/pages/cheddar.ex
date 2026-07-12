@@ -39,6 +39,7 @@ defmodule Blog.HomePage do
           <li><a href="#rest-in-peace">Rest in Peace</a></li>
           <li><a href="#childhood">Childhood</a></li>
           <li><a href="#adulthood">Adulthood</a></li>
+          <li><a href="#super-senior-years">Super Senior Years</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <ul>
             <li><a href="#group-0">General</a></li>
@@ -56,7 +57,7 @@ defmodule Blog.HomePage do
 
       <p>
         <em>
-          Also known as Chedward, Shedward, Shredward, Chompward, Chonkward, Chubward, Cheddy, Ched, Cheese man, Mister Puss, Cheddopuss, Book Licker
+          Also known as Ched, Cheddy, Chedward, Shedward, Shredward, Chompward, Chonkward, Chubward, Cheese man, Mister Puss, Cheddopuss, Book Licker
         </em>
       </p>
 
@@ -69,13 +70,19 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar had a deep bond with his sister. Throughout his life he spent countless hours snuggling and playing with her. He also enjoyed spending time with people. He had a loud purr.
-        <em>Sometimes too loud!</em>
-        He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
+        Cheddar had a strong bond with his sister. They grew up together and experienced many moments in life together. They were life companions.
       </p>
 
       <p>
-        He loved physical touch like no other feline. You could rub his belly. You could rub his toe beans. You could touch his face, his ears, his tail. You could pet him the wrong direction. You could hang him upside down. He regularly passed the "Dangle Test".
+        Cheddar was a people-centric cat. He sought out humans and love to spent time with them.
+      </p>
+
+      <p>
+        He had a loud purr and he regularly shared it with you when he was on your lap. <em>Sometimes he was too loud!</em> He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
+      </p>
+
+      <p>
+        He loved physical touch like no other feline. He loved it when you rubbed his belly. You could rub his toe beans. You could touch his face, his ears, his tail. You could pet him the wrong direction. He regularly passed the "Dangle Test". You could hang him upside down.
       </p>
 
       <p>
@@ -90,15 +97,11 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years, through many formative moments. He was a constant. He represented stability. He became part of my identity.
+        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He came to represent stability and became part of my identity.
       </p>
 
       <p>
-        He was one of my best friends. He helped me work through difficult emotions and difficult times. He nurtured me when I was down. He was always thrilled to be my companion.
-      </p>
-
-      <p>
-        I miss him dearly. My heart has an cheddar-shaped hole in it. Not an hour goes by that I don't think about him. I will never forget him, and I will never stop loving him.
+        He was one of my best friends. He helped me work through difficult emotions and difficult times. He nurtured me when I was down. He was always delighted to spend time with me.
       </p>
 
       <div class="gallery-grid-2">
@@ -107,8 +110,24 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        When he entered my life he was already tightly bonded with his sister, Toast. They remained two peas in a pod. From the earliest days to the last days, they were always close.
+        When he entered my life he was already bonded with his sister, Toast. They remained two peas in a pod. From the earliest days to the last days, they were always close.
       </p>
+
+      <p>
+        I miss him dearly. My heart has a cheddar-shaped hole in it. Not an hour goes by that I don't think about him. I will never forget him, and I will never stop loving him.
+      </p>
+
+      <p>
+        I consider myself agnostic, but despite that I romanticize the idea that if there is an after-life, I wish to trade places with Cheddar. In our next lives we'll continue to be together for one another once again.
+      </p>
+
+      <h1 class="extra-spaced">
+        Rest in peace, Cheddar.
+      </h1>
+
+      <h2 class="extra-spaced">
+        We love you and we will miss you forever. 💔
+      </h2>
 
       <h2 id="childhood">Childhood</h2>
 
@@ -282,11 +301,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Eventually I met my now-wife, then-girlfriend. She did not grow up with cats and was initially apprehensive at the prospect of picking up Cheddar or Toast. She quickly learned. Eventually she moved in and not long later the cats bonded with her.
+        When I was first getting to know Sarah, my then-girlfriend, now-wife, I was excited to introduce her to the kitties. She did not grow up with cats and was initially apprehensive at the prospect of picking them up. We joked about the Nathan Pyle/Strange Planet cartoon--"respect the deathblades". But seemingly that applied little to these cats. They loved humans. Eventually she moved in. And not long later the cats bonded with her.
       </p>
 
       <p>
-        When COVID lockdowns happened my workplace switched from being in an office to being remote. As a result I began to spend most of my waking hours at home. The amount of time spent with the cats soared. So too did the number of cat photos in my life.
+        When COVID lockdowns happened my workplace switched from being in an office to being remote. As a result I began to spend most of my waking hours at home. At the same time, the amount of time spent around the cats soared. So too did the number of cat photos in my life.
       </p>
 
       {inline_gallery_img_element("PXL_20220907_215329887.jpg",
@@ -294,15 +313,40 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        My colleagues met Cheddar and Toast on calls, and soon my cat-man identity changed from being a private one to a public one.
+        My colleagues met Cheddar and Toast on calls and began to get to know them by name. Soon my cat-man identity changed from being a private one to a public one.
       </p>
 
       <p>
-        Cheddar's lap cat tendencies quickly came to be appreciated as he became notorious on my work calls. I would move his legs to make him wave at people or showcase how he enjoyed tummy rubs or even bean rubs. One colleague asked what sort of drugs I put the cats on for them to be so chill.
+        Cheddar's lap cat tendencies quickly became notorious on my work calls. I would move his legs to make him wave at people or showcase how he enjoyed tummy rubs or even bean rubs.</p>
+
+      <p>
+        One colleague asked what drugs I gave them to make them be so chill.
+      </p>
+
+      <h2 id="super-senior-years">Super Senior Years</h2>
+
+      <p>
+        In his later years Cheddar settled into a number of heart-warming habits.
+      </p>
+
+      {inline_gallery_img_element("PXL_20260317_030543244.jpg",
+        class: "gallery-item gallery-opener float-right"
+      )}
+
+      <p>
+        Sarah and I sit on a bench at our dinner table and he would regularly jump up between us. He would sometimes then attempt to sit on your lap and rub his wet nose on you. We started sitting immediately next to one another to prevent his antics.
       </p>
 
       <p>
-        In the years that followed our home life
+        He regularly would visit at bed time, expecting to lie on top of me or next to me. When the temperature was cool it was a blessing. When the temperature was too high, I would move him further away, sometimes entirely off of the bed.
+      </p>
+
+      <p>
+        He would sometimes sleep just above me in bed. We joked that his loud purr and placement was him trying to send us "good vibes". Sometimes it was annoying because his purr was so loud that you couldn't fall asleep. Sometimes it was annoying because his warmth would make your head hot. We complained about him trying to be a hat.
+      </p>
+
+      <p>
+        He continued to exercise his love for touch. He would come bounding to you when he saw you. He would then proceed to park himself on your lap or chest.
       </p>
 
       <h2 id="gallery">Gallery</h2>
@@ -1686,7 +1730,7 @@ defmodule Blog.HomePage do
   defp asset_uri(filename),
     do: "https://assets.gabrielmiller.org/cheddar/#{filename}"
 
-  defp inline_gallery_img_element(src, opts \\ []) do
+  defp inline_gallery_img_element(src, opts) do
     class = Keyword.get(opts, :class, "gallery-item gallery-opener")
 
     entry = Enum.find(entries(), &(src == &1.filename))
