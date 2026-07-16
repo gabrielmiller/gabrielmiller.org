@@ -17,12 +17,19 @@ process_image() {
   EXTENSION="${FILE##*.}"
   FILENAME="${FILE%.*}"
   case "$EXTENSION" in
-    "gif"|"mp4")
-      PROCESS="n"
+    "mp4"|"gif")
+      PROCESS_IMAGE="n"
+      PROCESS_VIDEO="n"
       COPY="y"
     ;;
-    "jpg")
-      PROCESS="y"
+    "jpg"|"heic"|"heif")
+      PROCESS_IMAGE="y"
+      PROCESS_VIDEO="n"
+      COPY="n"
+    ;;
+    "mov")
+      PROCESS_IMAGE="n"
+      PROCESS_VIDEO="y"
       COPY="n"
     ;;
     *)
@@ -31,17 +38,25 @@ process_image() {
     ;;
   esac
 
-  if [ "$PROCESS" == "y" ]
+  if [ "$PROCESS_IMAGE" == "y" ]
   then
-    echo "processing $FILE"
+    echo "processing image $FILE"
 
     magick "$INPUT_DIR/$FILE" -strip "$OUTPUT_DIR/$FILENAME"_original.jpg
     magick "$INPUT_DIR/$FILE" -strip -quality 90% -resize 1920x1920\> "$OUTPUT_DIR/$FILENAME"_web.avif
   fi
 
+  if [ "$PROCESS_VIDEO" == "y" ]
+  then
+    echo "processing video $FILE"
+
+    # strip audio and re-encode in h.265
+    ffmpeg -i "$INPUT_DIR/$FILE" -c:v libx265 -crf 26 -preset slow -an "$OUTPUT_DIR/$FILENAME".mp4
+  fi
+
   if [ "$COPY" == "y" ]
   then
-    echo "copying $FILE"
+    echo "copying file $FILE"
     cp "$INPUT_DIR/$FILE" "$OUTPUT_DIR/$FILE"
   fi
 }

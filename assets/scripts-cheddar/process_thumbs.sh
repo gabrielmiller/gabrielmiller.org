@@ -18,7 +18,7 @@ process_image() {
       PROCESS="n"
       COPY="y"
     ;;
-    "jpg")
+    "jpg"|"heic"|"heif")
       PROCESS="y"
       COPY="n"
     ;;
