@@ -78,7 +78,9 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        He had a loud purr and he regularly shared it with you when he was on your lap. <em>Sometimes he was too loud!</em> He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
+        He had a loud purr and he regularly shared it with you when he was on your lap.
+        <em>Sometimes he was too loud!</em>
+        He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
       </p>
 
       <p>
@@ -317,7 +319,8 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar's lap cat tendencies quickly became notorious on my work calls. I would move his legs to make him wave at people or showcase how he enjoyed tummy rubs or even bean rubs.</p>
+        Cheddar's lap cat tendencies quickly became notorious on my work calls. I would move his legs to make him wave at people or showcase how he enjoyed tummy rubs or even bean rubs.
+      </p>
 
       <p>
         One colleague asked what drugs I gave them to make them be so chill.
@@ -547,6 +550,15 @@ defmodule Blog.HomePage do
         filename: "IMG_20130526_143603.jpg",
         video: false
       },
+      %{label: "A study in brown", date: "2013-08-08", filename: "2013-08-08.jpg", video: false},
+      %{label: "Airborne", date: "2013-09-07", filename: "2013-09-07.jpg", video: false},
+      %{label: "Front row seat", date: "2014-03-01", filename: "IMGP2238.jpg", video: false},
+      %{
+        label: "A brief outdoors expedition",
+        date: "2014-12-25",
+        filename: "IMGP2846.jpg",
+        video: false
+      },
       %{
         label: "Family portrait",
         date: "2016-01-01",
@@ -745,6 +757,7 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20190503_210536.jpg",
         video: true
       },
+      %{label: "Hanging with dad", date: "2019-06-21", filename: "IMG_3574.jpg", video: false},
       %{
         label: "Having a stretch",
         date: "2019-07-15",
@@ -771,6 +784,12 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Dad-suspended scritch",
+        date: "2020-02-29",
+        filename: "IMG_4203.jpg",
+        video: false
+      },
+      %{
         label: "Hanging out in the kitchen with dad",
         date: "2020-03-01",
         filename: "2020-03-01.jpg",
@@ -782,11 +801,20 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200301_172233.jpg",
         video: true
       },
+      %{label: "Double scoop", date: "2020-03-24", filename: "IMG_4355.jpg", video: false},
       %{
         label: "Guest visit through the window during COVID lockdowns",
         date: "2020-04-17",
         filename: "2020-04-17.jpg",
         video: false
+      },
+      %{label: "Tummy rub", date: "2020-04-19", filename: "IMG_4640.jpg", video: false},
+      %{label: "Suspended tummy rub", date: "2020-05-09", filename: "IMG_0048.jpg", video: true},
+      %{
+        label: "Enjoying a pet on top of dad",
+        date: "2020-05-24",
+        filename: "IMG_0081.jpg",
+        video: true
       },
       %{
         label: "Dead bug snooze",
@@ -800,6 +828,14 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200526_165004.jpg",
         video: true
       },
+      %{label: "New seat identified", date: "2020-05-30", filename: "IMG_0124.jpg", video: true},
+      %{
+        label: "Sometimes they did the same thing at the same time",
+        date: "2020-06-25",
+        filename: "MVIMG_20200625_091634.jpg",
+        video: true
+      },
+      %{label: "Tummy rub", date: "2020-07-01", filename: "IMG_0249.gif", video: false},
       %{
         label: "Water thief",
         date: "2020-07-02",
@@ -819,9 +855,23 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Enjoying a pet on top of dad",
+        date: "2020-07-18",
+        filename: "IMG_0299.jpg",
+        video: true
+      },
+      %{
         label: "Completely asleep",
         date: "2020-08-04",
         filename: "MVIMG_20200804_132333.jpg",
+        video: true
+      },
+      %{label: "Looking handsome", date: "2020-08-15", filename: "IMG_0371.jpg", video: true},
+      %{label: "Double scoop", date: "2020-08-15", filename: "IMG_0389.jpg", video: true},
+      %{
+        label: "Trying to escape in the market basket",
+        date: "2020-08-16",
+        filename: "IMG_0400.jpg",
         video: true
       },
       %{
@@ -830,22 +880,55 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200821_134125.jpg",
         video: true
       },
+      %{label: "Double scoop", date: "2020-09-04", filename: "IMG_0506.jpg", video: true},
+      %{label: "Double scoop", date: "2020-09-07", filename: "IMG_0520.jpg", video: true},
+      %{
+        label: "Action shot",
+        date: "2020-12-25",
+        filename: "PXL_20201225_154257541.jpg",
+        video: true
+      },
       %{
         label: "Looking handsome",
         date: "2021-01-01",
         filename: "PXL_20210101_171344010.jpg",
         video: true
       },
+      %{label: "Cheddar hat", date: "2021-03-11", filename: "IMG_1171.jpg", video: true},
       %{
         label: "Glamour shot",
         date: "2021-03-14",
         filename: "PXL_20210314_174508375.jpg",
         video: true
       },
+      %{label: "Snoozing on dad", date: "2021-04-04", filename: "IMG_1232.jpg", video: true},
+      %{
+        label: "Enjoying a seat on top of dad",
+        date: "2021-04-07",
+        filename: "IMG_1246.jpg",
+        video: true
+      },
+      %{label: "Double scoop", date: "2021-04-09", filename: "IMG_1253.jpg", video: true},
+      %{
+        label: "Enjoying a sternum scritch",
+        date: "2021-04-21",
+        filename: "IMG_1275.jpg",
+        video: true
+      },
+      %{label: "Dead bug", date: "2021-05-23", filename: "IMG_1362.jpg", video: false},
       %{
         label: "Completely asleep",
         date: "2021-06-11",
         filename: "PXL_20210611_024021800.jpg",
+        video: true
+      },
+      %{label: "Looking handsome", date: "2021-06-19", filename: "IMG_1445.jpg", video: false},
+      %{label: "Summer grooming", date: "2021-06-20", filename: "IMG_1447.jpg", video: false},
+      %{label: "Hanging with dad", date: "2021-07-09", filename: "IMG_1489.jpg", video: false},
+      %{
+        label: "Dead bug stretch",
+        date: "2021-08-04",
+        filename: "PXL_20210804_191914684.jpg",
         video: true
       },
       %{
@@ -854,18 +937,69 @@ defmodule Blog.HomePage do
         filename: "PXL_20210831_180647355.jpg",
         video: true
       },
+      %{label: "Double scoop", date: "2021-10-22", filename: "IMG_1936.jpg", video: false},
+      %{label: "Tummy rub", date: "2021-11-12", filename: "IMG_2002.jpg", video: false},
+      %{
+        label: "Tummy rub on dad",
+        date: "2021-11-28",
+        filename: "PXL_20211128_200953279.jpg",
+        video: true
+      },
+      %{label: "Shoulder cat", date: "2021-12-25", filename: "IMG_2126.jpg", video: false},
+      %{label: "Snoozing on dad", date: "2021-12-31", filename: "IMG_2137.jpg", video: false},
+      %{
+        label: "Looking handsome on his 12th birthday",
+        date: "2022-01-01",
+        filename: "PXL_20220101_154416570.jpg",
+        video: true
+      },
+      %{label: "Looking handsome", date: "2022-01-23", filename: "IMG_2238.jpg", video: false},
+      %{
+        label: "Checking out new places",
+        date: "2022-03-13",
+        filename: "IMG_2384.jpg",
+        video: false
+      },
+      %{label: "Hanging out on dad", date: "2022-03-15", filename: "IMG_2394.jpg", video: false},
+      %{label: "Enjoying a tummy rub", date: "2022-04-17", filename: "IMG_2469.jpg", video: true},
+      %{label: "Inverted tummy rub", date: "2022-07-10", filename: "IMG_2778.jpg", video: true},
+      %{
+        label: "Cube shelf apartment",
+        date: "2022-08-01",
+        filename: "IMG_2851.jpg",
+        video: false
+      },
+      %{
+        label: "Double scoop",
+        date: "2022-08-17",
+        filename: "PXL_20220818_023732249.jpg",
+        video: true
+      },
       %{
         label: "Intense grooming",
         date: "2022-09-24",
         filename: "PXL_20220924_174434178.jpg",
         video: true
       },
+      %{label: "Hanging with dad", date: "2022-09-29", filename: "IMG_2995.jpg", video: false},
+      %{label: "Sunbathing", date: "2022-10-10", filename: "IMG_3012.jpg", video: false},
+      %{
+        label: "Enjoying a tummy rub",
+        date: "2022-12-01",
+        filename: "IMG_3120.jpg",
+        video: false
+      },
+      %{label: "Hanging with dad", date: "2022-12-10", filename: "IMG_3131.jpg", video: false},
+      %{label: "Hanging with dad", date: "2023-01-01", filename: "IMG_3165.jpg", video: false},
+      %{label: "Time for breakfast!", date: "2023-03-05", filename: "IMG_3264.jpg", video: false},
+      %{label: "Hanging with dad", date: "2023-03-26", filename: "IMG_3315.jpg", video: false},
       %{
         label: "Cheddar passed the dangle test with flying colors",
         date: "2023-05-12",
         filename: "PXL_20230512_020020439.jpg",
         video: true
       },
+      %{label: "Hanging with dad", date: "2023-05-13", filename: "IMG_3535.jpg", video: false},
       %{
         label: "Boop!",
         date: "2023-05-27",
@@ -884,10 +1018,19 @@ defmodule Blog.HomePage do
         filename: "PXL_20230721_013350322.jpg",
         video: true
       },
+      %{label: "Hanging with dad", date: "2023-08-07", filename: "IMG_3731.jpg", video: false},
       %{
         label: "He had an apartment in an ikea cube shelf that he enjoyed in warmer months",
         date: "2023-09-01",
         filename: "PXL_20230901_160209439.jpg",
+        video: true
+      },
+      %{label: "Bedtime snug", date: "2023-10-03", filename: "IMG_3923.jpg", video: false},
+      %{label: "Shoulder cat", date: "2023-10-24", filename: "IMG_3958.jpg", video: false},
+      %{
+        label: "Looking handsome",
+        date: "2023-10-30",
+        filename: "PXL_20231031_002808320.jpg",
         video: true
       },
       %{
@@ -903,16 +1046,35 @@ defmodule Blog.HomePage do
         video: false
       },
       %{
-        label: "A mythical double scoop",
+        label: "Getting down to business",
+        date: "2023-12-14",
+        filename: "IMG_4064.jpg",
+        video: false
+      },
+      %{
+        label: "Double scoop",
         date: "2023-12-17",
         filename: "PXL_20231217_224202264.jpg",
         video: true
       },
+      %{label: "Double scoop", date: "2023-12-26", filename: "IMG_4094.jpg", video: false},
       %{
         label:
           "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
         date: "2024-02-28",
         filename: "PXL_20240228_232736347.jpg",
+        video: true
+      },
+      %{
+        label: "Morning scene",
+        date: "2024-04-06",
+        filename: "PXL_20240406_155843772.jpg",
+        video: true
+      },
+      %{
+        label: "Close-up",
+        date: "2024-05-01",
+        filename: "PXL_20240502_035506973.jpg",
         video: true
       },
       %{
@@ -928,9 +1090,63 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Looking fierce",
+        date: "2024-06-17",
+        filename: "PXL_20240617_231303617.jpg",
+        video: true
+      },
+      %{
+        label: "Excited to greet me",
+        date: "2024-06-19",
+        filename: "PXL_20240619_162758920.jpg",
+        video: true
+      },
+      %{
+        label: "Close-up",
+        date: "2024-07-05",
+        filename: "PXL_20240706_033448048.jpg",
+        video: true
+      },
+      %{
         label: "Snoozin'",
         date: "2024-07-16",
         filename: "PXL_20240716_011249612.jpg",
+        video: true
+      },
+      %{
+        label: "Looking serious",
+        date: "2024-07-22",
+        filename: "PXL_20240723_024028374.jpg",
+        video: true
+      },
+      %{
+        label: "New seat identified",
+        date: "2024-08-24",
+        filename: "PXL_20240824_213839447.jpg",
+        video: true
+      },
+      %{
+        label: "Morning scene",
+        date: "2024-10-11",
+        filename: "PXL_20241011_130340918.jpg",
+        video: true
+      },
+      %{
+        label: "Dinner scene",
+        date: "2024-10-26",
+        filename: "PXL_20241027_031204559.jpg",
+        video: true
+      },
+      %{
+        label: "Enjoying a scritch",
+        date: "2024-11-26",
+        filename: "PXL_20241127_022451029.jpg",
+        video: true
+      },
+      %{
+        label: "Morning scene",
+        date: "2024-12-11",
+        filename: "PXL_20241211_125639482.jpg",
         video: true
       },
       %{
@@ -940,9 +1156,33 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Close-up",
+        date: "2025-01-01",
+        filename: "PXL_20250101_151606377.jpg",
+        video: true
+      },
+      %{
         label: "Celebrating his 15th birthday",
         date: "2025-01-01",
         filename: "PXL_20250101_152450786.jpg",
+        video: true
+      },
+      %{
+        label: "Morning scene",
+        date: "2025-01-23",
+        filename: "PXL_20250123_130356930.jpg",
+        video: true
+      },
+      %{
+        label: "Dinner's late",
+        date: "2025-02-01",
+        filename: "PXL_20250202_031906428.jpg",
+        video: true
+      },
+      %{
+        label: "Bedtime scene",
+        date: "2025-02-22",
+        filename: "PXL_20250223_040004045.jpg",
         video: true
       },
       %{
@@ -953,9 +1193,33 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Morning scene",
+        date: "2025-04-29",
+        filename: "PXL_20250429_123544011.jpg",
+        video: true
+      },
+      %{
+        label: "Bedtime excitement",
+        date: "2025-11-27",
+        filename: "PXL_20251128_045359218.jpg",
+        video: true
+      },
+      %{
+        label: "Morning haze",
+        date: "2025-12-15",
+        filename: "PXL_20251215_122606969.jpg",
+        video: true
+      },
+      %{
         label: "Cardboard boxes were forever an interest",
         date: "2026-01-07",
         filename: "PXL_20260107_232010050.jpg",
+        video: true
+      },
+      %{
+        label: "Bedtime excitement",
+        date: "2026-01-26",
+        filename: "PXL_20260127_040633209.jpg",
         video: true
       },
       %{
@@ -964,7 +1228,14 @@ defmodule Blog.HomePage do
         filename: "PXL_20260317_030543244.jpg",
         video: true
       },
+      %{
+        label: "Snuggin'",
+        date: "2026-03-22",
+        filename: "PXL_20260322_222239949.jpg",
+        video: true
+      },
       ### cat snugs
+      %{label: "Sibling love", date: "2014-02-22", filename: "IMGP2200.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2016-03-19",
@@ -1067,6 +1338,7 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200414_174408.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2020-05-12", filename: "IMG_0053.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2020-05-15",
@@ -1085,6 +1357,7 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200525_184831.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2020-07-12", filename: "IMG_0280.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2020-10-07",
@@ -1103,12 +1376,14 @@ defmodule Blog.HomePage do
         filename: "PXL_20201012_143011156.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2020-11-04", filename: "IMG_0794.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2020-12-05",
         filename: "PXL_20201205_180611556.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2020-12-20", filename: "IMG_0936.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2020-12-26",
@@ -1139,6 +1414,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20211013_154132913.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2021-11-01", filename: "IMG_1977.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2021-11-26",
@@ -1151,6 +1427,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20211204_192025785.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2022-01-18", filename: "IMG_2196.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2022-01-19",
@@ -1183,6 +1460,12 @@ defmodule Blog.HomePage do
       },
       %{
         label: "Sibling love",
+        date: "2023-01-05",
+        filename: "PXL_20230105_174735640.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling love",
         date: "2023-03-23",
         filename: "PXL_20230323_162354791.jpg",
         video: true
@@ -1211,6 +1494,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20231022_193148086.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2023-11-03", filename: "IMG_3979.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2023-12-03",
@@ -1321,6 +1605,12 @@ defmodule Blog.HomePage do
       },
       %{
         label: "Sibling love",
+        date: "2025-01-20",
+        filename: "PXL_20250120_173703933.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling love",
         date: "2025-01-23",
         filename: "PXL_20250123_214228161.jpg",
         video: true
@@ -1339,6 +1629,12 @@ defmodule Blog.HomePage do
       },
       %{
         label: "Sibling love",
+        date: "2025-05-23",
+        filename: "PXL_20250523_174012943.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling love",
         date: "2025-10-10",
         filename: "PXL_20251010_195219842.jpg",
         video: true
@@ -1347,6 +1643,12 @@ defmodule Blog.HomePage do
         label: "Sibling love",
         date: "2025-10-10",
         filename: "PXL_20251010_213245103.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling love",
+        date: "2025-10-21",
+        filename: "PXL_20251021_195055962.jpg",
         video: true
       },
       %{
@@ -1465,6 +1767,12 @@ defmodule Blog.HomePage do
         video: false
       },
       %{
+        label: "Double lap cat",
+        date: "2019-12-29",
+        filename: "MVIMG_20191229_152148.jpg",
+        video: true
+      },
+      %{
         label: "The finest lap cat",
         date: "2020-03-27",
         filename: "MVIMG_20200327_160938.jpg",
@@ -1476,12 +1784,15 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200422_222941.jpg",
         video: true
       },
+      %{label: "The finest lap cat", date: "2020-06-18", filename: "IMG_0208.jpg", video: true},
       %{
         label: "The finest lap cat",
         date: "2020-11-03",
         filename: "PXL_20201103_195955805.jpg",
         video: true
       },
+      %{label: "Double lap cat", date: "2020-11-14", filename: "IMG_0827.jpg", video: true},
+      %{label: "Double lap cat", date: "2020-11-21", filename: "IMG_0847.jpg", video: true},
       %{
         label: "The finest lap cat",
         date: "2020-11-27",
@@ -1500,6 +1811,8 @@ defmodule Blog.HomePage do
         filename: "PXL_20210116_200310347.jpg",
         video: true
       },
+      %{label: "Bean rub", date: "2021-03-14", filename: "IMG_1178.jpg", video: true},
+      %{label: "Double lap cat", date: "2021-03-18", filename: "IMG_1187.jpg", video: true},
       %{
         label: "The finest lap cat",
         date: "2021-07-27",
@@ -1512,12 +1825,21 @@ defmodule Blog.HomePage do
         filename: "PXL_20211017_204048923.jpg",
         video: true
       },
+      %{label: "The finest lap cat", date: "2021-12-22", filename: "IMG_2111.jpg", video: false},
+      %{label: "One cat per leg", date: "2022-01-19", filename: "IMG_2200.jpg", video: false},
+      %{
+        label: "Ched's favorite place",
+        date: "2022-01-19",
+        filename: "IMG_2208.jpg",
+        video: false
+      },
       %{
         label: "The finest lap cat",
         date: "2022-01-30",
         filename: "PXL_20220130_183750054.jpg",
         video: true
       },
+      %{label: "Double lap cat", date: "2022-03-16", filename: "IMG_2398.jpg", video: false},
       %{
         label: "The finest lap cat",
         date: "2022-03-20",
@@ -1530,6 +1852,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20220907_215329887.jpg",
         video: true
       },
+      %{label: "Double lap cat", date: "2022-10-29", filename: "IMG_3062.jpg", video: false},
       %{
         label: "The finest lap cat",
         date: "2023-01-01",
