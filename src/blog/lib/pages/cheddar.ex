@@ -2065,7 +2065,7 @@ defmodule Blog.HomePage do
     }
 
     ~H"""
-    <button class={@class} type="button"><img src={@src} srcset={@srcset} /></button>
+    <button class={@class} type="button"><img loading="lazy" src={@src} srcset={@srcset} /></button>
     """
   end
 
