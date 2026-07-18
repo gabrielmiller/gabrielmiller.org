@@ -1,7 +1,7 @@
 defmodule Blog.HomePage do
   use Tableau.Page,
     layout: Blog.BlogLayout,
-    permalink: "/posts/cheddar.html"
+    permalink: "/cheddar.html"
 
   use Phoenix.Component
 
@@ -27,7 +27,7 @@ defmodule Blog.HomePage do
 
       <h1>In Loving Memory of Cheddar</h1>
 
-      <p>Originally published July 17, 2026</p>
+      <p>Originally published July 18, 2026</p>
 
       <p class="callout info">
         All of the photographs on this page can be clicked to see a larger, full-screen version. In the full-screen viewer, for some photos, you can also view a motion photo(a short video). You can toggle between photo and video when available using the pause and play buttons.
@@ -538,13 +538,6 @@ defmodule Blog.HomePage do
           "For a period of time I tried to toilet train the cats. I made progress but I stopped the experiment when we got a new roommate I didn't want to scare off.",
         date: "2011-02-23",
         filename: "IMG_0880.jpg",
-        video: false
-      },
-      %{
-        label:
-          "One time we made cheddar chase a toy up and down the stairs until he had to stop to pant",
-        date: "2011-04-11",
-        filename: "2011-04-11.gif",
         video: false
       },
       %{
@@ -1971,6 +1964,13 @@ defmodule Blog.HomePage do
       %{label: "Caught in the act", date: "2010-05-07", filename: "2010-05-07.jpg", video: false},
       %{label: "Toilet paper mayhem", date: "2010-10-17", filename: "IMG_0667.jpg", video: false},
       %{label: "Entropy at work", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
+      %{
+        label:
+          "One time we made cheddar chase a toy up and down the stairs until he had to stop to pant",
+        date: "2011-04-11",
+        filename: "2011-04-11.gif",
+        video: false
+      },
       %{
         label: "Antics on the shelf",
         date: "2011-08-05",

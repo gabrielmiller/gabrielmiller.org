@@ -1,7 +1,7 @@
 
 variable "default_cache_ttl" {
   type    = number
-  default = 60
+  default = 31536000
 }
 
 variable "domain" {
