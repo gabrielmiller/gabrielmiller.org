@@ -119,15 +119,15 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        He was one of my best friends. He helped me process difficult emotions and thrive in hard times. He nurtured me when I was down. He was always delighted to spend time with me.
+        He was one of my best friends. He helped me process difficult emotions and thrive in hard times. He nurtured me when I was down. He was always delighted to spend time with me. He was always there for me.
       </p>
 
       <p>
-        When Cheddar passed I was struck with immense guilt and despair. Only after I began to relive my memories did I succesfully begin to process my grief. Nearly every memory I have of him is one of joy and happiness. He brought out the best in me.
+        When Cheddar passed I was struck with immense guilt and despair. I was choked under a thick blanket of grief. As I recounted memories and revisited photos throughout his life it dawned on me that almost every memory I have of him is one marked by joy and happiness. Acknowledging that helped me to process my grief. He was a sunbeam in my life.
       </p>
 
       <p>
-        I miss Cheddar dearly. My heart will forever have a Cheddar-shaped hole in it. Not an hour goes by that I don't think about him. I will never forget him. I will never stop loving him.
+        I miss Cheddar dearly. My heart will forever have a Cheddar-shaped hole in it. Not an hour goes by that I don't think about him. I will never forget him. I will never stop loving him or missing him.
       </p>
 
       <h1 class="extra-spaced">
@@ -135,7 +135,7 @@ defmodule Blog.HomePage do
       </h1>
 
       <h2 class="extra-spaced">
-        I love you and I will miss you forever. 💔
+        I love you ❤️
       </h2>
 
       <h1 id="being-cheddars-human">Being Cheddar's Human</h1>
@@ -163,7 +163,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("2010-02-24-11.jpg",
-        class: "gallery-item gallery-opener float-left"
+        class: "gallery-item gallery-opener float-right"
       )}
 
       <p>
@@ -190,7 +190,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("IMG_0615.jpg",
-        class: "gallery-item gallery-opener float-right"
+        class: "gallery-item gallery-opener float-left"
       )}
 
       <p>
@@ -210,7 +210,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("IMG_0816.jpg",
-        class: "gallery-item gallery-opener float-left"
+        class: "gallery-item gallery-opener float-right"
       )}
 
       <p>
@@ -299,7 +299,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("IMG_20130526_143603.jpg",
-        class: "gallery-item gallery-opener float-right"
+        class: "gallery-item gallery-opener float-left"
       )}
 
       <p>
@@ -315,7 +315,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("IMG_20160228_093303.jpg",
-        class: "gallery-item gallery-opener float-left"
+        class: "gallery-item gallery-opener float-right"
       )}
 
       <p>
@@ -335,7 +335,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("IMG_20161029_143835.jpg",
-        class: "gallery-item gallery-opener float-right"
+        class: "gallery-item gallery-opener float-left"
       )}
 
       <p>
@@ -355,7 +355,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("PXL_20231217_224202264.jpg",
-        class: "gallery-item gallery-opener float-left"
+        class: "gallery-item gallery-opener float-right"
       )}
 
       <p>
@@ -371,7 +371,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("PXL_20220907_215329887.jpg",
-        class: "gallery-item gallery-opener float-right"
+        class: "gallery-item gallery-opener float-left"
       )}
 
       <p>
@@ -402,7 +402,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("PXL_20240406_155843772.jpg",
-        class: "gallery-item gallery-opener float-left"
+        class: "gallery-item gallery-opener float-right"
       )}
 
       <p>
@@ -414,7 +414,7 @@ defmodule Blog.HomePage do
       </p>
 
       {inline_gallery_img_element("PXL_20241127_022451029.jpg",
-        class: "gallery-item gallery-opener float-right"
+        class: "gallery-item gallery-opener float-left"
       )}
 
       <p>
@@ -440,7 +440,7 @@ defmodule Blog.HomePage do
       <p>
         <em>
           For the cat lovers out there. I tried my best to weed down the number of photos to share, but I could only get the number as low as {entries()
-          |> length()}. Enjoy! ❤️
+          |> length()}. Enjoy!
         </em>
       </p>
       <div :for={{group_index, entries} <- grouped_entries()}>
