@@ -1,0 +1,147 @@
+body:has(#embedded-gallery-overlay.visible) {
+  overflow: hidden;
+}
+
+#embedded-gallery-backdrop {
+  background: black;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  opacity: 90%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+
+  &.hidden {
+    visibility: hidden;
+  }
+}
+
+#embedded-gallery-overlay {
+  bottom: 1em;
+  height: 100%;
+  left: 1em;
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  width: 100%;
+  z-index: 3;
+
+  &.hidden {
+    visibility: hidden;
+  }
+}
+
+#embedded-gallery-overlay [class^='control-'] {
+  background-color: transparent;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  opacity: 75%;
+  padding: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  width: 64px;
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 10%;
+  }
+}
+
+.control-navigate-previous {
+  left: 0;
+  margin-top: -1em;
+  position: fixed;
+  top: 50%;
+}
+
+.control-navigate-next {
+  margin-top: -1em;
+  right: 0;
+  position: fixed;
+  top: 50%;
+}
+
+.controls-top-left {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.controls-top-right {
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+}
+
+.progress-indicator {
+  margin-right: 1em;
+}
+
+#embedded-gallery-overlay .label {
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 640px;
+  height: 64px;
+  display: flex;
+  padding: 1em;
+  justify-content: center;
+
+  p {
+    align-self: center;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.media-container {
+  max-height: 100%;
+  margin: 0 auto;
+
+  img,
+  video {
+    max-width: calc(100% - 2em);
+    max-height: calc(100% - 64px - 2em);
+  }
+}
+
+.loader {
+  animation: spin 1s linear infinite;
+  border: 5px solid #6684b2;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  left: 50%;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  position: absolute;
+  top: 50%;
+  height: 2rem;
+  width: 2rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

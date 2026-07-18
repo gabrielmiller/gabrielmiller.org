@@ -32,6 +32,7 @@ provider "cloudflare" {
 locals {
   domain_api                = "api.${var.apex_domain}"
   domain_apex_with_protocol = "https://${var.apex_domain}"
+  domain_www                = "www.${var.apex_domain}"
 }
 
 module "acm_certificate_cloudfront" {
@@ -80,7 +81,7 @@ module "s3_bucket_apex_website" {
 
 module "s3_bucket_www_website" {
   source          = "../modules/s3_bucket_www_website"
-  domain          = var.www_domain
+  domain          = local.domain_www
   redirect_domain = var.apex_domain
 }
 
@@ -94,7 +95,7 @@ module "cloudfront_apex_website" {
 
 module "cloudfront_www_website" {
   source          = "../modules/cloudfront_www_website"
-  domain          = var.www_domain
+  domain          = local.domain_www
   cache_policy_id = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" #CachingDisabled
   certificate_id  = module.acm_certificate_cloudfront.id
   region          = var.region

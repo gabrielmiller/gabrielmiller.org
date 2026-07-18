@@ -1,0 +1,9 @@
+[plugins]
+# see https://github.com/remoteoss/dexter for install directions
+# on oss code you may need to set the binary path explicitly
+elixir = "https://github.com/remoteoss/dexter.git"
+
+[tools]
+elixir = '1.19.5'
+erlang = '28.3.1'
+terraform = '1.15.7'

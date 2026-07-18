@@ -5,8 +5,12 @@
   },
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "develop": "cd dist && npx http-server -p 8000"
+  },
   "workspaces": [
+    "packages/album-viewer",
     "packages/blog",
-    "packages/album-viewer"
+    "packages/embedded-gallery"
   ]
 }
