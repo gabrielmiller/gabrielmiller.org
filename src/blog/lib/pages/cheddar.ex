@@ -45,12 +45,12 @@ defmodule Blog.HomePage do
           </ul>
           <li><a href="#gallery">Gallery</a></li>
           <ul>
-            <li><a href="#gallery-highlights">Highlights</a></li>
-            <li><a href="#gallery-extended">Extended</a></li>
+            <li><a href="#gallery-gabes-favorites">Gabe's Favorites</a></li>
+            <li><a href="#gallery-full-collection">Full Collection</a></li>
             <ul>
-              <li><a href={"##{gallery_group_id(0)}"}>{gallery_group_label(0)}</a></li>
-              <li><a href={"##{gallery_group_id(1)}"}>{gallery_group_label(1)}</a></li>
-              <li><a href={"##{gallery_group_id(2)}"}>{gallery_group_label(2)}</a></li>
+              <li :for={group <- 0..3}>
+                <a href={"##{gallery_group_id(group)}"}>{gallery_group_label(group)}</a>
+              </li>
             </ul>
           </ul>
         </ul>
@@ -181,11 +181,11 @@ defmodule Blog.HomePage do
         We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with--such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
       </p>
 
+      {inline_gallery_img_element("IMG_0615.jpg", class: "gallery-item gallery-opener float-right")}
+
       <p>
         In the weeks that followed we let the kittens wander the rest of the house. As one might expected with three college aged males as fathers, the kittens were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
       </p>
-
-      {inline_gallery_img_element("IMG_0615.jpg", class: "gallery-item gallery-opener float-right")}
 
       <p>
         Both cats enjoyed playing with toys and running around. They regularly were enticed by fishing-rod and thing-on-a-wire varieties of toys. Cheddar would leap and dash, always excited to give chase. Toast would also give chase though she was not as coordinated. She would become possessive once she had caught a toy.
@@ -195,11 +195,11 @@ defmodule Blog.HomePage do
         We learned that they loved cardboard boxes. Both for playing with and for lounging in. Cheddar also loved to contort himself and tuck himself into questionably-sized-and-shaped spaces.
       </p>
 
-      {inline_gallery_img_element("IMG_0816.jpg", class: "gallery-item gallery-opener float-left")}
-
       <p>
         In time each we began to recognize a distinctive personality in each cat. They grew into being incredibly personable. Whether it was nature or nurture, I am not sure, but I think nurture played a large part.
       </p>
+
+      {inline_gallery_img_element("IMG_0816.jpg", class: "gallery-item gallery-opener float-left")}
 
       <p>
         Cheddar lived up the the stereotype of the runt. He was not very bright, but he was trusting and mellow.
@@ -223,12 +223,18 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        When they were kittens Toast was the one who first played with toilet paper. But it seems she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated a roll of toilet paper numerous times, even once fully grown. For most his life I made a point of keeping rolls of toilet paper out of his line of sight.
+        When they were kittens Toast was the one who first played with toilet paper. But it seems she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated a roll of toilet paper numerous times, even once fully grown.
+        <em>For the rest of his life I kept rolls of toilet paper out of his line of sight.</em>
       </p>
 
       <p>
         We lived as one big happy family in that house for about 1.5 years. Many fond memories were had. The kittens grew from childhood to teenhood to adulthood.
       </p>
+
+      <div class="gallery-grid-2">
+        {gallery_grid_element("2010-05-09-2.jpg")}
+        {gallery_grid_element("2010-05-09.jpg")}
+      </div>
 
       <p>
         I took it upon myself to complete the kitty chores every day. Because I was usually the "meat man" I became the de facto dad; they bonded with me.
@@ -252,8 +258,17 @@ defmodule Blog.HomePage do
         I was on my own for the first time in my life. I felt tremendously isolated. I had no friends living nearby. I was in a new place. On the weekends I would drive back to Pittsburgh to visit my then girlfriend. I had a Mon-Fri, 9-5 job. But other than that I had to come up with ways to not let the isolation get to me.
       </p>
 
+      <div class="gallery-grid-2">
+        {gallery_grid_element("IMG_20111217_233748.jpg")}
+        {gallery_grid_element("IMG_20111217_233927.jpg")}
+      </div>
+
       <p>
         In time the cats grew into being companions. They became my best buddies. They always kept me company. Our relationship became more symbiotic. It nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
+      </p>
+
+      <p>
+        I treated my time in Washington, PA. as deliberately ephemeral. It was a stepping stone along my path. I didn't set down roots. The work was OK but it motivated me little and I found myself longing for meaning and more mental stimulation. I felt trapped in a parochial environment. I longed for a next step and actively searched for it.
       </p>
 
       <div class="gallery-grid-2-to-4">
@@ -262,10 +277,6 @@ defmodule Blog.HomePage do
         {gallery_grid_element("IMG_20110805_170932.jpg")}
         {gallery_grid_element("IMG_20110808_181425.jpg")}
       </div>
-
-      <p>
-        I treated my time in Washington, PA. as deliberately ephemeral. It was a stepping stone along my path. I didn't set down roots. The work was OK but it motivated me little and I found myself longing for meaning and more mental stimulation. I felt trapped in a parochial environment. I longed for a next step and actively searched for it.
-      </p>
 
       <p>
         I explored ideas about what to do next with my life. Eventually I began learning how to write software in my spare time. That scratched an itch. It engaged my brain. I found it exciting. It planted a seed. I began spending more and more of my free time learning how to program.
@@ -378,7 +389,7 @@ defmodule Blog.HomePage do
         Sarah and I would sit at a bench at our dinner table when we ate dinner. He realized this and would jump up on the bench and sit between us. He would then attempt to sit on my lap and would rub his wet nose on me. We took to sitting immediately aside another in order to prevent him from being able to jump between us.
       </p>
 
-      {inline_gallery_img_element("PXL_20241127_022451029.jpg",
+      {inline_gallery_img_element("PXL_20240406_155843772.jpg",
         class: "gallery-item gallery-opener float-left"
       )}
 
@@ -390,7 +401,7 @@ defmodule Blog.HomePage do
         Cheddar would sometimes sleep just above us in bed. We joked that his loud purr and close positioning was him trying to give us deep brain stimulation or him trying to send "good vibes". Sometimes his purr was so loud that I couldn't fall asleep. Sometimes his warmth would make my head hot. We eventually came to say that he was "trying to be a hat" and sometimes would complain about inadequate sleep as a result.
       </p>
 
-      {inline_gallery_img_element("PXL_20250429_123544011.jpg",
+      {inline_gallery_img_element("PXL_20241127_022451029.jpg",
         class: "gallery-item gallery-opener float-right"
       )}
 
@@ -403,10 +414,17 @@ defmodule Blog.HomePage do
       </p>
 
       <h1 id="gallery">Gallery</h1>
-      <h2 id="gallery-highlights">Highlights</h2>
-      <p>Coming soon</p>
+      <h2 id="gallery-gabes-favorites">Gabe's Favorites</h2>
+      <div class="gallery-grid-2-to-4">
+        <div
+          :for={entry <- favorites()}
+          class="gallery-item"
+        >
+          {inline_gallery_img_element(entry, class: "gallery-grid-item gallery-opener")}
+        </div>
+      </div>
 
-      <h2 id="gallery-extended">Extended</h2>
+      <h2 id="gallery-full-collection">Full Collection</h2>
       <div :for={{group_index, entries} <- grouped_entries()}>
         <h3 id={gallery_group_id(group_index)}>{gallery_group_label(group_index)}</h3>
         <div class="gallery-grid-2-to-4">
@@ -470,12 +488,6 @@ defmodule Blog.HomePage do
         video: false
       },
       %{
-        label: "They sometimes slept inside my backpack",
-        date: "2010-04-05",
-        filename: "2010-04-05.jpg",
-        video: false
-      },
-      %{
         label: "Show-casing his prominent M",
         date: "2010-04-10",
         filename: "2010-04-10.jpg",
@@ -488,9 +500,8 @@ defmodule Blog.HomePage do
         filename: "2010-04-25.jpg",
         video: false
       },
-      %{label: "Caught in the act", date: "2010-05-07", filename: "2010-05-07.jpg", video: false},
-      %{label: "Shouldercat", date: "2010-05-09", filename: "2010-05-09-2.jpg", video: false},
-      %{label: "Shouldercat", date: "2010-05-09", filename: "2010-05-09.jpg", video: false},
+      %{label: "Shoulder cat", date: "2010-05-09", filename: "2010-05-09-2.jpg", video: false},
+      %{label: "Shoulder cat", date: "2010-05-09", filename: "2010-05-09.jpg", video: false},
       %{label: "Dead bug pose", date: "2010-05-23", filename: "2010-05-23.jpg", video: false},
       %{
         label: "High intensity tummy rubs",
@@ -506,16 +517,8 @@ defmodule Blog.HomePage do
         filename: "IMG_0584.jpg",
         video: false
       },
-      %{
-        label: "Showcasing their bushy tails",
-        date: "2010-09-18",
-        filename: "IMG_0588.jpg",
-        video: false
-      },
       %{label: "More contortionism", date: "2010-09-21", filename: "IMG_0615.jpg", video: false},
-      %{label: "Toilet paper mayhem", date: "2010-10-17", filename: "IMG_0667.jpg", video: false},
       %{label: "Entropy at work", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
-      %{label: "Sibling snuggles", date: "2011-02-17", filename: "IMG_0869.jpg", video: false},
       %{
         label:
           "For a period of time I tried to toilet train the cats. I made progress but I stopped the experiment when we got a new roommate I didn't want to scare off.",
@@ -542,54 +545,16 @@ defmodule Blog.HomePage do
         filename: "IMG_1028.jpg",
         video: false
       },
-      %{label: "Windowsill snuggles", date: "2011-06-25", filename: "IMG_1044.jpg", video: false},
       %{
-        label: "Antics on the shelf",
-        date: "2011-08-05",
-        filename: "IMG_20110805_170932.jpg",
-        video: false
-      },
-      %{
-        label: "Antics on the shelf",
-        date: "2011-08-08",
-        filename: "IMG_20110808_181425.jpg",
-        video: false
-      },
-      %{
-        label:
-          "Cheddar never properly learned how to retract his claws and several times I had to save him. He always looked silly and helpless when it happened.",
-        date: "2011-09-04",
-        filename: "IMG_20110904_094916.jpg",
-        video: false
-      },
-      %{
-        label: "Shouldercat",
+        label: "Shoulder cat",
         date: "2011-12-17",
         filename: "IMG_20111217_233748.jpg",
         video: false
       },
       %{
-        label: "Shouldercat",
+        label: "Shoulder cat",
         date: "2011-12-17",
         filename: "IMG_20111217_233927.jpg",
-        video: false
-      },
-      %{
-        label: "For a period of time Cheddar would sit on the tops of open doors.",
-        date: "2012-04-07",
-        filename: "IMG_20120407_193553.jpg",
-        video: false
-      },
-      %{
-        label: "For a period of time Cheddar would sit on the tops of open doors.",
-        date: "2012-11-29",
-        filename: "IMG_20121129_062221.jpg",
-        video: false
-      },
-      %{
-        label: "For a period of time Cheddar would sit on the tops of open doors.",
-        date: "2012-11-29",
-        filename: "IMG_20121129_062235.jpg",
         video: false
       },
       %{
@@ -605,7 +570,6 @@ defmodule Blog.HomePage do
         video: false
       },
       %{label: "A study in brown", date: "2013-08-08", filename: "2013-08-08.jpg", video: false},
-      %{label: "Airborne", date: "2013-09-07", filename: "2013-09-07.jpg", video: false},
       %{label: "Front row seat", date: "2014-03-01", filename: "IMGP2238.jpg", video: false},
       %{
         label: "A brief outdoors expedition",
@@ -641,12 +605,6 @@ defmodule Blog.HomePage do
         label: "Looking handsome",
         date: "2016-01-29",
         filename: "IMG_20160129_080411.jpg",
-        video: false
-      },
-      %{
-        label: "Disappointed about the tardy food service",
-        date: "2016-02-28",
-        filename: "IMG_20160228_093303.jpg",
         video: false
       },
       %{
@@ -703,7 +661,6 @@ defmodule Blog.HomePage do
         filename: "2016-10-28.gif",
         video: false
       },
-      %{label: "Water thief", date: "2016-11-06", filename: "2016-11-06.jpg", video: false},
       %{
         label: "Dead bug pose next to dad",
         date: "2016-11-08",
@@ -750,7 +707,6 @@ defmodule Blog.HomePage do
         filename: "IMG_20170816_074136.jpg",
         video: false
       },
-      %{label: "Water thief", date: "2017-09-15", filename: "2017-09-15.jpg", video: false},
       %{
         label: "Cheddar was used as a fly swatter a couple times",
         date: "2017-09-16",
@@ -773,6 +729,18 @@ defmodule Blog.HomePage do
         label: "Looking handsome on his 8th birthday",
         date: "2018-01-01",
         filename: "IMG_20180101_122305.jpg",
+        video: false
+      },
+      %{
+        label: "A squeeze with dad",
+        date: "2018-04-07",
+        filename: "IMG_20180407_113846.jpg",
+        video: false
+      },
+      %{
+        label: "Impromptu boudoir moment",
+        date: "2018-11-03",
+        filename: "IMG_20181103_113234.jpg",
         video: false
       },
       %{
@@ -804,12 +772,6 @@ defmodule Blog.HomePage do
         date: "2019-01-19",
         filename: "2019-01-19.jpg",
         video: false
-      },
-      %{
-        label: "Breaking into the basement",
-        date: "2019-05-03",
-        filename: "MVIMG_20190503_210536.jpg",
-        video: true
       },
       %{label: "Hanging with dad", date: "2019-06-21", filename: "IMG_3574.jpg", video: false},
       %{
@@ -863,6 +825,12 @@ defmodule Blog.HomePage do
         video: false
       },
       %{label: "Tummy rub", date: "2020-04-19", filename: "IMG_4640.jpg", video: false},
+      %{
+        label: "Evening scene",
+        date: "2020-04-22",
+        filename: "MVIMG_20200422_222941.jpg",
+        video: true
+      },
       %{label: "Suspended tummy rub", date: "2020-05-09", filename: "IMG_0048.jpg", video: true},
       %{
         label: "Enjoying a pet on top of dad",
@@ -884,18 +852,18 @@ defmodule Blog.HomePage do
       },
       %{label: "New seat identified", date: "2020-05-30", filename: "IMG_0124.jpg", video: true},
       %{
+        label: "Embracing on the couch",
+        date: "2020-06-18",
+        filename: "IMG_0208.jpg",
+        video: true
+      },
+      %{
         label: "Sometimes they did the same thing at the same time",
         date: "2020-06-25",
         filename: "MVIMG_20200625_091634.jpg",
         video: true
       },
       %{label: "Tummy rub", date: "2020-07-01", filename: "IMG_0249.gif", video: false},
-      %{
-        label: "Water thief",
-        date: "2020-07-02",
-        filename: "MVIMG_20200702_122328.jpg",
-        video: true
-      },
       %{
         label: "Dead bug snooze",
         date: "2020-07-08",
@@ -922,18 +890,6 @@ defmodule Blog.HomePage do
       },
       %{label: "Looking handsome", date: "2020-08-15", filename: "IMG_0371.jpg", video: true},
       %{label: "Double scoop", date: "2020-08-15", filename: "IMG_0389.jpg", video: true},
-      %{
-        label: "Trying to escape in the market basket",
-        date: "2020-08-16",
-        filename: "IMG_0400.jpg",
-        video: true
-      },
-      %{
-        label: "One of those times when he needed assistance unhooking",
-        date: "2020-08-21",
-        filename: "MVIMG_20200821_134125.jpg",
-        video: true
-      },
       %{label: "Double scoop", date: "2020-09-04", filename: "IMG_0506.jpg", video: true},
       %{label: "Double scoop", date: "2020-09-07", filename: "IMG_0520.jpg", video: true},
       %{
@@ -985,12 +941,6 @@ defmodule Blog.HomePage do
         filename: "PXL_20210804_191914684.jpg",
         video: true
       },
-      %{
-        label: "Butter thief",
-        date: "2021-08-31",
-        filename: "PXL_20210831_180647355.jpg",
-        video: true
-      },
       %{label: "Double scoop", date: "2021-10-22", filename: "IMG_1936.jpg", video: false},
       %{label: "Tummy rub", date: "2021-11-12", filename: "IMG_2002.jpg", video: false},
       %{
@@ -1027,6 +977,12 @@ defmodule Blog.HomePage do
         label: "Double scoop",
         date: "2022-08-17",
         filename: "PXL_20220818_023732249.jpg",
+        video: true
+      },
+      %{
+        label: "Office chair double scoop",
+        date: "2022-09-07",
+        filename: "PXL_20220907_215329887.jpg",
         video: true
       },
       %{
@@ -1082,6 +1038,12 @@ defmodule Blog.HomePage do
       %{label: "Bedtime snug", date: "2023-10-03", filename: "IMG_3923.jpg", video: false},
       %{label: "Shoulder cat", date: "2023-10-24", filename: "IMG_3958.jpg", video: false},
       %{
+        label: "Shoulder cat",
+        date: "2023-10-24",
+        filename: "PXL_20231025_011742499.jpg",
+        video: true
+      },
+      %{
         label: "Looking handsome",
         date: "2023-10-30",
         filename: "PXL_20231031_002808320.jpg",
@@ -1113,16 +1075,15 @@ defmodule Blog.HomePage do
       },
       %{label: "Double scoop", date: "2023-12-26", filename: "IMG_4094.jpg", video: false},
       %{
-        label:
-          "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
-        date: "2024-02-28",
-        filename: "PXL_20240228_232736347.jpg",
+        label: "Morning scene",
+        date: "2024-04-06",
+        filename: "PXL_20240406_155843772.jpg",
         video: true
       },
       %{
         label: "Morning scene",
-        date: "2024-04-06",
-        filename: "PXL_20240406_155843772.jpg",
+        date: "2024-04-30",
+        filename: "PXL_20240430_115631975.jpg",
         video: true
       },
       %{
@@ -1210,12 +1171,6 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "Close-up",
-        date: "2025-01-01",
-        filename: "PXL_20250101_151606377.jpg",
-        video: true
-      },
-      %{
         label: "Celebrating his 15th birthday",
         date: "2025-01-01",
         filename: "PXL_20250101_152450786.jpg",
@@ -1240,16 +1195,15 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label:
-          "For a brief period, Cheddar would occasionally jump in the laundry hamper. He couldn't figure out how to get out and would meow until a human rescued him.",
-        date: "2025-04-27",
-        filename: "PXL_20250427_000917547.jpg",
-        video: true
-      },
-      %{
         label: "Morning scene",
         date: "2025-04-29",
         filename: "PXL_20250429_123544011.jpg",
+        video: true
+      },
+      %{
+        label: "Hanging with dad",
+        date: "2025-08-03",
+        filename: "PXL_20250803_192007810.jpg",
         video: true
       },
       %{
@@ -1288,7 +1242,21 @@ defmodule Blog.HomePage do
         filename: "PXL_20260322_222239949.jpg",
         video: true
       },
-      ### cat snugs
+      # cat snugs
+      %{
+        label: "Sibling love",
+        date: "2010-04-05",
+        filename: "2010-04-05.jpg",
+        video: false
+      },
+      %{
+        label: "Sibling love",
+        date: "2010-09-18",
+        filename: "IMG_0588.jpg",
+        video: false
+      },
+      %{label: "Sibling love", date: "2011-02-17", filename: "IMG_0869.jpg", video: false},
+      %{label: "Sibling love", date: "2011-06-25", filename: "IMG_1044.jpg", video: false},
       %{label: "Sibling love", date: "2014-02-22", filename: "IMGP2200.jpg", video: false},
       %{
         label: "Sibling love",
@@ -1804,18 +1772,6 @@ defmodule Blog.HomePage do
       },
       %{
         label: "The finest lap cat",
-        date: "2018-04-07",
-        filename: "IMG_20180407_113846.jpg",
-        video: false
-      },
-      %{
-        label: "The finest lap cat",
-        date: "2018-11-03",
-        filename: "IMG_20181103_113234.jpg",
-        video: false
-      },
-      %{
-        label: "The finest lap cat",
         date: "2018-12-09",
         filename: "IMG_20181209_152505.jpg",
         video: false
@@ -1832,13 +1788,6 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200327_160938.jpg",
         video: true
       },
-      %{
-        label: "The finest lap cat",
-        date: "2020-04-22",
-        filename: "MVIMG_20200422_222941.jpg",
-        video: true
-      },
-      %{label: "The finest lap cat", date: "2020-06-18", filename: "IMG_0208.jpg", video: true},
       %{
         label: "The finest lap cat",
         date: "2020-11-03",
@@ -1900,12 +1849,6 @@ defmodule Blog.HomePage do
         filename: "PXL_20220320_195559399.jpg",
         video: true
       },
-      %{
-        label: "The finest lap cat",
-        date: "2022-09-07",
-        filename: "PXL_20220907_215329887.jpg",
-        video: true
-      },
       %{label: "Double lap cat", date: "2022-10-29", filename: "IMG_3062.jpg", video: false},
       %{
         label: "The finest lap cat",
@@ -1923,12 +1866,6 @@ defmodule Blog.HomePage do
         label: "The finest lap cat",
         date: "2023-10-17",
         filename: "PXL_20231017_190321029.jpg",
-        video: true
-      },
-      %{
-        label: "The finest lap cat",
-        date: "2023-10-25",
-        filename: "PXL_20231025_011742499.jpg",
         video: true
       },
       %{
@@ -1981,12 +1918,6 @@ defmodule Blog.HomePage do
       },
       %{
         label: "The finest lap cat",
-        date: "2024-04-30",
-        filename: "PXL_20240430_115631975.jpg",
-        video: true
-      },
-      %{
-        label: "The finest lap cat",
         date: "2024-11-10",
         filename: "PXL_20241110_002752029.jpg",
         video: true
@@ -2005,12 +1936,6 @@ defmodule Blog.HomePage do
       },
       %{
         label: "The finest lap cat",
-        date: "2025-08-03",
-        filename: "PXL_20250803_192007810.jpg",
-        video: true
-      },
-      %{
-        label: "The finest lap cat",
         date: "2026-01-10",
         filename: "PXL_20260110_184236531.jpg",
         video: true
@@ -2025,6 +1950,99 @@ defmodule Blog.HomePage do
         label: "The finest lap cat",
         date: "2026-02-21",
         filename: "PXL_20260221_161904335.jpg",
+        video: true
+      },
+      # antics
+      %{label: "Caught in the act", date: "2010-05-07", filename: "2010-05-07.jpg", video: false},
+      %{label: "Toilet paper mayhem", date: "2010-10-17", filename: "IMG_0667.jpg", video: false},
+      %{
+        label: "Antics on the shelf",
+        date: "2011-08-05",
+        filename: "IMG_20110805_170932.jpg",
+        video: false
+      },
+      %{
+        label: "Antics on the shelf",
+        date: "2011-08-08",
+        filename: "IMG_20110808_181425.jpg",
+        video: false
+      },
+      %{
+        label:
+          "Cheddar never properly learned how to retract his claws and several times I had to save him. He always looked silly and helpless when it happened.",
+        date: "2011-09-04",
+        filename: "IMG_20110904_094916.jpg",
+        video: false
+      },
+      %{
+        label: "For a period of time Cheddar would sit on the tops of open doors.",
+        date: "2012-04-07",
+        filename: "IMG_20120407_193553.jpg",
+        video: false
+      },
+      %{
+        label: "For a period of time Cheddar would sit on the tops of open doors.",
+        date: "2012-11-29",
+        filename: "IMG_20121129_062235.jpg",
+        video: false
+      },
+      %{label: "Airborne", date: "2013-09-07", filename: "2013-09-07.jpg", video: false},
+      %{
+        label: "Disappointed about the tardy food service",
+        date: "2016-02-28",
+        filename: "IMG_20160228_093303.jpg",
+        video: false
+      },
+      %{label: "Water thief", date: "2016-11-06", filename: "2016-11-06.jpg", video: false},
+      %{label: "Water thief", date: "2017-09-15", filename: "2017-09-15.jpg", video: false},
+      %{
+        label: "Breaking into the basement",
+        date: "2019-05-03",
+        filename: "MVIMG_20190503_210536.jpg",
+        video: true
+      },
+      %{
+        label: "Water thief",
+        date: "2020-07-02",
+        filename: "MVIMG_20200702_122328.jpg",
+        video: true
+      },
+      %{
+        label: "Trying to escape in the market basket",
+        date: "2020-08-16",
+        filename: "IMG_0400.jpg",
+        video: true
+      },
+      %{
+        label: "One of those times when he needed assistance unhooking",
+        date: "2020-08-21",
+        filename: "MVIMG_20200821_134125.jpg",
+        video: true
+      },
+      %{
+        label:
+          "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
+        date: "2024-02-28",
+        filename: "PXL_20240228_232736347.jpg",
+        video: true
+      },
+      %{
+        label: "Butter thief",
+        date: "2021-08-31",
+        filename: "PXL_20210831_180647355.jpg",
+        video: true
+      },
+      %{
+        label: "Close-up",
+        date: "2025-01-01",
+        filename: "PXL_20250101_151606377.jpg",
+        video: true
+      },
+      %{
+        label:
+          "For a brief period, Cheddar would occasionally jump in the laundry hamper. He couldn't figure out how to get out and would meow until a human rescued him.",
+        date: "2025-04-27",
+        filename: "PXL_20250427_000917547.jpg",
         video: true
       }
     ]
@@ -2063,6 +2081,29 @@ defmodule Blog.HomePage do
       {inline_gallery_img_element(@src, class: "gallery-grid-item gallery-opener")}
     </div>
     """
+  end
+
+  defp favorites() do
+    [
+      "2010-02-24-9.jpg",
+      "2010-02-26-07.jpg",
+      "2010-05-07.jpg",
+      "2011-04-11.gif",
+      "IMG_20111217_233927.jpg",
+      "2013-08-08.jpg",
+      "IMG_20160228_093303.jpg",
+      "MVIMG_20190503_210536.jpg",
+      "IMG_3574.jpg",
+      "IMG_0208.jpg",
+      "IMG_0506.jpg",
+      "IMG_1275.jpg",
+      "PXL_20210831_180647355.jpg",
+      "PXL_20230512_020020439.jpg",
+      "PXL_20230704_230302378.jpg",
+      "IMG_4064.jpg",
+      "PXL_20240120_022758124.jpg",
+      "PXL_20250123_130356930.jpg"
+    ]
   end
 
   defp asset_src(entry, variation) do
@@ -2126,7 +2167,8 @@ defmodule Blog.HomePage do
   defp grouped_entries() do
     section_starts = %{
       "IMGP2200.jpg" => 1,
-      "IMG_20160327_193457.jpg" => 2
+      "IMG_20160327_193457.jpg" => 2,
+      "2010-05-07.jpg" => 3
     }
 
     entries()
@@ -2134,7 +2176,8 @@ defmodule Blog.HomePage do
       {%{
          0 => [],
          1 => [],
-         2 => []
+         2 => [],
+         3 => []
        }, 0},
       fn entry, {acc, group} ->
         header = Map.get(section_starts, entry.filename)
@@ -2155,10 +2198,12 @@ defmodule Blog.HomePage do
   defp gallery_group_label(0), do: "General"
   defp gallery_group_label(1), do: "Sibling Love"
   defp gallery_group_label(2), do: "The Finest Lap Cat"
+  defp gallery_group_label(3), do: "Antics"
 
   defp gallery_group_id(0), do: "gallery-extended-general"
   defp gallery_group_id(1), do: "gallery-extended-sibling-love"
   defp gallery_group_id(2), do: "gallery-extended-lap-cat"
+  defp gallery_group_id(3), do: "gallery-extended-antics"
 
   defp parse_filename(%{filename: filename}) do
     file_parts = String.split(filename, ".")
