@@ -176,7 +176,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                   class="control-change-mode"
                   disabled={entries[currentEntryIndex].video == undefined}
                   onClick={() => setMediaMode("Video")}
-                  title="Change media mode"
+                  title="Change to Video"
                   type="button">
                   <IconPlayCircle />
                 </button>
@@ -185,7 +185,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                 <button
                   class="control-change-mode"
                   onClick={() => setMediaMode("Image")}
-                  title="Change media mode"
+                  title="Change to Still"
                   type="button">
                   <IconPauseCircle />
                 </button>
@@ -194,7 +194,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                 class="control-download-photo"
                 href={entries[currentEntryIndex].original}
                 target="_blank"
-                title="View original (still)">
+                title="View Original Still">
                 <IconPhoto />
               </a>
               {entries[currentEntryIndex].video !== undefined && (
@@ -202,7 +202,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                   class="control-download-video"
                   href={entries[currentEntryIndex].video}
                   target="_blank"
-                  title="View original (video)">
+                  title="View Original Video">
                   <IconFilm />
                 </a>
               )}
@@ -222,7 +222,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                   <IconXMarkCircle />
                 </button>
               </div>
-              <div class="control-progress-indicator">
+              <div class="progress-indicator">
                 {currentEntryIndex + 1} / {entries.length}
               </div>
             </div>

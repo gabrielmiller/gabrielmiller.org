@@ -36,9 +36,15 @@ body:has(#embedded-gallery-overlay.visible) {
 #embedded-gallery-overlay [class^='control-'] {
   background-color: transparent;
   border: none;
+  box-sizing: border-box;
   cursor: pointer;
   opacity: 75%;
   padding: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  width: 64px;
 
   &:disabled,
   &.disabled {
@@ -78,9 +84,10 @@ body:has(#embedded-gallery-overlay.visible) {
   right: 0;
   top: 0;
 
-  .control-progress-indicator {
-    padding-top: 0 !important;
-  }
+}
+
+.progress-indicator {
+  margin-right: 1em;
 }
 
 #embedded-gallery-overlay .label {
