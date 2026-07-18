@@ -8,6 +8,10 @@ import IconDownTray from './IconDownTray';
 import AsyncVideo from './AsyncVideo';
 import IconCamera from './IconCamera';
 import IconVideoCamera from './IconVideoCamera';
+import IconPlayCircle from './IconPlayCircle';
+import IconPauseCircle from './IconPauseCircle';
+import IconPhoto from './IconPhoto';
+import IconFilm from './IconFilm';
 
 interface IEmbeddedGalleryProps {
   currentEntry: string,
@@ -159,36 +163,50 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                 <AsyncVideo poster={entries[currentEntryIndex].web} src={entries[currentEntryIndex].video!} />
               )}
             </div>
-            <div
-              class="controls-top-right"
-            >
-              <div class="top-row">
+            <div class="controls-top-left">
+              {mediaMode == "Image" && (
+                <button
+                  class="control-change-mode"
+                  disabled={entries[currentEntryIndex].video == undefined}
+                  onClick={() => setMediaMode("Video")}
+                  title="Change media mode"
+                  type="button">
+                  <IconPlayCircle />
+                </button>
+              )}
+              {mediaMode == "Video" && (
+                <button
+                  class="control-change-mode"
+                  onClick={() => setMediaMode("Image")}
+                  title="Change media mode"
+                  type="button">
+                  <IconPauseCircle />
+                </button>
+              )}
+              <a
+                class="control-download-photo"
+                href={entries[currentEntryIndex].original}
+                target="_blank"
+                title="View original (still)">
+                <IconPhoto />
+              </a>
+              {entries[currentEntryIndex].video !== undefined && (
                 <a
-                  class="control-download-original"
-                  href={entries[currentEntryIndex].original}
+                  class="control-download-video"
+                  href={entries[currentEntryIndex].video}
                   target="_blank"
-                  title="View original">
-                  <IconDownTray />
+                  title="View original (video)">
+                  <IconFilm />
                 </a>
-                {mediaMode == "Image" && (
-                  <button
-                    class="control-change-mode"
-                    disabled={entries[currentEntryIndex].video == undefined}
-                    onClick={() => setMediaMode("Video")}
-                    title="Change media mode"
-                    type="button">
-                    <IconVideoCamera />
-                  </button>
-                )}
-                {mediaMode == "Video" && (
-                  <button
-                    class="control-change-mode"
-                    onClick={() => setMediaMode("Image")}
-                    title="Change media mode"
-                    type="button">
-                    <IconCamera />
-                  </button>
-                )}
+              )}
+              {entries[currentEntryIndex].video === undefined && (
+                <div class="control-download-video disabled">
+                  <IconFilm />
+                </div>
+              )}
+            </div>
+            <div class="controls-top-right">
+              <div>
                 <button
                   class="control-close-viewer"
                   onClick={(event) => closeGallery(event)}
@@ -197,7 +215,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                   <IconXMarkCircle />
                 </button>
               </div>
-              <div class="bottom-row">
+              <div class="control-progress-indicator">
                 {currentEntryIndex + 1} / {entries.length}
               </div>
             </div>

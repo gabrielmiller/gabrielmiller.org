@@ -36,10 +36,13 @@ body:has(#embedded-gallery-overlay.visible) {
 #embedded-gallery-overlay [class^='control-'] {
   background-color: transparent;
   border: none;
+  cursor: pointer;
   opacity: 75%;
   padding: 1em;
 
-  &:disabled {
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
     opacity: 10%;
   }
 }
@@ -58,23 +61,25 @@ body:has(#embedded-gallery-overlay.visible) {
   top: 50%;
 }
 
-.controls-top-right {
+.controls-top-left {
   display: flex;
+  flex-direction: row;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.controls-top-right {
+  color: white;
+  display: flex;
+  align-items: flex-end;
   flex-direction: column;
   position: fixed;
   right: 0;
   top: 0;
 
-  .top-row {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .bottom-row {
-    color: white;
-    display: flex;
-    flex-direction: row-reverse;
-    margin-right: 1em;
+  .control-progress-indicator {
+    padding-top: 0 !important;
   }
 }
 
