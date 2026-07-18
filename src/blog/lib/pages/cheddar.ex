@@ -141,7 +141,11 @@ defmodule Blog.HomePage do
       <h1 id="being-cheddars-human">Being Cheddar's Human</h1>
 
       <p>
-        Some time during Cheddar's life I came to realize that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh so many facets of my life. He was my cat. I was his human.
+        Some time during Cheddar's life I came to realize that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh so many facets of my life.
+      </p>
+
+      <p>
+        He was my cat. I was his human.
       </p>
 
       <h2 id="childhood">Childhood</h2>
@@ -429,6 +433,13 @@ defmodule Blog.HomePage do
       </div>
 
       <h2 id="gallery-full-collection">Full Collection</h2>
+      <p>
+        <em>
+          For the real cat lovers out there. I tried my best to weed down the number of photos to share, but I could only get the number down to {length(
+            entries()
+          )}. Enjoy! ❤️
+        </em>
+      </p>
       <div :for={{group_index, entries} <- grouped_entries()}>
         <h3 id={gallery_group_id(group_index)}>{gallery_group_label(group_index)}</h3>
         <div class="gallery-grid-2-to-4">
