@@ -88,29 +88,33 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar was a people-centric cat. He sought out humans and loved to spent time with them.
+        Cheddar was a people-centric cat. He sought out humans and loved to spend time with them.
       </p>
 
       <p>
-        He had a loud purr and he regularly shared it with you when he was on your lap.
-        <em>Sometimes he was too loud!</em>
-        He was generally talkative. He regularly sat on laps and slept on top of or next to people. He provided a playful and calming presence.
+        He had a loud purr and was happy to share it with you, especially if you allowed him to sit on your lap. He was generally talkative. He would let you know when he had a request. He was a lap cat. He also enjoyed sleeping next to and on top of people.
       </p>
 
       <p>
         He loved physical touch like no other feline. He loved it when you rubbed his belly. You could rub his toe beans. You could massage his face, his ears, his tail. You could pet him the wrong direction. He regularly passed the "Dangle Test". You could hang him upside down.
       </p>
 
+      <p>He provided a playful and calming presence.</p>
+
       <p>
         He made a strong impression on guests. Several people who claimed to not like cats--or even to dislike cats--fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
       </p>
 
       <p>
-        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He came to represent stability and became part of my identity.
+        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He represented stability and was part of my identity.
       </p>
 
       <p>
-        He was one of my best friends. He helped me work through difficult emotions and difficult times. He nurtured me when I was down. He was always delighted to spend time with me.
+        He was one of my best friends. He helped me process difficult emotions and thrive in hard times. He nurtured me when I was down. He was always delighted to spend time with me.
+      </p>
+
+      <p>
+        When he entered my life he was already bonded with his sister, Toast. They grew old together and were always two peas in a pod.
       </p>
 
       <div class="gallery-grid-2">
@@ -119,15 +123,11 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        When he entered my life he was already bonded with his sister, Toast. They remained two peas in a pod. From the earliest days to the last days, they were always close.
+        When Cheddar passed I was struck with immense guilt and despair. Only after I began to relive my memories did I succesfully begin to process my grief. Almost every memory I have of him is one of joy and happiness.
       </p>
 
       <p>
-        I miss him dearly. My heart has a cheddar-shaped hole in it. Not an hour goes by that I don't think about him. I will never forget him, and I will never stop loving him.
-      </p>
-
-      <p>
-        I consider myself agnostic, but despite that I romanticize the idea that if there is an after-life, I wish to trade places with Cheddar. In our next lives we'll continue to be together for one another once again.
+        I miss Cheddar dearly. My heart will forever have a Cheddar-shaped hole in it. Not an hour goes by that I don't think about him. I will never forget him. I will never stop loving him.
       </p>
 
       <h1 class="extra-spaced">
@@ -135,10 +135,14 @@ defmodule Blog.HomePage do
       </h1>
 
       <h2 class="extra-spaced">
-        We love you and we will miss you forever. 💔
+        I love you and I will miss you forever. 💔
       </h2>
 
       <h1 id="being-cheddars-human">Being Cheddar's Human</h1>
+
+      <p>
+        Some time during Cheddar's life I came to realize that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh so many facets of my life. He was my cat. I was his human.
+      </p>
 
       <h2 id="childhood">Childhood</h2>
 
