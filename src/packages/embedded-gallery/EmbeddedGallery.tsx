@@ -57,12 +57,19 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
 
   const maybeCloseGallery = (event: any) => {
     const targetTag = event.target?.tagName;
+    const targetClassList = event.target?.classList || [];
     if (targetTag === null || targetTag == undefined) {
       return;
     }
 
     if (clickableElements.has(targetTag.toUpperCase())) {
       return;
+    }
+
+    for (const html_class of targetClassList) {
+      if (html_class.indexOf("control-") == 0) {
+        return;
+      }
     }
 
     closeGallery(event);
