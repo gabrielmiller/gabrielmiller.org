@@ -36,17 +36,17 @@ defmodule Blog.HomePage do
       <div class="toc">
         <h2>Table of Contents</h2>
         <ul>
-          <li><a href="#memorial">Memorial</a></li>
-          <li><a href="#being-cheddars-human">Being Cheddar's Human</a></li>
+          <li><a href={"##{id(:memorial)}"}>Memorial</a></li>
+          <li><a href={"##{id(:being_cheddars_human)}"}>Being Cheddar's Human</a></li>
           <ul>
-            <li><a href="#childhood">Childhood</a></li>
-            <li><a href="#adulthood">Adulthood</a></li>
-            <li><a href="#super-senior-years">Super Senior Years</a></li>
+            <li><a href={"##{id(:childhood)}"}>Childhood</a></li>
+            <li><a href={"##{id(:adulthood)}"}>Adulthood</a></li>
+            <li><a href={"##{id(:super_senior_years)}"}>Super Senior Years</a></li>
           </ul>
-          <li><a href="#gallery">Gallery</a></li>
+          <li><a href={"##{id(:gallery)}"}>Gallery</a></li>
           <ul>
-            <li><a href="#gallery-gabes-favorites">Gabe's Favorites</a></li>
-            <li><a href="#gallery-full-collection">Full Collection</a></li>
+            <li><a href={"##{id(:gallery_gabes_favorites)}"}>Gabe's Favorites</a></li>
+            <li><a href={"##{id(:gallery_full_collection)}"}>Full Collection</a></li>
             <ul>
               <li :for={group <- 0..3}>
                 <a href={"##{gallery_group_id(group)}"}>{gallery_group_label(group)}</a>
@@ -56,7 +56,7 @@ defmodule Blog.HomePage do
         </ul>
       </div>
 
-      <h1 id="memorial">Memorial</h1>
+      <h1 id={id(:memorial)}>Memorial</h1>
 
       <p>
         2010 - 2026
@@ -138,7 +138,7 @@ defmodule Blog.HomePage do
         I love you ❤️
       </h2>
 
-      <h1 id="being-cheddars-human">Being Cheddar's Human</h1>
+      <h1 id={id(:being_cheddars_human)}>Being Cheddar's Human</h1>
 
       <p>
         Some time during Cheddar's life I came to realize that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh so many facets of my life.
@@ -148,7 +148,7 @@ defmodule Blog.HomePage do
         He was my cat. I was his human.
       </p>
 
-      <h2 id="childhood">Childhood</h2>
+      <h2 id={id(:childhood)}>Childhood</h2>
 
       <p>
         January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. The runt of the litter was one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. This was not her first experience in childbirth, and her owners made playful yet snide remarks about her multiple pregnancies.
@@ -252,7 +252,7 @@ defmodule Blog.HomePage do
         I took it upon myself to complete the kitty chores every day. Because I was usually the "meat man" I became the de facto dad; they bonded with me.
       </p>
 
-      <h2 id="adulthood">Adulthood</h2>
+      <h2 id={id(:adulthood)}>Adulthood</h2>
 
       <p>
         By the end of college it became apparent that Peter, Ryan, and I were each going to go our own ways. I suggested that I take the cats with me and that I be responsible for them. The other dads approved.
@@ -382,7 +382,7 @@ defmodule Blog.HomePage do
         One colleague asked what drugs I gave them to make them be so chill.
       </p>
 
-      <h2 id="super-senior-years">Super Senior Years</h2>
+      <h2 id={id(:super_senior_years)}>Super Senior Years</h2>
 
       <p>
         The years flew by. Eventually it dawned on us that the cats were "geriatric" or "super senior". They didn't seem to change much or slow down dramatically, which made it initially seem like a silly label.
@@ -425,8 +425,8 @@ defmodule Blog.HomePage do
         He was an immensely good boy. And he brought everybody he met so much joy.
       </p>
 
-      <h1 id="gallery">Gallery</h1>
-      <h2 id="gallery-gabes-favorites">Gabe's Favorites</h2>
+      <h1 id={id(:gallery)}>Gallery</h1>
+      <h2 id={id(:gallery_gabes_favorites)}>Gabe's Favorites</h2>
       <div class="gallery-grid-2-to-4">
         <div
           :for={entry <- favorites()}
@@ -436,7 +436,7 @@ defmodule Blog.HomePage do
         </div>
       </div>
 
-      <h2 id="gallery-full-collection">Full Collection</h2>
+      <h2 id={id(:gallery_full_collection)}>Full Collection</h2>
       <p>
         <em>
           For the cat lovers out there. I tried my best to weed down the number of photos to share, but I could only get the number as low as {entries()
@@ -533,7 +533,6 @@ defmodule Blog.HomePage do
         video: false
       },
       %{label: "More contortionism", date: "2010-09-21", filename: "IMG_0615.jpg", video: false},
-      %{label: "Entropy at work", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
       %{
         label:
           "For a period of time I tried to toilet train the cats. I made progress but I stopped the experiment when we got a new roommate I didn't want to scare off.",
@@ -1130,12 +1129,6 @@ defmodule Blog.HomePage do
         label: "Excited to greet me",
         date: "2024-06-19",
         filename: "PXL_20240619_162758920.jpg",
-        video: true
-      },
-      %{
-        label: "Close-up",
-        date: "2024-07-05",
-        filename: "PXL_20240706_033448048.jpg",
         video: true
       },
       %{
@@ -1977,6 +1970,7 @@ defmodule Blog.HomePage do
       # antics
       %{label: "Caught in the act", date: "2010-05-07", filename: "2010-05-07.jpg", video: false},
       %{label: "Toilet paper mayhem", date: "2010-10-17", filename: "IMG_0667.jpg", video: false},
+      %{label: "Entropy at work", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
       %{
         label: "Antics on the shelf",
         date: "2011-08-05",
@@ -2042,6 +2036,12 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Butter thief",
+        date: "2021-08-31",
+        filename: "PXL_20210831_180647355.jpg",
+        video: true
+      },
+      %{
         label:
           "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
         date: "2024-02-28",
@@ -2049,9 +2049,9 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "Butter thief",
-        date: "2021-08-31",
-        filename: "PXL_20210831_180647355.jpg",
+        label: "Close-up",
+        date: "2024-07-05",
+        filename: "PXL_20240706_033448048.jpg",
         video: true
       },
       %{
@@ -2238,6 +2238,15 @@ defmodule Blog.HomePage do
   defp gallery_group_id(1), do: "gallery-extended-sibling-love"
   defp gallery_group_id(2), do: "gallery-extended-lap-cat"
   defp gallery_group_id(3), do: "gallery-extended-antics"
+
+  defp id(:memorial), do: "memorial"
+  defp id(:being_cheddars_human), do: "being-cheddars-human"
+  defp id(:childhood), do: "childhood"
+  defp id(:adulthood), do: "adulthood"
+  defp id(:super_senior_years), do: "super-senior-years"
+  defp id(:gallery), do: "gallery"
+  defp id(:gallery_gabes_favorites), do: "gallery-gabes-favorites"
+  defp id(:gallery_full_collection), do: "gallery-full-collection"
 
   defp parse_filename(%{filename: filename}) do
     file_parts = String.split(filename, ".")
