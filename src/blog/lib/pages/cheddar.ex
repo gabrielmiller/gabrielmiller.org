@@ -1771,7 +1771,7 @@ defmodule Blog.HomePage do
         video: false
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2018-12-09",
         filename: "IMG_20181209_152505.jpg",
         video: false
@@ -1789,7 +1789,7 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2020-11-03",
         filename: "PXL_20201103_195955805.jpg",
         video: true
@@ -1844,7 +1844,7 @@ defmodule Blog.HomePage do
       },
       %{label: "Double lap cat", date: "2022-03-16", filename: "IMG_2398.jpg", video: false},
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2022-03-20",
         filename: "PXL_20220320_195559399.jpg",
         video: true
@@ -1881,13 +1881,13 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2023-12-20",
         filename: "PXL_20231220_212701926.jpg",
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2023-12-28",
         filename: "PXL_20231228_010104927.jpg",
         video: true
@@ -1899,13 +1899,13 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2024-01-20",
         filename: "PXL_20240120_021903765.jpg",
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2024-01-20",
         filename: "PXL_20240120_022758124.jpg",
         video: true
@@ -1923,7 +1923,7 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2025-05-17",
         filename: "PXL_20250517_142926814.jpg",
         video: true
@@ -1935,13 +1935,13 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2026-01-10",
         filename: "PXL_20260110_184236531.jpg",
         video: true
       },
       %{
-        label: "The finest lap cat",
+        label: "Double lap cat",
         date: "2026-02-15",
         filename: "PXL_20260215_021619773.jpg",
         video: true
