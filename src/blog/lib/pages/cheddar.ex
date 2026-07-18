@@ -30,7 +30,7 @@ defmodule Blog.HomePage do
       <p>Originally published July 17, 2026</p>
 
       <p class="callout info">
-        All of the photographs on this page can be clicked to see a larger, full-screen version. In the full-screen viewer, for some photos, you can also view a motion photo(a short video). You can toggle between photo and video when available using the camera and video camera icons, respectively.
+        All of the photographs on this page can be clicked to see a larger, full-screen version. In the full-screen viewer, for some photos, you can also view a motion photo(a short video). You can toggle between photo and video when available using the pause and play buttons.
       </p>
 
       <div class="toc">
@@ -80,19 +80,24 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar was a long-haired orange tabby. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin.
+        Cheddar was a long-haired orange tabby cat. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin.
       </p>
 
       <p>
-        Cheddar had a strong bond with his sister. They grew up together and experienced many moments in life together. They were life companions.
+        Cheddar developed a strong bond with his sister at a young age. They grew old together and were always two peas in a pod. They were companions for life.
       </p>
+
+      <div class="gallery-grid-2">
+        {gallery_grid_element("2010-02-24-9.jpg")}
+        {gallery_grid_element("PXL_20260419_204001262.jpg")}
+      </div>
 
       <p>
         Cheddar was a people-centric cat. He sought out humans and loved to spend time with them.
       </p>
 
       <p>
-        He had a loud purr and was happy to share it with you, especially if you allowed him to sit on your lap. He was generally talkative. He would let you know when he had a request. He was a lap cat. He also enjoyed sleeping next to and on top of people.
+        He was a chatty guy. He would let you know when he had a request. He also was a lap cat. He would find you and then he would sit on you. He had a loud purr and was happy to share it with you, especially when he was on your lap. He also enjoyed sleeping next to and on top of people.
       </p>
 
       <p>
@@ -105,6 +110,10 @@ defmodule Blog.HomePage do
         He made a strong impression on guests. Several people who claimed to not like cats--or even to dislike cats--fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
       </p>
 
+      {inline_gallery_img_element("IMG_0208.jpg",
+        class: "gallery-item gallery-opener float-left"
+      )}
+
       <p>
         At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He represented stability and was part of my identity.
       </p>
@@ -114,16 +123,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        When he entered my life he was already bonded with his sister, Toast. They grew old together and were always two peas in a pod.
-      </p>
-
-      <div class="gallery-grid-2">
-        {gallery_grid_element("2010-02-24-9.jpg")}
-        {gallery_grid_element("PXL_20260419_204001262.jpg")}
-      </div>
-
-      <p>
-        When Cheddar passed I was struck with immense guilt and despair. Only after I began to relive my memories did I succesfully begin to process my grief. Almost every memory I have of him is one of joy and happiness.
+        When Cheddar passed I was struck with immense guilt and despair. Only after I began to relive my memories did I succesfully begin to process my grief. Nearly every memory I have of him is one of joy and happiness. He brought out the best in me.
       </p>
 
       <p>
@@ -189,7 +189,9 @@ defmodule Blog.HomePage do
         We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with--such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
       </p>
 
-      {inline_gallery_img_element("IMG_0615.jpg", class: "gallery-item gallery-opener float-right")}
+      {inline_gallery_img_element("IMG_0615.jpg",
+        class: "gallery-item gallery-opener float-right"
+      )}
 
       <p>
         In the weeks that followed we let the kittens wander the rest of the house. As one might expected with three college aged males as fathers, the kittens were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
@@ -207,7 +209,9 @@ defmodule Blog.HomePage do
         In time each we began to recognize a distinctive personality in each cat. They grew into being incredibly personable. Whether it was nature or nurture, I am not sure, but I think nurture played a large part.
       </p>
 
-      {inline_gallery_img_element("IMG_0816.jpg", class: "gallery-item gallery-opener float-left")}
+      {inline_gallery_img_element("IMG_0816.jpg",
+        class: "gallery-item gallery-opener float-left"
+      )}
 
       <p>
         Cheddar lived up the the stereotype of the runt. He was not very bright, but he was trusting and mellow.
@@ -435,9 +439,8 @@ defmodule Blog.HomePage do
       <h2 id="gallery-full-collection">Full Collection</h2>
       <p>
         <em>
-          For the real cat lovers out there. I tried my best to weed down the number of photos to share, but I could only get the number down to {length(
-            entries()
-          )}. Enjoy! ❤️
+          For the cat lovers out there. I tried my best to weed down the number of photos to share, but I could only get the number as low as {entries()
+          |> length()}. Enjoy! ❤️
         </em>
       </p>
       <div :for={{group_index, entries} <- grouped_entries()}>
@@ -447,7 +450,10 @@ defmodule Blog.HomePage do
             :for={entry <- entries}
             class="gallery-item"
           >
-            {inline_gallery_img_element(entry, class: "gallery-grid-item gallery-opener")}
+            {inline_gallery_img_element(entry,
+              class: "gallery-grid-item gallery-opener",
+              obscure_navigation: false
+            )}
           </div>
         </div>
       </div>
@@ -461,12 +467,6 @@ defmodule Blog.HomePage do
         label: "Meeting the kittens",
         date: "2010-02-24",
         filename: "2010-02-24-11.jpg",
-        video: false
-      },
-      %{
-        label: "Snuggly siblings, shortly after adoption",
-        date: "2010-02-24",
-        filename: "2010-02-24-9.jpg",
         video: false
       },
       %{label: "Kitten energy", date: "2010-02-26", filename: "2010-02-26-01.jpg", video: false},
@@ -867,7 +867,8 @@ defmodule Blog.HomePage do
       },
       %{label: "New seat identified", date: "2020-05-30", filename: "IMG_0124.jpg", video: true},
       %{
-        label: "Embracing on the couch",
+        label:
+          "Embracing on the couch. I liked to hold him and position his legs around me like he was hugging me.",
         date: "2020-06-18",
         filename: "IMG_0208.jpg",
         video: true
@@ -1258,6 +1259,12 @@ defmodule Blog.HomePage do
         video: true
       },
       # cat snugs
+      %{
+        label: "Snuggly siblings, shortly after adoption",
+        date: "2010-02-24",
+        filename: "2010-02-24-9.jpg",
+        video: false
+      },
       %{
         label: "Sibling love",
         date: "2010-04-05",
@@ -2088,12 +2095,15 @@ defmodule Blog.HomePage do
     })
   end
 
-  defp gallery_grid_element(src) do
-    assigns = %{src: src}
+  defp gallery_grid_element(src, opts \\ []) do
+    assigns = %{
+      opts: Keyword.put(opts, :class, "gallery-grid-item gallery-opener"),
+      src: src
+    }
 
     ~H"""
     <div class="gallery-item">
-      {inline_gallery_img_element(@src, class: "gallery-grid-item gallery-opener")}
+      {inline_gallery_img_element(@src, @opts)}
     </div>
     """
   end
@@ -2165,23 +2175,32 @@ defmodule Blog.HomePage do
 
   defp inline_gallery_img_element(src, opts) do
     class = Keyword.get(opts, :class, "gallery-item gallery-opener")
+    obscure_navigation = Keyword.get(opts, :obscure_navigation, true)
 
     entry = Enum.find(entries(), &(src == &1.filename))
+
+    data_attributes =
+      if obscure_navigation,
+        do: %{"data-obscure-navigation" => "true"},
+        else: %{}
 
     assigns = %{
       class: class,
       src: asset_src(entry, :thumb1x),
-      srcset: asset_srcset(entry)
+      srcset: asset_srcset(entry),
+      data_attributes: data_attributes
     }
 
     ~H"""
-    <button class={@class} type="button"><img loading="lazy" src={@src} srcset={@srcset} /></button>
+    <button {@data_attributes} class={@class} type="button">
+      <img loading="lazy" src={@src} srcset={@srcset} {@data_attributes} />
+    </button>
     """
   end
 
   defp grouped_entries() do
     section_starts = %{
-      "IMGP2200.jpg" => 1,
+      "2010-02-24-9.jpg" => 1,
       "IMG_20160327_193457.jpg" => 2,
       "2010-05-07.jpg" => 3
     }

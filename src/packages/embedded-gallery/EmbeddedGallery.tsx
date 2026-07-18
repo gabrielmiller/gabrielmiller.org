@@ -4,10 +4,7 @@ import IconArrowLeftCircle from './IconArrowLeftCircle';
 import IconArrowRightCircle from './IconArrowRightCircle';
 import IconXMarkCircle from './IconXMarkCircle';
 import AsyncImage from './AsyncImage';
-import IconDownTray from './IconDownTray';
 import AsyncVideo from './AsyncVideo';
-import IconCamera from './IconCamera';
-import IconVideoCamera from './IconVideoCamera';
 import IconPlayCircle from './IconPlayCircle';
 import IconPauseCircle from './IconPauseCircle';
 import IconPhoto from './IconPhoto';
@@ -16,7 +13,8 @@ import IconFilm from './IconFilm';
 interface IEmbeddedGalleryProps {
   currentEntry: string,
   entries: IEntry[],
-  incrementer: Date
+  incrementer: Date,
+  obscureNavigation: boolean
 }
 
 interface IEntry {
@@ -41,7 +39,7 @@ const clickableElements = new Set([
   "IMG"
 ])
 
-const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntry, entries, incrementer }) => {
+const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntry, entries, incrementer, obscureNavigation }) => {
   const [currentEntryIndex, setCurrentEntryIndex] = useState(0);
   const [mediaMode, setMediaMode] = useState("Image");
   const [isVisible, setIsVisible] = useState(false);
@@ -127,9 +125,9 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
     const keyboardListener = (event: any) => {
       if (event.code === "Escape") {
         setIsVisible(false);
-      } else if (event.code === "ArrowLeft" && validateCanNavigateToPrevEntry()) {
+      } else if (!obscureNavigation && event.code === "ArrowLeft" && validateCanNavigateToPrevEntry()) {
         navigateToPrevEntry(event);
-      } else if (event.code === "ArrowRight" && validateCanNavigateToNextEntry()) {
+      } else if (!obscureNavigation && event.code === "ArrowRight" && validateCanNavigateToNextEntry()) {
         navigateToNextEntry(event);
       }
     };
@@ -140,7 +138,7 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
       document.removeEventListener("keydown", keyboardListener);
     };
 
-  }, [currentEntryIndex]);
+  }, [currentEntryIndex, obscureNavigation]);
 
   useEffect(() => {
     if (!isActive()) {
@@ -222,26 +220,32 @@ const EmbeddedGallery: FunctionComponent<IEmbeddedGalleryProps> = ({ currentEntr
                   <IconXMarkCircle />
                 </button>
               </div>
-              <div class="progress-indicator">
-                {currentEntryIndex + 1} / {entries.length}
-              </div>
+              {!obscureNavigation && (
+                <div class="progress-indicator">
+                  {currentEntryIndex + 1} / {entries.length}
+                </div>
+              )}
             </div>
-            <button
-              class="control-navigate-previous"
-              disabled={!validateCanNavigateToPrevEntry()}
-              onClick={(event) => navigateToPrevEntry(event)}
-              title="Navigate to previous entry"
-              type="button">
-              <IconArrowLeftCircle />
-            </button>
-            <button
-              class="control-navigate-next"
-              disabled={!validateCanNavigateToNextEntry()}
-              onClick={(event) => navigateToNextEntry(event)}
-              title="Navigate to next entry"
-              type="button">
-              <IconArrowRightCircle />
-            </button>
+            {!obscureNavigation && (
+              <>
+                <button
+                  class="control-navigate-previous"
+                  disabled={!validateCanNavigateToPrevEntry()}
+                  onClick={(event) => navigateToPrevEntry(event)}
+                  title="Navigate to previous entry"
+                  type="button">
+                  <IconArrowLeftCircle />
+                </button>
+                <button
+                  class="control-navigate-next"
+                  disabled={!validateCanNavigateToNextEntry()}
+                  onClick={(event) => navigateToNextEntry(event)}
+                  title="Navigate to next entry"
+                  type="button">
+                  <IconArrowRightCircle />
+                </button>
+              </>
+            )}
             {entries[currentEntryIndex].label !== "" && (
               <div class="label">
                 <p>
