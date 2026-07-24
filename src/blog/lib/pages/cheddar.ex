@@ -985,7 +985,7 @@ defmodule Blog.HomePage do
         label: "Double scoop",
         date: "2022-08-17",
         filename: "PXL_20220818_023732249.jpg",
-        video: true
+        video: false
       },
       %{
         label: "Office chair double scoop",
