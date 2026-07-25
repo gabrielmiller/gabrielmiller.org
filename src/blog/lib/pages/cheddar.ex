@@ -28,6 +28,7 @@ defmodule Blog.HomePage do
       <h1>In Loving Memory of Cheddar</h1>
 
       <p>Originally published July 18, 2026</p>
+      <p>Last revised July 25, 2026</p>
 
       <p class="callout info">
         All of the photographs on this page can be clicked to see a larger, full-screen version. In the full-screen viewer, for some photos, you can also view a motion photo(a short video). You can toggle between photo and video when available using the pause and play buttons.
@@ -84,7 +85,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar developed a strong bond with his sister at a young age. They grew old together and were always two peas in a pod. They were companions for life.
+        Cheddar bonded with his sister at a young age. They grew old together and were always two peas in a pod. They were companions for life.
       </p>
 
       <div class="gallery-grid-2">
@@ -107,7 +108,7 @@ defmodule Blog.HomePage do
       <p>He provided a playful and calming presence.</p>
 
       <p>
-        He made a strong impression on guests. Several people who claimed to not like cats--or even to dislike cats--fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
+        He made a strong impression on guests. Several people who claimed to not like cats—or even to dislike cats—fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
       </p>
 
       {inline_gallery_img_element("IMG_0208.jpg",
@@ -151,7 +152,7 @@ defmodule Blog.HomePage do
       <h2 id={id(:childhood)}>Childhood</h2>
 
       <p>
-        January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. The runt of the litter was one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. This was not her first experience in childbirth, and her owners made playful yet snide remarks about her multiple pregnancies.
+        January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. The runt of the litter was one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. This was not her first experience in childbirth and her owners made playful yet snide remarks about her multiple pregnancies.
       </p>
 
       <p>
@@ -159,7 +160,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Around that time I was a college student at the University of Pittsburgh, living off-campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. We visited a pet store and browsed about. We quickly came to our senses at the petstore: hedgehogs seemed impractical, dogs were too much of a commitment, but cats seemed very interesting. When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. But we were not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
+        Meanwhile, I was a college student at the University of Pittsburgh, living off-campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. We visited a pet store and browsed about. We quickly came to our senses at the petstore. Hedgehogs were impractical. Dogs were too much of a commitment. But cats seemed very interesting.
+      </p>
+
+      <p>
+        When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. I was not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
       </p>
 
       {inline_gallery_img_element("2010-02-24-11.jpg",
@@ -167,11 +172,11 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        Several weeks later, in late February, I found a listing on craigslist advertising long-haired kittens for adoption. There were five of them. Peter had a car and therefore it was most convenient for him to make a visit. Originally I suggested we adopt two male tabbies, having previously bonded with one in my childhood who was a sweet companion. Peter and his then-girlfriend made the trek. They returned with two tiny adorable kittens. It was love at first sight. They were each about the size of a soda can when they arrived.
+        In late February I stumbled upon a listing on craigslist advertising long-haired kittens for adoption. There were five of them. Peter had a car and therefore it was most convenient for him to make a visit. Originally I suggested that we adopt two male tabbies, having previously bonded with one in my childhood who was a sweet companion. Peter and his then-girlfriend made the trek. They returned with two tiny adorable kittens. It was love at first sight. The kittens were each about the size of a soda can.
       </p>
 
       <p>
-        Notably they had decided differently than I had suggested; they brought home a calico and the tabby who was the runt. After meeting the kittens, I quickly agreed that it had been a wise decision. They were both stinkin' cute and sweet.
+        Notably they had decided differently than I had suggested; they brought home a calico and the tabby who was the runt. It didn't take long for me to agree that it had been a wise choise. The kittens were both stinkin' cute and sweet.
       </p>
 
       <p>
@@ -186,7 +191,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with--such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
+        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with—such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
       </p>
 
       {inline_gallery_img_element("IMG_0615.jpg",
@@ -194,7 +199,7 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        In the weeks that followed we let the kittens wander the rest of the house. As one might expected with three college aged males as fathers, the kittens were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
+        In the weeks that followed we let the kittens wander the rest of the house. As one might expect with three college aged males as fathers, the kittens were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
       </p>
 
       <p>
@@ -222,11 +227,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Despite his questionable intellect, he loved to spend time with people, particularly seeking physical affection from them. He was persistent in this mission, sometimes annoyingly so. He had a wet nose and would rub it on you, sometimes leaving you a little slimy. But he was soft and would reward you with happy purrs when touched. He had very little self respect. I sometimes thought of him as a dog trapped in a cat's body. He tolerated being touched in ways that no other cat would, and seemed to enjoy most of it.
+        Despite his questionable intellect, he loved to spend time with people, particularly seeking physical affection from them. He was persistent in this mission, sometimes annoyingly so. He had a wet nose and would rub it on you, sometimes leaving you a little slimy. But he was soft and would reward you with happy purrs when touched. He had very little self respect. I sometimes thought of him as a dog trapped in a cat's body. He tolerated being touched in ways that no other cat would and seemed to enjoy most of it.
       </p>
 
       <p>
-        Toast had some similar characteristics—she also loved physical affection and people—but unlike Cheddar she actually had some boundaries. She was even softer than Cheddar, and would hang out with you on her own terms, sometimes just out of reach of your hand. While they were both mischievous, she had a stronger reputation for getting up to no good, while he was more renowned for sitting on you.
+        Toast had some similar characteristics—she also loved physical affection and people—but unlike Cheddar she actually had some boundaries. She was even softer than Cheddar and would hang out with you on her own terms, sometimes just out of reach of your hand. While they were both mischievous, she had a stronger reputation for getting up to no good, while he was more renowned for sitting on you.
       </p>
 
       <div class="gallery-grid-2">
@@ -255,7 +260,7 @@ defmodule Blog.HomePage do
       <h2 id={id(:adulthood)}>Adulthood</h2>
 
       <p>
-        By the end of college it became apparent that Peter, Ryan, and I were each going to go our own ways. I suggested that I take the cats with me and that I be responsible for them. The other dads approved.
+        By the end of college it became apparent that Peter, Ryan, and I each were going to move out to different places. I suggested that I take the cats with me and that I be responsible for them. The other dads approved.
       </p>
 
       <p>
@@ -267,7 +272,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        I was on my own for the first time in my life. I felt tremendously isolated. I had no friends living nearby. I was in a new place. On the weekends I would drive back to Pittsburgh to visit my then girlfriend. I had a Mon-Fri, 9-5 job. But other than that I had to come up with ways to not let the isolation get to me.
+        I was on my own for the first time in my life. I felt tremendously isolated. I had no friends living nearby. I was in a new place. On the weekends I would drive back to Pittsburgh to visit my then-girlfriend. I had a Mon-Fri, 9-5 job. But other than that I had to come up with ways to not let the isolation get to me.
       </p>
 
       <div class="gallery-grid-2">
@@ -303,7 +308,7 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. I learned and grew. I opted to stay put instead of treating it as a another stepping stone.
+        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. I learned and grew. I opted to stay put instead of treating it as another stepping stone.
       </p>
 
       <p>
@@ -311,7 +316,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        My relationship gradually changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation. But after some time and reflection I took the opportunity to move out on my own again. I needed space to emotionally recover, and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easier to make change effective when you bundle it all together at once.
+        My relationship gradually changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation. But after some time and reflection I took the opportunity to move out on my own again. I needed space to emotionally recover and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easier to make change effective when you bundle it all together at once.
       </p>
 
       {inline_gallery_img_element("IMG_20160228_093303.jpg",
@@ -351,7 +356,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        When I was first getting to know Sarah, my then-girlfriend, now-wife, I was excited to introduce her to the kitties. She did not grow up with cats and was apprehensive at the prospect of picking them up. We joked about the Nathan Pyle/Strange Planet cartoon--"respect the deathblades". But in reality that applied little to these cats; they loved humans.
+        When I was first getting to know Sarah, my then-girlfriend, now-wife, I was excited to introduce her to the kitties. She did not grow up with cats and was apprehensive at the prospect of picking them up. We joked about the Nathan Pyle/Strange Planet cartoon—"respect the deathblades". But in reality that applied little to these cats; they loved humans.
       </p>
 
       {inline_gallery_img_element("PXL_20231217_224202264.jpg",
@@ -406,11 +411,11 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        He regularly would visit at bed time, expecting to lie on top of me or next to me. When the temperature was cool it was a blessing. He was a sweet space-heater, and a source of white-noise. When the temperature was too high, however, it was bothersome. I would move him further away, sometimes entirely off of the bed. Some days he would quickly return and it became an exercise in futility trying to keep him away.
+        He regularly would visit at bed time, expecting to lie on top of me or next to me. When the temperature was cool it was a blessing. He was a sweet space-heater and a source of white-noise. When the temperature was too high, however, it was bothersome. I would move him further away, sometimes entirely off of the bed. Some days he would quickly return and it became an exercise in futility trying to keep him away.
       </p>
 
       <p>
-        Cheddar would sometimes sleep just above us in bed. We joked that his loud purr and close positioning was him trying to give us deep brain stimulation or him trying to send "good vibes". Sometimes his purr was so loud that I couldn't fall asleep. Sometimes his warmth would make my head hot. We eventually came to say that he was "trying to be a hat" and sometimes would complain about inadequate sleep as a result.
+        Cheddar would sometimes sleep just above us in bed. We joked that his loud purr and close positioning was him trying to give us deep brain stimulation or him trying to send "good vibes". Sometimes his purr was so loud that we couldn't fall asleep. Sometimes his warmth would make our heads hot. We eventually came to say that he was "trying to be a hat" and would complain about inadequate sleep as a result.
       </p>
 
       {inline_gallery_img_element("PXL_20241127_022451029.jpg",
