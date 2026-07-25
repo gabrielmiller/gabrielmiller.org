@@ -308,15 +308,19 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. I learned and grew. I opted to stay put instead of treating it as another stepping stone.
+        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. It initially was a perfect fit for what I was seeking. I learned and grew. I opted to stay put instead of treating it as another stepping stone.
       </p>
 
       <p>
-        But in time there came periods of complacency. I became complacent in my personal life, too.
+        The years passed. Over time the initial happiness ebbed and gave way to routine. My contentedness eventually became complacency. I stopped challenging myself. I became complacent in my personal life, too.
       </p>
 
       <p>
-        My relationship gradually changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation. But after some time and reflection I took the opportunity to move out on my own again. I needed space to emotionally recover and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easier to make change effective when you bundle it all together at once.
+        My relationship with my then-girlfriend changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation.
+      </p>
+
+      <p>
+        After some reflection I took the opportunity to move out and live on my own once again. I needed space to emotionally recover and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easier to make change effective when you bundle it all together at once.
       </p>
 
       {inline_gallery_img_element("IMG_20160228_093303.jpg",
@@ -328,11 +332,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Through these times I felt isolated again, though I had the stability of working at the same job and with the same colleagues through it. My professional interests kept me afloat, engaged, and on a healthy path; I managed to avoid falling into bad habits. In time I began to put myself into more social situations to meet new folks and broaden my circles.
+        Through these times I felt isolated again but I had the stability of working at the same job and with the same colleagues through it. My professional interests kept me afloat, engaged, and on a healthy path; I managed to avoid falling into bad habits. In time I began to put myself into more social situations to meet new folks and broaden my circles.
       </p>
 
       <p>
-        Despite changing environments and roommates, the cats remained the stability of my life. They never were bothered by change. They always adapted to their new homes and to new people. They were resilient. And, in a way, they made me resilient, too.
+        Despite changing environments the cats remained a constant in my life. They never were bothered by change. They always adapted to their new homes and to new people. They were resilient. And, in a way, they made me resilient, too.
       </p>
 
       <p>
@@ -348,7 +352,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        And a few years after that Ryan, the third "cat dad", also moved back to Pittsburgh, also to a house within walking distance.
+        And a few years after that Ryan, the third "cat dad", moved back to Pittsburgh, also to a house within walking distance.
       </p>
 
       <p>
@@ -390,7 +394,7 @@ defmodule Blog.HomePage do
       <h2 id={id(:super_senior_years)}>Super Senior Years</h2>
 
       <p>
-        The years flew by. Eventually it dawned on us that the cats were "geriatric" or "super senior". They didn't seem to change much or slow down dramatically, which made it initially seem like a silly label.
+        The years flew by. At some point we realized that the cats were "geriatric" or "super senior". They didn't seem to change much or slow down dramatically, which made it initially seem like a silly label.
       </p>
 
       <div class="gallery-grid-2">
