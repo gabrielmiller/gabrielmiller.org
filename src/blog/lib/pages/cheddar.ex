@@ -81,7 +81,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar was a long-haired orange tabby cat. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin.
+        Cheddar was a long-haired orange tabby cat. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin and the lengths of his boots.
       </p>
 
       <p>
@@ -98,7 +98,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        He was a chatty guy. He would let you know when he had a request. He also was a lap cat. He would find you and then he would sit on you. He had a loud purr and was happy to share it with you, especially when he was on your lap. He also enjoyed sleeping next to and on top of people.
+        He was a chatty guy. He would let you know when he had a request. He also was a lap cat. He would find you and then he would sit on you. He had a loud purr and frequently would share it with you, especially when he was on your lap. He also enjoyed sleeping next to and on top of people.
       </p>
 
       <p>
@@ -116,7 +116,7 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He represented stability and was part of my identity.
+        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He became part of my identity. He represented stability.
       </p>
 
       <p>
@@ -142,7 +142,7 @@ defmodule Blog.HomePage do
       <h1 id={id(:being_cheddars_human)}>Being Cheddar's Human</h1>
 
       <p>
-        Some time during Cheddar's life I came to realize that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh so many facets of my life.
+        At some point during Cheddar's life I realized that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh-so-many facets of my life.
       </p>
 
       <p>
@@ -415,7 +415,7 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        He regularly would visit at bed time, expecting to lie on top of me or next to me. When the temperature was cool it was a blessing. He was a sweet space-heater and a source of white-noise. When the temperature was too high, however, it was bothersome. I would move him further away, sometimes entirely off of the bed. Some days he would quickly return and it became an exercise in futility trying to keep him away.
+        He regularly would visit at bed time, expecting to lie on top of me or next to me. When the temperature was cool it was a blessing. He was a space-heater, a source of white-noise, and lovingly affectionate. When the temperature was too high, however, his presence was bothersome. I would move him further away, sometimes entirely off of the bed. Frequently he would return and it became an exercise in futility trying to keep him away.
       </p>
 
       <p>
@@ -427,11 +427,11 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        He continued to exercise his love for touch and affection. He would greet you at the door. He would come bounding to you when he saw you, then would proceed to park himself on your lap or chest. And if you so much as began to think about getting up from the couch, he would come over and firmly plant himself on your lap.
+        He continued to exercise his love for humans. He would regularly greet people at the door. He would come bounding to you when he saw you and, if allowed, would proceed to park himself on your lap.
       </p>
 
       <p>
-        He was an immensely good boy. And he brought everybody he met so much joy.
+        And if you so much as began to think about getting up from the couch, he would come over and firmly plant himself on your lap.
       </p>
 
       <h1 id={id(:gallery)}>Gallery</h1>
