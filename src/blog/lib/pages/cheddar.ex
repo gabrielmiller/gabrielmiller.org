@@ -124,7 +124,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        When Cheddar passed I was struck with immense guilt and despair. I was choked under a thick blanket of grief. As I recounted memories and revisited photos throughout his life it dawned on me that almost every memory I have of him is one marked by joy and happiness. Acknowledging that helped me to process my grief. He was a sunbeam in my life.
+        When Cheddar passed I was struck with immense guilt and despair. I was choked under a thick blanket of grief. As I recalled memories and revisited photos throughout his life it dawned on me that almost every memory I have of him is one marked by joy and happiness. Acknowledging that helped me to process my grief. He was a sunbeam in my life.
       </p>
 
       <p>
@@ -136,7 +136,7 @@ defmodule Blog.HomePage do
       </h1>
 
       <h2 class="extra-spaced">
-        I love you ❤️
+        Thank you for so many incredible memories. I love you ❤️
       </h2>
 
       <h1 id={id(:being_cheddars_human)}>Being Cheddar's Human</h1>
