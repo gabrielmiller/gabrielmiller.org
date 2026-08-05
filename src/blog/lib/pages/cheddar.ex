@@ -1042,12 +1042,6 @@ defmodule Blog.HomePage do
       %{label: "Posing", date: "2021-05-03", filename: "PXL_20210504_003910978.jpg", video: true},
       %{label: "Posing", date: "2021-05-03", filename: "PXL_20210504_010357838.jpg", video: true},
       %{label: "Posing", date: "2021-05-03", filename: "PXL_20210504_011400600.jpg", video: true},
-      %{
-        label: "Inspectors hard at work",
-        date: "2021-05-22",
-        filename: "PXL_20210523_002724202.jpg",
-        video: true
-      },
       %{label: "Dead bug", date: "2021-05-23", filename: "IMG_1362.jpg", video: false},
       %{
         label: "Completely asleep",
@@ -2450,6 +2444,12 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Inspectors hard at work",
+        date: "2021-05-22",
+        filename: "PXL_20210523_002724202.jpg",
+        video: true
+      },
+      %{
         label: "Butter thief",
         date: "2021-08-31",
         filename: "PXL_20210831_180647355.jpg",
@@ -2547,6 +2547,7 @@ defmodule Blog.HomePage do
     [
       "2010-02-24-9.jpg",
       "2010-02-26-07.jpg",
+      "2010-05-03.jpg",
       "2010-05-07.jpg",
       "2011-04-11.gif",
       "IMG_20111217_233927.jpg",
@@ -2562,7 +2563,8 @@ defmodule Blog.HomePage do
       "PXL_20230704_230302378.jpg",
       "IMG_4064.jpg",
       "PXL_20240120_022758124.jpg",
-      "PXL_20250123_130356930.jpg"
+      "PXL_20250123_130356930.jpg",
+      "IMG_5708.jpg"
     ]
   end
 
