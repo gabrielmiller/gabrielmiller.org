@@ -28,7 +28,7 @@ defmodule Blog.HomePage do
       <h1>In Loving Memory of Cheddar</h1>
 
       <p>Originally published July 18, 2026</p>
-      <p>Last revised July 25, 2026</p>
+      <p>Last revised August 7, 2026</p>
 
       <p class="callout info">
         All of the photographs on this page can be clicked to see a larger, full-screen version. In the full-screen viewer, for some photos, you can also view a motion photo(a short video). You can toggle between photo and video when available using the pause and play buttons.
@@ -65,7 +65,7 @@ defmodule Blog.HomePage do
 
       <p>
         <em>
-          Also known as Ched, Cheddy, Chedward, Shedward, Shredward, Chompward, Chonkward, Chubward, Cheese man, Mister Puss, Cheddopuss, Book Licker
+          Also known as Ched, Cheddy, Chedward, Bedward, Shedward, Shredward, Chompward, Chonkward, Chubward, Cheese man, Mister Puss, Cheddopuss, Book Licker
         </em>
       </p>
 
@@ -81,11 +81,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar was a long-haired orange tabby cat. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin and the lengths of his boots.
+        Cheddar was a long-haired orange tabby cat. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin and his boots.
       </p>
 
       <p>
-        Cheddar bonded with his sister at a young age. They grew old together and were always two peas in a pod. They were companions for life.
+        Cheddar bonded with his sister at a young age. They grew old together and were two peas in a pod for the duration of his life. They were companions.
       </p>
 
       <div class="gallery-grid-2">
@@ -102,13 +102,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        He loved physical touch like no other feline. He loved it when you rubbed his belly. You could rub his toe beans. You could massage his face, his ears, his tail. You could pet him the wrong direction. He regularly passed the "Dangle Test". You could hang him upside down.
+        He loved physical touch like no other feline. He loved it when you rubbed his belly. You could rub his toe beans. You could massage his face, his ears, or his tail. You could pet him the wrong direction. He regularly passed the "Dangle Test". You could hang him upside down.
       </p>
 
-      <p>He provided a playful and calming presence.</p>
-
       <p>
-        He made a strong impression on guests. Several people who claimed to not like cats—or even to dislike cats—fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
+        He made a strong impression on friends and guests. Several people who claimed to not like cats—or even to dislike cats—fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
       </p>
 
       {inline_gallery_img_element("IMG_0208.jpg",
@@ -116,15 +114,15 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He became part of my identity. He represented stability.
+        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present during many formative moments. He became part of my identity. He came to represent stability in my life.
       </p>
 
       <p>
-        He was one of my best friends. He helped me process difficult emotions and thrive in hard times. He nurtured me when I was down. He was always delighted to spend time with me. He was always there for me.
+        He was one of my best friends. He helped me to process difficult emotions and to thrive even in hard times. He nurtured me when I was down. He was always delighted to spend time with me. He was always there for me.
       </p>
 
       <p>
-        When Cheddar passed I was struck with immense guilt and despair. I was choked under a thick blanket of grief. As I recalled memories and revisited photos throughout his life it dawned on me that almost every memory I have of him is one marked by joy and happiness. Acknowledging that helped me to process my grief. He was a sunbeam in my life.
+        When Cheddar passed I was struck with immense guilt and despair. I was choked under a thick blanket of grief. As I recalled memories and revisited photos throughout his life it dawned on me that almost every memory I have of him is one marked by joy and happiness. He was a sunbeam in my life. Acknowledging that helped me to process my grief.
       </p>
 
       <p>
@@ -142,7 +140,7 @@ defmodule Blog.HomePage do
       <h1 id={id(:being_cheddars_human)}>Being Cheddar's Human</h1>
 
       <p>
-        At some point during Cheddar's life I realized that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh-so-many facets of my life.
+        At some point during Cheddar's life I realized that I was as much his pet as he was mine. He trained me into so many arbitrary behaviors. While I felt obligated to take care of him I also must recognize how much he took care of me. As a result he also permeated so many facets of my life.
       </p>
 
       <p>
@@ -152,19 +150,19 @@ defmodule Blog.HomePage do
       <h2 id={id(:childhood)}>Childhood</h2>
 
       <p>
-        January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. The runt of the litter was one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. This was not her first experience in childbirth and her owners made playful yet snide remarks about her multiple pregnancies.
+        January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. There was a runt—one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. It was not her first experience in childbirth. Her owners made playful yet snide remarks about her multiple pregnancies.
       </p>
 
       <p>
-        The household was loud, marked by the raucous noises of dogs barking and playing. Despite the loud environment, the kittens thrived. They adapted to it. In the following weeks they grew into sweet playful critters, excited by people.
+        The household was loud, marked by the raucous noises of dogs barking and playing. The kittens thrived despite the loud environment. They adapted to it. In the following weeks they grew into sweet playful critters, excited by humans.
       </p>
 
       <p>
-        Meanwhile, I was a college student at the University of Pittsburgh, living off-campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. We visited a pet store and browsed about. We quickly came to our senses at the petstore. Hedgehogs were impractical. Dogs were too much of a commitment. But cats seemed very interesting.
+        Meanwhile, I was a college student at the University of Pittsburgh, living off-campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. We visited a pet store and browsed about. We came to our senses at the petstore. Hedgehogs were impractical. Dogs were too much of a commitment. Cats seemed very interesting. Just the right level of commitment.
       </p>
 
       <p>
-        When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. I was not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
+        When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. But we were not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
       </p>
 
       {inline_gallery_img_element("2010-02-24-11.jpg",
@@ -191,7 +189,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with—such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
+        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had many questionable ideas that I'm glad we didn't proceed with—such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like "Cheese" as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
       </p>
 
       {inline_gallery_img_element("IMG_0615.jpg",
@@ -199,11 +197,11 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        In the weeks that followed we let the kittens wander the rest of the house. As one might expect with three college aged males as fathers, the kittens were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
+        In the weeks that followed we expanded the kittens' world: we let them wander the rest of the house. As one might expect with three college aged males as fathers, they were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
       </p>
 
       <p>
-        Both cats enjoyed playing with toys and running around. They regularly were enticed by fishing-rod and thing-on-a-wire varieties of toys. Cheddar would leap and dash, always excited to give chase. Toast would also give chase though she was not as coordinated. She would become possessive once she had caught a toy.
+        Both cats enjoyed playing with toys and running around. They were enticed by fishing-rod and thing-on-a-wire varieties of toys. Cheddar would leap and dash, always excited to give chase. Toast would also give chase though she was not as coordinated. She would become possessive once she had caught a toy.
       </p>
 
       <p>
@@ -227,11 +225,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Despite his questionable intellect, he loved to spend time with people, particularly seeking physical affection from them. He was persistent in this mission, sometimes annoyingly so. He had a wet nose and would rub it on you, sometimes leaving you a little slimy. But he was soft and would reward you with happy purrs when touched. He had very little self respect. I sometimes thought of him as a dog trapped in a cat's body. He tolerated being touched in ways that no other cat would and seemed to enjoy most of it.
+        Despite his questionable intellect, he loved to spend time with people, particularly seeking physical affection from them. He was persistent in this mission, sometimes annoyingly so. He had a wet nose and would rub it on you, sometimes leaving you a little slimy. But he was soft and would reward you with happy purrs when touched. He had remarkably little self respect. I sometimes thought of him as a dog trapped in a cat's body. He tolerated being touched in ways that no other cat would and he seemed to enjoy most of it.
       </p>
 
       <p>
-        Toast had some similar characteristics—she also loved physical affection and people—but unlike Cheddar she actually had some boundaries. She was even softer than Cheddar and would hang out with you on her own terms, sometimes just out of reach of your hand. While they were both mischievous, she had a stronger reputation for getting up to no good, while he was more renowned for sitting on you.
+        Toast had some similar characteristics—she also loved physical affection and people—but unlike Cheddar she had some boundaries. She was even softer than Cheddar and would hang out with you on her own terms, sometimes just out of reach of your hand. While they were both mischievous, she had a stronger reputation for getting up to no good, while he was more renowned for sitting on you.
       </p>
 
       <div class="gallery-grid-2">
@@ -240,8 +238,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        When they were kittens Toast was the one who first played with toilet paper. But it seems she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated a roll of toilet paper numerous times, even once fully grown.
-        <em>For the rest of his life I kept rolls of toilet paper out of his line of sight.</em>
+        When they were kittens Toast was intrigued by toilet paper. But she she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated rolls of toilet paper numerous times, even as an adult. After a few instances I learned, and from then on I kept rolls of toilet paper out of his line of sight.
       </p>
 
       <p>
@@ -254,13 +251,17 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        I took it upon myself to complete the kitty chores every day. Because I was usually the "meat man" I became the de facto dad; they bonded with me.
+        I took it upon myself to complete the kitty chores every day. The beasts needed meat!
+      </p>
+
+      <p>
+        Because I was usually the "meat man" I became the de facto dad. They bonded with me and spent much of their time following me around.
       </p>
 
       <h2 id={id(:adulthood)}>Adulthood</h2>
 
       <p>
-        By the end of college it became apparent that Peter, Ryan, and I each were going to move out to different places. I suggested that I take the cats with me and that I be responsible for them. The other dads approved.
+        By the end of college it became apparent that Peter, Ryan, and I each were going to go our own ways. I suggested that I take the cats with me and that I be responsible for them. The other dads approved.
       </p>
 
       <p>
@@ -268,7 +269,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        I remember feeling anxious on the drive while moving. It was on that drive that I learned Cheddar meowed non-stop, probably once every 30 seconds, when he was being transported in a carrier in a car.
+        I remember feeling anxious on the drive when I was moving. It was on that drive that I learned Cheddar would meow non-stop, probably once every 30 seconds, when he was being transported in a carrier in a car.
       </p>
 
       <p>
@@ -281,11 +282,11 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        In time the cats grew into being companions. They became my best buddies. They always kept me company. Our relationship became more symbiotic. It nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
+        In time the cats grew into being companions. They became my best buddies. They always kept me company. Our relationship grew into being more symbiotic. It nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
       </p>
 
       <p>
-        I treated my time in Washington, PA. as deliberately ephemeral. It was a stepping stone along my path. I didn't set down roots. The work was OK but it motivated me little and I found myself longing for meaning and more mental stimulation. I felt trapped in a parochial environment. I longed for a next step and actively searched for it.
+        I treated my time in Washington, PA. as deliberately ephemeral. It was a stepping stone along my path. I didn't set down roots. The work was OK but it motivated me little and I found myself longing for meaning and more mental stimulation. I felt trapped in a parochial environment. I longed for a next step and I began to actively search for it.
       </p>
 
       <div class="gallery-grid-2-to-4">
@@ -296,7 +297,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        I explored ideas about what to do next with my life. Eventually I began learning how to write software in my spare time. That scratched an itch. It engaged my brain. I found it exciting. It planted a seed. I began spending more and more of my free time learning how to program.
+        I explored ideas about what to do next with my life. Eventually I explored learning how to write software in my spare time. That scratched an itch. It engaged my brain. I found it exciting. It planted a seed. I began spending more and more of my free time learning how to program.
       </p>
 
       <p>
@@ -308,7 +309,7 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. It initially was a perfect fit for what I was seeking. I learned and grew. I opted to stay put instead of treating it as another stepping stone.
+        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. It initially was a perfect fit for what I was seeking. I learned and grew. I opted to stay there for a while instead of treating it as another stepping stone.
       </p>
 
       <p>
@@ -328,19 +329,23 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        It felt like I was starting my life anew, but unlike when I left for Washington, PA, I was more excited and sure of myself. In this period I had a couple stints staying at places that I found on craigslist. One place for three months, the next for nine months.
+        It felt like I was starting my life anew, but unlike when I moved to Washington, PA I was more excited and sure of myself. In this period I had a couple stints staying at places that I found on craigslist. One place for three months, the next for nine months. I felt isolated again. But this time I had confidence and stability.
       </p>
 
       <p>
-        Through these times I felt isolated again but I had the stability of working at the same job and with the same colleagues through it. My professional interests kept me afloat, engaged, and on a healthy path; I managed to avoid falling into bad habits. In time I began to put myself into more social situations to meet new folks and broaden my circles.
+        Through it I was working at the same job, with the same colleagues. My professional interests kept me afloat, engaged, and on a healthy path.
       </p>
 
       <p>
-        Despite changing environments the cats remained a constant in my life. They never were bothered by change. They always adapted to their new homes and to new people. They were resilient. And, in a way, they made me resilient, too.
+        Through it I also had two cats who were a fountain of love. Despite changing environments several times the cats quickly adapted. They never seemed to be bothered by change. They adapted to their new homes and to new people. They were resilient. And, in a way, they made me resilient.
       </p>
 
       <p>
-        In my home life I always felt loved and cared for, regardless of where it was. Two sweet, affectionate kitties always wanted to spend time with me. We provided stability to eachother.
+        In my home life I always felt loved and noticed. The cats were my lifeline. We provided stability to eachother.
+      </p>
+
+      <p>
+        In time I began to put myself into more social situations to meet new folks and broaden my circles.
       </p>
 
       {inline_gallery_img_element("IMG_20161029_143835.jpg",
@@ -368,7 +373,7 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        It didn't take long for Sarah to learn how to pick them up. Eventually she moved in. And along the way the cats bonded with her.
+        It didn't take long for Sarah to learn how to pick them up. Eventually she moved in. Somewhere along the way the cats bonded with her.
       </p>
 
       <p>
@@ -407,7 +412,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Sarah and I would sit at a bench at our dinner table when we ate dinner. He realized this and would jump up on the bench and sit between us. He would then attempt to sit on my lap and would rub his wet nose on me. We took to sitting immediately aside another in order to prevent him from being able to jump between us.
+        Sarah and I would sit at a bench at our dinner table when we ate dinner. He would jump up on the bench and sit between us. He would then sneak onto my lap and would rub his wet nose on me. Eventually we learned and took to sitting immediately aside another in order to prevent him from being able to jump between us.
       </p>
 
       {inline_gallery_img_element("PXL_20240406_155843772.jpg",
@@ -415,11 +420,15 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        He regularly would visit at bed time, expecting to lie on top of me or next to me. When the temperature was cool it was a blessing. He was a space-heater, a source of white-noise, and lovingly affectionate. When the temperature was too high, however, his presence was bothersome. I would move him further away, sometimes entirely off of the bed. Frequently he would return and it became an exercise in futility trying to keep him away.
+        He would visit at bed time, expecting to lie on top of me or otherwise pressed against me. When the temperature was cool it was a blessing. He was a space-heater, a source of white-noise, and lovingly affectionate. When the temperature was too high, however, his presence was bothersome. I would move him further away, sometimes entirely off of the bed. Frequently he would return and it became an exercise in futility trying to keep him away.
       </p>
 
       <p>
-        Cheddar would sometimes sleep just above us in bed. We joked that his loud purr and close positioning was him trying to give us deep brain stimulation or him trying to send "good vibes". Sometimes his purr was so loud that we couldn't fall asleep. Sometimes his warmth would make our heads hot. We eventually came to say that he was "trying to be a hat" and would complain about inadequate sleep as a result.
+        Cheddar would sometimes sleep just above us in bed. We joked that his loud purr and close proximity was him trying to give us deep brain stimulation or him trying to send "good vibes".
+      </p>
+
+      <p>
+        Sometimes his purr was so loud that we couldn't fall asleep. Sometimes his warmth would make our heads hot. We eventually came to say that he was "trying to be a hat" and would complain about inadequate sleep as a result.
       </p>
 
       {inline_gallery_img_element("PXL_20241127_022451029.jpg",
@@ -2554,15 +2563,19 @@ defmodule Blog.HomePage do
       "2013-08-08.jpg",
       "IMG_20160228_093303.jpg",
       "MVIMG_20190503_210536.jpg",
+      "MVIMG_20190512_182753.jpg",
       "IMG_3574.jpg",
       "IMG_0208.jpg",
       "IMG_0506.jpg",
+      "PXL_20210101_173025729.jpg",
       "IMG_1275.jpg",
       "PXL_20210831_180647355.jpg",
+      "PXL_20220430_175735855.jpg",
       "PXL_20230512_020020439.jpg",
       "PXL_20230704_230302378.jpg",
       "IMG_4064.jpg",
       "PXL_20240120_022758124.jpg",
+      "PXL_20250103_213325126.jpg",
       "PXL_20250123_130356930.jpg",
       "IMG_5708.jpg"
     ]
