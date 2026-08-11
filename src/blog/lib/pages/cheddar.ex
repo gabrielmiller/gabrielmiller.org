@@ -189,7 +189,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had many questionable ideas that I'm glad we didn't proceed with—such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like "Cheese" as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
+        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had many questionable ideas that I'm glad we didn't proceed with—such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be "Mac" and I didn't like "Cheese" as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
       </p>
 
       {inline_gallery_img_element("IMG_0615.jpg",
@@ -238,7 +238,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        When they were kittens Toast was intrigued by toilet paper. But she she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated rolls of toilet paper numerous times, even as an adult. After a few instances I learned, and from then on I kept rolls of toilet paper out of his line of sight.
+        When they were kittens Toast was intrigued by toilet paper. But she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated rolls of toilet paper numerous times, even as an adult. After a few instances I learned, and from then on I kept rolls of toilet paper out of his line of sight.
       </p>
 
       <p>
