@@ -28,6 +28,7 @@ defmodule Blog.HomePage do
       <h1>In Loving Memory of Cheddar</h1>
 
       <p>Originally published July 18, 2026</p>
+      <p>Last revised August 7, 2026</p>
 
       <p class="callout info">
         All of the photographs on this page can be clicked to see a larger, full-screen version. In the full-screen viewer, for some photos, you can also view a motion photo(a short video). You can toggle between photo and video when available using the pause and play buttons.
@@ -64,7 +65,7 @@ defmodule Blog.HomePage do
 
       <p>
         <em>
-          Also known as Ched, Cheddy, Chedward, Shedward, Shredward, Chompward, Chonkward, Chubward, Cheese man, Mister Puss, Cheddopuss, Book Licker
+          Also known as Ched, Cheddy, Chedward, Bedward, Shedward, Shredward, Chompward, Chonkward, Chubward, Cheese man, Mister Puss, Cheddopuss, Book Licker
         </em>
       </p>
 
@@ -80,11 +81,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Cheddar was a long-haired orange tabby cat. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin.
+        Cheddar was a long-haired orange tabby cat. He had a white belly, boots, gloves, and bib. His coat was almost symmetrical except for his chin and his boots.
       </p>
 
       <p>
-        Cheddar developed a strong bond with his sister at a young age. They grew old together and were always two peas in a pod. They were companions for life.
+        Cheddar bonded with his sister at a young age. They grew old together and were two peas in a pod for the duration of his life. They were companions.
       </p>
 
       <div class="gallery-grid-2">
@@ -97,17 +98,15 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        He was a chatty guy. He would let you know when he had a request. He also was a lap cat. He would find you and then he would sit on you. He had a loud purr and was happy to share it with you, especially when he was on your lap. He also enjoyed sleeping next to and on top of people.
+        He was a chatty guy. He would let you know when he had a request. He also was a lap cat. He would find you and then he would sit on you. He had a loud purr and frequently would share it with you, especially when he was on your lap. He also enjoyed sleeping next to and on top of people.
       </p>
 
       <p>
-        He loved physical touch like no other feline. He loved it when you rubbed his belly. You could rub his toe beans. You could massage his face, his ears, his tail. You could pet him the wrong direction. He regularly passed the "Dangle Test". You could hang him upside down.
+        He loved physical touch like no other feline. He loved it when you rubbed his belly. You could rub his toe beans. You could massage his face, his ears, or his tail. You could pet him the wrong direction. He regularly passed the "Dangle Test". You could hang him upside down.
       </p>
 
-      <p>He provided a playful and calming presence.</p>
-
       <p>
-        He made a strong impression on guests. Several people who claimed to not like cats--or even to dislike cats--fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
+        He made a strong impression on friends and guests. Several people who claimed to not like cats—or even to dislike cats—fell in love with him because of his friendly, gentle, and affectionate demeanor. Some people even joked about kidnapping him after visiting.
       </p>
 
       {inline_gallery_img_element("IMG_0208.jpg",
@@ -115,15 +114,15 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present in many formative moments. He represented stability and was part of my identity.
+        At the time of writing this, Cheddar was present for most my adult life. He was my companion for over 16 years. He was a constant. He was present during many formative moments. He became part of my identity. He came to represent stability in my life.
       </p>
 
       <p>
-        He was one of my best friends. He helped me process difficult emotions and thrive in hard times. He nurtured me when I was down. He was always delighted to spend time with me. He was always there for me.
+        He was one of my best friends. He helped me to process difficult emotions and to thrive even in hard times. He nurtured me when I was down. He was always delighted to spend time with me. He was always there for me.
       </p>
 
       <p>
-        When Cheddar passed I was struck with immense guilt and despair. I was choked under a thick blanket of grief. As I recounted memories and revisited photos throughout his life it dawned on me that almost every memory I have of him is one marked by joy and happiness. Acknowledging that helped me to process my grief. He was a sunbeam in my life.
+        When Cheddar passed I was struck with immense guilt and despair. I was choked under a thick blanket of grief. As I recalled memories and revisited photos throughout his life it dawned on me that almost every memory I have of him is one marked by joy and happiness. He was a sunbeam in my life. Acknowledging that helped me to process my grief.
       </p>
 
       <p>
@@ -135,13 +134,13 @@ defmodule Blog.HomePage do
       </h1>
 
       <h2 class="extra-spaced">
-        I love you ❤️
+        Thank you for so many incredible memories. I love you ❤️
       </h2>
 
       <h1 id={id(:being_cheddars_human)}>Being Cheddar's Human</h1>
 
       <p>
-        Some time during Cheddar's life I came to realize that I was as much his pet as he was mine. He trained me into so many behaviors. While I felt obligated to take care of him, I recognize how much he took care of me. He permeated oh so many facets of my life.
+        At some point during Cheddar's life I realized that I was as much his pet as he was mine. He trained me into so many arbitrary behaviors. While I felt obligated to take care of him I also must recognize how much he took care of me. As a result he also permeated so many facets of my life.
       </p>
 
       <p>
@@ -151,15 +150,19 @@ defmodule Blog.HomePage do
       <h2 id={id(:childhood)}>Childhood</h2>
 
       <p>
-        January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. The runt of the litter was one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. This was not her first experience in childbirth, and her owners made playful yet snide remarks about her multiple pregnancies.
+        January 1, 2010 or thereabouts was a fateful day. In a household in McKees Rocks a litter of kittens entered the world. There were two female calicos and three male orange tabbies. There was a runt—one of the tabbies. Mom was a resident of the house. She had become pregnant after a trip outdoors. It was not her first experience in childbirth. Her owners made playful yet snide remarks about her multiple pregnancies.
       </p>
 
       <p>
-        The household was loud, marked by the raucous noises of dogs barking and playing. Despite the loud environment, the kittens thrived. They adapted to it. In the following weeks they grew into sweet playful critters, excited by people.
+        The household was loud, marked by the raucous noises of dogs barking and playing. The kittens thrived despite the loud environment. They adapted to it. In the following weeks they grew into sweet playful critters, excited by humans.
       </p>
 
       <p>
-        Around that time I was a college student at the University of Pittsburgh, living off-campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. We visited a pet store and browsed about. We quickly came to our senses at the petstore: hedgehogs seemed impractical, dogs were too much of a commitment, but cats seemed very interesting. When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. But we were not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
+        Meanwhile, I was a college student at the University of Pittsburgh, living off-campus with two friends, Peter and Ryan. We were struck by the urge to bring animals into our lives. We contemplated hedgehogs. We visited a pet store and browsed about. We came to our senses at the petstore. Hedgehogs were impractical. Dogs were too much of a commitment. Cats seemed very interesting. Just the right level of commitment.
+      </p>
+
+      <p>
+        When we inquired about kittens we were rudely informed that "it is not kitten season" and to come back later. But we were not deterred. As it turns out, some cats do bring kittens into the world outside of kitten season.
       </p>
 
       {inline_gallery_img_element("2010-02-24-11.jpg",
@@ -167,11 +170,11 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        Several weeks later, in late February, I found a listing on craigslist advertising long-haired kittens for adoption. There were five of them. Peter had a car and therefore it was most convenient for him to make a visit. Originally I suggested we adopt two male tabbies, having previously bonded with one in my childhood who was a sweet companion. Peter and his then-girlfriend made the trek. They returned with two tiny adorable kittens. It was love at first sight. They were each about the size of a soda can when they arrived.
+        In late February I stumbled upon a listing on craigslist advertising long-haired kittens for adoption. There were five of them. Peter had a car and therefore it was most convenient for him to make a visit. Originally I suggested that we adopt two male tabbies, having previously bonded with one in my childhood who was a sweet companion. Peter and his then-girlfriend made the trek. They returned with two tiny adorable kittens. It was love at first sight. The kittens were each about the size of a soda can.
       </p>
 
       <p>
-        Notably they had decided differently than I had suggested; they brought home a calico and the tabby who was the runt. After meeting the kittens, I quickly agreed that it had been a wise decision. They were both stinkin' cute and sweet.
+        Notably they had decided differently than I had suggested; they brought home a calico and the tabby who was the runt. It didn't take long for me to agree that it had been a wise choise. The kittens were both stinkin' cute and sweet.
       </p>
 
       <p>
@@ -186,7 +189,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had a number of questionable ideas that I'm glad we didn't proceed with--such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be Mac and I didn't like cheese as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
+        We restricted the kittens to a single room for first their first week to keep a close watch on them and to not overwhelm them. In the meanwhile we brainstormed names. It was a challenge; coming up with good names is difficult! I had many questionable ideas that I'm glad we didn't proceed with—such as "Vin Diesel" and "Company". I also was personal to "Mac" as in "Mac 'n Cheese" but I thought the tabby should be "Mac" and I didn't like "Cheese" as a name. After a number of days I came up with Cheddar and Toast. The tabby would be Cheddar, the Calico would be Toast. The suggestions were quickly and unanimously approved.
       </p>
 
       {inline_gallery_img_element("IMG_0615.jpg",
@@ -194,11 +197,11 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        In the weeks that followed we let the kittens wander the rest of the house. As one might expected with three college aged males as fathers, the kittens were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
+        In the weeks that followed we expanded the kittens' world: we let them wander the rest of the house. As one might expect with three college aged males as fathers, they were exposed to gratuitous levels of physical affection. Their curious and playful behaviours developed and shined.
       </p>
 
       <p>
-        Both cats enjoyed playing with toys and running around. They regularly were enticed by fishing-rod and thing-on-a-wire varieties of toys. Cheddar would leap and dash, always excited to give chase. Toast would also give chase though she was not as coordinated. She would become possessive once she had caught a toy.
+        Both cats enjoyed playing with toys and running around. They were enticed by fishing-rod and thing-on-a-wire varieties of toys. Cheddar would leap and dash, always excited to give chase. Toast would also give chase though she was not as coordinated. She would become possessive once she had caught a toy.
       </p>
 
       <p>
@@ -222,11 +225,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Despite his questionable intellect, he loved to spend time with people, particularly seeking physical affection from them. He was persistent in this mission, sometimes annoyingly so. He had a wet nose and would rub it on you, sometimes leaving you a little slimy. But he was soft and would reward you with happy purrs when touched. He had very little self respect. I sometimes thought of him as a dog trapped in a cat's body. He tolerated being touched in ways that no other cat would, and seemed to enjoy most of it.
+        Despite his questionable intellect, he loved to spend time with people, particularly seeking physical affection from them. He was persistent in this mission, sometimes annoyingly so. He had a wet nose and would rub it on you, sometimes leaving you a little slimy. But he was soft and would reward you with happy purrs when touched. He had remarkably little self respect. I sometimes thought of him as a dog trapped in a cat's body. He tolerated being touched in ways that no other cat would and he seemed to enjoy most of it.
       </p>
 
       <p>
-        Toast had some similar characteristics—she also loved physical affection and people—but unlike Cheddar she actually had some boundaries. She was even softer than Cheddar, and would hang out with you on her own terms, sometimes just out of reach of your hand. While they were both mischievous, she had a stronger reputation for getting up to no good, while he was more renowned for sitting on you.
+        Toast had some similar characteristics—she also loved physical affection and people—but unlike Cheddar she had some boundaries. She was even softer than Cheddar and would hang out with you on her own terms, sometimes just out of reach of your hand. While they were both mischievous, she had a stronger reputation for getting up to no good, while he was more renowned for sitting on you.
       </p>
 
       <div class="gallery-grid-2">
@@ -235,8 +238,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        When they were kittens Toast was the one who first played with toilet paper. But it seems she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated a roll of toilet paper numerous times, even once fully grown.
-        <em>For the rest of his life I kept rolls of toilet paper out of his line of sight.</em>
+        When they were kittens Toast was intrigued by toilet paper. But she got it out of her system early. She didn't show much interest in it past her youth. Cheddar, on the other hand, decimated rolls of toilet paper numerous times, even as an adult. After a few instances I learned, and from then on I kept rolls of toilet paper out of his line of sight.
       </p>
 
       <p>
@@ -249,13 +251,17 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        I took it upon myself to complete the kitty chores every day. Because I was usually the "meat man" I became the de facto dad; they bonded with me.
+        I took it upon myself to complete the kitty chores every day. The beasts needed meat!
+      </p>
+
+      <p>
+        Because I was usually the "meat man" I became the de facto dad. They bonded with me and spent much of their time following me around.
       </p>
 
       <h2 id={id(:adulthood)}>Adulthood</h2>
 
       <p>
-        By the end of college it became apparent that Peter, Ryan, and I were each going to go our own ways. I suggested that I take the cats with me and that I be responsible for them. The other dads approved.
+        By the end of college it became apparent that Peter, Ryan, and I each were going to go our own ways. I suggested that I take the cats with me and that I be responsible for them. The other dads approved.
       </p>
 
       <p>
@@ -263,11 +269,11 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        I remember feeling anxious on the drive while moving. It was on that drive that I learned Cheddar meowed non-stop, probably once every 30 seconds, when he was being transported in a carrier in a car.
+        I remember feeling anxious on the drive when I was moving. It was on that drive that I learned Cheddar would meow non-stop, probably once every 30 seconds, when he was being transported in a carrier in a car.
       </p>
 
       <p>
-        I was on my own for the first time in my life. I felt tremendously isolated. I had no friends living nearby. I was in a new place. On the weekends I would drive back to Pittsburgh to visit my then girlfriend. I had a Mon-Fri, 9-5 job. But other than that I had to come up with ways to not let the isolation get to me.
+        I was on my own for the first time in my life. I felt tremendously isolated. I had no friends living nearby. I was in a new place. On the weekends I would drive back to Pittsburgh to visit my then-girlfriend. I had a Mon-Fri, 9-5 job. But other than that I had to come up with ways to not let the isolation get to me.
       </p>
 
       <div class="gallery-grid-2">
@@ -276,11 +282,11 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        In time the cats grew into being companions. They became my best buddies. They always kept me company. Our relationship became more symbiotic. It nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
+        In time the cats grew into being companions. They became my best buddies. They always kept me company. Our relationship grew into being more symbiotic. It nurtured me. I provided sustenance, attention, and a lap. They provided physical affection and antics.
       </p>
 
       <p>
-        I treated my time in Washington, PA. as deliberately ephemeral. It was a stepping stone along my path. I didn't set down roots. The work was OK but it motivated me little and I found myself longing for meaning and more mental stimulation. I felt trapped in a parochial environment. I longed for a next step and actively searched for it.
+        I treated my time in Washington, PA. as deliberately ephemeral. It was a stepping stone along my path. I didn't set down roots. The work was OK but it motivated me little and I found myself longing for meaning and more mental stimulation. I felt trapped in a parochial environment. I longed for a next step and I began to actively search for it.
       </p>
 
       <div class="gallery-grid-2-to-4">
@@ -291,7 +297,7 @@ defmodule Blog.HomePage do
       </div>
 
       <p>
-        I explored ideas about what to do next with my life. Eventually I began learning how to write software in my spare time. That scratched an itch. It engaged my brain. I found it exciting. It planted a seed. I began spending more and more of my free time learning how to program.
+        I explored ideas about what to do next with my life. Eventually I explored learning how to write software in my spare time. That scratched an itch. It engaged my brain. I found it exciting. It planted a seed. I began spending more and more of my free time learning how to program.
       </p>
 
       <p>
@@ -303,15 +309,19 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. I learned and grew. I opted to stay put instead of treating it as a another stepping stone.
+        The new job was exciting and rocketed my knowledge and abilities to new highs. I was happy with the new environment and it was rewarding. It initially was a perfect fit for what I was seeking. I learned and grew. I opted to stay there for a while instead of treating it as another stepping stone.
       </p>
 
       <p>
-        But in time there came periods of complacency. I became complacent in my personal life, too.
+        The years passed. Over time the initial happiness ebbed and gave way to routine. My contentedness eventually became complacency. I stopped challenging myself. I became complacent in my personal life, too.
       </p>
 
       <p>
-        My relationship gradually changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation. But after some time and reflection I took the opportunity to move out on my own again. I needed space to emotionally recover, and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easier to make change effective when you bundle it all together at once.
+        My relationship with my then-girlfriend changed from something resembling partnership to something more like roommates. In 2015 it culminated in a break-up. Initially I had a hard time accepting the reality of the situation.
+      </p>
+
+      <p>
+        After some reflection I took the opportunity to move out and live on my own once again. I needed space to emotionally recover and changing environments helped. I managed to motivate myself to keep my chin up. I picked up new hobbies. I learned that it's easier to make change effective when you bundle it all together at once.
       </p>
 
       {inline_gallery_img_element("IMG_20160228_093303.jpg",
@@ -319,19 +329,23 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        It felt like I was starting my life anew, but unlike when I left for Washington, PA, I was more excited and sure of myself. In this period I had a couple stints staying at places that I found on craigslist. One place for three months, the next for nine months.
+        It felt like I was starting my life anew, but unlike when I moved to Washington, PA I was more excited and sure of myself. In this period I had a couple stints staying at places that I found on craigslist. One place for three months, the next for nine months. I felt isolated again. But this time I had confidence and stability.
       </p>
 
       <p>
-        Through these times I felt isolated again, though I had the stability of working at the same job and with the same colleagues through it. My professional interests kept me afloat, engaged, and on a healthy path; I managed to avoid falling into bad habits. In time I began to put myself into more social situations to meet new folks and broaden my circles.
+        Through it I was working at the same job, with the same colleagues. My professional interests kept me afloat, engaged, and on a healthy path.
       </p>
 
       <p>
-        Despite changing environments and roommates, the cats remained the stability of my life. They never were bothered by change. They always adapted to their new homes and to new people. They were resilient. And, in a way, they made me resilient, too.
+        Through it I also had two cats who were a fountain of love. Despite changing environments several times the cats quickly adapted. They never seemed to be bothered by change. They adapted to their new homes and to new people. They were resilient. And, in a way, they made me resilient.
       </p>
 
       <p>
-        In my home life I always felt loved and cared for, regardless of where it was. Two sweet, affectionate kitties always wanted to spend time with me. We provided stability to eachother.
+        In my home life I always felt loved and noticed. The cats were my lifeline. We provided stability to eachother.
+      </p>
+
+      <p>
+        In time I began to put myself into more social situations to meet new folks and broaden my circles.
       </p>
 
       {inline_gallery_img_element("IMG_20161029_143835.jpg",
@@ -343,7 +357,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        And a few years after that Ryan, the third "cat dad", also moved back to Pittsburgh, also to a house within walking distance.
+        And a few years after that Ryan, the third "cat dad", moved back to Pittsburgh, also to a house within walking distance.
       </p>
 
       <p>
@@ -351,7 +365,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        When I was first getting to know Sarah, my then-girlfriend, now-wife, I was excited to introduce her to the kitties. She did not grow up with cats and was apprehensive at the prospect of picking them up. We joked about the Nathan Pyle/Strange Planet cartoon--"respect the deathblades". But in reality that applied little to these cats; they loved humans.
+        When I was first getting to know Sarah, my then-girlfriend, now-wife, I was excited to introduce her to the kitties. She did not grow up with cats and was apprehensive at the prospect of picking them up. We joked about the Nathan Pyle/Strange Planet cartoon—"respect the deathblades". But in reality that applied little to these cats; they loved humans.
       </p>
 
       {inline_gallery_img_element("PXL_20231217_224202264.jpg",
@@ -359,7 +373,7 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        It didn't take long for Sarah to learn how to pick them up. Eventually she moved in. And along the way the cats bonded with her.
+        It didn't take long for Sarah to learn how to pick them up. Eventually she moved in. Somewhere along the way the cats bonded with her.
       </p>
 
       <p>
@@ -385,7 +399,7 @@ defmodule Blog.HomePage do
       <h2 id={id(:super_senior_years)}>Super Senior Years</h2>
 
       <p>
-        The years flew by. Eventually it dawned on us that the cats were "geriatric" or "super senior". They didn't seem to change much or slow down dramatically, which made it initially seem like a silly label.
+        The years flew by. At some point we realized that the cats were "geriatric" or "super senior". They didn't seem to change much or slow down dramatically, which made it initially seem like a silly label.
       </p>
 
       <div class="gallery-grid-2">
@@ -398,7 +412,7 @@ defmodule Blog.HomePage do
       </p>
 
       <p>
-        Sarah and I would sit at a bench at our dinner table when we ate dinner. He realized this and would jump up on the bench and sit between us. He would then attempt to sit on my lap and would rub his wet nose on me. We took to sitting immediately aside another in order to prevent him from being able to jump between us.
+        Sarah and I would sit at a bench at our dinner table when we ate dinner. He would jump up on the bench and sit between us. He would then sneak onto my lap and would rub his wet nose on me. Eventually we learned and took to sitting immediately aside another in order to prevent him from being able to jump between us.
       </p>
 
       {inline_gallery_img_element("PXL_20240406_155843772.jpg",
@@ -406,11 +420,15 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        He regularly would visit at bed time, expecting to lie on top of me or next to me. When the temperature was cool it was a blessing. He was a sweet space-heater, and a source of white-noise. When the temperature was too high, however, it was bothersome. I would move him further away, sometimes entirely off of the bed. Some days he would quickly return and it became an exercise in futility trying to keep him away.
+        He would visit at bed time, expecting to lie on top of me or otherwise pressed against me. When the temperature was cool it was a blessing. He was a space-heater, a source of white-noise, and lovingly affectionate. When the temperature was too high, however, his presence was bothersome. I would move him further away, sometimes entirely off of the bed. Frequently he would return and it became an exercise in futility trying to keep him away.
       </p>
 
       <p>
-        Cheddar would sometimes sleep just above us in bed. We joked that his loud purr and close positioning was him trying to give us deep brain stimulation or him trying to send "good vibes". Sometimes his purr was so loud that I couldn't fall asleep. Sometimes his warmth would make my head hot. We eventually came to say that he was "trying to be a hat" and sometimes would complain about inadequate sleep as a result.
+        Cheddar would sometimes sleep just above us in bed. We joked that his loud purr and close proximity was him trying to give us deep brain stimulation or him trying to send "good vibes".
+      </p>
+
+      <p>
+        Sometimes his purr was so loud that we couldn't fall asleep. Sometimes his warmth would make our heads hot. We eventually came to say that he was "trying to be a hat" and would complain about inadequate sleep as a result.
       </p>
 
       {inline_gallery_img_element("PXL_20241127_022451029.jpg",
@@ -418,11 +436,11 @@ defmodule Blog.HomePage do
       )}
 
       <p>
-        He continued to exercise his love for touch and affection. He would greet you at the door. He would come bounding to you when he saw you, then would proceed to park himself on your lap or chest. And if you so much as began to think about getting up from the couch, he would come over and firmly plant himself on your lap.
+        He continued to exercise his love for humans. He would regularly greet people at the door. He would come bounding to you when he saw you and, if allowed, would proceed to park himself on your lap.
       </p>
 
       <p>
-        He was an immensely good boy. And he brought everybody he met so much joy.
+        And if you so much as began to think about getting up from the couch, he would come over and firmly plant himself on your lap.
       </p>
 
       <h1 id={id(:gallery)}>Gallery</h1>
@@ -515,6 +533,7 @@ defmodule Blog.HomePage do
         filename: "2010-04-25.jpg",
         video: false
       },
+      %{label: "Shoulder cat", date: "2010-05-03", filename: "2010-05-03.jpg", video: false},
       %{label: "Shoulder cat", date: "2010-05-09", filename: "2010-05-09-2.jpg", video: false},
       %{label: "Shoulder cat", date: "2010-05-09", filename: "2010-05-09.jpg", video: false},
       %{label: "Dead bug pose", date: "2010-05-23", filename: "2010-05-23.jpg", video: false},
@@ -530,6 +549,12 @@ defmodule Blog.HomePage do
           "Cheddar contorted himself into this box and we made it even more compact by creating a hole for his head to poke out.",
         date: "2010-09-17",
         filename: "IMG_0584.jpg",
+        video: false
+      },
+      %{
+        label: "Awkward voyeur pose",
+        date: "2010-10-ish",
+        filename: "2010-10-ish.jpg",
         video: false
       },
       %{label: "More contortionism", date: "2010-09-21", filename: "IMG_0615.jpg", video: false},
@@ -585,9 +610,21 @@ defmodule Blog.HomePage do
         video: false
       },
       %{
+        label: "Cat furniture",
+        date: "2015-12-14",
+        filename: "IMG_20151214_222631.jpg",
+        video: false
+      },
+      %{
         label: "Family portrait",
         date: "2016-01-01",
         filename: "IMG_20160101_184559.jpg",
+        video: false
+      },
+      %{
+        label: "Dead bug pose",
+        date: "2016-01-03",
+        filename: "IMG_20160103_095426.jpg",
         video: false
       },
       %{
@@ -686,18 +723,30 @@ defmodule Blog.HomePage do
         filename: "IMG_20161120_121039.jpg",
         video: false
       },
-      %{label: "Sibling snuggles", date: "2016-11-26", filename: "2016-11-26.jpg", video: false},
+      %{label: "Nose boop", date: "2016-12-15", filename: "2016-12-15.jpg", video: false},
+      %{label: "Chest rub", date: "2016-12-18", filename: "2016_12_18_201326.gif", video: false},
       %{
-        label: "Sibling snuggles",
-        date: "2016-11-26",
-        filename: "IMG_20161126_131957.jpg",
+        label: "Videocall with the dads",
+        date: "2017-01-ish",
+        filename: "2017-01-ish.jpg",
         video: false
       },
-      %{label: "Nose boop", date: "2016-12-15", filename: "2016-12-15.jpg", video: false},
+      %{
+        label: "Morning scene",
+        date: "2017-03-10",
+        filename: "IMG_20170310_073904.jpg",
+        video: false
+      },
       %{
         label: "One time he failed to unhook his claw from a toy and it traveled around with him",
         date: "2017-03-12",
         filename: "IMG_20170312_155908.jpg",
+        video: false
+      },
+      %{
+        label: "Dead bug snooze",
+        date: "2017-05-29",
+        filename: "IMG_20170529_131750.jpg",
         video: false
       },
       %{
@@ -707,7 +756,6 @@ defmodule Blog.HomePage do
         video: false
       },
       %{label: "Snuggle with dad", date: "2017-06-23", filename: "2017-06-23.jpg", video: false},
-      %{label: "Grooming session", date: "2017-07-16", filename: "2017-07-16.gif", video: false},
       %{
         label: "Patiently awaiting breakfast",
         date: "2017-08-16",
@@ -739,9 +787,28 @@ defmodule Blog.HomePage do
         video: false
       },
       %{
+        label: "Bundled up",
+        date: "2018-03-03",
+        filename: "IMG_20180303_161253.jpg",
+        video: false
+      },
+      %{
+        label: "Bundled up",
+        date: "2018-03-03",
+        filename: "IMG_20180303_173020.jpg",
+        video: false
+      },
+      %{label: "Hey!", date: "2018-03-28", filename: "IMG_20180328_165314.jpg", video: false},
+      %{
         label: "A squeeze with dad",
         date: "2018-04-07",
         filename: "IMG_20180407_113846.jpg",
+        video: false
+      },
+      %{
+        label: "Enjoying a scritch",
+        date: "2018-08-ish",
+        filename: "2018-08-ish.gif",
         video: false
       },
       %{
@@ -769,10 +836,28 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Getting a scritch on his 9th birthday",
+        date: "2019-01-01",
+        filename: "MVIMG_20190101_144521.jpg",
+        video: true
+      },
+      %{
+        label: "Lickin' fingies on his 9th birthday",
+        date: "2019-01-01",
+        filename: "MVIMG_20190101_144607.jpg",
+        video: true
+      },
+      %{
         label: "Selfie pose on his 9th birthday",
         date: "2019-01-01",
         filename: "MVIMG_20190101_150022.jpg",
         video: true
+      },
+      %{
+        label: "Shmoozin'",
+        date: "2019-01-12",
+        filename: "IMG_20190112_215124.jpg",
+        video: false
       },
       %{
         label: "Hanging out in the shoe and coat pile",
@@ -794,6 +879,18 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Bird watching",
+        date: "2019-09-28",
+        filename: "MVIMG_20190928_122337.jpg",
+        video: true
+      },
+      %{
+        label: "Bird watching",
+        date: "2019-09-28",
+        filename: "MVIMG_20190928_122410.jpg",
+        video: true
+      },
+      %{
         label: "Every year when the heat kicked on they would quickly sit on the registers",
         date: "2019-11-02",
         filename: "MVIMG_20191102_123317.jpg",
@@ -804,6 +901,18 @@ defmodule Blog.HomePage do
           "Sometimes when they got tired of one another they would secretly snuggle through a blanket like this.",
         date: "2019-11-05",
         filename: "MVIMG_20191105_151718.jpg",
+        video: true
+      },
+      %{
+        label: "Shmoozin'",
+        date: "2019-12-24",
+        filename: "IMG_20191224_125421.jpg",
+        video: false
+      },
+      %{
+        label: "Dead bug snuggle",
+        date: "2020-02-10",
+        filename: "MVIMG_20200210_115346.jpg",
         video: true
       },
       %{
@@ -829,6 +938,12 @@ defmodule Blog.HomePage do
         label: "Guest visit through the window during COVID lockdowns",
         date: "2020-04-17",
         filename: "2020-04-17.jpg",
+        video: false
+      },
+      %{
+        label: "Guest visit through the window during COVID lockdowns",
+        date: "2020-04-17",
+        filename: "IMG_20200417_165414.jpg",
         video: false
       },
       %{label: "Tummy rub", date: "2020-04-19", filename: "IMG_4640.jpg", video: false},
@@ -933,6 +1048,9 @@ defmodule Blog.HomePage do
         filename: "IMG_1275.jpg",
         video: true
       },
+      %{label: "Posing", date: "2021-05-03", filename: "PXL_20210504_003910978.jpg", video: true},
+      %{label: "Posing", date: "2021-05-03", filename: "PXL_20210504_010357838.jpg", video: true},
+      %{label: "Posing", date: "2021-05-03", filename: "PXL_20210504_011400600.jpg", video: true},
       %{label: "Dead bug", date: "2021-05-23", filename: "IMG_1362.jpg", video: false},
       %{
         label: "Completely asleep",
@@ -951,6 +1069,20 @@ defmodule Blog.HomePage do
       },
       %{label: "Double scoop", date: "2021-10-22", filename: "IMG_1936.jpg", video: false},
       %{label: "Tummy rub", date: "2021-11-12", filename: "IMG_2002.jpg", video: false},
+      %{
+        label: "Interrupted mid-people watching",
+        date: "2021-11-21",
+        filename: "IMG_2016.jpg",
+        video: false
+      },
+      %{label: "Snuggin", date: "2021-11-21", filename: "IMG_2021.jpg", video: false},
+      %{label: "Family", date: "2021-11-25", filename: "PXL_20211126_014020961.jpg", video: true},
+      %{
+        label: "Fingie inspection",
+        date: "2021-11-26",
+        filename: "PXL_20211127_055942925.jpg",
+        video: true
+      },
       %{
         label: "Tummy rub on dad",
         date: "2021-11-28",
@@ -985,7 +1117,7 @@ defmodule Blog.HomePage do
         label: "Double scoop",
         date: "2022-08-17",
         filename: "PXL_20220818_023732249.jpg",
-        video: true
+        video: false
       },
       %{
         label: "Office chair double scoop",
@@ -1008,6 +1140,12 @@ defmodule Blog.HomePage do
         video: false
       },
       %{label: "Hanging with dad", date: "2022-12-10", filename: "IMG_3131.jpg", video: false},
+      %{
+        label: "Mid-grooming, 13th birthday",
+        date: "2023-01-01",
+        filename: "PXL_20230101_161750912.jpg",
+        video: true
+      },
       %{label: "Hanging with dad", date: "2023-01-01", filename: "IMG_3165.jpg", video: false},
       %{label: "Time for breakfast!", date: "2023-03-05", filename: "IMG_3264.jpg", video: false},
       %{label: "Hanging with dad", date: "2023-03-26", filename: "IMG_3315.jpg", video: false},
@@ -1036,7 +1174,14 @@ defmodule Blog.HomePage do
         filename: "PXL_20230721_013350322.jpg",
         video: true
       },
+      %{
+        label: "Dead bug meow",
+        date: "2023-08-01",
+        filename: "PXL_20230801_180314602.jpg",
+        video: true
+      },
       %{label: "Hanging with dad", date: "2023-08-07", filename: "IMG_3731.jpg", video: false},
+      %{label: "Hey!", date: "2023-08-09", filename: "PXL_20230809_134819627.jpg", video: true},
       %{
         label: "He had an apartment in an ikea cube shelf that he enjoyed in warmer months",
         date: "2023-09-01",
@@ -1055,6 +1200,12 @@ defmodule Blog.HomePage do
         label: "Looking handsome",
         date: "2023-10-30",
         filename: "PXL_20231031_002808320.jpg",
+        video: true
+      },
+      %{
+        label: "Coming in for a scritch",
+        date: "2023-11-06",
+        filename: "PXL_20231106_121208325.jpg",
         video: true
       },
       %{
@@ -1083,11 +1234,20 @@ defmodule Blog.HomePage do
       },
       %{label: "Double scoop", date: "2023-12-26", filename: "IMG_4094.jpg", video: false},
       %{
+        label: "Enjoying a scritch on his 14th birthday",
+        date: "2024-01-01",
+        filename: "PXL_20240101_160310504.jpg",
+        video: true
+      },
+      %{label: "Getting a lift", date: "2024-02-08", filename: "IMG_4172.jpg", video: false},
+      %{label: "Lounging", date: "2024-03-01", filename: "IMG_4203.jpg", video: false},
+      %{
         label: "Morning scene",
         date: "2024-04-06",
         filename: "PXL_20240406_155843772.jpg",
         video: true
       },
+      %{label: "Double lap cat", date: "2024-04-12", filename: "IMG_4319.jpg", video: false},
       %{
         label: "Morning scene",
         date: "2024-04-30",
@@ -1100,10 +1260,23 @@ defmodule Blog.HomePage do
         filename: "PXL_20240502_035506973.jpg",
         video: true
       },
+      %{label: "Family", date: "2024-05-19", filename: "PXL_20240520_002200924.jpg", video: true},
+      %{
+        label: "Dinner scene",
+        date: "2024-05-24",
+        filename: "PXL_20240525_025757675.jpg",
+        video: true
+      },
       %{
         label: "Cube shelf apartment",
         date: "2024-05-27",
         filename: "PXL_20240527_145830855.jpg",
+        video: true
+      },
+      %{
+        label: "Looking handsome",
+        date: "2024-05-27",
+        filename: "PXL_20240527_153558310.jpg",
         video: true
       },
       %{
@@ -1125,6 +1298,12 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Looking handsome",
+        date: "2024-07-13",
+        filename: "PXL_20240713_151915119.jpg",
+        video: true
+      },
+      %{
         label: "Snoozin'",
         date: "2024-07-16",
         filename: "PXL_20240716_011249612.jpg",
@@ -1142,6 +1321,13 @@ defmodule Blog.HomePage do
         filename: "PXL_20240824_213839447.jpg",
         video: true
       },
+      %{label: "Shmoozing", date: "2024-08-26", filename: "IMG_4743.jpg", video: false},
+      %{
+        label: "One box per cat",
+        date: "2024-09-13",
+        filename: "PXL_20240913_220545468.jpg",
+        video: true
+      },
       %{
         label: "Morning scene",
         date: "2024-10-11",
@@ -1155,11 +1341,24 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Grooming",
+        date: "2024-11-04",
+        filename: "PXL_20241104_214920036.jpg",
+        video: true
+      },
+      %{
+        label: "Lounging with the fam",
+        date: "2024-11-09",
+        filename: "IMG_5049.jpg",
+        video: false
+      },
+      %{
         label: "Enjoying a scritch",
         date: "2024-11-26",
         filename: "PXL_20241127_022451029.jpg",
         video: true
       },
+      %{label: "Dinner table snuggle", date: "2024-11-30", filename: "IMG_5091.jpg", video: true},
       %{
         label: "Morning scene",
         date: "2024-12-11",
@@ -1179,6 +1378,18 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Looking handsome on his 15th birthday",
+        date: "2025-01-01",
+        filename: "PXL_20250101_151432570.jpg",
+        video: true
+      },
+      %{
+        label: "Looking handsome on his 15th birthday",
+        date: "2025-01-01",
+        filename: "PXL_20250101_151821597.jpg",
+        video: true
+      },
+      %{
         label: "Morning scene",
         date: "2025-01-23",
         filename: "PXL_20250123_130356930.jpg",
@@ -1190,10 +1401,36 @@ defmodule Blog.HomePage do
         filename: "PXL_20250202_031906428.jpg",
         video: true
       },
+      %{label: "Dinner table snuggle", date: "2025-02-05", filename: "IMG_5229.jpg", video: true},
+      %{
+        label: "Evening scene",
+        date: "2025-02-10",
+        filename: "PXL_20250211_025141681.jpg",
+        video: true
+      },
+      %{
+        label: "Fingie inspection",
+        date: "2025-02-22",
+        filename: "PXL_20250223_035938379.jpg",
+        video: true
+      },
       %{
         label: "Bedtime scene",
         date: "2025-02-22",
         filename: "PXL_20250223_040004045.jpg",
+        video: true
+      },
+      %{label: "Dinner table snuggle", date: "2025-02-23", filename: "IMG_5274.jpg", video: true},
+      %{
+        label: "Enjoying a scritch",
+        date: "2025-02-27",
+        filename: "PXL_20250227_131849803.jpg",
+        video: true
+      },
+      %{
+        label: "Hey-Service is slow!",
+        date: "2025-03-21",
+        filename: "PXL_20250321_134144932.jpg",
         video: true
       },
       %{
@@ -1203,11 +1440,38 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Guard cats hard at work",
+        date: "2025-06-14",
+        filename: "PXL_20250614_200134550.jpg",
+        video: true
+      },
+      %{
+        label: "Embracing on the couch",
+        date: "2025-06-19",
+        filename: "IMG_5708.jpg",
+        video: true
+      },
+      %{label: "Blissed out snoozer", date: "2025-06-28", filename: "IMG_5741.jpg", video: true},
+      %{
+        label: "A typical evening scene",
+        date: "2025-07-29",
+        filename: "IMG_5866.jpg",
+        video: true
+      },
+      %{
         label: "Hanging with dad",
         date: "2025-08-03",
         filename: "PXL_20250803_192007810.jpg",
         video: true
       },
+      %{
+        label: "Getting massaged into another state of existence",
+        date: "2025-08-17",
+        filename: "IMG_5913.jpg",
+        video: true
+      },
+      %{label: "Dead bug snug", date: "2025-10-04", filename: "IMG_5999.jpg", video: true},
+      %{label: "Double scoop", date: "2025-10-29", filename: "IMG_6059.jpg", video: true},
       %{
         label: "Bedtime excitement",
         date: "2025-11-27",
@@ -1221,17 +1485,33 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Pleading for dinner",
+        date: "2025-12-19",
+        filename: "PXL_20251220_023240881.jpg",
+        video: true
+      },
+      %{
+        label: "Looking handsome on his 16th birthday",
+        date: "2026-01-01",
+        filename: "PXL_20260101_144649709.jpg",
+        video: true
+      },
+      %{
         label: "Cardboard boxes were forever an interest",
         date: "2026-01-07",
         filename: "PXL_20260107_232010050.jpg",
         video: true
       },
+      %{label: "A perfect box", date: "2026-01-17", filename: "IMG_6223.jpg", video: true},
       %{
         label: "Bedtime excitement",
         date: "2026-01-26",
         filename: "PXL_20260127_040633209.jpg",
         video: true
       },
+      %{label: "Double scoop", date: "2026-02-03", filename: "IMG_6259.jpg", video: true},
+      %{label: "Morning scene", date: "2026-02-08", filename: "IMG_6274.jpg", video: true},
+      %{label: "Enjoying a belly rub", date: "2026-02-28", filename: "IMG_6326.jpg", video: true},
       %{
         label: "Bedtime cuddle",
         date: "2026-03-17",
@@ -1239,11 +1519,24 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
-        label: "Snuggin'",
+        label: "Snugglin'",
         date: "2026-03-22",
         filename: "PXL_20260322_222239949.jpg",
         video: true
       },
+      %{
+        label: "Shmoozin'",
+        date: "2026-04-19",
+        filename: "PXL_20260420_001211114.jpg",
+        video: false
+      },
+      %{
+        label: "Hanging with the fam",
+        date: "2026-06-04",
+        filename: "IMG_6641.jpg",
+        video: false
+      },
+
       # cat snugs
       %{
         label: "Snuggly siblings, shortly after adoption",
@@ -1257,6 +1550,7 @@ defmodule Blog.HomePage do
         filename: "2010-04-05.jpg",
         video: false
       },
+      %{label: "Sibling love", date: "2010-04-24", filename: "2010-04-24.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2010-09-18",
@@ -1264,6 +1558,7 @@ defmodule Blog.HomePage do
         video: false
       },
       %{label: "Sibling love", date: "2011-02-17", filename: "IMG_0869.jpg", video: false},
+      %{label: "Sibling love", date: "2011-02-24", filename: "IMG_0885.jpg", video: false},
       %{label: "Sibling love", date: "2011-06-25", filename: "IMG_1044.jpg", video: false},
       %{label: "Sibling love", date: "2014-02-22", filename: "IMGP2200.jpg", video: false},
       %{
@@ -1282,6 +1577,25 @@ defmodule Blog.HomePage do
         label: "Sibling love",
         date: "2016-10-23",
         filename: "IMG_20161023_233706.jpg",
+        video: false
+      },
+      %{label: "Sibling snuggles", date: "2016-11-26", filename: "2016-11-26.jpg", video: false},
+      %{
+        label: "Sibling snuggles",
+        date: "2016-11-26",
+        filename: "IMG_20161126_131957.jpg",
+        video: false
+      },
+      %{
+        label: "Sibling snuggles",
+        date: "2016-11-26",
+        filename: "2016_11_26_131018.gif",
+        video: false
+      },
+      %{
+        label: "Sibling snuggles",
+        date: "2016-11-26",
+        filename: "2016_11_26_132646.gif",
         video: false
       },
       %{
@@ -1314,6 +1628,7 @@ defmodule Blog.HomePage do
         filename: "IMG_20170618_135521.jpg",
         video: false
       },
+      %{label: "Grooming session", date: "2017-07-16", filename: "2017-07-16.gif", video: false},
       %{
         label: "Sibling love",
         date: "2017-09-03",
@@ -1323,7 +1638,19 @@ defmodule Blog.HomePage do
       %{
         label: "Sibling love",
         date: "2018-01-14",
+        filename: "IMG_20180114_150433.jpg",
+        video: false
+      },
+      %{
+        label: "Sibling love",
+        date: "2018-01-14",
         filename: "IMG_20180114_151521.jpg",
+        video: false
+      },
+      %{
+        label: "Snoozing in dad's leg crook",
+        date: "2018-04-29",
+        filename: "IMG_20180429_014143.jpg",
         video: false
       },
       %{
@@ -1549,12 +1876,14 @@ defmodule Blog.HomePage do
         filename: "PXL_20240229_162031235.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2024-03-01", filename: "IMG_4205.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2024-03-13",
         filename: "PXL_20240313_181400865.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2024-04-12", filename: "IMG_4316.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2024-11-14",
@@ -1604,11 +1933,42 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Sibling grooming",
+        date: "2025-01-01",
+        filename: "PXL_20250101_155419943.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling grooming",
+        date: "2025-01-01",
+        filename: "PXL_20250101_155443139.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling grooming",
+        date: "2025-01-01",
+        filename: "PXL_20250101_155459751.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling love",
+        date: "2025-01-02",
+        filename: "PXL_20250102_190744673.jpg",
+        video: true
+      },
+      %{
         label: "Sibling love",
         date: "2025-01-02",
         filename: "PXL_20250102_215722568.jpg",
         video: true
       },
+      %{
+        label: "Sibling love",
+        date: "2025-01-03",
+        filename: "PXL_20250103_213325126.jpg",
+        video: true
+      },
+      %{label: "Sibling love", date: "2025-01-04", filename: "IMG_5163.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2025-01-06",
@@ -1648,7 +2008,19 @@ defmodule Blog.HomePage do
       %{
         label: "Sibling love",
         date: "2025-01-26",
+        filename: "PXL_20250126_000815845.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling love",
+        date: "2025-01-26",
         filename: "PXL_20250126_003043056.jpg",
+        video: true
+      },
+      %{
+        label: "Sibling love",
+        date: "2025-02-19",
+        filename: "PXL_20250219_155202254.jpg",
         video: true
       },
       %{
@@ -1657,6 +2029,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20250307_181652852.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2025-05-23", filename: "IMG_5627.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2025-05-23",
@@ -1675,12 +2048,15 @@ defmodule Blog.HomePage do
         filename: "PXL_20251010_213245103.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2025-10-18", filename: "IMG_6031.jpg", video: true},
+      %{label: "Sibling love", date: "2025-10-18", filename: "IMG_6036.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2025-10-21",
         filename: "PXL_20251021_195055962.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2025-11-08", filename: "IMG_6084.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2025-11-19",
@@ -1705,18 +2081,23 @@ defmodule Blog.HomePage do
         filename: "PXL_20251124_172735860.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2025-12-08", filename: "2025-12-08.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2025-12-17",
         filename: "PXL_20251217_194029601.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2025-12-22", filename: "2025-12-22.jpg", video: false},
       %{
         label: "Sibling love",
         date: "2025-12-23",
         filename: "PXL_20251223_202704217.jpg",
         video: true
       },
+      %{label: "Sibling love", date: "2025-12-27", filename: "IMG_6202.jpg", video: true},
+      %{label: "Sibling love", date: "2026-02-04", filename: "IMG_6264.jpg", video: true},
+      %{label: "Sibling love", date: "2026-03-01", filename: "IMG_6334.jpg", video: true},
       %{
         label: "Sibling love",
         date: "2026-03-30",
@@ -1747,6 +2128,7 @@ defmodule Blog.HomePage do
         filename: "PXL_20260523_232251675.jpg",
         video: true
       },
+
       # people snugs
       %{
         label: "The finest lap cat",
@@ -1796,6 +2178,7 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200327_160938.jpg",
         video: true
       },
+      %{label: "Enjoying a rub", date: "2020-08-07", filename: "IMG_0355.jpg", video: true},
       %{
         label: "Double lap cat",
         date: "2020-11-03",
@@ -1855,6 +2238,12 @@ defmodule Blog.HomePage do
         label: "Double lap cat",
         date: "2022-03-20",
         filename: "PXL_20220320_195559399.jpg",
+        video: true
+      },
+      %{
+        label: "The finest lap cat",
+        date: "2022-04-28",
+        filename: "PXL_20220429_005114823.jpg",
         video: true
       },
       %{label: "Double lap cat", date: "2022-10-29", filename: "IMG_3062.jpg", video: false},
@@ -1931,6 +2320,12 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Hanging on dad",
+        date: "2025-04-13",
+        filename: "PXL_20250413_235411405.jpg",
+        video: true
+      },
+      %{
         label: "Double lap cat",
         date: "2025-05-17",
         filename: "PXL_20250517_142926814.jpg",
@@ -1960,8 +2355,10 @@ defmodule Blog.HomePage do
         filename: "PXL_20260221_161904335.jpg",
         video: true
       },
+
       # antics
       %{label: "Caught in the act", date: "2010-05-07", filename: "2010-05-07.jpg", video: false},
+      %{label: "Kitten wrestling", date: "2010-07-28", filename: "IMG_0200.jpg", video: false},
       %{label: "Toilet paper mayhem", date: "2010-10-17", filename: "IMG_0667.jpg", video: false},
       %{label: "Entropy at work", date: "2011-02-02", filename: "IMG_0816.jpg", video: false},
       %{
@@ -2004,17 +2401,30 @@ defmodule Blog.HomePage do
       },
       %{label: "Airborne", date: "2013-09-07", filename: "2013-09-07.jpg", video: false},
       %{
+        label: "Laundry inspector",
+        date: "2014-12-29",
+        filename: "IMG_20141229_225345.jpg",
+        video: false
+      },
+      %{
         label: "Disappointed about the tardy food service",
         date: "2016-02-28",
         filename: "IMG_20160228_093303.jpg",
         video: false
       },
       %{label: "Water thief", date: "2016-11-06", filename: "2016-11-06.jpg", video: false},
+      %{label: "Boing!", date: "2016-12-18", filename: "2016_12_18_201422.gif", video: false},
       %{label: "Water thief", date: "2017-09-15", filename: "2017-09-15.jpg", video: false},
       %{
         label: "Breaking into the basement",
         date: "2019-05-03",
         filename: "MVIMG_20190503_210536.jpg",
+        video: true
+      },
+      %{
+        label: "Hopped up on cat nip",
+        date: "2020-01-26",
+        filename: "MVIMG_20200126_145813.jpg",
         video: true
       },
       %{
@@ -2035,6 +2445,19 @@ defmodule Blog.HomePage do
         filename: "MVIMG_20200821_134125.jpg",
         video: true
       },
+      %{label: "Boop", date: "2021-01-01", filename: "PXL_20210101_173025729.jpg", video: true},
+      %{
+        label: "Hopped up on cat nip",
+        date: "2021-01-06",
+        filename: "PXL_20210107_040459603.jpg",
+        video: true
+      },
+      %{
+        label: "Inspectors hard at work",
+        date: "2021-05-22",
+        filename: "PXL_20210523_002724202.jpg",
+        video: true
+      },
       %{
         label: "Butter thief",
         date: "2021-08-31",
@@ -2042,16 +2465,31 @@ defmodule Blog.HomePage do
         video: true
       },
       %{
+        label: "Hopped up on cat nip",
+        date: "2022-12-25",
+        filename: "PXL_20221225_153717312.jpg",
+        video: true
+      },
+      %{label: "Boop", date: "2023-11-06", filename: "PXL_20231106_121224370.jpg", video: true},
+      %{
         label:
           "Cheddar loved to perforate plastic of specific thickness, including trash bag handles and shower curtain liners.",
         date: "2024-02-28",
         filename: "PXL_20240228_232736347.jpg",
         video: true
       },
+      %{label: "Boop", date: "2024-05-19", filename: "PXL_20240520_001641496.jpg", video: true},
+      %{label: "Boop", date: "2024-05-19", filename: "PXL_20240520_001706052.jpg", video: true},
       %{
         label: "Close-up",
         date: "2024-07-05",
         filename: "PXL_20240706_033448048.jpg",
+        video: true
+      },
+      %{
+        label: "Yoga inspector",
+        date: "2024-11-20",
+        filename: "PXL_20241120_235919050.jpg",
         video: true
       },
       %{
@@ -2065,6 +2503,12 @@ defmodule Blog.HomePage do
           "For a brief period, Cheddar would occasionally jump in the laundry hamper. He couldn't figure out how to get out and would meow until a human rescued him.",
         date: "2025-04-27",
         filename: "PXL_20250427_000917547.jpg",
+        video: true
+      },
+      %{
+        label: "Assisting with seedlings",
+        date: "2026-05-13",
+        filename: "PXL_20260513_015129326.jpg",
         video: true
       }
     ]
@@ -2112,22 +2556,28 @@ defmodule Blog.HomePage do
     [
       "2010-02-24-9.jpg",
       "2010-02-26-07.jpg",
+      "2010-05-03.jpg",
       "2010-05-07.jpg",
       "2011-04-11.gif",
       "IMG_20111217_233927.jpg",
       "2013-08-08.jpg",
       "IMG_20160228_093303.jpg",
       "MVIMG_20190503_210536.jpg",
+      "MVIMG_20190512_182753.jpg",
       "IMG_3574.jpg",
       "IMG_0208.jpg",
       "IMG_0506.jpg",
+      "PXL_20210101_173025729.jpg",
       "IMG_1275.jpg",
       "PXL_20210831_180647355.jpg",
+      "PXL_20220430_175735855.jpg",
       "PXL_20230512_020020439.jpg",
       "PXL_20230704_230302378.jpg",
       "IMG_4064.jpg",
       "PXL_20240120_022758124.jpg",
-      "PXL_20250123_130356930.jpg"
+      "PXL_20250103_213325126.jpg",
+      "PXL_20250123_130356930.jpg",
+      "IMG_5708.jpg"
     ]
   end
 
